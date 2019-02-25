@@ -20,3 +20,4 @@
 @_exported import pop
 @_exported import RxDataSources
 @_exported import Differentiator
+@_exported import SnapKit

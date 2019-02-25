@@ -65,8 +65,8 @@ class NewsHomeViewController: DiaryBaseViewController {
         let dataSource = RxTableViewSectionedReloadDataSource
             <SectionModel<String, NewsListModel>>(configureCell: {
                 (dataSource, tv, indexPath, element) in
-                let cell = tv.dequeueReusableCell(withIdentifier: "Cell")!
-                cell.textLabel?.text = "\(indexPath.row)：\(element)"
+                let cell = tv.dequeueReusableCell(withIdentifier: "NewsHomeCell", for: indexPath)
+                //cell.textLabel?.text = "\(indexPath.row)：\(element)"
                 return cell
             })
         

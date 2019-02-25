@@ -16,9 +16,9 @@ class NewsHomeListView: DiaryBaseView {
     override func configUI() {
         tableView = UITableView(frame: self.bounds, style: .plain)
         //创建一个重用的单元格
-        self.tableView!.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        self.tableView!.register(NewsHomeCell.self, forCellReuseIdentifier: "NewsHomeCell")
         self.addSubview(tableView)
-        tableView.rowHeight = 200;
+        tableView.rowHeight = 110;
         //设置头部刷新控件
         self.tableView.mj_header = MJRefreshNormalHeader()
         //设置尾部刷新控件
