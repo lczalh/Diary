@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7326F8E422251CBD0005696F /* NewsDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7326F8E322251CBD0005696F /* NewsDetailsViewController.swift */; };
+		7326F8E7222520FE0005696F /* NewsDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7326F8E6222520FE0005696F /* NewsDetailsModel.swift */; };
 		7367D2EE221FA43A008FD780 /* MJRefresh+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7367D2ED221FA43A008FD780 /* MJRefresh+Rx.swift */; };
 		7367D2F0221FA43F008FD780 /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7367D2EF221FA43F008FD780 /* UIViewController+Rx.swift */; };
 		7367D2F3221FA8DA008FD780 /* NewsHomeNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7367D2F2221FA8DA008FD780 /* NewsHomeNetworkService.swift */; };
@@ -35,6 +37,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7326F8E322251CBD0005696F /* NewsDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailsViewController.swift; sourceTree = "<group>"; };
+		7326F8E6222520FE0005696F /* NewsDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailsModel.swift; sourceTree = "<group>"; };
 		7367D2ED221FA43A008FD780 /* MJRefresh+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MJRefresh+Rx.swift"; sourceTree = "<group>"; };
 		7367D2EF221FA43F008FD780 /* UIViewController+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
 		7367D2F2221FA8DA008FD780 /* NewsHomeNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsHomeNetworkService.swift; sourceTree = "<group>"; };
@@ -85,6 +89,31 @@
 				7BF0AA4A0A47E6E656FBD185 /* Pods-Diary.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		7326F8E122251C6E0005696F /* NewsDetails(新闻详情) */ = {
+			isa = PBXGroup;
+			children = (
+				7326F8E5222520A30005696F /* Model */,
+				7326F8E222251C910005696F /* Controller */,
+			);
+			path = "NewsDetails(新闻详情)";
+			sourceTree = "<group>";
+		};
+		7326F8E222251C910005696F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7326F8E322251CBD0005696F /* NewsDetailsViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		7326F8E5222520A30005696F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7326F8E6222520FE0005696F /* NewsDetailsModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		7367D2EC221FA3AB008FD780 /* Extension(扩展) */ = {
@@ -222,12 +251,13 @@
 		737E1C452213E1E000BF751D /* News(新闻) */ = {
 			isa = PBXGroup;
 			children = (
-				737E1C482213E33A00BF751D /* Home(首页) */,
+				7326F8E122251C6E0005696F /* NewsDetails(新闻详情) */,
+				737E1C482213E33A00BF751D /* NewsHome(新闻首页) */,
 			);
 			path = "News(新闻)";
 			sourceTree = "<group>";
 		};
-		737E1C482213E33A00BF751D /* Home(首页) */ = {
+		737E1C482213E33A00BF751D /* NewsHome(新闻首页) */ = {
 			isa = PBXGroup;
 			children = (
 				7367D2F1221FA893008FD780 /* NetworkService */,
@@ -236,7 +266,7 @@
 				737E1C4E2213E7CF00BF751D /* View */,
 				737E1C4D2213E7BF00BF751D /* Controller */,
 			);
-			path = "Home(首页)";
+			path = "NewsHome(新闻首页)";
 			sourceTree = "<group>";
 		};
 		737E1C4D2213E7BF00BF751D /* Controller */ = {
@@ -514,6 +544,7 @@
 				7367D2F0221FA43F008FD780 /* UIViewController+Rx.swift in Sources */,
 				737E1C472213E21A00BF751D /* DiaryBaseViewController.swift in Sources */,
 				737E1C5F2213FCE800BF751D /* NewsHomeModel.swift in Sources */,
+				7326F8E7222520FE0005696F /* NewsDetailsModel.swift in Sources */,
 				73D4DADC2213CBF200116541 /* AppDelegate.swift in Sources */,
 				737E1C562213E94D00BF751D /* NewsHomeListView.swift in Sources */,
 				7367D2F3221FA8DA008FD780 /* NewsHomeNetworkService.swift in Sources */,
@@ -525,6 +556,7 @@
 				73948B7E2223CF88000ED09A /* NewsHomeCell.swift in Sources */,
 				737E1C4A2213E37900BF751D /* NewsHomeViewController.swift in Sources */,
 				73948B802223CFA5000ED09A /* DiaryBaseViewCell.swift in Sources */,
+				7326F8E422251CBD0005696F /* NewsDetailsViewController.swift in Sources */,
 				737E1C542213E89700BF751D /* NewsHomeView.swift in Sources */,
 				737E1C592213ED0C00BF751D /* NewsNetworkServices.swift in Sources */,
 				737E1C3A2213DDF300BF751D /* DiaryRoute.swift in Sources */,

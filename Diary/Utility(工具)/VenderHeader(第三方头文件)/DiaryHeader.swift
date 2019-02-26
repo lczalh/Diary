@@ -21,3 +21,4 @@
 @_exported import RxDataSources
 @_exported import Differentiator
 @_exported import SnapKit
+@_exported import Kingfisher

@@ -24,9 +24,11 @@ class NewsHomeViewModel {
     // 停止尾部刷新状态
     let endFooterRefreshing: Driver<Bool>
     
+    
     init(input: (
             headerRefresh: Driver<Void>,
-            footerRefresh: Driver<Void> ),
+            footerRefresh: Driver<Void>,
+            currentCategory: String),
         dependency: (
             disposeBag: DisposeBag,
             networkService: NewsHomeNetworkService)
@@ -36,13 +38,13 @@ class NewsHomeViewModel {
         let headerRefreshData = input.headerRefresh
             .startWith(()) //初始化时会先自动加载一次数据
             .flatMapLatest{ //也可考虑使用flatMapFirst
-                return dependency.networkService.getNewsListData(category: "要闻").asDriver(onErrorJustReturn: [])
+                return dependency.networkService.getNewsListData(category: input.currentCategory).asDriver(onErrorJustReturn: [])
         }
         
         //上拉结果序列
         let footerRefreshData = input.footerRefresh
             .flatMapLatest{  //也可考虑使用flatMapFirst
-                return dependency.networkService.getNewsListData(category: "要闻").asDriver(onErrorJustReturn: [])
+                return dependency.networkService.getNewsListData(category: input.currentCategory).asDriver(onErrorJustReturn: [])
         }
         
         //生成停止头部刷新状态序列
@@ -60,6 +62,7 @@ class NewsHomeViewModel {
         footerRefreshData.drive(onNext: { items in
             self.tableData.accept(self.tableData.value + items )
         }).disposed(by: dependency.disposeBag)
+        
         
     }
     

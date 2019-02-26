@@ -13,52 +13,63 @@ class NewsHomeCell: DiaryBaseViewCell {
     /// 标题
     var title: UILabel!
     
-    /// 类别
-    var category: UILabel!
+    /// 时间
+    var time: UILabel!
     
     /// 图片
     var imageV: UIImageView!
     
+    /// 来源
+    var source: UILabel!
     
     override func config() {
+        self.selectionStyle = .none
         // 图片
         self.imageV = UIImageView()
         self.contentView.addSubview(self.imageV)
-        self.imageV.snp.makeConstraints { (make) in
-            make.bottom.right.equalToSuperview().offset(-10)
-            make.top.equalToSuperview().offset(10)
-            make.width.equalTo(120);
-        }
-        self.layoutIfNeeded()
+        self.imageV.frame = CGRect(x: LCZWidth - 130, y: 10, width: 120, height: 90)
         self.imageV.setContentHuggingPriority(.required, for: .horizontal)
         self.imageV.setContentCompressionResistancePriority(.required, for: .horizontal)
-        self.imageV.backgroundColor = UIColor.red
+        self.imageV.layoutIfNeeded()
         
         // 标题
         self.title = UILabel()
         self.contentView.addSubview(self.title);
         self.title.snp.makeConstraints { (make) in
             make.left.top.equalToSuperview().offset(10)
-            make.right.equalTo(self.imageV.snp.left).offset(10)
+            make.right.equalTo(self.imageV.snp.left).offset(-10)
         }
-        self.title.text = "ada  大大大";
+        self.title.numberOfLines = 0
+        self.title.font = LCZBoldFontSize(size: 18)
+        
+        // 时间
+        self.time = UILabel()
+        self.contentView.addSubview(self.time)
+        self.time.snp.makeConstraints { (make) in
+            make.left.equalToSuperview().offset(10)
+            make.bottom.equalToSuperview().offset(-10)
+        }
+        self.time.font = LCZFontSize(size: 14)
+        
+        // 来源
+        self.source = UILabel()
+        self.contentView.addSubview(self.source)
+        self.source.snp.makeConstraints { (make) in
+            make.right.equalTo(self.imageV.snp.left).offset(-10)
+            make.bottom.equalTo(self.time)
+        }
+        self.source.font = LCZFontSize(size: 14)
+        
     }
     
-    override func setNeedsLayout() {
-        super.setNeedsLayout()
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        // 切圆角
         let path = UIBezierPath(roundedRect: self.imageV.bounds, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: 5, height: 5))
         let maskLayer = CAShapeLayer()
         maskLayer.frame = self.imageV.bounds
         maskLayer.path = path.cgPath
         self.imageV.layer.mask = maskLayer
-    }
-    
-
-    
-    override func layoutSubviews() {
-        
-
-
     }
     
 

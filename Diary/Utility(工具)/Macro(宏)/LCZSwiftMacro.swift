@@ -67,7 +67,7 @@ public func LCZPrint<T>(_ message: T,file: String = #file,method: String = #func
     #endif
 }
 
-/// 设置加粗字体大小
+/// 设置字体大小
 ///
 /// - Parameter size: 大小
 /// - Returns: UIFont
@@ -175,7 +175,23 @@ func LCZStringConversionDate(_ string:String, dateFormat:String = "yyyy-MM-dd HH
     return date!
 }
 
-
+/// 获取当前视图中的目标父视图
+///
+/// - Parameters:
+///   - currentView: 当前视图
+///   - superView: 目标父视图
+/// - Returns: 返回父视图
+public func LCZGetSuperView<T: UIView>(currentView: UIView, superView: T.Type) -> T? {
+    var view: UIView = currentView.superview!
+    
+    while view.isKind(of: T.self) != true {
+        guard view.superview != nil else {
+            return nil
+        }
+        view = view.superview!
+    }
+    return view as? T
+}
 
 
 
