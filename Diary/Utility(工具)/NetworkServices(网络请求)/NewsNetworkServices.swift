@@ -15,11 +15,12 @@ let networkServicesProvider = MoyaProvider<MultiTarget>(requestClosure : timeout
 public enum NewsNetworkServices {
     
     // MARK: - 获取新闻数据
-    case getNewsList(appKey: String, category: String)
+    case getNewsList(appKey: String, category: String, page: Int)
     
     // MARK: - 获取所有新闻类型数据
     case getNewsTypeList(appKey: String)
     
+    // MARK: - 获取新闻详情
     case getNewsDetails(appKey: String, newsId: String)
 }
 
@@ -37,9 +38,9 @@ extension NewsNetworkServices : TargetType {
         
         switch self {
             
-        case .getNewsList(_,_):
+        case .getNewsList:
             return "api/news/list"
-        case .getNewsTypeList(_):
+        case .getNewsTypeList:
             return "api/news/categories"
         case .getNewsDetails:
             return "api/news/detail"
@@ -64,10 +65,10 @@ extension NewsNetworkServices : TargetType {
         var parameterDict: [String : Any] = Dictionary()
         switch self {
             
-        case .getNewsList(let appKey, let category):
-            
+        case .getNewsList(let appKey, let category, let page):
             parameterDict["appKey"] = appKey
             parameterDict["category"] = category
+            parameterDict["page"] = page
             break
         case .getNewsTypeList(let appKey):
             parameterDict["appKey"] = appKey

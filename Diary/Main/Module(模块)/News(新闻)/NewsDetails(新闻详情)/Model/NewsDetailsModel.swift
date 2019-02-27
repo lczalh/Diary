@@ -20,17 +20,20 @@ struct NewsDetailsRootModel: Mappable {
     }
 }
 
-struct NewsDetailsModel: Mappable {
-    var category: String?
-    var source: String?
-    var publishTime: String?
-    var content: String?
-    var editor: String?
-    var title: String?
+class NewsDetailsModel: Object, Mappable {
     
-    init?(map: Map) {}
+    @objc dynamic var category: String?
+    @objc dynamic var source: String?
+    @objc dynamic var publishTime: String?
+    @objc dynamic var content: String?
+    @objc dynamic var editor: String?
+    @objc dynamic var title: String?
     
-    mutating func mapping(map: Map) {
+    required convenience init?(map: Map) {
+        self.init()
+    }
+    
+    func mapping(map: Map) {
         category   <- map["category"]
         source   <- map["source"]
         publishTime   <- map["publishTime"]

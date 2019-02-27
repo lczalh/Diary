@@ -19,6 +19,8 @@ class NewsHomeViewModel {
     // 停止尾部刷新状态
     var endFooterRefreshing: Driver<Bool>!
     
+    /// 当前页数
+    private var page: Int = 1
     
     init(input: (
             headerRefresh: Driver<Void>,
@@ -28,18 +30,19 @@ class NewsHomeViewModel {
             disposeBag: DisposeBag,
             networkService: NewsHomeNetworkService)
         ) {
-    
+        
         //下拉结果序列
         let headerRefreshData = input.headerRefresh
             .startWith(()) //初始化时会先自动加载一次数据
             .flatMapLatest{ //也可考虑使用flatMapFirst
-                return dependency.networkService.getNewsListData(category: input.currentCategory).asDriver(onErrorJustReturn: [])
+                return dependency.networkService.getNewsListData(category: input.currentCategory, page: 1).asDriver(onErrorJustReturn: [])
         }
 
         //上拉结果序列
         let footerRefreshData = input.footerRefresh
-            .flatMapLatest{  //也可考虑使用flatMapFirst
-                return dependency.networkService.getNewsListData(category: input.currentCategory).asDriver(onErrorJustReturn: [])
+            .flatMapLatest{ _ -> SharedSequence<DriverSharingStrategy, [NewsListModel]> in  //也可考虑使用flatMapFirst
+                self.page += 1
+                return dependency.networkService.getNewsListData(category: input.currentCategory, page: self.page).asDriver(onErrorJustReturn: [])
         }
 
         //生成停止头部刷新状态序列
@@ -50,6 +53,7 @@ class NewsHomeViewModel {
 
         //下拉刷新时，直接将查询到的结果替换原数据
         headerRefreshData.drive(onNext: { items in
+            //查询所有的消费记录
             self.tableData.accept(items)
         }).disposed(by: dependency.disposeBag)
 

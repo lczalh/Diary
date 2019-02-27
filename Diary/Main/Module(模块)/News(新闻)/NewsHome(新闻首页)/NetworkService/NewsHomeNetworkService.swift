@@ -16,7 +16,6 @@ class NewsHomeNetworkService {
         return Single<[String]>.create(subscribe: { (single) -> Disposable in
             let request = networkServicesProvider.rx.requestData(target: MultiTarget(NewsNetworkServices.getNewsTypeList(appKey: "eb7906fea2824f61a26fab22c071fe9a")), model: NewsTypeListModel.self).subscribe(onSuccess: { (result) in
                 if result.ERRORCODE == "0" {
-                    LCZPrint(result.RESULT.count)
                     single(.success(result.RESULT))
                 } else {
                     LCZPrint("错误")
@@ -29,11 +28,10 @@ class NewsHomeNetworkService {
     }
     
     // 获取新闻列表数据
-    public func getNewsListData(category: String) -> Single<[NewsListModel]> {
+    public func getNewsListData(category: String, page: Int) -> Single<[NewsListModel]> {
         return Single<[NewsListModel]>.create(subscribe: { (single) -> Disposable in
-            let request = networkServicesProvider.rx.requestData(target: MultiTarget(NewsNetworkServices.getNewsList(appKey: "eb7906fea2824f61a26fab22c071fe9a", category: category)), model: NewsRootModel<NewsListResultModel>.self).subscribe(onSuccess: { (result) in
+            let request = networkServicesProvider.rx.requestData(target: MultiTarget(NewsNetworkServices.getNewsList(appKey: "eb7906fea2824f61a26fab22c071fe9a", category: category, page: page)), model: NewsRootModel<NewsListResultModel>.self).subscribe(onSuccess: { (result) in
                 if result.ERRORCODE == "0" {
-                    LCZPrint(result.RESULT!.newsList!)
                     single(.success(result.RESULT!.newsList! as [NewsListModel]))
                 } else {
                     LCZPrint("错误")

@@ -25,4 +25,5 @@ target 'Diary' do
     pod 'SwiftTheme'
     pod 'SwifterSwift'
     pod 'JXCategoryView'
+    pod 'ObjectMapper+Realm'
 end

@@ -22,3 +22,6 @@
 @_exported import Differentiator
 @_exported import SnapKit
 @_exported import Kingfisher
+@_exported import RealmSwift
+@_exported import Realm
+@_exported import ObjectMapper_Realm
