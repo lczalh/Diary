@@ -8,6 +8,7 @@
 
 import Foundation
 
+// MARK: - 新闻列表模型
 struct NewsRootModel<T: Mappable>: Mappable {
     var ERRORCODE: String?
     var RESULT: T?
@@ -49,5 +50,19 @@ struct NewsListModel: Mappable {
         newsId   <- map["newsId"]
         title   <- map["title"]
         newsImg   <- map["newsImg"]
+    }
+}
+
+
+// MARK: - 新闻类型列表模型
+struct NewsTypeListModel: Mappable {
+    var RESULT = [String]()
+    var ERRORCODE: String?
+    
+    init?(map: Map) {}
+    
+    mutating func mapping(map: Map) {
+        RESULT   <- map["RESULT"]
+        ERRORCODE   <- map["ERRORCODE"]
     }
 }

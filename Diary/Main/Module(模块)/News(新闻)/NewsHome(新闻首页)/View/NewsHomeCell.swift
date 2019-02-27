@@ -28,9 +28,12 @@ class NewsHomeCell: DiaryBaseViewCell {
         self.imageV = UIImageView()
         self.contentView.addSubview(self.imageV)
         self.imageV.frame = CGRect(x: LCZWidth - 130, y: 10, width: 120, height: 90)
-        self.imageV.setContentHuggingPriority(.required, for: .horizontal)
-        self.imageV.setContentCompressionResistancePriority(.required, for: .horizontal)
-        self.imageV.layoutIfNeeded()
+        // 切圆角
+        let path = UIBezierPath(roundedRect: self.imageV.bounds, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: 5, height: 5))
+        let maskLayer = CAShapeLayer()
+        maskLayer.frame = self.imageV.bounds
+        maskLayer.path = path.cgPath
+        self.imageV.layer.mask = maskLayer
         
         // 标题
         self.title = UILabel()
@@ -49,7 +52,7 @@ class NewsHomeCell: DiaryBaseViewCell {
             make.left.equalToSuperview().offset(10)
             make.bottom.equalToSuperview().offset(-10)
         }
-        self.time.font = LCZFontSize(size: 14)
+        self.time.font = LCZFontSize(size: 12)
         
         // 来源
         self.source = UILabel()
@@ -58,18 +61,8 @@ class NewsHomeCell: DiaryBaseViewCell {
             make.right.equalTo(self.imageV.snp.left).offset(-10)
             make.bottom.equalTo(self.time)
         }
-        self.source.font = LCZFontSize(size: 14)
+        self.source.font = LCZFontSize(size: 12)
         
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        // 切圆角
-        let path = UIBezierPath(roundedRect: self.imageV.bounds, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: 5, height: 5))
-        let maskLayer = CAShapeLayer()
-        maskLayer.frame = self.imageV.bounds
-        maskLayer.path = path.cgPath
-        self.imageV.layer.mask = maskLayer
     }
     
 

@@ -11,14 +11,12 @@ import Foundation
 enum DiaryRoute {
     
     static func initialize(navigator: NavigatorType) {
-        //        navigator.register("navigator://user/<username>") { url, values, context in
-        //            print(values["username"] as! String);
-        //            //guard let username = values["username"] as? String else { return nil }
-        ////            let t = ThreeViewController()
-        ////            t.hidesBottomBarWhenPushed = true
-        //
-        //
-        //        }
+        navigator.register("diary://newsHome/newsDetails/<newsId>") { url, values, context in
+            let newsDetailsVC = NewsDetailsViewController()
+            newsDetailsVC.newsId = (values["newsId"] as! String)
+            newsDetailsVC.hidesBottomBarWhenPushed = true
+            return newsDetailsVC
+        }
     }
     
 }

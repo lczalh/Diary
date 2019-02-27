@@ -14,7 +14,7 @@ class NewsHomeNetworkService {
     // 获取新闻类型列表数据
     public func getNewsTypeListData() -> Single<[String]> {
         return Single<[String]>.create(subscribe: { (single) -> Disposable in
-            let request = networkServicesProvider.rx.requestData(target: MultiTarget(NewsNetworkServices.getNewsTypeList(appKey: "eb7906fea2824f61a26fab22c071fe9a")), model: NewsDetailsModel.self).subscribe(onSuccess: { (result) in
+            let request = networkServicesProvider.rx.requestData(target: MultiTarget(NewsNetworkServices.getNewsTypeList(appKey: "eb7906fea2824f61a26fab22c071fe9a")), model: NewsTypeListModel.self).subscribe(onSuccess: { (result) in
                 if result.ERRORCODE == "0" {
                     LCZPrint(result.RESULT.count)
                     single(.success(result.RESULT))

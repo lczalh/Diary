@@ -107,6 +107,9 @@ public func LCZRgbColor(_ red : CGFloat,_ green : CGFloat,_ blue : CGFloat,_ alp
 }
 
 /// 设置16进制颜色
+///
+/// - Parameter hexadecimal: 16进制
+/// - Returns: UIColor
 public func LCZHexadecimalColor(hexadecimal: String) -> UIColor {
     var cstr = hexadecimal.trimmingCharacters(in:  CharacterSet.whitespacesAndNewlines).uppercased() as NSString;
     if(cstr.length < 6){
@@ -173,6 +176,55 @@ func LCZStringConversionDate(_ string:String, dateFormat:String = "yyyy-MM-dd HH
     formatter.dateFormat = dateFormat
     let date = formatter.date(from: string)
     return date!
+}
+
+/// 时间转时间戳函数
+///
+/// - Parameters:
+///   - time: 时间字符串
+///   - dateFormat: 时间格式
+/// - Returns: 时间戳
+func LCZTimeToTimeStamp(time: String, dateFormat:String = "yyyy-MM-dd HH:mm:ss") -> Double {
+    let dfmatter = DateFormatter()
+    dfmatter.dateFormat = dateFormat
+    let last = dfmatter.date(from: time)
+    let timeStamp = last?.timeIntervalSince1970
+    return timeStamp!
+}
+
+/// 根据时间戳返回几分钟前，几小时前，几天前
+///
+/// - Parameters:
+///   - timeStamp: 时间戳
+///   - dateFormat: 时间格式
+/// - Returns: 字符串
+func LCZUpdateTimeToCurrennTime(timeStamp: Double, dateFormat:String = "yyyy-MM-dd HH:mm:ss") -> String {
+    //获取当前的时间戳
+    let currentTime = Date().timeIntervalSince1970
+    //时间差
+    let reduceTime : TimeInterval = currentTime - timeStamp
+    //时间差小于60秒
+    if reduceTime < 60 {
+        return "刚刚"
+    }
+    //时间差大于一分钟小于60分钟内
+    let mins = Int(reduceTime / 60)
+    if mins < 60 {
+        return "\(mins)分钟前"
+    }
+    let hours = Int(reduceTime / 3600)
+    if hours < 24 {
+        return "\(hours)小时前"
+    }
+    let days = Int(reduceTime / 3600 / 24)
+    if days < 30 {
+        return "\(days)天前"
+    }
+    //不满足上述条件---或者是未来日期-----直接返回日期
+    let date = NSDate(timeIntervalSince1970: timeStamp)
+    let dfmatter = DateFormatter()
+    dfmatter.dateFormat = dateFormat
+    return dfmatter.string(from: date as Date)
 }
 
 /// 获取当前视图中的目标父视图

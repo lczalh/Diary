@@ -17,7 +17,10 @@ public enum NewsNetworkServices {
     // MARK: - 获取新闻数据
     case getNewsList(appKey: String, category: String)
     
+    // MARK: - 获取所有新闻类型数据
     case getNewsTypeList(appKey: String)
+    
+    case getNewsDetails(appKey: String, newsId: String)
 }
 
 //设置请求配置
@@ -38,6 +41,8 @@ extension NewsNetworkServices : TargetType {
             return "api/news/list"
         case .getNewsTypeList(_):
             return "api/news/categories"
+        case .getNewsDetails:
+            return "api/news/detail"
         }
         
     }
@@ -66,6 +71,9 @@ extension NewsNetworkServices : TargetType {
             break
         case .getNewsTypeList(let appKey):
             parameterDict["appKey"] = appKey
+        case .getNewsDetails(let appKey, let newsId):
+            parameterDict["appKey"] = appKey
+            parameterDict["newsId"] = newsId
         }
         
         

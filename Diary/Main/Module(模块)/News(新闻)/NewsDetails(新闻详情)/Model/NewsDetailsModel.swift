@@ -8,14 +8,35 @@
 
 import Foundation
 
-struct NewsDetailsModel: Mappable {
-    var RESULT = [String]()
+struct NewsDetailsRootModel: Mappable {
     var ERRORCODE: String?
+    var RESULT: NewsDetailsModel?
     
     init?(map: Map) {}
     
     mutating func mapping(map: Map) {
-        RESULT   <- map["RESULT"]
         ERRORCODE   <- map["ERRORCODE"]
+        RESULT   <- map["RESULT"]
     }
 }
+
+struct NewsDetailsModel: Mappable {
+    var category: String?
+    var source: String?
+    var publishTime: String?
+    var content: String?
+    var editor: String?
+    var title: String?
+    
+    init?(map: Map) {}
+    
+    mutating func mapping(map: Map) {
+        category   <- map["category"]
+        source   <- map["source"]
+        publishTime   <- map["publishTime"]
+        content   <- map["content"]
+        editor   <- map["editor"]
+        title   <- map["title"]
+    }
+}
+

@@ -8,7 +8,7 @@
 
 import UIKit
 
-public let route = Navigator()
+public let diaryRoute = Navigator()
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // 将右边Done改成完成
         IQKeyboardManager.shared.toolbarDoneBarButtonItemText = "完成"
         // 初始化路由
-        DiaryRoute.initialize(navigator: route)
+        DiaryRoute.initialize(navigator: diaryRoute)
         // 开启实时监测网络状态
         startRealTimeMonitorNetworkStatus()
         // 初始化window
