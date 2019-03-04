@@ -20,29 +20,48 @@ class NewsHomeViewModel {
     var endFooterRefreshing: Driver<Bool>!
     
     /// 当前页数
-    private var page: Int = 1
+    private var page: Int = 0
+    
+    private var currentCategory: String!
     
     init(input: (
             headerRefresh: Driver<Void>,
             footerRefresh: Driver<Void>,
-            currentCategory: String),
+            currentCategory: Observable<String>),
         dependency: (
             disposeBag: DisposeBag,
             networkService: NewsHomeNetworkService)
         ) {
         
+        let realm = try! Realm()
+        
+        var models: Array<NewsListModel> = Array()
+        
+        // 查询当前类别的新闻数据
+        input.currentCategory.subscribe(onNext: { (str) in
+            self.currentCategory = str
+            let items = realm.objects(NewsListModel.self).filter{ $0.category == str }
+            for m in items {
+                models.append(m)
+            }
+        }).disposed(by: dependency.disposeBag)
+
+        
+        
+        
         //下拉结果序列
         let headerRefreshData = input.headerRefresh
             .startWith(()) //初始化时会先自动加载一次数据
-            .flatMapLatest{ //也可考虑使用flatMapFirst
-                return dependency.networkService.getNewsListData(category: input.currentCategory, page: 1).asDriver(onErrorJustReturn: [])
+            .flatMapLatest{ _ -> SharedSequence<DriverSharingStrategy, [NewsListModel]> in //也可考虑使用flatMapFirst
+                self.page = 1;
+                return dependency.networkService.getNewsListData(category: self.currentCategory, page: self.page).asDriver(onErrorJustReturn: models)
         }
 
         //上拉结果序列
         let footerRefreshData = input.footerRefresh
             .flatMapLatest{ _ -> SharedSequence<DriverSharingStrategy, [NewsListModel]> in  //也可考虑使用flatMapFirst
                 self.page += 1
-                return dependency.networkService.getNewsListData(category: input.currentCategory, page: self.page).asDriver(onErrorJustReturn: [])
+                return dependency.networkService.getNewsListData(category: self.currentCategory, page: self.page).asDriver(onErrorJustReturn: [])
         }
 
         //生成停止头部刷新状态序列
@@ -50,15 +69,31 @@ class NewsHomeViewModel {
 
         //生成停止尾部刷新状态序列
         self.endFooterRefreshing = footerRefreshData.map{ _ in true }
-
+        
         //下拉刷新时，直接将查询到的结果替换原数据
         headerRefreshData.drive(onNext: { items in
-            //查询所有的消费记录
+            for m in items {
+                let model = realm.objects(NewsListModel.self).filter{ $0.title == m.title }.first
+                if model == nil {
+                    try! realm.write {
+                        realm.add(m)
+                    }
+                }
+            }
             self.tableData.accept(items)
         }).disposed(by: dependency.disposeBag)
+        
 
         //上拉加载时，将查询到的结果拼接到原数据底部
         footerRefreshData.drive(onNext: { items in
+            for m in items {
+                let model = realm.objects(NewsListModel.self).filter{ $0.title == m.title }.first
+                if model == nil {
+                    try! realm.write {
+                        realm.add(m)
+                    }
+                }
+            }
             self.tableData.accept(self.tableData.value + items )
         }).disposed(by: dependency.disposeBag)
         

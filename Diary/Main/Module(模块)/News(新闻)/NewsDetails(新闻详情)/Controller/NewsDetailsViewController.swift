@@ -13,6 +13,9 @@ class NewsDetailsViewController: DiaryBaseViewController {
     /// 新闻id
     public var newsId: String!
     
+    /// 新闻标题
+    public var newsTitle: String!
+    
     /// 父视图
     private var parentView: NewsDetailsView!
 
@@ -21,13 +24,16 @@ class NewsDetailsViewController: DiaryBaseViewController {
         self.parentView = NewsDetailsView(frame: (self.viewIfLoaded?.bounds)!)
         self.view.addSubview(self.parentView)
         
-        let viewModel = NewsDetailsViewModel(newsId: self.newsId, dependency: (disposeBag: rx.disposeBag, networkService: NewsDetailsNetworkService()))
-
+        let viewModel = NewsDetailsViewModel(input: (self.newsId, self.newsTitle), dependency: (disposeBag: rx.disposeBag, networkService: NewsDetailsNetworkService()))
+        
+        // 获取新闻详情数据
         viewModel.newsDetailsData.drive(onNext: { [weak self] (model) in
             DispatchQueue.main.async {
                 self?.parentView.webView.loadHTMLString("<html><head></head><body>\(model.content!)</body></html>", baseURL: nil);
             }
         }).disposed(by: rx.disposeBag)
+        
+        
     }
     
     

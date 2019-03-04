@@ -33,17 +33,19 @@ struct NewsListResultModel: Mappable {
     }
 }
 
-struct NewsListModel: Mappable {
-    var publishTime: String? // 发布时间
-    var category: String? // 类型
-    var source: String? // 来源
-    var newsId: String? // 新闻ID
-    var title: String? // 标题
-    var newsImg: String? //新闻小图片url
+class NewsListModel: Object,Mappable {
+    @objc dynamic var publishTime: String? // 发布时间
+    @objc dynamic var category: String? // 类型
+    @objc dynamic var source: String? // 来源
+    @objc dynamic var newsId: String? // 新闻ID
+    @objc dynamic var title: String? // 标题
+    @objc dynamic var newsImg: String? //新闻小图片url
     
-    init?(map: Map) {}
+    required convenience init?(map: Map) {
+        self.init()
+    }
     
-    mutating func mapping(map: Map) {
+    func mapping(map: Map) {
         publishTime   <- map["publishTime"]
         category   <- map["category"]
         source   <- map["source"]

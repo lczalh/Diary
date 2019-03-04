@@ -19,6 +19,9 @@ class NewsHomeViewController: DiaryBaseViewController {
     /// 网络服务
     let newsHomeNetworkService = NewsHomeNetworkService()
     
+    /// 当前类别
+    var currentCategory: Observable<String>?
+    
     
     var listContainerView: JXCategoryListContainerView!
 
@@ -67,6 +70,7 @@ extension NewsHomeViewController: JXCategoryViewDelegate {
     
     func categoryView(_ categoryView: JXCategoryBaseView!, didSelectedItemAt index: Int) {
         self.listContainerView.didClickSelectedItem(at: index)
+        currentCategory = Observable.just(self.categorys![index])
     }
 
 }
@@ -82,11 +86,11 @@ extension NewsHomeViewController: JXCategoryListContainerViewDelegate {
         // 内容视图
         let newsHomeListView = NewsHomeListView(frame:listContainerView.bounds)
         listContainerView.didAppearPercent = 0.99
-        
+        currentCategory = Observable.just(self.categorys![index])
         // viewModel
         let viewModel = NewsHomeViewModel(input: (headerRefresh: newsHomeListView.tableView.mj_header.rx.refreshing.asDriver(),
                                                   footerRefresh: newsHomeListView.tableView.mj_footer.rx.refreshing.asDriver(),
-                                                  currentCategory: self.categorys![index]),
+                                                  currentCategory: currentCategory!),
                                           dependency: (disposeBag: rx.disposeBag,
                                                   networkService: NewsHomeNetworkService()))
         
@@ -124,7 +128,7 @@ extension NewsHomeViewController: JXCategoryListContainerViewDelegate {
         // 同时获取索引和模型
         Observable.zip(newsHomeListView.tableView.rx.itemSelected, newsHomeListView.tableView.rx.modelSelected(NewsListModel.self))
             .bind { indexPath, item in
-                diaryRoute.push("diary://newsHome/newsDetails/\(item.newsId!)")
+                diaryRoute.push("diary://newsHome/newsDetails" ,context: item)
             }.disposed(by: rx.disposeBag)
         
         return (newsHomeListView as JXCategoryListContentViewDelegate)

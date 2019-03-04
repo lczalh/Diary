@@ -12,24 +12,32 @@ class NewsDetailsViewModel {
     
     var newsDetailsData: Driver<NewsDetailsModel>
     
-    
-    init(newsId: String,
+    init(input: (newsId: String,
+                newsTitle: String),
          dependency: (
             disposeBag: DisposeBag,
-            networkService: NewsDetailsNetworkService)) {
+            networkService: NewsDetailsNetworkService)
+        ) {
         
-        //数据库
         let realm = try! Realm()
-        newsDetailsData = dependency.networkService.getNewsDetailsData(newsId: newsId).asDriver(onErrorJustReturn: NewsDetailsModel(map: Map(mappingType: .fromJSON, JSON: ["a":"1"]))!).map({ (model) -> NewsDetailsModel in
-            // 数据持久化操作（类型记录也会自动添加的）
-            try! realm.write {
-                realm.add(model)
-            }
-            //打印出数据库地址
-       //     print(realm.configuration.fileURL ?? "")
-            print(realm.objects(NewsDetailsModel.self))
-            return model
-        })
+        // 查询数据
+        let model = realm.objects(NewsDetailsModel.self).filter{ $0.title == input.newsTitle }.first
+        // 查询数据是否存在
+        if model == nil {
+            newsDetailsData = dependency.networkService.getNewsDetailsData(newsId: input.newsId).asDriver(onErrorJustReturn: NewsDetailsModel(map: Map(mappingType: .fromJSON, JSON: ["a":"1"]))!).map({ (model) -> NewsDetailsModel in
+                DispatchQueue.main.async(execute: {
+                    try! realm.write {
+                        realm.add(model)
+                    }
+                })
+                return model
+            })
+        } else {
+          newsDetailsData = Observable.just(model!).asDriver(onErrorJustReturn: NewsDetailsModel(map: Map(mappingType: .fromJSON, JSON: ["a":"1"]))!)
+        }
+        
+        
+        
         
         
     }
