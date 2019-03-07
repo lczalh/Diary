@@ -22,6 +22,7 @@ class NewsHomeViewModel {
     /// 当前页数
     private var page: Int = 0
     
+    /// 当前分类
     private var currentCategory: String!
     
     init(input: (
@@ -34,7 +35,11 @@ class NewsHomeViewModel {
         ) {
         
         let realm = try! Realm()
+//        try! realm.write {
+//            realm.deleteAll()
+//        }
         
+        // 存储本地数据
         var models: Array<NewsListModel> = Array()
         
         // 查询当前类别的新闻数据
@@ -45,23 +50,30 @@ class NewsHomeViewModel {
                 models.append(m)
             }
         }).disposed(by: dependency.disposeBag)
-
-        
-        
         
         //下拉结果序列
         let headerRefreshData = input.headerRefresh
             .startWith(()) //初始化时会先自动加载一次数据
             .flatMapLatest{ _ -> SharedSequence<DriverSharingStrategy, [NewsListModel]> in //也可考虑使用flatMapFirst
-                self.page = 1;
-                return dependency.networkService.getNewsListData(category: self.currentCategory, page: self.page).asDriver(onErrorJustReturn: models)
+                if models.count > 0, self.page == 0 { // 首次优先加载本地数据
+                    self.page = 1;
+                    return Observable.just(models).asDriver(onErrorJustReturn: [NewsListModel(JSON: ["publishTime":"","category":"","source":"","newsId":"","title":"","newsImg":""])!])
+                } else {
+                    self.page = 1;
+                    return dependency.networkService.getNewsListData(category: self.currentCategory, page: self.page).asDriver(onErrorJustReturn: [NewsListModel(JSON: ["publishTime":"","category":"","source":"","newsId":"","title":"","newsImg":""])!]).map {
+                        return self.dataHeavy(items: $0, realm: realm)
+                    }
+
+                }
         }
 
         //上拉结果序列
         let footerRefreshData = input.footerRefresh
             .flatMapLatest{ _ -> SharedSequence<DriverSharingStrategy, [NewsListModel]> in  //也可考虑使用flatMapFirst
                 self.page += 1
-                return dependency.networkService.getNewsListData(category: self.currentCategory, page: self.page).asDriver(onErrorJustReturn: [])
+                return dependency.networkService.getNewsListData(category: self.currentCategory, page: self.page).asDriver(onErrorJustReturn: [NewsListModel(JSON: ["publishTime":"","category":"","source":"","newsId":"","title":"","newsImg":""])!]).map {
+                    return self.dataHeavy(items: $0, realm: realm)
+                }
         }
 
         //生成停止头部刷新状态序列
@@ -72,32 +84,43 @@ class NewsHomeViewModel {
         
         //下拉刷新时，直接将查询到的结果替换原数据
         headerRefreshData.drive(onNext: { items in
-            for m in items {
-                let model = realm.objects(NewsListModel.self).filter{ $0.title == m.title }.first
-                if model == nil {
-                    try! realm.write {
-                        realm.add(m)
-                    }
-                }
+            if items.count > 0 {
+                self.tableData.accept(items + self.tableData.value)
+            } else {
+                LCZPrint("没有更多数据。。。。")
             }
-            self.tableData.accept(items)
         }).disposed(by: dependency.disposeBag)
         
 
         //上拉加载时，将查询到的结果拼接到原数据底部
         footerRefreshData.drive(onNext: { items in
-            for m in items {
-                let model = realm.objects(NewsListModel.self).filter{ $0.title == m.title }.first
-                if model == nil {
-                    try! realm.write {
-                        realm.add(m)
-                    }
+            if items.count > 0 {
+                self.tableData.accept(self.tableData.value + items)
+            } else {
+                LCZPrint("没有更多数据。。。。")
+            }
+        }).disposed(by: dependency.disposeBag)
+    }
+    
+    
+    /// 数据去重
+    ///
+    /// - Parameters:
+    ///   - items: 模型数组
+    ///   - realm: 数据库对象
+    /// - Returns: 新数据数组
+    func dataHeavy(items: Array<NewsListModel>, realm: Realm) -> Array<NewsListModel> {
+        var modelAry: Array<NewsListModel> = Array()
+        for m in items {
+            let model = realm.objects(NewsListModel.self).filter{ $0.title == m.title }.first
+            if model == nil {
+                try! realm.write {
+                    realm.add(m)
+                    modelAry.append(m)
                 }
             }
-            self.tableData.accept(self.tableData.value + items )
-        }).disposed(by: dependency.disposeBag)
-        
-        
+        }
+        return modelAry
     }
     
 }

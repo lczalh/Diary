@@ -114,7 +114,9 @@ extension NewsHomeViewController: JXCategoryListContainerViewDelegate {
                 if element.newsImg?.isEmpty == false {
                     cell.imageV.kf.setImage(with: ImageResource(downloadURL: URL(string: element.newsImg!)!))
                 }
-                cell.time.text = LCZUpdateTimeToCurrennTime(timeStamp: LCZTimeToTimeStamp(time: element.publishTime!))
+                if element.publishTime?.isEmpty == false {
+                    cell.time.text = LCZUpdateTimeToCurrennTime(timeStamp: LCZTimeToTimeStamp(time: element.publishTime!))
+                }
                 cell.source.text = element.source
                 return cell
             })

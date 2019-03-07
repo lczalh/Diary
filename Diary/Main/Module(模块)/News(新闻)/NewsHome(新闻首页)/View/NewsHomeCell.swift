@@ -34,7 +34,7 @@ class NewsHomeCell: DiaryBaseViewCell {
         maskLayer.frame = self.imageV.bounds
         maskLayer.path = path.cgPath
         self.imageV.layer.mask = maskLayer
-        
+    
         // 标题
         self.title = UILabel()
         self.contentView.addSubview(self.title);
