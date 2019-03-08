@@ -33,9 +33,9 @@ class NewsHomeViewController: DiaryBaseViewController {
         self.newsHomeView = NewsHomeView(frame: self.view.bounds)
         self.newsHomeView.categoryView!.delegate = self
         view.addSubview(newsHomeView)
-        
+       // JXCategoryListContainerView(delegate: <#T##JXCategoryListContainerViewDelegate!#>)
         // 滚动控件
-        listContainerView = JXCategoryListContainerView(parentVC: self, delegate: self)
+        listContainerView = JXCategoryListContainerView(delegate: self)
         listContainerView!.frame = CGRect(x: 0,
                                           y: 44 + LCZNaviBarHeight + LCZStatusBarHeight,
                                           width: LCZWidth,

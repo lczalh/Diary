@@ -103,7 +103,7 @@ class NewsHomeViewModel {
     }
     
     
-    /// 数据去重
+    /// 数据去重并移除空图片数据
     ///
     /// - Parameters:
     ///   - items: 模型数组
@@ -113,7 +113,7 @@ class NewsHomeViewModel {
         var modelAry: Array<NewsListModel> = Array()
         for m in items {
             let model = realm.objects(NewsListModel.self).filter{ $0.title == m.title }.first
-            if model == nil {
+            if model == nil, model?.newsImg?.isEmpty == false {
                 try! realm.write {
                     realm.add(m)
                     modelAry.append(m)
