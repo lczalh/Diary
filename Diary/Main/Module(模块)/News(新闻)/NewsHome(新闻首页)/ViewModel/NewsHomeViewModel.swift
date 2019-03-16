@@ -113,7 +113,7 @@ class NewsHomeViewModel {
         var modelAry: Array<NewsListModel> = Array()
         for m in items {
             let model = realm.objects(NewsListModel.self).filter{ $0.title == m.title }.first
-            if model == nil, model?.newsImg?.isEmpty == false {
+            if model == nil, m.newsImg?.isEmpty == false {
                 try! realm.write {
                     realm.add(m)
                     modelAry.append(m)
