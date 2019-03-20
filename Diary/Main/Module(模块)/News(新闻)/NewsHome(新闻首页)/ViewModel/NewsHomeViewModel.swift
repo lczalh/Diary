@@ -87,7 +87,7 @@ class NewsHomeViewModel {
             if items.count > 0 {
                 self.tableData.accept(items + self.tableData.value)
             } else {
-                LCZPrint("没有更多数据。。。。")
+                LCZProgressHUD.showError(title: "暂无最新新闻！")
             }
         }).disposed(by: dependency.disposeBag)
         
@@ -97,7 +97,7 @@ class NewsHomeViewModel {
             if items.count > 0 {
                 self.tableData.accept(self.tableData.value + items)
             } else {
-                LCZPrint("没有更多数据。。。。")
+                LCZProgressHUD.showError(title: "哎呀！新闻被您看完了！")
             }
         }).disposed(by: dependency.disposeBag)
     }

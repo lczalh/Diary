@@ -15,7 +15,7 @@ class NewsHomeView: DiaryBaseView {
     override func configUI() {
         // 标题UI
         categoryView = JXCategoryTitleView()
-        categoryView!.frame = CGRect(x: 0, y: LCZNaviBarHeight + LCZStatusBarHeight, width: LCZWidth, height: 44)
+        categoryView!.frame = CGRect(x: 0, y: 0, width: LCZWidth, height: 44)
         categoryView!.defaultSelectedIndex = 0
         categoryView!.titleSelectedFont = LCZFontSize(size: 15)
         categoryView!.titleColorGradientEnabled = true

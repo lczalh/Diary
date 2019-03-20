@@ -13,6 +13,12 @@ class DiaryBaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.tabBarController?.tabBar.isTranslucent = false
+        //四周均不延伸
+//        self.edgesForExtendedLayout = []
+//        self.automaticallyAdjustsScrollViewInsets = false
+       
         
     }
     

@@ -24,3 +24,4 @@
 @_exported import Kingfisher
 @_exported import RealmSwift
 @_exported import Realm
+@_exported import SVProgressHUD

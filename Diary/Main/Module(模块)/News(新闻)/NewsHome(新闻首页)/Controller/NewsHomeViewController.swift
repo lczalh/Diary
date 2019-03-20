@@ -33,11 +33,11 @@ class NewsHomeViewController: DiaryBaseViewController {
         self.newsHomeView = NewsHomeView(frame: self.view.bounds)
         self.newsHomeView.categoryView!.delegate = self
         view.addSubview(newsHomeView)
-       // JXCategoryListContainerView(delegate: <#T##JXCategoryListContainerViewDelegate!#>)
+
         // 滚动控件
         listContainerView = JXCategoryListContainerView(delegate: self)
         listContainerView!.frame = CGRect(x: 0,
-                                          y: 44 + LCZNaviBarHeight + LCZStatusBarHeight,
+                                          y: 44,
                                           width: LCZWidth,
                                           height: LCZHeight - LCZNaviBarHeight - LCZStatusBarHeight - 44 - LCZTabbarHeight)
         listContainerView!.defaultSelectedIndex = 0
@@ -53,6 +53,9 @@ class NewsHomeViewController: DiaryBaseViewController {
                 self.listContainerView.reloadData()
             })
         }).disposed(by: rx.disposeBag)
+        
+        
+     
         
         
     }
@@ -85,6 +88,7 @@ extension NewsHomeViewController: JXCategoryListContainerViewDelegate {
     func listContainerView(_ listContainerView: JXCategoryListContainerView!, initListFor index: Int) -> JXCategoryListContentViewDelegate! {
         // 内容视图
         let newsHomeListView = NewsHomeListView(frame:listContainerView.bounds)
+        
         listContainerView.didAppearPercent = 0.99
         currentCategory = Observable.just(self.categorys![index])
         // viewModel
@@ -109,15 +113,15 @@ extension NewsHomeViewController: JXCategoryListContainerViewDelegate {
             <SectionModel<String, NewsListModel>>(configureCell: {
                 (dataSource, tv, indexPath, element) in
                 let cell = tv.dequeueReusableCell(withIdentifier: "NewsHomeCell", for: indexPath) as! NewsHomeCell
-                cell.title.text = element.title
-                cell.imageV.kf.indicatorType = .activity
+                cell.titleLabel.text = element.title
+                cell.newsImageView.kf.indicatorType = .activity
                 if element.newsImg?.isEmpty == false {
-                    cell.imageV.kf.setImage(with: ImageResource(downloadURL: URL(string: element.newsImg!)!))
+                    cell.newsImageView.kf.setImage(with: ImageResource(downloadURL: URL(string: element.newsImg!)!))
                 }
                 if element.publishTime?.isEmpty == false {
-                    cell.time.text = LCZUpdateTimeToCurrennTime(timeStamp: LCZTimeToTimeStamp(time: element.publishTime!))
+                    cell.timeLabel.text = LCZUpdateTimeToCurrennTime(timeStamp: LCZTimeToTimeStamp(time: element.publishTime!))
                 }
-                cell.source.text = element.source
+                cell.sourceLabel.text = element.source
                 return cell
             })
         

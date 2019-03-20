@@ -11,6 +11,7 @@ import Foundation
 enum DiaryRoute {
     
     static func initialize(navigator: NavigatorType) {
+        // 新闻详情
         navigator.register("diary://newsHome/newsDetails") { url, values, context in
             let newsDetailsVC = NewsDetailsViewController()
             let model = context as! NewsListModel
@@ -18,6 +19,13 @@ enum DiaryRoute {
             newsDetailsVC.newsTitle = model.title
             newsDetailsVC.hidesBottomBarWhenPushed = true
             return newsDetailsVC
+        }
+        
+        // 电影详情
+        navigator.register("diary://movieHome/movieDetails") {_,_,_ in
+            let movieDetailsVC = MovieDetailsViewController()
+            movieDetailsVC.hidesBottomBarWhenPushed = true
+            return movieDetailsVC
         }
     }
     

@@ -8,60 +8,60 @@
 
 import UIKit
 
-class NewsHomeCell: DiaryBaseViewCell {
+class NewsHomeCell: DiaryBaseTableViewCell {
     
     /// 标题
-    var title: UILabel!
+    var titleLabel: UILabel!
     
     /// 时间
-    var time: UILabel!
+    var timeLabel: UILabel!
     
     /// 图片
-    var imageV: UIImageView!
+    var newsImageView: UIImageView!
     
     /// 来源
-    var source: UILabel!
+    var sourceLabel: UILabel!
     
     override func config() {
         self.selectionStyle = .none
         // 图片
-        self.imageV = UIImageView()
-        self.contentView.addSubview(self.imageV)
-        self.imageV.frame = CGRect(x: LCZWidth - 130, y: 10, width: 120, height: 90)
+        self.newsImageView = UIImageView()
+        self.contentView.addSubview(self.newsImageView)
+        self.newsImageView.frame = CGRect(x: LCZWidth - 130, y: 10, width: 120, height: 90)
         // 切圆角
-        let path = UIBezierPath(roundedRect: self.imageV.bounds, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: 5, height: 5))
+        let path = UIBezierPath(roundedRect: self.newsImageView.bounds, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: 5, height: 5))
         let maskLayer = CAShapeLayer()
-        maskLayer.frame = self.imageV.bounds
+        maskLayer.frame = self.newsImageView.bounds
         maskLayer.path = path.cgPath
-        self.imageV.layer.mask = maskLayer
+        self.newsImageView.layer.mask = maskLayer
     
         // 标题
-        self.title = UILabel()
-        self.contentView.addSubview(self.title);
-        self.title.snp.makeConstraints { (make) in
+        self.titleLabel = UILabel()
+        self.contentView.addSubview(self.titleLabel);
+        self.titleLabel.snp.makeConstraints { (make) in
             make.left.top.equalToSuperview().offset(10)
-            make.right.equalTo(self.imageV.snp.left).offset(-10)
+            make.right.equalTo(self.newsImageView.snp.left).offset(-10)
         }
-        self.title.numberOfLines = 0
-        self.title.font = LCZBoldFontSize(size: 18)
+        self.titleLabel.numberOfLines = 0
+        self.titleLabel.font = LCZBoldFontSize(size: 18)
         
         // 时间
-        self.time = UILabel()
-        self.contentView.addSubview(self.time)
-        self.time.snp.makeConstraints { (make) in
+        self.timeLabel = UILabel()
+        self.contentView.addSubview(self.timeLabel)
+        self.timeLabel.snp.makeConstraints { (make) in
             make.left.equalToSuperview().offset(10)
             make.bottom.equalToSuperview().offset(-10)
         }
-        self.time.font = LCZFontSize(size: 12)
+        self.timeLabel.font = LCZFontSize(size: 12)
         
         // 来源
-        self.source = UILabel()
-        self.contentView.addSubview(self.source)
-        self.source.snp.makeConstraints { (make) in
-            make.right.equalTo(self.imageV.snp.left).offset(-10)
-            make.bottom.equalTo(self.time)
+        self.sourceLabel = UILabel()
+        self.contentView.addSubview(self.sourceLabel)
+        self.sourceLabel.snp.makeConstraints { (make) in
+            make.right.equalTo(self.newsImageView.snp.left).offset(-10)
+            make.bottom.equalTo(self.timeLabel)
         }
-        self.source.font = LCZFontSize(size: 12)
+        self.sourceLabel.font = LCZFontSize(size: 12)
         
     }
     

@@ -63,7 +63,7 @@ public let LCZAppDelegateRootViewController = UIApplication.shared.delegate?.win
 ///   - line: 行数
 public func LCZPrint<T>(_ message: T,file: String = #file,method: String = #function,line: Int = #line) {
     #if DEBUG
-    print("类名:\((file as NSString).lastPathComponent),方法名:\(method),第\(line)行,打印内容:\(message)")
+    print("类名:\((file as NSString).lastPathComponent),方法名:\(method),第\(line)行,内存地址:\(Unmanaged.passUnretained(message as AnyObject).toOpaque()),打印内容:\(message)")
     #endif
 }
 

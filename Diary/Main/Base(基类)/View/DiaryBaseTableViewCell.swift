@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DiaryBaseViewCell: UITableViewCell {
+class DiaryBaseTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -17,6 +17,7 @@ class DiaryBaseViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.backgroundColor = UIColor.white
         config()
     }
     

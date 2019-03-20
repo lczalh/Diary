@@ -24,10 +24,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.toolbarDoneBarButtonItemText = "完成"
         // 初始化路由
         DiaryRoute.initialize(navigator: diaryRoute)
-        // 开启实时监测网络状态
-        startRealTimeMonitorNetworkStatus()
         // 初始化window
         self.window = UIWindow(frame: UIScreen.main.bounds)
+        
+
+        
         // 设置首页
         LCZHomePage.shared.setHomePage(guidePage: { // 引导页
             self.window?.rootViewController = createESTabBarController(delegate: self)
