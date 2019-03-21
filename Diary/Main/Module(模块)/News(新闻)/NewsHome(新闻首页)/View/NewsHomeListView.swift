@@ -18,11 +18,6 @@ class NewsHomeListView: DiaryBaseView {
         //创建一个重用的单元格
         self.tableView!.register(NewsHomeCell.self, forCellReuseIdentifier: "NewsHomeCell")
         self.addSubview(tableView)
-        if #available(iOS 11.0, *) {
-            self.tableView.contentInsetAdjustmentBehavior = .never
-        } else {
-           // self.tableView.translatesAutoresizingMaskIntoConstraints
-        }
         
         tableView.rowHeight = 110;
         //设置头部刷新控件

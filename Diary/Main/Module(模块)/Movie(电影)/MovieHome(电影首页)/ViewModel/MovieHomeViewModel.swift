@@ -10,14 +10,16 @@ import Foundation
 
 class MovieHomeViewModel {
     
-    // 影视专区数据
-    let moviewHomeModel = Observable.just([
-            MovieHomeModel(header: "", items: [
-                    "腾讯视频",
-                    "爱奇艺",
-                    "搜狐视频",
-                    "优酷视频"
-                ])
-        ])
+    var modelAry: Observable<Array<MovieHomeModel>> = Observable.just(
+        [
+            MovieHomeModel.init(title: "腾讯视频", url: "https://m.v.qq.com/index.html", image: ""),
+            MovieHomeModel.init(title: "爱奇艺", url: "https://www.iqiyi.com", image: ""),
+            MovieHomeModel.init(title: "优酷视频", url: "https://www.youku.com", image: ""),
+            MovieHomeModel.init(title: "搜狐视频", url: "https://m.tv.sohu.com", image: "")
+        ]
+    
+    )
+    
+    
     
 }

@@ -16,6 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        //
+        URLProtocol.registerClass(LCZURLProtocol.self)
         // 控制整个功能是否启用
         IQKeyboardManager.shared.enable = true
         // 控制点击背景是否收起键盘

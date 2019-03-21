@@ -9,19 +9,13 @@
 import Foundation
 
 struct MovieHomeModel {
-    var header: String
-    var items: [Item]
-}
-
-extension MovieHomeModel : AnimatableSectionModelType {
-    typealias Item = String
+    var title: String!
+    var url: String!
+    var image: String!
     
-    var identity: String {
-        return header
-    }
-    
-    init(original: MovieHomeModel, items: [Item]) {
-        self = original
-        self.items = items
+    init(title: String, url: String, image: String) {
+        self.title = title
+        self.url = url
+        self.image = image
     }
 }

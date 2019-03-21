@@ -20,22 +20,22 @@ class MovieHomeViewController: DiaryBaseViewController {
         
         let viewModel = MovieHomeViewModel()
         
-        
         // 创建数据源
-        let dataSource = RxCollectionViewSectionedReloadDataSource<MovieHomeModel>(
+        let dataSource = RxCollectionViewSectionedReloadDataSource<SectionModel<String, MovieHomeModel>>(
             configureCell: { (dataSource, collectionView, indexPath, element) in
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieHomeCell", for: indexPath) as! MovieHomeCell
-                cell.titleLabel.text = element
+                cell.titleLabel.text = element.title
                 return cell
         })
         
-        // 绑定数据
-        viewModel.moviewHomeModel.bind(to: self.movieHomeView.collectionView.rx.items(dataSource: dataSource)).disposed(by: rx.disposeBag)
+        viewModel.modelAry.map{
+            [SectionModel(model: "", items: $0)]
+        }.bind(to: self.movieHomeView.collectionView.rx.items(dataSource: dataSource)).disposed(by: rx.disposeBag)
         
         // 同时获取索引和模型
-        Observable.zip(self.movieHomeView.collectionView.rx.itemSelected, self.movieHomeView.collectionView.rx.modelSelected(String.self))
+        Observable.zip(self.movieHomeView.collectionView.rx.itemSelected, self.movieHomeView.collectionView.rx.modelSelected(MovieHomeModel.self))
             .bind { indexPath, item in
-                diaryRoute.push("diary://movieHome/movieDetails" ,context: nil)
+                diaryRoute.push("diary://movieHome/movieDetails" ,context: item)
             }.disposed(by: rx.disposeBag)
 
     

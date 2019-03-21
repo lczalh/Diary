@@ -12,6 +12,9 @@
 		7337A20722262CBB00B19F07 /* NewsDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7337A20622262CBB00B19F07 /* NewsDetailsView.swift */; };
 		7337A20A2226304500B19F07 /* NewsDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7337A2092226304500B19F07 /* NewsDetailsViewModel.swift */; };
 		7337A20D222630AE00B19F07 /* NewsDetailsNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7337A20C222630AE00B19F07 /* NewsDetailsNetworkService.swift */; };
+		7346603922432E24007BBD07 /* LCZnetfox+netfox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7346603822432E24007BBD07 /* LCZnetfox+netfox.swift */; };
+		73466045224343EE007BBD07 /* LCZURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73466044224343EE007BBD07 /* LCZURLProtocol.swift */; };
+		7346604922435295007BBD07 /* MoviePlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7346604822435295007BBD07 /* MoviePlayerViewController.swift */; };
 		7367D2EE221FA43A008FD780 /* MJRefresh+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7367D2ED221FA43A008FD780 /* MJRefresh+Rx.swift */; };
 		7367D2F0221FA43F008FD780 /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7367D2EF221FA43F008FD780 /* UIViewController+Rx.swift */; };
 		7367D2F3221FA8DA008FD780 /* NewsHomeNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7367D2F2221FA8DA008FD780 /* NewsHomeNetworkService.swift */; };
@@ -45,6 +48,7 @@
 		73D4DAE12213CBF200116541 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73D4DADF2213CBF200116541 /* Main.storyboard */; };
 		73D4DAE32213CBF400116541 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73D4DAE22213CBF400116541 /* Assets.xcassets */; };
 		73D4DAE62213CBF400116541 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73D4DAE42213CBF400116541 /* LaunchScreen.storyboard */; };
+		73DE487022438B4F003B4535 /* NSURLProtocol+WKWebVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = 73DE486F22438B4F003B4535 /* NSURLProtocol+WKWebVIew.m */; };
 		F508C2BEAB7A3493341664DD /* Pods_Diary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA3261FCD6C69DA1079FA1DE /* Pods_Diary.framework */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +58,10 @@
 		7337A20622262CBB00B19F07 /* NewsDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailsView.swift; sourceTree = "<group>"; };
 		7337A2092226304500B19F07 /* NewsDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailsViewModel.swift; sourceTree = "<group>"; };
 		7337A20C222630AE00B19F07 /* NewsDetailsNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailsNetworkService.swift; sourceTree = "<group>"; };
+		7346603822432E24007BBD07 /* LCZnetfox+netfox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LCZnetfox+netfox.swift"; sourceTree = "<group>"; };
+		7346603D224339B0007BBD07 /* Diary-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Diary-Bridging-Header.h"; sourceTree = "<group>"; };
+		73466044224343EE007BBD07 /* LCZURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCZURLProtocol.swift; sourceTree = "<group>"; };
+		7346604822435295007BBD07 /* MoviePlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviePlayerViewController.swift; sourceTree = "<group>"; };
 		7367D2ED221FA43A008FD780 /* MJRefresh+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MJRefresh+Rx.swift"; sourceTree = "<group>"; };
 		7367D2EF221FA43F008FD780 /* UIViewController+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
 		7367D2F2221FA8DA008FD780 /* NewsHomeNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsHomeNetworkService.swift; sourceTree = "<group>"; };
@@ -89,6 +97,8 @@
 		73D4DAE22213CBF400116541 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		73D4DAE52213CBF400116541 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		73D4DAE72213CBF400116541 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		73DE486E22438B4F003B4535 /* NSURLProtocol+WKWebVIew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLProtocol+WKWebVIew.h"; sourceTree = "<group>"; };
+		73DE486F22438B4F003B4535 /* NSURLProtocol+WKWebVIew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLProtocol+WKWebVIew.m"; sourceTree = "<group>"; };
 		7BF0AA4A0A47E6E656FBD185 /* Pods-Diary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Diary.release.xcconfig"; path = "Pods/Target Support Files/Pods-Diary/Pods-Diary.release.xcconfig"; sourceTree = "<group>"; };
 		AC179B3912B814D4F44DC7E7 /* Pods-Diary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Diary.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Diary/Pods-Diary.debug.xcconfig"; sourceTree = "<group>"; };
 		FA3261FCD6C69DA1079FA1DE /* Pods_Diary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Diary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -167,11 +177,54 @@
 			path = NetworkService;
 			sourceTree = "<group>";
 		};
+		7346603A22433948007BBD07 /* Bridging(桥接文件) */ = {
+			isa = PBXGroup;
+			children = (
+				7346603D224339B0007BBD07 /* Diary-Bridging-Header.h */,
+			);
+			path = "Bridging(桥接文件)";
+			sourceTree = "<group>";
+		};
+		7346603B22433978007BBD07 /* Vender(第三方库) */ = {
+			isa = PBXGroup;
+			children = (
+				7346603C2243399C007BBD07 /* HybridNSURLProtocol */,
+			);
+			path = "Vender(第三方库)";
+			sourceTree = "<group>";
+		};
+		7346603C2243399C007BBD07 /* HybridNSURLProtocol */ = {
+			isa = PBXGroup;
+			children = (
+				73DE486E22438B4F003B4535 /* NSURLProtocol+WKWebVIew.h */,
+				73DE486F22438B4F003B4535 /* NSURLProtocol+WKWebVIew.m */,
+				73466044224343EE007BBD07 /* LCZURLProtocol.swift */,
+			);
+			path = HybridNSURLProtocol;
+			sourceTree = "<group>";
+		};
+		7346604622435258007BBD07 /* MoviePlayer(电影播放) */ = {
+			isa = PBXGroup;
+			children = (
+				7346604722435273007BBD07 /* Controller */,
+			);
+			path = "MoviePlayer(电影播放)";
+			sourceTree = "<group>";
+		};
+		7346604722435273007BBD07 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7346604822435295007BBD07 /* MoviePlayerViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		7367D2EC221FA3AB008FD780 /* Extension(扩展) */ = {
 			isa = PBXGroup;
 			children = (
 				7367D2EF221FA43F008FD780 /* UIViewController+Rx.swift */,
 				7367D2ED221FA43A008FD780 /* MJRefresh+Rx.swift */,
+				7346603822432E24007BBD07 /* LCZnetfox+netfox.swift */,
 			);
 			path = "Extension(扩展)";
 			sourceTree = "<group>";
@@ -187,6 +240,7 @@
 		737E1C2E2213DA8F00BF751D /* Utility(工具) */ = {
 			isa = PBXGroup;
 			children = (
+				7346603A22433948007BBD07 /* Bridging(桥接文件) */,
 				73B1DDD52241EA2F00BFEF7A /* ProgressHUD(进度显示) */,
 				7367D2EC221FA3AB008FD780 /* Extension(扩展) */,
 				737E1C572213EC8800BF751D /* NetworkServices(网络请求) */,
@@ -393,6 +447,7 @@
 		73B1DDD82241EE2500BFEF7A /* Movie(电影) */ = {
 			isa = PBXGroup;
 			children = (
+				7346604622435258007BBD07 /* MoviePlayer(电影播放) */,
 				73B1DDEA22422FD200BFEF7A /* MovieDetails(电影详情) */,
 				73B1DDDD2241EEF700BFEF7A /* MovieHome(电影首页) */,
 			);
@@ -489,6 +544,7 @@
 		73D4DADA2213CBF200116541 /* Diary */ = {
 			isa = PBXGroup;
 			children = (
+				7346603B22433978007BBD07 /* Vender(第三方库) */,
 				737E1C302213DACC00BF751D /* Resource(资源) */,
 				737E1C2F2213DAB800BF751D /* Main */,
 				737E1C2E2213DA8F00BF751D /* Utility(工具) */,
@@ -541,6 +597,7 @@
 				TargetAttributes = {
 					73D4DAD72213CBF200116541 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 					};
 				};
 			};
@@ -689,18 +746,22 @@
 				737E1C5C2213F05900BF751D /* NewsHomeViewModel.swift in Sources */,
 				7337A20A2226304500B19F07 /* NewsDetailsViewModel.swift in Sources */,
 				73B1DDDB2241EE5100BFEF7A /* MovieViewController.swift in Sources */,
+				73466045224343EE007BBD07 /* LCZURLProtocol.swift in Sources */,
 				737E1C4C2213E3F800BF751D /* MainNavigationController.swift in Sources */,
 				73B1DDDF2241EF5500BFEF7A /* MovieHomeView.swift in Sources */,
 				73B1DDD72241EB8E00BFEF7A /* LCZProgressHUD.swift in Sources */,
 				73B1DDE52242055700BFEF7A /* MovieHomeViewModel.swift in Sources */,
+				7346603922432E24007BBD07 /* LCZnetfox+netfox.swift in Sources */,
 				737E1C3D2213DEC500BF751D /* LCZRealReachability.swift in Sources */,
 				737E1C412213E00300BF751D /* LCZSwiftMacro.swift in Sources */,
 				73948B7E2223CF88000ED09A /* NewsHomeCell.swift in Sources */,
 				737E1C4A2213E37900BF751D /* NewsHomeViewController.swift in Sources */,
 				7337A20D222630AE00B19F07 /* NewsDetailsNetworkService.swift in Sources */,
+				73DE487022438B4F003B4535 /* NSURLProtocol+WKWebVIew.m in Sources */,
 				73B1DDF02242342700BFEF7A /* MovieDetailsView.swift in Sources */,
 				73948B802223CFA5000ED09A /* DiaryBaseTableViewCell.swift in Sources */,
 				7326F8E422251CBD0005696F /* NewsDetailsViewController.swift in Sources */,
+				7346604922435295007BBD07 /* MoviePlayerViewController.swift in Sources */,
 				737E1C542213E89700BF751D /* NewsHomeView.swift in Sources */,
 				737E1C592213ED0C00BF751D /* NewsNetworkServices.swift in Sources */,
 				737E1C3A2213DDF300BF751D /* DiaryRoute.swift in Sources */,
@@ -850,6 +911,7 @@
 			baseConfigurationReference = AC179B3912B814D4F44DC7E7 /* Pods-Diary.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V8NV6JAKW7;
@@ -862,6 +924,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.lcz.Diary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/tanitsubukousha/Desktop/Diary/Diary/Utility(工具)/Bridging(桥接文件)/Diary-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -872,6 +936,7 @@
 			baseConfigurationReference = 7BF0AA4A0A47E6E656FBD185 /* Pods-Diary.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V8NV6JAKW7;
@@ -884,6 +949,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.lcz.Diary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/tanitsubukousha/Desktop/Diary/Diary/Utility(工具)/Bridging(桥接文件)/Diary-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

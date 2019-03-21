@@ -22,8 +22,10 @@ enum DiaryRoute {
         }
         
         // 电影详情
-        navigator.register("diary://movieHome/movieDetails") {_,_,_ in
+        navigator.register("diary://movieHome/movieDetails") { url, values, context in
             let movieDetailsVC = MovieDetailsViewController()
+            let model = context as! MovieHomeModel
+            movieDetailsVC.movieHomeModel = model
             movieDetailsVC.hidesBottomBarWhenPushed = true
             return movieDetailsVC
         }

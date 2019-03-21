@@ -13,6 +13,8 @@ class MovieDetailsView: DiaryBaseView {
     
     public var webView: WKWebView!
     
+    public var webViewTwo: WKWebView!
+    
     override func configUI() {
         // 创建网页配置对象
         let config = WKWebViewConfiguration()
@@ -31,5 +33,8 @@ class MovieDetailsView: DiaryBaseView {
         
         webView = WKWebView(frame: self.bounds, configuration: config)
         self.addSubview(webView)
+        
+        webViewTwo = WKWebView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), configuration: config)
+        self.addSubview(webViewTwo)
     }
 }
