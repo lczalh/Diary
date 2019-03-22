@@ -88,7 +88,6 @@ extension NewsHomeViewController: JXCategoryListContainerViewDelegate {
     func listContainerView(_ listContainerView: JXCategoryListContainerView!, initListFor index: Int) -> JXCategoryListContentViewDelegate! {
         // 内容视图
         let newsHomeListView = NewsHomeListView(frame:listContainerView.bounds)
-        
         listContainerView.didAppearPercent = 0.99
         currentCategory = Observable.just(self.categorys![index])
         // viewModel
@@ -96,7 +95,8 @@ extension NewsHomeViewController: JXCategoryListContainerViewDelegate {
                                                   footerRefresh: newsHomeListView.tableView.mj_footer.rx.refreshing.asDriver(),
                                                   currentCategory: currentCategory!),
                                           dependency: (disposeBag: rx.disposeBag,
-                                                  networkService: NewsHomeNetworkService()))
+                                                  networkService: NewsHomeNetworkService(),
+                                                  dataValidation: NewsHomeDataValidation()))
         
         // 下拉刷新状态结束的绑定
         viewModel.endHeaderRefreshing
@@ -114,8 +114,8 @@ extension NewsHomeViewController: JXCategoryListContainerViewDelegate {
                 (dataSource, tv, indexPath, element) in
                 let cell = tv.dequeueReusableCell(withIdentifier: "NewsHomeCell", for: indexPath) as! NewsHomeCell
                 cell.titleLabel.text = element.title
-                cell.newsImageView.kf.indicatorType = .activity
                 if element.newsImg?.isEmpty == false {
+                    cell.newsImageView.kf.indicatorType = .activity
                     cell.newsImageView.kf.setImage(with: ImageResource(downloadURL: URL(string: element.newsImg!)!))
                 }
                 if element.publishTime?.isEmpty == false {

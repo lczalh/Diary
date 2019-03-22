@@ -31,13 +31,9 @@ class NewsHomeViewModel {
             currentCategory: Observable<String>),
         dependency: (
             disposeBag: DisposeBag,
-            networkService: NewsHomeNetworkService)
+            networkService: NewsHomeNetworkService,
+            dataValidation: NewsHomeDataValidation)
         ) {
-        
-        let realm = try! Realm()
-//        try! realm.write {
-//            realm.deleteAll()
-//        }
         
         // 存储本地数据
         var models: Array<NewsListModel> = Array()
@@ -45,7 +41,7 @@ class NewsHomeViewModel {
         // 查询当前类别的新闻数据
         input.currentCategory.subscribe(onNext: { (str) in
             self.currentCategory = str
-            let items = realm.objects(NewsListModel.self).filter{ $0.category == str }
+            let items = diaryRealm.objects(NewsListModel.self).filter{ $0.category == str }
             for m in items {
                 models.append(m)
             }
@@ -61,9 +57,8 @@ class NewsHomeViewModel {
                 } else {
                     self.page = 1;
                     return dependency.networkService.getNewsListData(category: self.currentCategory, page: self.page).asDriver(onErrorJustReturn: [NewsListModel(JSON: ["publishTime":"","category":"","source":"","newsId":"","title":"","newsImg":""])!]).map {
-                        return self.dataHeavy(items: $0, realm: realm)
+                        return dependency.dataValidation.dataHeavy(items: $0)
                     }
-
                 }
         }
 
@@ -72,7 +67,7 @@ class NewsHomeViewModel {
             .flatMapLatest{ _ -> SharedSequence<DriverSharingStrategy, [NewsListModel]> in  //也可考虑使用flatMapFirst
                 self.page += 1
                 return dependency.networkService.getNewsListData(category: self.currentCategory, page: self.page).asDriver(onErrorJustReturn: [NewsListModel(JSON: ["publishTime":"","category":"","source":"","newsId":"","title":"","newsImg":""])!]).map {
-                    return self.dataHeavy(items: $0, realm: realm)
+                    return dependency.dataValidation.dataHeavy(items: $0)
                 }
         }
 
@@ -100,27 +95,6 @@ class NewsHomeViewModel {
                 LCZProgressHUD.showError(title: "哎呀！新闻被您看完了！")
             }
         }).disposed(by: dependency.disposeBag)
-    }
-    
-    
-    /// 数据去重并移除空图片数据
-    ///
-    /// - Parameters:
-    ///   - items: 模型数组
-    ///   - realm: 数据库对象
-    /// - Returns: 新数据数组
-    func dataHeavy(items: Array<NewsListModel>, realm: Realm) -> Array<NewsListModel> {
-        var modelAry: Array<NewsListModel> = Array()
-        for m in items {
-            let model = realm.objects(NewsListModel.self).filter{ $0.title == m.title }.first
-            if model == nil, m.newsImg?.isEmpty == false {
-                try! realm.write {
-                    realm.add(m)
-                    modelAry.append(m)
-                }
-            }
-        }
-        return modelAry
     }
     
 }

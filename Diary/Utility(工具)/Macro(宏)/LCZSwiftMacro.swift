@@ -28,7 +28,7 @@ public let LCZWidth = UIScreen.main.bounds.width
 public let LCZHeight = UIScreen.main.bounds.height
 
 /// 用于获得 是iphone X 则tabbar距离的底部差34。 否则距离0
-public let LCZSafeAreaBottomHeight =  (LCZHeight == 812.0 ? 34 : 0)
+public let LCZSafeAreaBottomHeight: CGFloat =  (LCZHeight == 812.0 ? 34.0 : 0.0)
 
 /// 用户偏好设置
 public let LCZUserDefaults = UserDefaults.standard

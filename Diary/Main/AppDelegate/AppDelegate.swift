@@ -16,8 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        //
-        URLProtocol.registerClass(LCZURLProtocol.self)
         // 控制整个功能是否启用
         IQKeyboardManager.shared.enable = true
         // 控制点击背景是否收起键盘
@@ -28,9 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         DiaryRoute.initialize(navigator: diaryRoute)
         // 初始化window
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        
-
-        
         // 设置首页
         LCZHomePage.shared.setHomePage(guidePage: { // 引导页
             self.window?.rootViewController = createESTabBarController(delegate: self)

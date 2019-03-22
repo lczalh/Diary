@@ -8,9 +8,6 @@
 
 import Foundation
 
-//初始化provider
-let networkServicesProvider = MoyaProvider<MultiTarget>(requestClosure : timeoutClosure,plugins:[RequestHudPlugin])
-
 /// 定义分类
 public enum NewsNetworkServices {
     
@@ -91,70 +88,5 @@ extension NewsNetworkServices : TargetType {
     
 }
 
-/// 设置接口的超时时间
-let timeoutClosure = { (endpoint : Endpoint,closure : MoyaProvider<NewsNetworkServices>.RequestResultClosure) -> Void in
-    
-    if var urlRequest = try? endpoint.urlRequest() {
-        urlRequest.timeoutInterval = 10
-        closure(.success(urlRequest))
-    }
-    else{
-        closure(.failure(MoyaError.requestMapping(endpoint.url)))
-    }
-}
 
 
-/// 管理网络状态的插件
-let RequestHudPlugin = NetworkActivityPlugin { change, target  in
-    switch change {
-    case .began:
-        //根据不同的请求，是否显示加载框
-        //        switch target as! Intelligent {
-        
-        //        case .shufflingFigure(let version):
-        //            break
-        //        case .verifyAccount(let loginName, let passwd):
-        //            LCZHUDTool.show()
-        //            break
-        //        case .replacePicture(let photo, let version, let uid, let token):
-        //            break
-        //        case .functionModule(let version, let uid, let token, let id):
-        //            break
-        //
-        //        }
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        
-    case .ended:
-        // LCZHUDTool.dismiss()
-        UIApplication.shared.isNetworkActivityIndicatorVisible = false
-    }
-    
-}
-
-
-public extension Reactive where Base: MoyaProviderType {
-    
-    public func requestData<T: Mappable>(target: Base.Target, model: T.Type, callbackQueue: DispatchQueue? = nil) -> Single<T> {
-        let response: Single<Response> = Single.create { [weak base] single in
-            let cancellableToken = base?.request(target, callbackQueue: callbackQueue, progress: nil) { result in
-                switch result {
-                case let .success(response):
-                    single(.success(response))
-                case let .failure(error):
-                    single(.error(error))
-                }
-            }
-            return Disposables.create {
-                cancellableToken?.cancel()
-            }
-        }
-        return Single<T>.create(subscribe: { (single) -> Disposable in
-            let request = response.mapObject(T.self).subscribe(onSuccess: { (result) in
-                single(.success(result))
-            }, onError: { (error) in
-                single(.error(error))
-            })
-            return Disposables.create([request])
-        })
-    }
-}

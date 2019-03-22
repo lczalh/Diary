@@ -10,21 +10,34 @@ import UIKit
 
 class MovieHomeCell: DiaryBaseCollectionViewCell {
     
-    /// logo图标
-    var logoImageView = UIImageView()
+    /// 图片
+    var imageView = UIImageView()
     
     /// 标题
     var titleLabel = UILabel()
     
     
     override func config() {
-       // self.backgroundColor = UIColor.white
+        
+        self.contentView.layer.cornerRadius = 10
+        self.layer.cornerRadius = 10
+        self.contentView.clipsToBounds = true
+        
         self.contentView.addSubview(self.titleLabel)
+        self.titleLabel.font = LCZFontSize(size: 14)
         self.titleLabel.snp.makeConstraints({ (make) in
             make.centerX.equalToSuperview()
             make.bottom.equalToSuperview().offset(-10)
         })
         
-        
+        self.contentView.addSubview(self.imageView)
+        self.imageView.contentMode = .scaleAspectFill
+        self.imageView.clipsToBounds = true
+        self.imageView.snp.makeConstraints { (make) in
+            make.left.top.right.equalToSuperview()
+            make.bottom.equalTo(self.titleLabel.snp.top).offset(-10)
+        }
     }
+    
+  
 }
