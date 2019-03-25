@@ -12,7 +12,7 @@ class MovieHomeRootModel: Mappable {
     var code: Int = 0
     var msg: String?
     var page: Int = 0
-    var list = [MovieHomeModel]()
+    var list: Array<MovieHomeModel>?
     var total: Int = 0
     var limit: String?
     var pagecount: Int = 0
@@ -40,7 +40,7 @@ class MovieHomeModel: Object,Mappable {
     @objc dynamic  var vod_trysee: Int = 0
     @objc dynamic  var vod_tpl_play: String?
     @objc dynamic  var vod_play_url: String?
-    @objc dynamic   var vod_status: Int = 0
+    @objc dynamic  var vod_status: Int = 0
     @objc dynamic  var vod_level: Int = 0
     @objc dynamic  var vod_pwd_play_url: String?
     @objc dynamic  var vod_duration: String?

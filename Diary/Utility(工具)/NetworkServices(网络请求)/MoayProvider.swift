@@ -12,7 +12,7 @@ import Foundation
 let networkServicesProvider = MoyaProvider<MultiTarget>(requestClosure : timeoutClosure,plugins:[RequestHudPlugin])
 
 /// 设置接口的超时时间
-let timeoutClosure = { (endpoint : Endpoint,closure : MoyaProvider<NewsNetworkServices>.RequestResultClosure) -> Void in
+let timeoutClosure = { (endpoint : Endpoint,closure : MoyaProvider<MultiTarget>.RequestResultClosure) -> Void in
     
     if var urlRequest = try? endpoint.urlRequest() {
         urlRequest.timeoutInterval = 10

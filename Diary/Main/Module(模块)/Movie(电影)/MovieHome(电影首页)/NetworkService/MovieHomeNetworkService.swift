@@ -15,14 +15,16 @@ class MovieHomeNetworkService {
             let request = networkServicesProvider.rx.requestData(target: MultiTarget(MovieNetworkServices.getMovieList(ac: "detail")), model: MovieHomeRootModel.self).subscribe(onSuccess: { (result) in
                 LCZPrint(result)
                 if result.code == 1 {
-                    single(.success(result.list as [MovieHomeModel]))
+                    single(.success(result.list! as [MovieHomeModel]))
                 } else {
                     LCZProgressHUD.showError(title: result.msg)
                 }
             }) { (error) in
+                LCZPrint(error)
                 single(.error(error))
             }
             return Disposables.create([request])
         })
     }
+    
 }

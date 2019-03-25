@@ -21,7 +21,7 @@ extension MovieNetworkServices : TargetType {
     //服务器地址
     public var baseURL: URL {
         
-        return URL(string:"https://www.letaoshijie.com/")!
+        return URL(string:"https://nsxiu.com/")!
     }
     
     //各个请求的具体路径

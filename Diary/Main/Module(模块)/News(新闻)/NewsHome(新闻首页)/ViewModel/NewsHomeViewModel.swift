@@ -35,6 +35,10 @@ class NewsHomeViewModel {
             dataValidation: NewsHomeDataValidation)
         ) {
         
+//        try! diaryRealm.write {
+//            diaryRealm.deleteAll()
+//        }
+        
         // 存储本地数据
         var models: Array<NewsListModel> = Array()
         
