@@ -21,7 +21,7 @@ extension MovieNetworkServices : TargetType {
     //服务器地址
     public var baseURL: URL {
         
-        return URL(string:"https://nsxiu.com/")!
+        return URL(string:"https://www.letaoshijie.com/")!
     }
     
     //各个请求的具体路径
@@ -37,8 +37,7 @@ extension MovieNetworkServices : TargetType {
     
     //请求类型
     public var method: Moya.Method {
-        
-        return .get
+        return .post
     }
     
     //这个就是做单元测试模拟的数据，只会在单元测试文件中有作用

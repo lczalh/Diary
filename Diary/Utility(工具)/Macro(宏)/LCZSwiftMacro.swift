@@ -51,6 +51,9 @@ public let LCZiphone5SHeight = 568
 /// 获取根控制器
 public let LCZAppDelegateRootViewController = UIApplication.shared.delegate?.window??.rootViewController
 
+// 获取沙盒 Document路径
+public let LCZDocumentPath = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first
+
 
 /// ------------------------- MARK - method -----------------------------
 

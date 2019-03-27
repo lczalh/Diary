@@ -15,7 +15,6 @@ target 'Diary' do
     pod 'NSObject+Rx'
     pod 'RxDataSources'
     pod 'Moya-ObjectMapper/RxSwift'
-    pod 'RealReachability'
     pod 'RealmSwift'
     pod 'SVProgressHUD'
     pod 'ESTabBarController-swift'
@@ -24,4 +23,13 @@ target 'Diary' do
     pod 'SwiftTheme'
     pod 'SwifterSwift'
     pod 'JXCategoryView'
+end
+post_install do |installer|
+    installer.pods_project.targets.each do |target|
+        if target.name == 'Diary'
+            target.build_configurations.each do |config|                            
+                config.build_settings['SWIFT_VERSION'] = '4.2'
+            end
+        end
+    end
 end

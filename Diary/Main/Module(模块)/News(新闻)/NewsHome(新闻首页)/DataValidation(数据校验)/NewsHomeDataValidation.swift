@@ -29,4 +29,6 @@ class NewsHomeDataValidation {
         }
         return modelAry
     }
+    
+   
 }

@@ -22,8 +22,9 @@ class NewsHomeViewController: DiaryBaseViewController {
     /// 当前类别
     var currentCategory: Observable<String>?
     
-    
     var listContainerView: JXCategoryListContainerView!
+    
+    let newsHomeNetworkReachabilityManager = NetworkReachabilityManager(host: "http://www.baidu.com")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,21 +45,32 @@ class NewsHomeViewController: DiaryBaseViewController {
         newsHomeView.addSubview(listContainerView!)
         newsHomeView.categoryView!.contentScrollView = listContainerView!.scrollView;
         
+        let viewModel = NewsHomeViewModel()
         
-        self.newsHomeNetworkService.getNewsTypeListData().asDriver(onErrorJustReturn: []).drive(onNext: { (items) in
-            DispatchQueue.main.async(execute: {
-                self.categorys = items
-                self.newsHomeView.categoryView!.titles = items
-                self.newsHomeView.categoryView?.reloadData()
-                self.listContainerView.reloadData()
-            })
-        }).disposed(by: rx.disposeBag)
-        
-        
-     
+        // 实时检测网络状态
+        newsHomeNetworkReachabilityManager?.startListening()
+        newsHomeNetworkReachabilityManager?.listener = { _ in
+            if self.categorys?.isEmpty == true {
+                // 获取最新的新闻类型数据
+                self.newsHomeNetworkService.getNewsTypeListData()
+                    .asDriver(onErrorJustReturn: viewModel.getLocalNewsTypeList())
+                    .drive(onNext: { [weak self] (items) in
+                        // 写入数据
+                        (items as NSArray).write(toFile: viewModel.newsTypeListPlistPath, atomically: true)
+                        DispatchQueue.main.async(execute: {
+                            self!.categorys = items
+                            self!.newsHomeView.categoryView!.titles = items
+                            self!.newsHomeView.categoryView?.reloadData()
+                            self!.listContainerView.reloadData()
+                        })
+                    }).disposed(by: self.rx.disposeBag)
+            }
+        }
+    
         
         
     }
+    
     
 
 }
@@ -91,7 +103,7 @@ extension NewsHomeViewController: JXCategoryListContainerViewDelegate {
         listContainerView.didAppearPercent = 0.99
         currentCategory = Observable.just(self.categorys![index])
         // viewModel
-        let viewModel = NewsHomeViewModel(input: (headerRefresh: newsHomeListView.tableView.mj_header.rx.refreshing.asDriver(),
+        let viewModel = NewsHomeListViewModel(input: (headerRefresh: newsHomeListView.tableView.mj_header.rx.refreshing.asDriver(),
                                                   footerRefresh: newsHomeListView.tableView.mj_footer.rx.refreshing.asDriver(),
                                                   currentCategory: currentCategory!),
                                           dependency: (disposeBag: rx.disposeBag,

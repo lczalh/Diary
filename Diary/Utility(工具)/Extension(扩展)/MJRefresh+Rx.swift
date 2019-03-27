@@ -7,9 +7,6 @@
 //
 
 import Foundation
-import RxSwift
-import RxCocoa
-import MJRefresh
 
 //对MJRefreshComponent增加rx扩展
 extension Reactive where Base: MJRefreshComponent {
@@ -36,6 +33,4 @@ extension Reactive where Base: MJRefreshComponent {
             }
         }
     }
-    
-    
 }
