@@ -10,10 +10,9 @@ import Foundation
 
 class MovieHomeNetworkService {
     
-    public func getMovieListData() -> Single<[MovieHomeModel]> {
+    public func getMovieListData(_ ac: String = "detail",pg: Int) -> Single<[MovieHomeModel]> {
         return Single<[MovieHomeModel]>.create(subscribe: { (single) -> Disposable in
-            let request = networkServicesProvider.rx.requestData(target: MultiTarget(MovieNetworkServices.getMovieList(ac: "detail")), model: MovieHomeRootModel.self).subscribe(onSuccess: { (result) in
-                LCZPrint(result)
+            let request = networkServicesProvider.rx.requestData(target: MultiTarget(MovieNetworkServices.getMovieList(ac: ac, pg: pg)), model: MovieHomeRootModel.self).debug().subscribe(onSuccess: { (result) in
                 if result.code == 1 {
                     single(.success(result.list! as [MovieHomeModel]))
                 } else {

@@ -16,7 +16,7 @@ class NewsHomeDataValidation {
     ///   - items: 模型数组
     ///   - realm: 数据库对象
     /// - Returns: 新数据数组
-    public func dataHeavy(items: Array<NewsListModel>) -> Array<NewsListModel> {
+    public func dataHeavy(items: Array<NewsListModel>, page: Int , category: String) -> Array<NewsListModel> {
         var modelAry: Array<NewsListModel> = Array()
         for m in items {
             let model = diaryRealm.objects(NewsListModel.self).filter{ $0.title == m.title }.first
@@ -27,7 +27,22 @@ class NewsHomeDataValidation {
                 }
             }
         }
-        return modelAry
+        
+        // 判断是否有新数据且够20条 不够20条则查本地数据追加
+        if modelAry.count == 20 { // 有新数据 直接返回
+            return modelAry
+        } else { // 没有 返回本地当页数据
+            let realmModel = diaryRealm.objects(NewsListModel.self).filter{ $0.category == category }
+            // 本地已没有数据
+            if ((page - 1) * 20) > realmModel.count {
+                return modelAry
+            }
+            // 每次返回20条数据
+            for i in ((page - 1) * 20)..<((page * 20) >= realmModel.count ? realmModel.count : (page * 20)) {
+                modelAry.append(realmModel[i])
+            }
+            return modelAry;
+        }
     }
     
    

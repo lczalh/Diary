@@ -50,18 +50,18 @@ class NewsHomeListViewModel {
             .startWith(()) //初始化时会先自动加载一次数据
             .flatMapLatest{ _ -> SharedSequence<DriverSharingStrategy, [NewsListModel]> in //也可考虑使用flatMapFirst
                 self.page = 1;
-                return dependency.networkService.getNewsListData(category: self.currentCategory, page: self.page).map {
-                    return dependency.dataValidation.dataHeavy(items: $0)
-                }.asDriver(onErrorJustReturn: Array<NewsListModel>())
+                return dependency.networkService.getNewsListData(category: self.currentCategory, page: self.page).asDriver(onErrorJustReturn: Array<NewsListModel>()).map {
+                    return dependency.dataValidation.dataHeavy(items: $0, page: self.page, category: self.currentCategory)
+                }
         }
 
         //上拉结果序列
         let footerRefreshData = input.footerRefresh
             .flatMapLatest{ _ -> SharedSequence<DriverSharingStrategy, [NewsListModel]> in  //也可考虑使用flatMapFirst
                 self.page += 1
-                return dependency.networkService.getNewsListData(category: self.currentCategory, page: self.page).map {
-                    return dependency.dataValidation.dataHeavy(items: $0)
-                }.asDriver(onErrorJustReturn: Array<NewsListModel>())
+                return dependency.networkService.getNewsListData(category: self.currentCategory, page: self.page).asDriver(onErrorJustReturn: Array<NewsListModel>()).map {
+                    return dependency.dataValidation.dataHeavy(items: $0, page: self.page, category: self.currentCategory)
+                }
         }
 
         //生成停止头部刷新状态序列
@@ -72,16 +72,7 @@ class NewsHomeListViewModel {
         
         //下拉刷新时，直接将查询到的结果替换原数据
         headerRefreshData.drive(onNext: { items in
-            var models: Array<NewsListModel> = Array()
-            let realmModel = diaryRealm.objects(NewsListModel.self).filter{ $0.category == self.currentCategory }
-            for m in realmModel {
-                models.append(m)
-            }
-            self.tableData.accept(models)
-            guard items.count > 0 else {
-                LCZProgressHUD.showError(title: "暂无最新新闻！")
-                return
-            }
+            self.tableData.accept(items)
         }).disposed(by: dependency.disposeBag)
         
 

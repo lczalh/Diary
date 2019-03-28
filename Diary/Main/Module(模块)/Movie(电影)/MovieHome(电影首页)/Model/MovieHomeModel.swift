@@ -30,7 +30,7 @@ class MovieHomeRootModel: Mappable {
     }
 }
 
-class MovieHomeModel: Object,Mappable {
+class MovieHomeModel: Object,Mappable{
     @objc dynamic  var vod_en: String?
     @objc dynamic  var vod_play_note: String?
     @objc dynamic  var vod_pubdate: String?
@@ -196,5 +196,17 @@ class MovieHomeModel: Object,Mappable {
         vod_hits_week   <- map["vod_hits_week"]
         vod_name   <- map["vod_name"]
     }
+    
+    
 }
+
+extension MovieHomeModel: IdentifiableType {
+    var identity: MovieHomeModel {
+        return self
+    }
+    
+    typealias Identity = MovieHomeModel
+}
+
+
 

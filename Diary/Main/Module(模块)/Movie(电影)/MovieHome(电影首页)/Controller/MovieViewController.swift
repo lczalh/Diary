@@ -24,8 +24,10 @@ class MovieHomeViewController: DiaryBaseViewController {
                                                         networkService: MovieHomeNetworkService(),
                                                         dataValidation: MovieHomeDataValidation()))
         
-        // 创建数据源
-        let dataSource = RxCollectionViewSectionedReloadDataSource<SectionModel<String, MovieHomeModel>>(
+        // 创建数据源RxCollectionSectionedAnimatedDataSource
+       // RxCollectionViewSectionedAnimatedDataSource
+      //  AnimatableSectionModel
+        let dataSource = RxCollectionViewSectionedAnimatedDataSource<AnimatableSectionModel<String, MovieHomeModel>>(
             configureCell: { (dataSource, collectionView, indexPath, element) in
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieHomeCell", for: indexPath) as! MovieHomeCell
                 if element.vod_pic?.isEmpty == false {
@@ -36,9 +38,14 @@ class MovieHomeViewController: DiaryBaseViewController {
                 return cell
         })
         
+//       viewModel.collectionData.map{
+//            [SectionModel(model: "", items: $0)]
+//        }.bind(to: self.movieHomeView.collectionView.rx.items(dataSource: dataSource)).disposed(by: rx.disposeBag)
+        
         viewModel.collectionData.map{
-            [SectionModel(model: "", items: $0)]
+            [AnimatableSectionModel<String,MovieHomeModel>(model: "", items: $0)]
         }.bind(to: self.movieHomeView.collectionView.rx.items(dataSource: dataSource)).disposed(by: rx.disposeBag)
+        
         
         // 下拉刷新状态结束的绑定
         viewModel.endHeaderRefreshing

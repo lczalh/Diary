@@ -12,7 +12,7 @@ import Foundation
 public enum MovieNetworkServices {
     
     // MARK: - 获取电影列表数据
-    case getMovieList(ac: String)
+    case getMovieList(ac: String,pg: Int)
 }
 
 //设置请求配置
@@ -51,8 +51,9 @@ extension MovieNetworkServices : TargetType {
         var parameterDict: [String : Any] = Dictionary()
         switch self {
             
-        case .getMovieList(let ac):
+        case .getMovieList(let ac,let pg):
             parameterDict["ac"] = ac
+            parameterDict["pg"] = pg
             break
         }
         
