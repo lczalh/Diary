@@ -19,15 +19,14 @@ class NewsDetailsViewModel {
             networkService: NewsDetailsNetworkService)
         ) {
         
-        let realm = try! Realm()
         // 查询数据
-        let model = realm.objects(NewsDetailsModel.self).filter{ $0.title == input.newsTitle }.first
+        let model = diaryRealm.objects(NewsDetailsModel.self).filter{ $0.title == input.newsTitle }.first
         // 查询数据是否存在
         if model == nil {
             newsDetailsData = dependency.networkService.getNewsDetailsData(newsId: input.newsId).asDriver(onErrorJustReturn: NewsDetailsModel(map: Map(mappingType: .fromJSON, JSON: ["a":"1"]))!).map({ (model) -> NewsDetailsModel in
                 DispatchQueue.main.async(execute: {
-                    try! realm.write {
-                        realm.add(model)
+                    try! diaryRealm.write {
+                        diaryRealm.add(model)
                     }
                 })
                 return model
@@ -35,10 +34,6 @@ class NewsDetailsViewModel {
         } else {
           newsDetailsData = Observable.just(model!).asDriver(onErrorJustReturn: NewsDetailsModel(map: Map(mappingType: .fromJSON, JSON: ["a":"1"]))!)
         }
-        
-        
-        
-        
-        
+
     }
 }

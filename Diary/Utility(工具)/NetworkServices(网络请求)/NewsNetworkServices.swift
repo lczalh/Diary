@@ -74,8 +74,6 @@ extension NewsNetworkServices : TargetType {
             parameterDict["newsId"] = newsId
         }
         
-        
-        //print(pa)
         return  .requestParameters(parameters: parameterDict, encoding: URLEncoding.default)
     }
     

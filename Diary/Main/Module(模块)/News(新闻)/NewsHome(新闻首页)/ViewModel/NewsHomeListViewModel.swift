@@ -75,7 +75,6 @@ class NewsHomeListViewModel {
             self.tableData.accept(items)
         }).disposed(by: dependency.disposeBag)
         
-
         //上拉加载时，将查询到的结果拼接到原数据底部
         footerRefreshData.drive(onNext: { items in
             if items.count > 0 {

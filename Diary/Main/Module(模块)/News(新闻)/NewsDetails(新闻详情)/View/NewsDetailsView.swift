@@ -20,7 +20,6 @@ class NewsDetailsView: DiaryBaseView {
     
     private func createWKWebView() -> Void {
         self.webView = WKWebView(frame: self.bounds)
-        self.webView.backgroundColor = UIColor.red
         self.addSubview(self.webView)
     }
 }
