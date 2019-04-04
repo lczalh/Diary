@@ -23,6 +23,9 @@ target 'Diary' do
     pod 'SwiftTheme'
     pod 'SwifterSwift'
     pod 'JXCategoryView'
+    pod 'ZFPlayer', '~> 3.0'
+    pod 'ZFPlayer/ControlView', '~> 3.0'
+    pod 'ZFPlayer/AVPlayer', '~> 3.0'
 end
 post_install do |installer|
     installer.pods_project.targets.each do |target|

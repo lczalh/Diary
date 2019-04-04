@@ -119,10 +119,10 @@ extension NewsHomeViewController: JXCategoryListContainerViewDelegate {
         viewModel.endFooterRefreshing
             .drive(newsHomeListView.tableView.mj_footer.rx.endRefreshing)
             .disposed(by: rx.disposeBag)
-        
+     
         // 创建数据源
-        let dataSource = RxTableViewSectionedReloadDataSource
-            <SectionModel<String, NewsListModel>>(configureCell: {
+        let dataSource = RxTableViewSectionedAnimatedDataSource
+            <AnimatableSectionModel<String, NewsListModel>>(configureCell: {
                 (dataSource, tv, indexPath, element) in
                 let cell = tv.dequeueReusableCell(withIdentifier: "NewsHomeCell", for: indexPath) as! NewsHomeCell
                 cell.titleLabel.text = element.title
@@ -139,7 +139,7 @@ extension NewsHomeViewController: JXCategoryListContainerViewDelegate {
         
         // 数据绑定
         viewModel.tableData.map {
-            [SectionModel(model: "", items: $0)]}
+            [AnimatableSectionModel(model: "", items: $0)]}
             .bind(to: newsHomeListView.tableView.rx.items(dataSource: dataSource))
             .disposed(by: rx.disposeBag)
         

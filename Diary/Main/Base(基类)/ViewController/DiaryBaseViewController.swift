@@ -9,16 +9,20 @@
 import UIKit
 
 class DiaryBaseViewController: UIViewController {
+    
+    // 是否支持屏幕旋转
+    override var shouldAutorotate: Bool {
+        return false
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
+        // 禁止导航栏半透明
         self.navigationController?.navigationBar.isTranslucent = false
+        // 禁止tabbar半透明
         self.tabBarController?.tabBar.isTranslucent = false
-        //四周均不延伸
-//        self.edgesForExtendedLayout = []
-//        self.automaticallyAdjustsScrollViewInsets = false
-       
+        
         
     }
     

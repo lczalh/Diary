@@ -15,6 +15,11 @@ class MovieHomeViewController: DiaryBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "电影"
+        // 修改导航栏按钮颜色
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        // 去掉返回按钮上的文字
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+        
         self.movieHomeView = MovieHomeView(frame: CGRect(x: 0, y: 0, width: LCZWidth, height: LCZHeight - LCZNaviBarHeight - LCZStatusBarHeight - LCZTabbarHeight - LCZSafeAreaBottomHeight))
         self.view.addSubview(self.movieHomeView);
         
@@ -24,9 +29,7 @@ class MovieHomeViewController: DiaryBaseViewController {
                                                         networkService: MovieHomeNetworkService(),
                                                         dataValidation: MovieHomeDataValidation()))
         
-        // 创建数据源RxCollectionSectionedAnimatedDataSource
-       // RxCollectionViewSectionedAnimatedDataSource
-      //  AnimatableSectionModel
+        // 创建数据源
         let dataSource = RxCollectionViewSectionedAnimatedDataSource<AnimatableSectionModel<String, MovieHomeModel>>(
             configureCell: { (dataSource, collectionView, indexPath, element) in
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieHomeCell", for: indexPath) as! MovieHomeCell
@@ -38,14 +41,9 @@ class MovieHomeViewController: DiaryBaseViewController {
                 return cell
         })
         
-//       viewModel.collectionData.map{
-//            [SectionModel(model: "", items: $0)]
-//        }.bind(to: self.movieHomeView.collectionView.rx.items(dataSource: dataSource)).disposed(by: rx.disposeBag)
-        
         viewModel.collectionData.map{
             [AnimatableSectionModel<String,MovieHomeModel>(model: "", items: $0)]
         }.bind(to: self.movieHomeView.collectionView.rx.items(dataSource: dataSource)).disposed(by: rx.disposeBag)
-        
         
         // 下拉刷新状态结束的绑定
         viewModel.endHeaderRefreshing
@@ -62,6 +60,8 @@ class MovieHomeViewController: DiaryBaseViewController {
             .bind { indexPath, item in
                 diaryRoute.push("diary://movieHome/movieDetails" ,context: item)
             }.disposed(by: rx.disposeBag)
+        
+       
     }
 
 

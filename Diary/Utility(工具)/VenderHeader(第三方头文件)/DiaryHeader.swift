@@ -26,3 +26,5 @@
 @_exported import Realm
 @_exported import SVProgressHUD
 @_exported import Alamofire
+@_exported import ZFPlayer
+

@@ -32,6 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 break
             }
         }
+        
         // 控制整个功能是否启用
         IQKeyboardManager.shared.enable = true
         // 控制点击背景是否收起键盘
@@ -49,6 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.rootViewController = self.createESTabBarController(delegate: self)
         }
         self.window?.makeKeyAndVisible()
+        self.window!.backgroundColor = UIColor.white
 
         return true
     }

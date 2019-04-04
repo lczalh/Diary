@@ -18,7 +18,7 @@ class NewsHomeListView: DiaryBaseView {
         //创建一个重用的单元格
         self.tableView!.register(NewsHomeCell.self, forCellReuseIdentifier: "NewsHomeCell")
         self.addSubview(tableView)
-        
+        tableView.cellLayoutMarginsFollowReadableWidth = false
         tableView.rowHeight = 110;
         //设置头部刷新控件
         self.tableView.mj_header = MJRefreshNormalHeader()

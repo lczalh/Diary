@@ -26,6 +26,7 @@ class MovieHomeView: DiaryBaseView {
         layout.minimumLineSpacing = 5
         collectionView = UICollectionView(frame: self.bounds, collectionViewLayout: layout)
         self.addSubview(collectionView)
+    
         collectionView.backgroundColor = LCZRgbColor(238, 238, 238, 1)
         collectionView.register(MovieHomeCell.self, forCellWithReuseIdentifier: "MovieHomeCell")
         collectionView.mj_header = MJRefreshNormalHeader()

@@ -12,8 +12,9 @@ class MainNavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        // 禁用侧滑返回
+        self.interactivePopGestureRecognizer?.isEnabled = false
+        
     }
     
 

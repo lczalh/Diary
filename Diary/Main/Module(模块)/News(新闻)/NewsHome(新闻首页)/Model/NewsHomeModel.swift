@@ -55,6 +55,14 @@ class NewsListModel: Object,Mappable {
     }
 }
 
+extension NewsListModel: IdentifiableType {
+    var identity: NewsListModel {
+        return self
+    }
+    
+    typealias Identity = NewsListModel
+}
+
 
 // MARK: - 新闻类型列表模型
 struct NewsTypeListModel: Mappable {
