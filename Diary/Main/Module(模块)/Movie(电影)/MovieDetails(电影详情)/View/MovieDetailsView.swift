@@ -23,14 +23,23 @@ class MovieDetailsView: DiaryBaseView {
     /// 播放视图
     var playerView: UIImageView!
     
+    var tableView: UITableView!
+    
     
     override func configUI() {
-        
+        createPlayerView();
+        createTableView();
+    }
+    
+    // MARK: - 播放器
+    private func createPlayerView() {
         controlView = ZFPlayerControlView()
-        controlView.portraitControlView.titleLabel.frame = CGRect(x: 0, y: 20, width: LCZWidth, height: 30)
+      //  controlView.portraitControlView.titleLabel.frame = CGRect(x: 0, y: 20, width: LCZWidth, height: 30)
         controlView.fastViewAnimated = true
         
         playerView = UIImageView(frame: CGRect(x: 0, y: LCZStatusBarHeight, width: LCZWidth, height: 215))
+        playerView.contentMode = .scaleAspectFill
+        playerView.clipsToBounds = true
         self.addSubview(playerView)
         
         playerController = ZFPlayerController(playerManager: ZFAVPlayerManager(), containerView: playerView)
@@ -43,5 +52,20 @@ class MovieDetailsView: DiaryBaseView {
         playerButton.snp.makeConstraints { (make) in
             make.center.equalToSuperview()
         }
+    }
+    
+    // MARK: - 集合视图
+    private func createTableView() {
+        
+        tableView = UITableView(frame: CGRect(x: 0, y: self.playerView.frame.height + LCZStatusBarHeight, width: LCZWidth, height: LCZHeight - self.playerView.frame.height - LCZStatusBarHeight - LCZSafeAreaBottomHeight), style: .grouped)
+        self.addSubview(tableView)
+        tableView.register(SynopsisCell.self, forCellReuseIdentifier: "SynopsisCell")
+        tableView.register(EpisodeCell.self, forCellReuseIdentifier: "EpisodeCell")
+        tableView.register(MovieDetailsTableHeaderView.self, forHeaderFooterViewReuseIdentifier: "MovieDetailsTableHeaderView")
+        tableView.separatorStyle = .none
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 60
+        
+        
     }
 }

@@ -27,4 +27,5 @@
 @_exported import SVProgressHUD
 @_exported import Alamofire
 @_exported import ZFPlayer
+@_exported import SwifterSwift
 
