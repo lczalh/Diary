@@ -10,15 +10,20 @@ import UIKit
 
 class SelectorEpisodeCell: DiaryBaseCollectionViewCell {
     
-    var bottomView: UIView!
+    /// 集数
+    var episodeLabel: UILabel!
+    
     
     
     override func config() {
-        self.backgroundColor = UIColor.purple
-//        bottomView = UIView()
-//        self.contentView.addSubview(bottomView)
-//        bottomView.snp.makeConstraints { (make) in
-//            make.left.top.equalToSupervie
-//        }
+        self.contentView.backgroundColor = LCZRgbColor(243, 242, 243, 1)
+        
+        episodeLabel = UILabel()
+        self.contentView.addSubview(episodeLabel)
+        episodeLabel.snp.makeConstraints { (make) in
+            make.center.equalToSuperview()
+        }
+        episodeLabel.textAlignment = .center
+        episodeLabel.font = LCZFontSize(size: 14)
     }
 }

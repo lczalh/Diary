@@ -20,6 +20,15 @@ class MovieDetailsViewController: DiaryBaseViewController {
     /// 简介状态 是否展开
     private var synopsisState: Bool = false
     
+    /// 所有剧集地址
+    private var movieUrls: Array<URL> = Array()
+    
+    /// 存储是否在播放状态 1:播放中 0:未播放
+    private var playerIndexs: Array<String> = Array()
+    
+    var movieUrlSections: Observable<[SectionModel<String, URL>]>?
+    
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -79,8 +88,10 @@ class MovieDetailsViewController: DiaryBaseViewController {
         movieDetailsView = MovieDetailsView(frame: self.view.bounds)
         self.view.addSubview(movieDetailsView)
         
+        // 获取所有播放地址
+        self.movieUrls = getMovieUrls()
         // 设置播放地址
-        movieDetailsView.playerController.assetURLs = getMovieUrls()
+        movieDetailsView.playerController.assetURLs = self.movieUrls
         
         // 设置视频封面
         if self.movieHomeModel.vod_pic?.isEmpty == false {
@@ -89,6 +100,12 @@ class MovieDetailsViewController: DiaryBaseViewController {
         
         // 播放按钮的响应
         movieDetailsView.playerButton.rx.tap.subscribe { (sender) in
+            // 修改第一集状态
+            self.playerIndexs[0] = "1"
+            // 获取集数cell
+            let cell = self.movieDetailsView.tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as! EpisodeCell
+            cell.collectionView.reloadData()
+            // 播放第一集
             self.movieDetailsView.playerController.playTheIndex(0)
             self.movieDetailsView.controlView.showTitle(self.movieHomeModel.vod_name, coverURLString: self.movieHomeModel.vod_pic, fullScreenMode: .landscape)
         }.disposed(by: rx.disposeBag)
@@ -100,7 +117,10 @@ class MovieDetailsViewController: DiaryBaseViewController {
         movieDetailsView.tableView.rx.setDelegate(self).disposed(by: rx.disposeBag)
         movieDetailsView.tableView.rx.setDataSource(self).disposed(by: rx.disposeBag)
         
-    
+        //初始化数据
+        movieUrlSections = Observable.just(self.movieUrls).map{
+            [SectionModel(model: "", items: $0)]
+        }
     }
     
     
@@ -114,21 +134,16 @@ class MovieDetailsViewController: DiaryBaseViewController {
             // 获取每集的播放地址
             let movieUrl = eachEpisode.components(separatedBy: CharacterSet(charactersIn: "$"))[1]
             urls.append(URL(string: movieUrl)!)
+            // 默认没有播放任何一集电影
+            playerIndexs.append("0")
         }
         return urls
     }
     
+    // MARK: - 简介响应事件
     @objc private func synopsisButtonAction(_ sender: UIButton) {
-
-//        UIView.animate(withDuration: 2, animations: {
-//            sender.imageView?.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
-//        }) { (state) in
-//            self.synopsisState = !self.synopsisState
-//            self.movieDetailsView.tableView.reloadData()
-//        }
-        
         self.synopsisState = !self.synopsisState
-        self.movieDetailsView.tableView.reloadData()
+        self.movieDetailsView.tableView.reloadSections([0], animationStyle: .fade)
     }
 
 }
@@ -143,6 +158,8 @@ extension MovieDetailsViewController: UITableViewDelegate {
             headerView.synopsisButton?.isHidden = false
             headerView.synopsisButton?.addTarget(self, action: #selector(synopsisButtonAction), for: .touchUpInside)
             headerView.synopsisButton?.isSelected = self.synopsisState
+            headerView.otherInformationLabel.text = "热度 \(self.movieHomeModel.vod_score_all) / \(self.movieHomeModel.vod_score ?? "") / \(self.movieHomeModel.vod_class ?? "") / 更新至\(self.movieUrls.count)集"
+            headerView.collectionView.isHidden = false
         } else if section == 1 {
             headerView.titleLabel?.text = "选集";
         }
@@ -152,7 +169,7 @@ extension MovieDetailsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
-            return 100
+            return 120
         } else {
             return 50
         }
@@ -170,7 +187,7 @@ extension MovieDetailsViewController: UITableViewDataSource {
                 return 1
             }
         } else {
-            return 2
+            return 1
         }
     }
 
@@ -183,25 +200,8 @@ extension MovieDetailsViewController: UITableViewDataSource {
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "EpisodeCell", for: indexPath) as! EpisodeCell
-            //初始化数据
-            let sections = Observable.just(self.getMovieUrls()).map{
-                [SectionModel(model: "", items: $0)]
-            }
+            cell.episodeDelegate = self
             
-            //创建数据源
-            let dataSource = RxCollectionViewSectionedReloadDataSource<SectionModel<String, URL>>(
-                configureCell: { (dataSource, collectionView, indexPath, element) in
-                    let cell1 = collectionView.dequeueReusableCell(withReuseIdentifier: "SelectorEpisodeCell",
-                                                                  for: indexPath) as! SelectorEpisodeCell
-                    return cell1
-                    
-                }
-            )
-          
-            //绑定单元格数据
-            sections
-                .bind(to: cell.collectionView.rx.items(dataSource: dataSource))
-                .disposed(by: rx.disposeBag)
             return cell
         }
         
@@ -213,6 +213,42 @@ extension MovieDetailsViewController: UITableViewDataSource {
     }
 }
 
-
-
+extension MovieDetailsViewController: EpisodeCellDelegate {
+    func episodeCollectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.movieUrls.count
+    }
+    
+    func episodeCollectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+                        let selectorCell = collectionView.dequeueReusableCell(withReuseIdentifier: "SelectorEpisodeCell",
+                                                                              for: indexPath) as! SelectorEpisodeCell
+                        selectorCell.episodeLabel.text = "\(indexPath.row + 1)"
+                        if self.playerIndexs[indexPath.row] == "0" { // 未播放
+                            selectorCell.episodeLabel.textColor = UIColor.black
+                        } else { // 播放中
+                            selectorCell.episodeLabel.textColor = LCZRgbColor(34, 123, 255, 1)
+                        }
+                        return selectorCell
+    }
+    
+    func episodeCollectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // 设置播放状态
+                        for (index, _) in self.playerIndexs.enumerated() {
+                            if index == indexPath.row {
+                                self.playerIndexs[index] = "1"
+                            } else {
+                                self.playerIndexs[index] = "0"
+                            }
+                        }
+        
+                        // 获取集数cell
+                        let cell = self.movieDetailsView.tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as! EpisodeCell
+                        cell.collectionView.reloadData()
+        
+                        // 播放当前选中的集数
+                        self.movieDetailsView.playerController.playTheIndex(indexPath.row)
+                        self.movieDetailsView.controlView.showTitle(self.movieHomeModel.vod_name, coverURLString: self.movieHomeModel.vod_pic, fullScreenMode: .landscape)
+    }
+    
+    
+}
 

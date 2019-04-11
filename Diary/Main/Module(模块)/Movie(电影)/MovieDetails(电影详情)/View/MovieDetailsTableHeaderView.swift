@@ -11,10 +11,19 @@ import UIKit
 class MovieDetailsTableHeaderView: UITableViewHeaderFooterView {
     
     /// 标题
-    var titleLabel: UILabel?
+    var titleLabel: UILabel!
     
     /// 简介
-    var synopsisButton: UIButton?
+    var synopsisButton: UIButton!
+    
+    /// 其它信息
+    var otherInformationLabel: UILabel!
+    
+    /// 底部分割线
+    var bottonLineView: UIView!
+    
+    var collectionView: UICollectionView!
+    
     
 
     override init(reuseIdentifier: String?) {
@@ -23,15 +32,15 @@ class MovieDetailsTableHeaderView: UITableViewHeaderFooterView {
         
         titleLabel = UILabel()
         self.contentView.addSubview(titleLabel!)
-        titleLabel?.snp.makeConstraints({ (make) in
+        titleLabel.snp.makeConstraints({ (make) in
             make.left.equalToSuperview().offset(10)
             make.top.equalToSuperview().offset(10);
         })
-        titleLabel?.font = LCZBoldFontSize(size: 18)
+        titleLabel.font = LCZBoldFontSize(size: 18)
         
         synopsisButton = UIButton(type: .custom)
         self.contentView.addSubview(synopsisButton!)
-        synopsisButton?.snp.makeConstraints({ (make) in
+        synopsisButton.snp.makeConstraints({ (make) in
             make.right.equalToSuperview().offset(-10);
             make.top.equalToSuperview().offset(10);
         })
@@ -40,10 +49,42 @@ class MovieDetailsTableHeaderView: UITableViewHeaderFooterView {
         synopsisButton?.setTitleColor(LCZHexadecimalColor(hexadecimal: "#707070"), for: .normal)
         synopsisButton?.set(image: UIImage(named: "synopsisBottonImage"), title: "简介", titlePosition: .left, additionalSpacing: 5, state: .selected)
         synopsisButton?.set(image: UIImage(named: "synopsisTopImage"), title: "简介", titlePosition: .left, additionalSpacing: 5, state: .normal)
-     //   synopsisButton?.imageView?.tintColor = LCZHexadecimalColor(hexadecimal: "#707070")
         synopsisButton?.isHidden = true
-       // synopsisButton?.imageView?.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
         
+        otherInformationLabel = UILabel()
+        self.contentView.addSubview(otherInformationLabel)
+        otherInformationLabel.snp.makeConstraints { (make) in
+            make.left.equalToSuperview().offset(10)
+            make.top.equalTo(titleLabel.snp.bottom).offset(5)
+            make.right.equalToSuperview().offset(-10)
+        }
+        otherInformationLabel.textAlignment = .left
+        otherInformationLabel.font = LCZFontSize(size: 12)
+        otherInformationLabel.textColor = LCZRgbColor(92, 92, 92, 1)
+        
+        bottonLineView = UIView()
+        self.contentView.addSubview(bottonLineView)
+        bottonLineView.snp.makeConstraints { (make) in
+            make.left.equalToSuperview().offset(10)
+            make.right.equalToSuperview().offset(-10)
+            make.bottom.equalToSuperview()
+            make.height.equalTo(1)
+        }
+        bottonLineView.backgroundColor = LCZRgbColor(244, 244, 244, 1)
+        
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: 50, height: 30)
+        layout.scrollDirection = .horizontal
+        collectionView = UICollectionView(frame: CGRect(x: 0, y: 50, width: LCZWidth, height: 40), collectionViewLayout: layout)
+        self.contentView.addSubview(collectionView)
+        collectionView.snp.makeConstraints { (make) in
+            make.left.right.equalToSuperview()
+            make.top.equalTo(otherInformationLabel.snp.bottom).offset(5)
+            make.bottom.equalTo(bottonLineView.snp.top).offset(-5)
+        }
+        collectionView.backgroundColor = UIColor.red
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        collectionView.isHidden = true
     }
     
     required init?(coder aDecoder: NSCoder) {
