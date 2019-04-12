@@ -24,6 +24,6 @@ class SelectorEpisodeCell: DiaryBaseCollectionViewCell {
             make.center.equalToSuperview()
         }
         episodeLabel.textAlignment = .center
-        episodeLabel.font = LCZFontSize(size: 14)
+        episodeLabel.font = LCZFontSize(size: 16)
     }
 }

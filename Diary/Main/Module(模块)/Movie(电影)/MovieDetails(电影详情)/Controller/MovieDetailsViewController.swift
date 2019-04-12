@@ -26,8 +26,11 @@ class MovieDetailsViewController: DiaryBaseViewController {
     /// 存储是否在播放状态 1:播放中 0:未播放
     private var playerIndexs: Array<String> = Array()
     
-    var movieUrlSections: Observable<[SectionModel<String, URL>]>?
+    /// 实用功能
+    private var practicalFunctionArray: Array<String> = ["收藏","分享","下载","评论","上集","下集"]
     
+    /// 实用功能状态 0:不点击 1:可点击
+    private var practicalFunctionStateArray: Array<String> = []
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -102,24 +105,32 @@ class MovieDetailsViewController: DiaryBaseViewController {
         movieDetailsView.playerButton.rx.tap.subscribe { (sender) in
             // 修改第一集状态
             self.playerIndexs[0] = "1"
-            // 获取集数cell
+            // 获取集数cell 刷新集数状态
             let cell = self.movieDetailsView.tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as! EpisodeCell
             cell.collectionView.reloadData()
+            // 修改实用功能状态
+            if self.movieUrls.count > 1 {
+                self.practicalFunctionStateArray[5] = "1"
+                let headerView = self.movieDetailsView.tableView.headerView(forSection: 0) as! MovieDetailsTableHeaderView
+                headerView.collectionView.reloadData()
+            }
+            
             // 播放第一集
             self.movieDetailsView.playerController.playTheIndex(0)
             self.movieDetailsView.controlView.showTitle(self.movieHomeModel.vod_name, coverURLString: self.movieHomeModel.vod_pic, fullScreenMode: .landscape)
         }.disposed(by: rx.disposeBag)
         
-        // ---------------------------------
-
-        
         // 设置代理
         movieDetailsView.tableView.rx.setDelegate(self).disposed(by: rx.disposeBag)
         movieDetailsView.tableView.rx.setDataSource(self).disposed(by: rx.disposeBag)
         
-        //初始化数据
-        movieUrlSections = Observable.just(self.movieUrls).map{
-            [SectionModel(model: "", items: $0)]
+        // 配置实用功能默认状态
+        for (index,_) in self.practicalFunctionArray.enumerated() {
+            if index == 4 || index == 5 {
+                practicalFunctionStateArray.append("0")
+            } else {
+                practicalFunctionStateArray.append("1")
+            }
         }
     }
     
@@ -160,8 +171,11 @@ extension MovieDetailsViewController: UITableViewDelegate {
             headerView.synopsisButton?.isSelected = self.synopsisState
             headerView.otherInformationLabel.text = "热度 \(self.movieHomeModel.vod_score_all) / \(self.movieHomeModel.vod_score ?? "") / \(self.movieHomeModel.vod_class ?? "") / 更新至\(self.movieUrls.count)集"
             headerView.collectionView.isHidden = false
+            headerView.movieDetailsTableHeaderViewDelegate = self
         } else if section == 1 {
             headerView.titleLabel?.text = "选集";
+            headerView.synopsisButton?.isHidden = true
+            headerView.collectionView.isHidden = true
         }
         
         return headerView
@@ -169,7 +183,7 @@ extension MovieDetailsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
-            return 120
+            return 100 * LCZSizeScale
         } else {
             return 50
         }
@@ -219,34 +233,74 @@ extension MovieDetailsViewController: EpisodeCellDelegate {
     }
     
     func episodeCollectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-                        let selectorCell = collectionView.dequeueReusableCell(withReuseIdentifier: "SelectorEpisodeCell",
-                                                                              for: indexPath) as! SelectorEpisodeCell
-                        selectorCell.episodeLabel.text = "\(indexPath.row + 1)"
-                        if self.playerIndexs[indexPath.row] == "0" { // 未播放
-                            selectorCell.episodeLabel.textColor = UIColor.black
-                        } else { // 播放中
-                            selectorCell.episodeLabel.textColor = LCZRgbColor(34, 123, 255, 1)
-                        }
-                        return selectorCell
+        let selectorCell = collectionView.dequeueReusableCell(withReuseIdentifier: "SelectorEpisodeCell",
+                                                              for: indexPath) as! SelectorEpisodeCell
+        selectorCell.episodeLabel.text = "\(indexPath.row + 1)"
+        if self.playerIndexs[indexPath.row] == "0" { // 未播放
+            selectorCell.episodeLabel.textColor = UIColor.black
+        } else { // 播放中
+            selectorCell.episodeLabel.textColor = LCZRgbColor(34, 123, 255, 1)
+        }
+        return selectorCell
     }
     
     func episodeCollectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // 设置播放状态
-                        for (index, _) in self.playerIndexs.enumerated() {
-                            if index == indexPath.row {
-                                self.playerIndexs[index] = "1"
-                            } else {
-                                self.playerIndexs[index] = "0"
-                            }
-                        }
+        for (index, _) in self.playerIndexs.enumerated() {
+            if index == indexPath.row {
+                self.playerIndexs[index] = "1"
+            } else {
+                self.playerIndexs[index] = "0"
+            }
+        }
         
-                        // 获取集数cell
-                        let cell = self.movieDetailsView.tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as! EpisodeCell
-                        cell.collectionView.reloadData()
+        // 获取集数cell
+        let cell = self.movieDetailsView.tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as! EpisodeCell
+        cell.collectionView.reloadData()
         
-                        // 播放当前选中的集数
-                        self.movieDetailsView.playerController.playTheIndex(indexPath.row)
-                        self.movieDetailsView.controlView.showTitle(self.movieHomeModel.vod_name, coverURLString: self.movieHomeModel.vod_pic, fullScreenMode: .landscape)
+        // 播放当前选中的集数
+        self.movieDetailsView.playerController.playTheIndex(indexPath.row)
+        self.movieDetailsView.controlView.showTitle(self.movieHomeModel.vod_name, coverURLString: self.movieHomeModel.vod_pic, fullScreenMode: .landscape)
+    }
+
+}
+
+extension MovieDetailsViewController: MovieDetailsTableHeaderViewCellDelegate {
+    func movieDetailsTableHeaderViewCollectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.practicalFunctionArray.count
+    }
+    
+    func movieDetailsTableHeaderViewCollectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PracticalFunctionCell", for: indexPath) as! PracticalFunctionCell
+        cell.titleLabel.text = self.practicalFunctionArray[indexPath.row]
+        
+        if self.practicalFunctionStateArray[indexPath.row] == "1" { //
+            cell.contentView.layer.borderColor = UIColor.black.cgColor
+            cell.titleLabel.textColor = UIColor.black
+        } else {
+            cell.contentView.layer.borderColor = LCZRgbColor(243, 242, 243, 1).cgColor
+            cell.titleLabel.textColor = LCZRgbColor(243, 242, 243, 1)
+        }
+        
+        return cell
+    }
+    
+    func movieDetailsTableHeaderViewCollectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        
+        if indexPath.row == 0 { // 收藏
+            
+        } else if indexPath.row == 1 { // 分享
+            
+        } else if indexPath.row == 2 { // 下载
+            
+        } else if indexPath.row == 3 { // 评论
+            
+        } else if indexPath.row == 4 { // 上集
+            
+        } else if indexPath.row == 5 { // 下集
+            
+        }
     }
     
     

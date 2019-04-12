@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7314CFB9225C8FF8001C2B34 /* MovieDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7314CFB8225C8FF8001C2B34 /* MovieDetailsModel.swift */; };
 		7326F8E422251CBD0005696F /* NewsDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7326F8E322251CBD0005696F /* NewsDetailsViewController.swift */; };
 		7326F8E7222520FE0005696F /* NewsDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7326F8E6222520FE0005696F /* NewsDetailsModel.swift */; };
 		732C0464224B123700EA7738 /* NewsHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732C0463224B123700EA7738 /* NewsHomeViewModel.swift */; };
 		7337A20722262CBB00B19F07 /* NewsDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7337A20622262CBB00B19F07 /* NewsDetailsView.swift */; };
 		7337A20A2226304500B19F07 /* NewsDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7337A2092226304500B19F07 /* NewsDetailsViewModel.swift */; };
 		7337A20D222630AE00B19F07 /* NewsDetailsNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7337A20C222630AE00B19F07 /* NewsDetailsNetworkService.swift */; };
+		733E298F22607094001885CE /* PracticalFunctionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733E298E22607094001885CE /* PracticalFunctionCell.swift */; };
 		734E9B6C22448D8B00CC5004 /* MovieHomeNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734E9B6B22448D8B00CC5004 /* MovieHomeNetworkService.swift */; };
 		734E9B6E22448E2400CC5004 /* Moay+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734E9B6D22448E2400CC5004 /* Moay+Rx.swift */; };
 		734E9B7022448EA300CC5004 /* MoayProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734E9B6F22448EA300CC5004 /* MoayProvider.swift */; };
@@ -62,13 +62,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7314CFB8225C8FF8001C2B34 /* MovieDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsModel.swift; sourceTree = "<group>"; };
 		7326F8E322251CBD0005696F /* NewsDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailsViewController.swift; sourceTree = "<group>"; };
 		7326F8E6222520FE0005696F /* NewsDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailsModel.swift; sourceTree = "<group>"; };
 		732C0463224B123700EA7738 /* NewsHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsHomeViewModel.swift; sourceTree = "<group>"; };
 		7337A20622262CBB00B19F07 /* NewsDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailsView.swift; sourceTree = "<group>"; };
 		7337A2092226304500B19F07 /* NewsDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailsViewModel.swift; sourceTree = "<group>"; };
 		7337A20C222630AE00B19F07 /* NewsDetailsNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailsNetworkService.swift; sourceTree = "<group>"; };
+		733E298E22607094001885CE /* PracticalFunctionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticalFunctionCell.swift; sourceTree = "<group>"; };
 		7346603D224339B0007BBD07 /* Diary-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Diary-Bridging-Header.h"; sourceTree = "<group>"; };
 		734E9B6B22448D8B00CC5004 /* MovieHomeNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieHomeNetworkService.swift; sourceTree = "<group>"; };
 		734E9B6D22448E2400CC5004 /* Moay+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Moay+Rx.swift"; sourceTree = "<group>"; };
@@ -145,7 +145,6 @@
 		7314CFB7225C8F82001C2B34 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				7314CFB8225C8FF8001C2B34 /* MovieDetailsModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -544,6 +543,7 @@
 				735BB339225DCF2300241A59 /* SynopsisCell.swift */,
 				735BB33B225DEE1300241A59 /* EpisodeCell.swift */,
 				735BB33D225DEF7500241A59 /* SelectorEpisodeCell.swift */,
+				733E298E22607094001885CE /* PracticalFunctionCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -753,7 +753,6 @@
 			files = (
 				737E1C522213E82800BF751D /* DiaryBaseView.swift in Sources */,
 				737E1C442213E19F00BF751D /* AppDelegate+TabBar.swift in Sources */,
-				7314CFB9225C8FF8001C2B34 /* MovieDetailsModel.swift in Sources */,
 				737E1C3F2213DFDF00BF751D /* LCZHomePage.swift in Sources */,
 				737E1C2D2213D43B00BF751D /* DiaryHeader.swift in Sources */,
 				7367D2F0221FA43F008FD780 /* UIViewController+Rx.swift in Sources */,
@@ -772,6 +771,7 @@
 				737E1C562213E94D00BF751D /* NewsHomeListView.swift in Sources */,
 				734E9B7F2244D3B400CC5004 /* MovieHomeDataValidation.swift in Sources */,
 				73B1DDE92242080400BFEF7A /* MovieHomeCell.swift in Sources */,
+				733E298F22607094001885CE /* PracticalFunctionCell.swift in Sources */,
 				7367D2F3221FA8DA008FD780 /* NewsHomeNetworkService.swift in Sources */,
 				7367D2EE221FA43A008FD780 /* MJRefresh+Rx.swift in Sources */,
 				73B1DDED2242306100BFEF7A /* MovieDetailsViewController.swift in Sources */,
