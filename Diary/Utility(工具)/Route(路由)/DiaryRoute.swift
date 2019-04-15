@@ -29,6 +29,14 @@ enum DiaryRoute {
             movieDetailsVC.hidesBottomBarWhenPushed = true
             return movieDetailsVC
         }
+        
+        // 搜索电影
+        navigator.register("diary://movieHome/searchMovie") { url, values, context in
+            let searchMovie = SearchMovieViewController()
+            
+            searchMovie.hidesBottomBarWhenPushed = true
+            return searchMovie
+        }
     }
     
 }

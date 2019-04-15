@@ -26,6 +26,7 @@ target 'Diary' do
     pod 'ZFPlayer', '~> 3.0'
     pod 'ZFPlayer/ControlView', '~> 3.0'
     pod 'ZFPlayer/AVPlayer', '~> 3.0'
+    pod 'PYSearch'
 end
 post_install do |installer|
     installer.pods_project.targets.each do |target|

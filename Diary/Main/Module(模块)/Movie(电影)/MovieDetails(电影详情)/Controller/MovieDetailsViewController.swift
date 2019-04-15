@@ -23,14 +23,17 @@ class MovieDetailsViewController: DiaryBaseViewController {
     /// 所有剧集地址
     private var movieUrls: Array<URL> = Array()
     
-    /// 存储是否在播放状态 1:播放中 0:未播放
-    private var playerIndexs: Array<String> = Array()
+    /// 存储选集列表是否在播放状态 1:播放中 0:未播放
+    private var selectionListStateArray: Array<String> = Array()
     
     /// 实用功能
     private var practicalFunctionArray: Array<String> = ["收藏","分享","下载","评论","上集","下集"]
     
     /// 实用功能状态 0:不点击 1:可点击
     private var practicalFunctionStateArray: Array<String> = []
+    
+    /// 当前播放索引
+//    private var currentPlayIndex: Int = -1
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -104,7 +107,7 @@ class MovieDetailsViewController: DiaryBaseViewController {
         // 播放按钮的响应
         movieDetailsView.playerButton.rx.tap.subscribe { (sender) in
             // 修改第一集状态
-            self.playerIndexs[0] = "1"
+            self.selectionListStateArray[0] = "1"
             // 获取集数cell 刷新集数状态
             let cell = self.movieDetailsView.tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as! EpisodeCell
             cell.collectionView.reloadData()
@@ -114,7 +117,6 @@ class MovieDetailsViewController: DiaryBaseViewController {
                 let headerView = self.movieDetailsView.tableView.headerView(forSection: 0) as! MovieDetailsTableHeaderView
                 headerView.collectionView.reloadData()
             }
-            
             // 播放第一集
             self.movieDetailsView.playerController.playTheIndex(0)
             self.movieDetailsView.controlView.showTitle(self.movieHomeModel.vod_name, coverURLString: self.movieHomeModel.vod_pic, fullScreenMode: .landscape)
@@ -146,7 +148,7 @@ class MovieDetailsViewController: DiaryBaseViewController {
             let movieUrl = eachEpisode.components(separatedBy: CharacterSet(charactersIn: "$"))[1]
             urls.append(URL(string: movieUrl)!)
             // 默认没有播放任何一集电影
-            playerIndexs.append("0")
+            selectionListStateArray.append("0")
         }
         return urls
     }
@@ -236,7 +238,7 @@ extension MovieDetailsViewController: EpisodeCellDelegate {
         let selectorCell = collectionView.dequeueReusableCell(withReuseIdentifier: "SelectorEpisodeCell",
                                                               for: indexPath) as! SelectorEpisodeCell
         selectorCell.episodeLabel.text = "\(indexPath.row + 1)"
-        if self.playerIndexs[indexPath.row] == "0" { // 未播放
+        if self.selectionListStateArray[indexPath.row] == "0" { // 未播放
             selectorCell.episodeLabel.textColor = UIColor.black
         } else { // 播放中
             selectorCell.episodeLabel.textColor = LCZRgbColor(34, 123, 255, 1)
@@ -245,18 +247,37 @@ extension MovieDetailsViewController: EpisodeCellDelegate {
     }
     
     func episodeCollectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // 设置播放状态
-        for (index, _) in self.playerIndexs.enumerated() {
+        // 设置选集列表播放状态
+        for (index, _) in self.selectionListStateArray.enumerated() {
             if index == indexPath.row {
-                self.playerIndexs[index] = "1"
+                self.selectionListStateArray[index] = "1"
             } else {
-                self.playerIndexs[index] = "0"
+                self.selectionListStateArray[index] = "0"
             }
         }
-        
         // 获取集数cell
         let cell = self.movieDetailsView.tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as! EpisodeCell
         cell.collectionView.reloadData()
+        
+        // 设置上集、下集按钮状态
+        if self.movieUrls.count == 1 { // 只有一集的情况下 上下集均不可点
+            self.practicalFunctionStateArray[4] = "0"
+            self.practicalFunctionStateArray[5] = "0"
+        } else {
+            // 判断当前点击的索引
+            if indexPath.row == 0 { // 点击的是第一集，则上集不可点击,下集可点
+                self.practicalFunctionStateArray[4] = "0"
+                self.practicalFunctionStateArray[5] = "1"
+            } else if indexPath.row == self.movieUrls.count { // 点击的是最后一集，则下集不可点击，上集可点
+                self.practicalFunctionStateArray[4] = "1"
+                self.practicalFunctionStateArray[5] = "0"
+            } else {
+                self.practicalFunctionStateArray[4] = "1"
+                self.practicalFunctionStateArray[5] = "1"
+            }
+        }
+        let headerView = self.movieDetailsView.tableView.headerView(forSection: 0) as! MovieDetailsTableHeaderView
+        headerView.collectionView.reloadData()
         
         // 播放当前选中的集数
         self.movieDetailsView.playerController.playTheIndex(indexPath.row)
@@ -287,22 +308,102 @@ extension MovieDetailsViewController: MovieDetailsTableHeaderViewCellDelegate {
     
     func movieDetailsTableHeaderViewCollectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        
-        if indexPath.row == 0 { // 收藏
+        if indexPath.row == 0 && self.practicalFunctionStateArray[indexPath.row] == "1" { // 收藏
             
-        } else if indexPath.row == 1 { // 分享
+        } else if indexPath.row == 1 && self.practicalFunctionStateArray[indexPath.row] == "1" { // 分享
             
-        } else if indexPath.row == 2 { // 下载
+        } else if indexPath.row == 2 && self.practicalFunctionStateArray[indexPath.row] == "1" { // 下载
             
-        } else if indexPath.row == 3 { // 评论
+        } else if indexPath.row == 3 && self.practicalFunctionStateArray[indexPath.row] == "1" { // 评论
             
-        } else if indexPath.row == 4 { // 上集
+        } else if indexPath.row == 4 && self.practicalFunctionStateArray[indexPath.row] == "1" { // 上集
+            if !self.movieDetailsView.playerController.isFirstAssetURL {
+                // 播放上一集
+                self.movieDetailsView.playerController.playThePrevious()
+                self.movieDetailsView.controlView.showTitle(self.movieHomeModel.vod_name, coverURLString: self.movieHomeModel.vod_pic, fullScreenMode: .landscape)
+                // 设置选集列表播放状态
+                for (index, _) in self.selectionListStateArray.enumerated() {
+                    if index == self.movieDetailsView.playerController.currentPlayIndex {
+                        self.selectionListStateArray[index] = "1"
+                    } else {
+                        self.selectionListStateArray[index] = "0"
+                    }
+                }
+                // 获取集数cell
+                let cell = self.movieDetailsView.tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as! EpisodeCell
+                correctCollectionViewOffsetPosition(cellCollection: cell)
+                cell.collectionView.reloadData()
+                
+                // 设置上集状态
+                if self.movieDetailsView.playerController.currentPlayIndex == 0 {
+                    self.practicalFunctionStateArray[4] = "0"
+                } else {
+                    self.practicalFunctionStateArray[4] = "1"
+                }
+                // 设置下集状态
+                self.practicalFunctionStateArray[5] = "1"
+                collectionView.reloadData()
+                
+            }
             
-        } else if indexPath.row == 5 { // 下集
-            
+        } else if indexPath.row == 5 && self.practicalFunctionStateArray[indexPath.row] == "1" { // 下集
+            if !self.movieDetailsView.playerController.isLastAssetURL {
+                // 播放下一集
+                self.movieDetailsView.playerController.playTheNext()
+                self.movieDetailsView.controlView.showTitle(self.movieHomeModel.vod_name, coverURLString: self.movieHomeModel.vod_pic, fullScreenMode: .landscape)
+                // 设置选集列表播放状态
+                for (index, _) in self.selectionListStateArray.enumerated() {
+                    if index == self.movieDetailsView.playerController.currentPlayIndex {
+                        self.selectionListStateArray[index] = "1"
+                    } else {
+                        self.selectionListStateArray[index] = "0"
+                    }
+                }
+                // 获取集数cell
+                let cell = self.movieDetailsView.tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as! EpisodeCell
+                correctCollectionViewOffsetPosition(cellCollection: cell)
+                cell.collectionView.reloadData()
+                
+                // 设置下集状态
+                if self.movieDetailsView.playerController.currentPlayIndex == self.movieUrls.count - 1 {
+                    self.practicalFunctionStateArray[5] = "0"
+                } else {
+                    self.practicalFunctionStateArray[5] = "1"
+                }
+                // 设置下集状态
+                self.practicalFunctionStateArray[4] = "1"
+                
+                collectionView.reloadData()
+                
+            }
         }
     }
     
+    
+    /// 修正选集collectionViewCell位置
+    func correctCollectionViewOffsetPosition(cellCollection: EpisodeCell) -> () {
+        // 集数大于6集才修正位置
+        if self.movieUrls.count <= 6 {
+            return
+        }
+        //
+        var offsetPoint = cellCollection.collectionView.contentOffset
+        // 获取当前选择的集数cell
+        let cell = cellCollection.collectionView.cellForItem(at: IndexPath(row: self.movieDetailsView.playerController.currentPlayIndex, section: 0))
+        offsetPoint.x = cell!.center.x - LCZWidth / 2
+        // 左边超出处理
+        if (offsetPoint.x < 0) {
+            offsetPoint.x = -10
+        }
+        //
+        let maxX = cellCollection.collectionView.contentSize.width - LCZWidth + 10
+        //右边超出处理
+        if (offsetPoint.x >= maxX) {
+            offsetPoint.x = maxX;
+        }
+        //设置滚动视图偏移量
+        cellCollection.collectionView.setContentOffset(offsetPoint, animated: true)
+    }
     
 }
 

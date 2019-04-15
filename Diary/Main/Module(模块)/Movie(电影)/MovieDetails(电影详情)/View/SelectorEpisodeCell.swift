@@ -12,9 +12,7 @@ class SelectorEpisodeCell: DiaryBaseCollectionViewCell {
     
     /// 集数
     var episodeLabel: UILabel!
-    
-    
-    
+
     override func config() {
         self.contentView.backgroundColor = LCZRgbColor(243, 242, 243, 1)
         

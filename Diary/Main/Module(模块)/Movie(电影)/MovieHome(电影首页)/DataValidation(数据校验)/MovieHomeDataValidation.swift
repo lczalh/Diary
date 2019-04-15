@@ -32,7 +32,7 @@ class MovieHomeDataValidation {
         if modelAry.count == 20 { // 有新数据 直接返回
             return modelAry
         } else { // 没有 返回本地当页数据
-            let realmModel = diaryRealm.objects(MovieHomeModel.self)
+            let realmModel = diaryRealm.objects(MovieHomeModel.self).sorted { LCZTimeToTimeStamp(time: $0.vod_time!).int > LCZTimeToTimeStamp(time: $1.vod_time!).int }
             // 本地已没有数据，返回空
             if ((page - 1) * 20) > realmModel.count {
                 return modelAry

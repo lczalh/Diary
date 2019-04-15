@@ -15,10 +15,31 @@ class MovieHomeViewController: DiaryBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "电影"
-        // 修改导航栏按钮颜色
-        self.navigationController?.navigationBar.tintColor = UIColor.white
         // 去掉返回按钮上的文字
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+        
+        // 搜索按钮
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "搜索", style: .done, target: self, action: nil)
+        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
+        self.navigationItem.rightBarButtonItem?.rx.tap.subscribe(onNext: { () in
+           // diaryRoute.push("diary://movieHome/searchMovie")
+            let nums = ["Java", "Python", "Objective-C", "Swift", "C", "C++", "PHP", "C#", "Perl", "Go", "JavaScript", "R", "Ruby", "MATLAB"]
+            
+            let searchViewController = PYSearchViewController(hotSearches: nums, searchBarPlaceholder: NSLocalizedString("NSLocalizedString",value: "搜索电影", comment: "11"), didSearch: { controller,searchBar,searchText in
+                let searchMovieVC = SearchMovieViewController()
+                searchMovieVC.hidesBottomBarWhenPushed = true
+                controller?.navigationController?.pushViewController(searchMovieVC, animated: true)
+            })
+            searchViewController!.hotSearchStyle = PYHotSearchStyle(rawValue: 4)!;
+            searchViewController!.searchHistoryStyle = .default
+            //searchViewController!.delegate = self
+         
+            searchViewController!.searchViewControllerShowMode = .modePush
+            searchViewController!.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(searchViewController!, animated: true)
+            
+        }).disposed(by: rx.disposeBag)
+        
         
         self.movieHomeView = MovieHomeView(frame: CGRect(x: 0, y: 0, width: LCZWidth, height: LCZHeight - LCZNaviBarHeight - LCZStatusBarHeight - LCZTabbarHeight - LCZSafeAreaBottomHeight))
         self.view.addSubview(self.movieHomeView);
@@ -67,4 +88,6 @@ class MovieHomeViewController: DiaryBaseViewController {
 
 }
 
-
+extension MovieHomeViewController: PYSearchViewControllerDelegate {
+    
+}
