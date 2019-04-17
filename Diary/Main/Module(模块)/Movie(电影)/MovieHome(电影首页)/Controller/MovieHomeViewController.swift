@@ -11,6 +11,18 @@ import UIKit
 class MovieHomeViewController: DiaryBaseViewController {
     
     var movieHomeView: MovieHomeView!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //设置导航栏背景不透明
+        self.navigationController?.navigationBar.isTranslucent = false
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        //重置导航栏背景
+        self.navigationController?.navigationBar.isTranslucent = true
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,9 +34,7 @@ class MovieHomeViewController: DiaryBaseViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "搜索", style: .done, target: self, action: nil)
         self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
         self.navigationItem.rightBarButtonItem?.rx.tap.subscribe(onNext: { () in
-           // diaryRoute.push("diary://movieHome/searchMovie")
             let nums = ["Java", "Python", "Objective-C", "Swift", "C", "C++", "PHP", "C#", "Perl", "Go", "JavaScript", "R", "Ruby", "MATLAB"]
-            
             let searchViewController = PYSearchViewController(hotSearches: nums, searchBarPlaceholder: NSLocalizedString("NSLocalizedString",value: "搜索电影", comment: "11"), didSearch: { controller,searchBar,searchText in
                 let searchMovieVC = SearchMovieViewController()
                 searchMovieVC.hidesBottomBarWhenPushed = true
@@ -32,14 +42,11 @@ class MovieHomeViewController: DiaryBaseViewController {
             })
             searchViewController!.hotSearchStyle = PYHotSearchStyle(rawValue: 4)!;
             searchViewController!.searchHistoryStyle = .default
-            //searchViewController!.delegate = self
-         
             searchViewController!.searchViewControllerShowMode = .modePush
             searchViewController!.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(searchViewController!, animated: true)
             
         }).disposed(by: rx.disposeBag)
-        
         
         self.movieHomeView = MovieHomeView(frame: CGRect(x: 0, y: 0, width: LCZWidth, height: LCZHeight - LCZNaviBarHeight - LCZStatusBarHeight - LCZTabbarHeight - LCZSafeAreaBottomHeight))
         self.view.addSubview(self.movieHomeView);
