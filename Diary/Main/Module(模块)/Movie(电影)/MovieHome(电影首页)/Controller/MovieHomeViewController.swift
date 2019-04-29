@@ -34,8 +34,8 @@ class MovieHomeViewController: DiaryBaseViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "搜索", style: .done, target: self, action: nil)
         self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
         self.navigationItem.rightBarButtonItem?.rx.tap.subscribe(onNext: { () in
-            let nums = ["Java", "Python", "Objective-C", "Swift", "C", "C++", "PHP", "C#", "Perl", "Go", "JavaScript", "R", "Ruby", "MATLAB"]
-            let searchViewController = PYSearchViewController(hotSearches: nums, searchBarPlaceholder: NSLocalizedString("NSLocalizedString",value: "搜索电影", comment: "11"), didSearch: { controller,searchBar,searchText in
+            let nums = ["权利的游戏8", "封神演义", "复仇者联盟3：无限战争", "斗罗大陆", "斗破苍穹","飞驰人生","新喜剧之王","家和万事惊"]
+            let searchViewController = PYSearchViewController(hotSearches: nums, searchBarPlaceholder: NSLocalizedString("NSLocalizedString",value: "搜索电影", comment: ""), didSearch: { controller,searchBar,searchText in
                 let searchMovieVC = SearchMovieViewController()
                 searchMovieVC.hidesBottomBarWhenPushed = true
                 controller?.navigationController?.pushViewController(searchMovieVC, animated: true)

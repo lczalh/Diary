@@ -12,7 +12,7 @@ class SearchMovieViewController: DiaryBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.title = "带个额"
         // Do any additional setup after loading the view.
     }
     
