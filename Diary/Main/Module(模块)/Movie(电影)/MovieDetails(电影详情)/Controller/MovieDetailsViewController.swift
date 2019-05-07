@@ -32,10 +32,6 @@ class MovieDetailsViewController: DiaryBaseViewController {
     /// 实用功能状态 0:不点击 1:可点击
     private var practicalFunctionStateArray: Array<String> = []
     
-    /// 当前播放索引
-//    private var currentPlayIndex: Int = -1
-    
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         movieDetailsView.playerController.isViewControllerDisappear = false;
@@ -194,6 +190,7 @@ extension MovieDetailsViewController: UITableViewDelegate {
     
 }
 
+// MARK: - UITableViewDataSource
 extension MovieDetailsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
@@ -229,6 +226,7 @@ extension MovieDetailsViewController: UITableViewDataSource {
     }
 }
 
+// MARK: - EpisodeCellDelegate
 extension MovieDetailsViewController: EpisodeCellDelegate {
     func episodeCollectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.movieUrls.count
@@ -286,6 +284,8 @@ extension MovieDetailsViewController: EpisodeCellDelegate {
 
 }
 
+
+// MARK: - MovieDetailsTableHeaderViewCellDelegate
 extension MovieDetailsViewController: MovieDetailsTableHeaderViewCellDelegate {
     func movieDetailsTableHeaderViewCollectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.practicalFunctionArray.count
@@ -309,13 +309,13 @@ extension MovieDetailsViewController: MovieDetailsTableHeaderViewCellDelegate {
     func movieDetailsTableHeaderViewCollectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         if indexPath.row == 0 && self.practicalFunctionStateArray[indexPath.row] == "1" { // 收藏
-            
+            LCZProgressHUD.showError(title: "正在开发中...")
         } else if indexPath.row == 1 && self.practicalFunctionStateArray[indexPath.row] == "1" { // 分享
-            
+            LCZProgressHUD.showError(title: "正在开发中...")
         } else if indexPath.row == 2 && self.practicalFunctionStateArray[indexPath.row] == "1" { // 下载
-            
+            LCZProgressHUD.showError(title: "正在开发中...")
         } else if indexPath.row == 3 && self.practicalFunctionStateArray[indexPath.row] == "1" { // 评论
-            
+            LCZProgressHUD.showError(title: "正在开发中...")
         } else if indexPath.row == 4 && self.practicalFunctionStateArray[indexPath.row] == "1" { // 上集
             if !self.movieDetailsView.playerController.isFirstAssetURL {
                 // 播放上一集

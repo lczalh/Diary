@@ -11,7 +11,7 @@ import UIKit
 
 extension UIButton {
     
-    /// 设置文字e和图片的位置
+    /// 设置文字和图片的位置
     ///
     /// - Parameters:
     ///   - anImage: 图片对象

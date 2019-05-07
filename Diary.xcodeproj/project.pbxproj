@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7302DB1A228179F700BC7CAC /* LCZAlignTopLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7302DB19228179F700BC7CAC /* LCZAlignTopLabel.swift */; };
+		7302DB1D22818A6F00BC7CAC /* SearchMovieDataValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7302DB1C22818A6F00BC7CAC /* SearchMovieDataValidation.swift */; };
 		7326F8E422251CBD0005696F /* NewsDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7326F8E322251CBD0005696F /* NewsDetailsViewController.swift */; };
 		7326F8E7222520FE0005696F /* NewsDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7326F8E6222520FE0005696F /* NewsDetailsModel.swift */; };
 		732C0464224B123700EA7738 /* NewsHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732C0463224B123700EA7738 /* NewsHomeViewModel.swift */; };
@@ -14,6 +16,10 @@
 		7337A20A2226304500B19F07 /* NewsDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7337A2092226304500B19F07 /* NewsDetailsViewModel.swift */; };
 		7337A20D222630AE00B19F07 /* NewsDetailsNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7337A20C222630AE00B19F07 /* NewsDetailsNetworkService.swift */; };
 		733E298F22607094001885CE /* PracticalFunctionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733E298E22607094001885CE /* PracticalFunctionCell.swift */; };
+		73409FC02281563600899563 /* SearchMovieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73409FBF2281563600899563 /* SearchMovieView.swift */; };
+		73409FC3228158CA00899563 /* SearchMovieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73409FC2228158CA00899563 /* SearchMovieViewModel.swift */; };
+		73409FC622815C2100899563 /* SearchMovieNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73409FC522815C2100899563 /* SearchMovieNetworkService.swift */; };
+		73409FC822815FE100899563 /* SearchMovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73409FC722815FE100899563 /* SearchMovieCell.swift */; };
 		734E9B6C22448D8B00CC5004 /* MovieHomeNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734E9B6B22448D8B00CC5004 /* MovieHomeNetworkService.swift */; };
 		734E9B6E22448E2400CC5004 /* Moay+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734E9B6D22448E2400CC5004 /* Moay+Rx.swift */; };
 		734E9B7022448EA300CC5004 /* MoayProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734E9B6F22448EA300CC5004 /* MoayProvider.swift */; };
@@ -63,6 +69,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7302DB19228179F700BC7CAC /* LCZAlignTopLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCZAlignTopLabel.swift; sourceTree = "<group>"; };
+		7302DB1C22818A6F00BC7CAC /* SearchMovieDataValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMovieDataValidation.swift; sourceTree = "<group>"; };
 		7326F8E322251CBD0005696F /* NewsDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailsViewController.swift; sourceTree = "<group>"; };
 		7326F8E6222520FE0005696F /* NewsDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailsModel.swift; sourceTree = "<group>"; };
 		732C0463224B123700EA7738 /* NewsHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsHomeViewModel.swift; sourceTree = "<group>"; };
@@ -70,6 +78,10 @@
 		7337A2092226304500B19F07 /* NewsDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailsViewModel.swift; sourceTree = "<group>"; };
 		7337A20C222630AE00B19F07 /* NewsDetailsNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailsNetworkService.swift; sourceTree = "<group>"; };
 		733E298E22607094001885CE /* PracticalFunctionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticalFunctionCell.swift; sourceTree = "<group>"; };
+		73409FBF2281563600899563 /* SearchMovieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMovieView.swift; sourceTree = "<group>"; };
+		73409FC2228158CA00899563 /* SearchMovieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMovieViewModel.swift; sourceTree = "<group>"; };
+		73409FC522815C2100899563 /* SearchMovieNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMovieNetworkService.swift; sourceTree = "<group>"; };
+		73409FC722815FE100899563 /* SearchMovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMovieCell.swift; sourceTree = "<group>"; };
 		7346603D224339B0007BBD07 /* Diary-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Diary-Bridging-Header.h"; sourceTree = "<group>"; };
 		734E9B6B22448D8B00CC5004 /* MovieHomeNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieHomeNetworkService.swift; sourceTree = "<group>"; };
 		734E9B6D22448E2400CC5004 /* Moay+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Moay+Rx.swift"; sourceTree = "<group>"; };
@@ -144,6 +156,22 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		7302DB182281797500BC7CAC /* CustomUI(自定义UI) */ = {
+			isa = PBXGroup;
+			children = (
+				7302DB19228179F700BC7CAC /* LCZAlignTopLabel.swift */,
+			);
+			path = "CustomUI(自定义UI)";
+			sourceTree = "<group>";
+		};
+		7302DB1B22818A4A00BC7CAC /* DataValidation(数据校验) */ = {
+			isa = PBXGroup;
+			children = (
+				7302DB1C22818A6F00BC7CAC /* SearchMovieDataValidation.swift */,
+			);
+			path = "DataValidation(数据校验)";
+			sourceTree = "<group>";
+		};
 		7314CFB7225C8F82001C2B34 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -199,6 +227,22 @@
 			isa = PBXGroup;
 			children = (
 				7337A20C222630AE00B19F07 /* NewsDetailsNetworkService.swift */,
+			);
+			path = NetworkService;
+			sourceTree = "<group>";
+		};
+		73409FC1228158B200899563 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				73409FC2228158CA00899563 /* SearchMovieViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		73409FC422815BF700899563 /* NetworkService */ = {
+			isa = PBXGroup;
+			children = (
+				73409FC522815C2100899563 /* SearchMovieNetworkService.swift */,
 			);
 			path = NetworkService;
 			sourceTree = "<group>";
@@ -264,6 +308,7 @@
 		737E1C2E2213DA8F00BF751D /* Utility(工具) */ = {
 			isa = PBXGroup;
 			children = (
+				7302DB182281797500BC7CAC /* CustomUI(自定义UI) */,
 				7346603A22433948007BBD07 /* Bridging(桥接文件) */,
 				73B1DDD52241EA2F00BFEF7A /* ProgressHUD(进度显示) */,
 				7367D2EC221FA3AB008FD780 /* Extension(扩展) */,
@@ -554,6 +599,9 @@
 		73C34F682264544B00244B55 /* SearchMovie(搜索电影) */ = {
 			isa = PBXGroup;
 			children = (
+				7302DB1B22818A4A00BC7CAC /* DataValidation(数据校验) */,
+				73409FC422815BF700899563 /* NetworkService */,
+				73409FC1228158B200899563 /* ViewModel */,
 				73C34F6A2264548100244B55 /* View */,
 				73C34F692264547700244B55 /* Controller */,
 			);
@@ -571,6 +619,8 @@
 		73C34F6A2264548100244B55 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				73409FBF2281563600899563 /* SearchMovieView.swift */,
+				73409FC722815FE100899563 /* SearchMovieCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -786,8 +836,10 @@
 				737E1C2D2213D43B00BF751D /* DiaryHeader.swift in Sources */,
 				7367D2F0221FA43F008FD780 /* UIViewController+Rx.swift in Sources */,
 				73C34F6C2264552800244B55 /* SearchMovieViewController.swift in Sources */,
+				73409FC822815FE100899563 /* SearchMovieCell.swift in Sources */,
 				735BB338225D9CF300241A59 /* UIButton+TextImagelocation.swift in Sources */,
 				732C0464224B123700EA7738 /* NewsHomeViewModel.swift in Sources */,
+				7302DB1D22818A6F00BC7CAC /* SearchMovieDataValidation.swift in Sources */,
 				73B1DDE7224206FA00BFEF7A /* DiaryBaseCollectionViewCell.swift in Sources */,
 				73B1DDE22242051400BFEF7A /* MovieHomeModel.swift in Sources */,
 				734E9B6E22448E2400CC5004 /* Moay+Rx.swift in Sources */,
@@ -803,16 +855,19 @@
 				73B1DDE92242080400BFEF7A /* MovieHomeCell.swift in Sources */,
 				733E298F22607094001885CE /* PracticalFunctionCell.swift in Sources */,
 				7367D2F3221FA8DA008FD780 /* NewsHomeNetworkService.swift in Sources */,
+				7302DB1A228179F700BC7CAC /* LCZAlignTopLabel.swift in Sources */,
 				7367D2EE221FA43A008FD780 /* MJRefresh+Rx.swift in Sources */,
 				73B1DDED2242306100BFEF7A /* MovieDetailsViewController.swift in Sources */,
 				737E1C5C2213F05900BF751D /* NewsHomeListViewModel.swift in Sources */,
 				7337A20A2226304500B19F07 /* NewsDetailsViewModel.swift in Sources */,
 				73B1DDDB2241EE5100BFEF7A /* MovieHomeViewController.swift in Sources */,
+				73409FC622815C2100899563 /* SearchMovieNetworkService.swift in Sources */,
 				737E1C4C2213E3F800BF751D /* MainNavigationController.swift in Sources */,
 				73B1DDDF2241EF5500BFEF7A /* MovieHomeView.swift in Sources */,
 				73B1DDD72241EB8E00BFEF7A /* LCZProgressHUD.swift in Sources */,
 				734E9B7C2244D26700CC5004 /* NewsHomeDataValidation.swift in Sources */,
 				73B1DDE52242055700BFEF7A /* MovieHomeViewModel.swift in Sources */,
+				73409FC02281563600899563 /* SearchMovieView.swift in Sources */,
 				735BB33A225DCF2300241A59 /* SynopsisCell.swift in Sources */,
 				737E1C412213E00300BF751D /* LCZSwiftMacro.swift in Sources */,
 				73948B7E2223CF88000ED09A /* NewsHomeCell.swift in Sources */,
@@ -823,6 +878,7 @@
 				735BB33C225DEE1300241A59 /* EpisodeCell.swift in Sources */,
 				734E9B7222448F8A00CC5004 /* MovieNetworkServices.swift in Sources */,
 				73948B802223CFA5000ED09A /* DiaryBaseTableViewCell.swift in Sources */,
+				73409FC3228158CA00899563 /* SearchMovieViewModel.swift in Sources */,
 				7326F8E422251CBD0005696F /* NewsDetailsViewController.swift in Sources */,
 				734E9B742244CF2200CC5004 /* DiaryMacro.swift in Sources */,
 				734E9B6C22448D8B00CC5004 /* MovieHomeNetworkService.swift in Sources */,
@@ -978,7 +1034,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = V8NV6JAKW7;
+				DEVELOPMENT_TEAM = 4EB962NN4T;
 				INFOPLIST_FILE = "Diary/Resource(资源)/Plist(文件)/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1003,7 +1059,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = V8NV6JAKW7;
+				DEVELOPMENT_TEAM = 4EB962NN4T;
 				INFOPLIST_FILE = "Diary/Resource(资源)/Plist(文件)/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (

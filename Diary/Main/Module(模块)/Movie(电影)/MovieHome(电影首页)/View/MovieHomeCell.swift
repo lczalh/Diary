@@ -24,11 +24,13 @@ class MovieHomeCell: DiaryBaseCollectionViewCell {
         self.contentView.clipsToBounds = true
         
         self.contentView.addSubview(self.titleLabel)
-        self.titleLabel.font = LCZFontSize(size: 14)
+        self.titleLabel.font = LCZBoldFontSize(size: 16)
         self.titleLabel.snp.makeConstraints({ (make) in
-            make.centerX.equalToSuperview()
             make.bottom.equalToSuperview().offset(-10)
+            make.left.equalToSuperview().offset(10)
+            make.right.equalToSuperview().offset(-10)
         })
+        self.titleLabel.textAlignment = .center
         
         self.contentView.addSubview(self.imageView)
         self.imageView.contentMode = .scaleAspectFill

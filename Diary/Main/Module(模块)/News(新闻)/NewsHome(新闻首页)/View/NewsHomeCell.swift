@@ -43,7 +43,7 @@ class NewsHomeCell: DiaryBaseTableViewCell {
             make.right.equalTo(self.newsImageView.snp.left).offset(-10)
         }
         self.titleLabel.numberOfLines = 0
-        self.titleLabel.font = LCZBoldFontSize(size: 18)
+        self.titleLabel.font = LCZBoldFontSize(size: 16)
         
         // 时间
         self.timeLabel = UILabel()

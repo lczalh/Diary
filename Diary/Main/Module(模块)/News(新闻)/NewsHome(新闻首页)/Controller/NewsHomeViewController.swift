@@ -128,7 +128,7 @@ extension NewsHomeViewController: JXCategoryListContainerViewDelegate {
                 cell.titleLabel.text = element.title
                 if element.newsImg?.isEmpty == false {
                     cell.newsImageView.kf.indicatorType = .activity
-                    cell.newsImageView.kf.setImage(with: ImageResource(downloadURL: URL(string: element.newsImg!)!))
+                    cell.newsImageView.kf.setImage(with: ImageResource(downloadURL: URL(string: element.newsImg!)!), placeholder: UIImage(named: "暂无图片"))
                 }
                 if element.publishTime?.isEmpty == false {
                     cell.timeLabel.text = LCZUpdateTimeToCurrennTime(timeStamp: LCZTimeToTimeStamp(time: element.publishTime!))

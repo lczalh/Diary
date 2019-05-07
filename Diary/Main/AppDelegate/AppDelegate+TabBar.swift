@@ -175,15 +175,15 @@ extension AppDelegate: UITabBarControllerDelegate {
         
         let v1 = NewsHomeViewController()
         let v2 = MovieHomeViewController()
-        let v3 = NewsHomeViewController()
-        let v4 = NewsHomeViewController()
-        let v5 = NewsHomeViewController()
+//        let v3 = NewsHomeViewController()
+//        let v4 = NewsHomeViewController()
+//        let v5 = NewsHomeViewController()
         
         self.customIrregularityStyle(tabBarController: tabBarController, viewController: v1, eSTabBarItemContentView: ExampleBouncesContentView(), title: "新闻", image: UIImage(named: "find"), selectImage: UIImage(named: "find"))
         self.customIrregularityStyle(tabBarController: tabBarController, viewController: v2, eSTabBarItemContentView: ExampleBouncesContentView(), title: "电影", image: UIImage(named: "find"), selectImage: UIImage(named: "find"))
-        self.customIrregularityStyle(tabBarController: tabBarController, viewController: v3, eSTabBarItemContentView: ExampleBouncesContentView(), title: "测试", image: UIImage(named: "find"), selectImage: UIImage(named: "find"))
-        self.customIrregularityStyle(tabBarController: tabBarController, viewController: v4, eSTabBarItemContentView: ExampleBouncesContentView(), title: "发现", image: UIImage(named: "find"), selectImage: UIImage(named: "find"))
-        self.customIrregularityStyle(tabBarController: tabBarController, viewController: v5, eSTabBarItemContentView: ExampleBouncesContentView(), title: "我的", image: UIImage(named: "find"), selectImage: UIImage(named: "find"))
+      //  self.customIrregularityStyle(tabBarController: tabBarController, viewController: v3, eSTabBarItemContentView: ExampleBouncesContentView(), title: "测试", image: UIImage(named: "find"), selectImage: UIImage(named: "find"))
+      //  self.customIrregularityStyle(tabBarController: tabBarController, viewController: v4, eSTabBarItemContentView: ExampleBouncesContentView(), title: "发现", image: UIImage(named: "find"), selectImage: UIImage(named: "find"))
+        //self.customIrregularityStyle(tabBarController: tabBarController, viewController: UIViewController(), eSTabBarItemContentView: ExampleBouncesContentView(), title: "我的", image: UIImage(named: "find"), selectImage: UIImage(named: "find"))
         
         return tabBarController
     }

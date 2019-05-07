@@ -13,6 +13,8 @@ public enum MovieNetworkServices {
     
     // MARK: - 获取电影列表数据
     case getMovieList(ac: String,pg: Int)
+    // MARK: - 获取搜索的电影列表数据
+    case getSearchMovieList(ac: String,pg: Int, wd: String)
 }
 
 //设置请求配置
@@ -30,6 +32,9 @@ extension MovieNetworkServices : TargetType {
         switch self {
             
         case .getMovieList:
+            return "api.php/provide/vod/"
+            
+        case .getSearchMovieList:
             return "api.php/provide/vod/"
         }
         
@@ -54,6 +59,11 @@ extension MovieNetworkServices : TargetType {
         case .getMovieList(let ac,let pg):
             parameterDict["ac"] = ac
             parameterDict["pg"] = pg
+            break
+        case .getSearchMovieList(let ac, let pg, let wd):
+            parameterDict["ac"] = ac
+            parameterDict["pg"] = pg
+            parameterDict["wd"] = wd
             break
         }
         

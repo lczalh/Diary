@@ -24,6 +24,7 @@ class NewsHomeListView: DiaryBaseView {
         self.tableView.mj_header = MJRefreshNormalHeader()
         //设置尾部刷新控件
         self.tableView.mj_footer = MJRefreshBackNormalFooter()
+        tableView.separatorStyle = .none
         
     }
 

@@ -34,10 +34,11 @@ class MovieHomeViewController: DiaryBaseViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "搜索", style: .done, target: self, action: nil)
         self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
         self.navigationItem.rightBarButtonItem?.rx.tap.subscribe(onNext: { () in
-            let nums = ["权利的游戏8", "封神演义", "复仇者联盟3：无限战争", "斗罗大陆", "斗破苍穹","飞驰人生","新喜剧之王","家和万事惊"]
+            let nums = ["流浪地球", "封神演义", "复仇者联盟", "斗罗大陆", "斗破苍穹","飞驰人生","新喜剧之王","家和万事惊"]
             let searchViewController = PYSearchViewController(hotSearches: nums, searchBarPlaceholder: NSLocalizedString("NSLocalizedString",value: "搜索电影", comment: ""), didSearch: { controller,searchBar,searchText in
                 let searchMovieVC = SearchMovieViewController()
                 searchMovieVC.hidesBottomBarWhenPushed = true
+                searchMovieVC.movieName = searchText
                 controller?.navigationController?.pushViewController(searchMovieVC, animated: true)
             })
             searchViewController!.hotSearchStyle = PYHotSearchStyle(rawValue: 4)!;
@@ -63,7 +64,7 @@ class MovieHomeViewController: DiaryBaseViewController {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieHomeCell", for: indexPath) as! MovieHomeCell
                 if element.vod_pic?.isEmpty == false {
                     cell.imageView.kf.indicatorType = .activity
-                    cell.imageView.kf.setImage(with: ImageResource(downloadURL: URL(string: element.vod_pic!)!))
+                    cell.imageView.kf.setImage(with: ImageResource(downloadURL: URL(string: element.vod_pic!)!), placeholder: UIImage(named: "暂无图片"))
                 }
                 cell.titleLabel.text = element.vod_name
                 return cell
