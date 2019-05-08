@@ -20,6 +20,7 @@
 		73409FC3228158CA00899563 /* SearchMovieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73409FC2228158CA00899563 /* SearchMovieViewModel.swift */; };
 		73409FC622815C2100899563 /* SearchMovieNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73409FC522815C2100899563 /* SearchMovieNetworkService.swift */; };
 		73409FC822815FE100899563 /* SearchMovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73409FC722815FE100899563 /* SearchMovieCell.swift */; };
+		7348B9CF2282D1A60091F880 /* Moya+DataParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7348B9CE2282D1A60091F880 /* Moya+DataParsing.swift */; };
 		734E9B6C22448D8B00CC5004 /* MovieHomeNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734E9B6B22448D8B00CC5004 /* MovieHomeNetworkService.swift */; };
 		734E9B6E22448E2400CC5004 /* Moay+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734E9B6D22448E2400CC5004 /* Moay+Rx.swift */; };
 		734E9B7022448EA300CC5004 /* MoayProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734E9B6F22448EA300CC5004 /* MoayProvider.swift */; };
@@ -83,6 +84,7 @@
 		73409FC522815C2100899563 /* SearchMovieNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMovieNetworkService.swift; sourceTree = "<group>"; };
 		73409FC722815FE100899563 /* SearchMovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMovieCell.swift; sourceTree = "<group>"; };
 		7346603D224339B0007BBD07 /* Diary-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Diary-Bridging-Header.h"; sourceTree = "<group>"; };
+		7348B9CE2282D1A60091F880 /* Moya+DataParsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Moya+DataParsing.swift"; sourceTree = "<group>"; };
 		734E9B6B22448D8B00CC5004 /* MovieHomeNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieHomeNetworkService.swift; sourceTree = "<group>"; };
 		734E9B6D22448E2400CC5004 /* Moay+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Moay+Rx.swift"; sourceTree = "<group>"; };
 		734E9B6F22448EA300CC5004 /* MoayProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoayProvider.swift; sourceTree = "<group>"; };
@@ -293,6 +295,7 @@
 				7367D2ED221FA43A008FD780 /* MJRefresh+Rx.swift */,
 				734E9B6D22448E2400CC5004 /* Moay+Rx.swift */,
 				735BB337225D9CF300241A59 /* UIButton+TextImagelocation.swift */,
+				7348B9CE2282D1A60091F880 /* Moya+DataParsing.swift */,
 			);
 			path = "Extension(扩展)";
 			sourceTree = "<group>";
@@ -838,6 +841,7 @@
 				73C34F6C2264552800244B55 /* SearchMovieViewController.swift in Sources */,
 				73409FC822815FE100899563 /* SearchMovieCell.swift in Sources */,
 				735BB338225D9CF300241A59 /* UIButton+TextImagelocation.swift in Sources */,
+				7348B9CF2282D1A60091F880 /* Moya+DataParsing.swift in Sources */,
 				732C0464224B123700EA7738 /* NewsHomeViewModel.swift in Sources */,
 				7302DB1D22818A6F00BC7CAC /* SearchMovieDataValidation.swift in Sources */,
 				73B1DDE7224206FA00BFEF7A /* DiaryBaseCollectionViewCell.swift in Sources */,
@@ -1034,14 +1038,14 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4EB962NN4T;
+				DEVELOPMENT_TEAM = T3XQN4SSR6;
 				INFOPLIST_FILE = "Diary/Resource(资源)/Plist(文件)/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.lcz.Diary;
+				PRODUCT_BUNDLE_IDENTIFIER = com.liuczhaozheng.Diary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Diary/Utility(工具)/Bridging(桥接文件)/Diary-Bridging-Header.h";
@@ -1059,14 +1063,14 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4EB962NN4T;
+				DEVELOPMENT_TEAM = T3XQN4SSR6;
 				INFOPLIST_FILE = "Diary/Resource(资源)/Plist(文件)/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.lcz.Diary;
+				PRODUCT_BUNDLE_IDENTIFIER = com.liuczhaozheng.Diary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Diary/Utility(工具)/Bridging(桥接文件)/Diary-Bridging-Header.h";

@@ -64,9 +64,9 @@ public let LCZDocumentPath = NSSearchPathForDirectoriesInDomains(FileManager.Sea
 ///   - file: 文件名
 ///   - method: 方法名
 ///   - line: 行数
-public func LCZPrint<T>(_ message: T,file: String = #file,method: String = #function,line: Int = #line) {
+public func LCZPrint(_ items: Any...,file: String = #file,method: String = #function,line: Int = #line) {
     #if DEBUG
-    print("类名:\((file as NSString).lastPathComponent),方法名:\(method),第\(line)行,内存地址:\(Unmanaged.passUnretained(message as AnyObject).toOpaque()),打印内容:\(message)")
+    print("类名:\((file as NSString).lastPathComponent),方法名:\(method),第\(line)行,内存地址:\(Unmanaged.passUnretained(items as AnyObject).toOpaque()),打印内容:\(items)")
     #endif
 }
 

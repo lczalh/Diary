@@ -118,6 +118,49 @@ class MovieDetailsViewController: DiaryBaseViewController {
             self.movieDetailsView.controlView.showTitle(self.movieHomeModel.vod_name, coverURLString: self.movieHomeModel.vod_pic, fullScreenMode: .landscape)
         }.disposed(by: rx.disposeBag)
         
+        // 播放完成时调用
+        movieDetailsView.playerController.playerDidToEnd = { (asset) in
+            // 获取集数cell
+            let cell = self.movieDetailsView.tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as! EpisodeCell
+            // 重置集数状态
+            for (index,_) in self.selectionListStateArray.enumerated() {
+                self.selectionListStateArray[index] = "0"
+            }
+            
+            if self.movieUrls.count == 1 { // 只有一集
+                // 始终播放第一集
+                self.movieDetailsView.playerController.playTheIndex(0)
+                self.movieDetailsView.controlView.showTitle(self.movieHomeModel.vod_name, coverURLString: self.movieHomeModel.vod_pic, fullScreenMode: .landscape)
+                // 上下集 不可点
+                self.practicalFunctionStateArray[4] = "0"
+                self.practicalFunctionStateArray[5] = "0"
+            } else if self.movieDetailsView.playerController.currentPlayIndex == self.movieUrls.count - 1 { // 最后一集播放结束
+                self.movieDetailsView.playerController.stop()
+                LCZProgressHUD.showSuccess(title: "所有剧集已经被您观看完啦！！！")
+                
+            } else {
+                // 播放下一集
+                self.movieDetailsView.playerController.playTheNext()
+                self.movieDetailsView.controlView.showTitle(self.movieHomeModel.vod_name, coverURLString: self.movieHomeModel.vod_pic, fullScreenMode: .landscape)
+                
+                if self.movieDetailsView.playerController.currentPlayIndex == self.movieUrls.count - 1 { //最后一集
+                    self.practicalFunctionStateArray[4] = "1"
+                    self.practicalFunctionStateArray[5] = "0"
+                } else { // 其它集数
+                    self.practicalFunctionStateArray[4] = "1"
+                    self.practicalFunctionStateArray[5] = "1"
+                }
+                
+            }
+            // 更新集数状态
+            self.selectionListStateArray[self.movieDetailsView.playerController.currentPlayIndex] = "1"
+            // 修正cell位置
+            self.correctCollectionViewOffsetPosition(cellCollection: cell)
+            cell.collectionView.reloadData()
+            
+            
+        }
+        
         // 设置代理
         movieDetailsView.tableView.rx.setDelegate(self).disposed(by: rx.disposeBag)
         movieDetailsView.tableView.rx.setDataSource(self).disposed(by: rx.disposeBag)
@@ -266,7 +309,7 @@ extension MovieDetailsViewController: EpisodeCellDelegate {
             if indexPath.row == 0 { // 点击的是第一集，则上集不可点击,下集可点
                 self.practicalFunctionStateArray[4] = "0"
                 self.practicalFunctionStateArray[5] = "1"
-            } else if indexPath.row == self.movieUrls.count { // 点击的是最后一集，则下集不可点击，上集可点
+            } else if indexPath.row == self.movieUrls.count - 1 { // 点击的是最后一集，则下集不可点击，上集可点
                 self.practicalFunctionStateArray[4] = "1"
                 self.practicalFunctionStateArray[5] = "0"
             } else {

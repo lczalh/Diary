@@ -19,6 +19,7 @@ class NewsHomeDataValidation {
     public func dataHeavy(items: Array<NewsListModel>, page: Int , category: String) -> Array<NewsListModel> {
         var modelAry: Array<NewsListModel> = Array()
         for m in items {
+            
             let model = diaryRealm.objects(NewsListModel.self).filter{ $0.title == m.title }.first
             if model == nil, m.newsImg?.isEmpty == false {
                 try! diaryRealm.write {
@@ -29,20 +30,22 @@ class NewsHomeDataValidation {
         }
         
         // 判断是否有新数据且够20条 不够20条则查本地数据追加
-        if modelAry.count == 20 { // 有新数据 直接返回
-            return modelAry
+        if modelAry.count >= 20 { // 有新数据 直接返回
+          
         } else { // 没有 返回本地当页数据
-            let realmModel = diaryRealm.objects(NewsListModel.self).filter{ $0.category == category }.sorted { LCZTimeToTimeStamp(time: $0.publishTime!).int > LCZTimeToTimeStamp(time: $1.publishTime!).int }
+            let realmModel = diaryRealm.objects(NewsListModel.self).filter{ $0.category == category }
+//                .sorted { LCZTimeToTimeStamp(time: $0.publishTime!).int > LCZTimeToTimeStamp(time: $1.publishTime!).int }
             // 本地已没有数据
             if ((page - 1) * 20) > realmModel.count {
-                return modelAry
+                
+            } else {
+                // 每次返回20条数据
+                for i in ((page - 1) * 20) + modelAry.count ..< ((page * 20) - modelAry.count >= realmModel.count ? realmModel.count - modelAry.count : (page * 20) - modelAry.count) {
+                    modelAry.append(realmModel[i])
+                }
             }
-            // 每次返回20条数据
-            for i in ((page - 1) * 20)..<((page * 20) >= realmModel.count ? realmModel.count : (page * 20)) {
-                modelAry.append(realmModel[i])
-            }
-            return modelAry;
         }
+        return modelAry
     }
     
    

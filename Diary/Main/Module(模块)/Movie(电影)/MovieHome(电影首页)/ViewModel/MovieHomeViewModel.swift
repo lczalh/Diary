@@ -37,18 +37,20 @@ class MovieHomeViewModel {
             .startWith(())
             .flatMapFirst { _ -> SharedSequence<DriverSharingStrategy, [MovieHomeModel]> in
                 self.page = 1;
-                return dependency.networkService.getMovieListData(pg: self.page).asDriver(onErrorJustReturn: Array<MovieHomeModel>()).map {
-                    return dependency.dataValidation.dataHeavy(items: $0, page: self.page)
-                }
+                return dependency.networkService.getMovieListData(pg: self.page).asDriver(onErrorJustReturn: Array<MovieHomeModel>())
+//                    .map {
+//                    return dependency.dataValidation.dataHeavy(items: $0, page: self.page)
+//                }
         }
         
         // 获取上拉序列结果
         let footerRefreshData = input.footerRefresh
             .flatMapFirst { _ -> SharedSequence<DriverSharingStrategy, [MovieHomeModel]> in
                 self.page += 1;
-                return dependency.networkService.getMovieListData(pg: self.page).asDriver(onErrorJustReturn: Array<MovieHomeModel>()).map {
-                    return dependency.dataValidation.dataHeavy(items: $0, page: self.page)
-                }
+                return dependency.networkService.getMovieListData(pg: self.page).asDriver(onErrorJustReturn: Array<MovieHomeModel>())
+//                    .map {
+//                    return dependency.dataValidation.dataHeavy(items: $0, page: self.page)
+//                }
         }
         
         //生成停止头部刷新状态序列

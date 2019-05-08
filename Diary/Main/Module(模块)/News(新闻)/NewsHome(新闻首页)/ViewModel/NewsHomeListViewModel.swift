@@ -38,7 +38,7 @@ class NewsHomeListViewModel {
 //        try! diaryRealm.write {
 //            diaryRealm.deleteAll()
 //        }
-        
+     
 
         // 获取当前分类
         input.currentCategory.subscribe(onNext: { (str) in
@@ -50,18 +50,20 @@ class NewsHomeListViewModel {
             .startWith(()) //初始化时会先自动加载一次数据
             .flatMapLatest{ _ -> SharedSequence<DriverSharingStrategy, [NewsListModel]> in //也可考虑使用flatMapFirst
                 self.page = 1;
-                return dependency.networkService.getNewsListData(category: self.currentCategory, page: self.page).asDriver(onErrorJustReturn: Array<NewsListModel>()).map {
-                    return dependency.dataValidation.dataHeavy(items: $0, page: self.page, category: self.currentCategory)
-                }
+                return dependency.networkService.getNewsListData(category: self.currentCategory, page: self.page).asDriver(onErrorJustReturn: Array<NewsListModel>())
+//                    .map {
+//                    return dependency.dataValidation.dataHeavy(items: $0, page: self.page, category: self.currentCategory)
+//                }
         }
 
         //上拉结果序列
         let footerRefreshData = input.footerRefresh
             .flatMapLatest{ _ -> SharedSequence<DriverSharingStrategy, [NewsListModel]> in  //也可考虑使用flatMapFirst
                 self.page += 1
-                return dependency.networkService.getNewsListData(category: self.currentCategory, page: self.page).asDriver(onErrorJustReturn: Array<NewsListModel>()).map {
-                    return dependency.dataValidation.dataHeavy(items: $0, page: self.page, category: self.currentCategory)
-                }
+                return dependency.networkService.getNewsListData(category: self.currentCategory, page: self.page).asDriver(onErrorJustReturn: Array<NewsListModel>())
+//                    .map {
+//                    return dependency.dataValidation.dataHeavy(items: $0, page: self.page, category: self.currentCategory)
+//                }
         }
 
         //生成停止头部刷新状态序列

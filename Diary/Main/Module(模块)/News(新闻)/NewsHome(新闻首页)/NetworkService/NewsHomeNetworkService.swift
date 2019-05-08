@@ -8,6 +8,10 @@
 
 import Foundation
 
+enum NewsError: Error {
+    case requestTimeout
+    case requestFailed
+}
 
 class NewsHomeNetworkService {
     
@@ -18,7 +22,8 @@ class NewsHomeNetworkService {
                 if result.ERRORCODE == "0" {
                     single(.success(result.RESULT))
                 } else {
-                    LCZPrint("错误")
+                    LCZProgressHUD.showError(title: "暂无相关数据!")
+                    single(.error(NewsError.requestTimeout))
                 }
             }, onError: { (error) in
                 single(.error(error))
@@ -34,7 +39,8 @@ class NewsHomeNetworkService {
                 if result.ERRORCODE == "0" {
                     single(.success(result.RESULT!.newsList! as [NewsListModel]))
                 } else {
-                    LCZPrint("错误")
+                    LCZProgressHUD.showError(title: "暂无相关数据!")
+                    single(.error(NewsError.requestTimeout))
                 }
             }) { (error) in
                 single(.error(error))

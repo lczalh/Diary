@@ -34,7 +34,6 @@ class MovieDetailsView: DiaryBaseView {
     // MARK: - 播放器
     private func createPlayerView() {
         controlView = ZFPlayerControlView()
-      //  controlView.portraitControlView.titleLabel.frame = CGRect(x: 0, y: 20, width: LCZWidth, height: 30)
         controlView.fastViewAnimated = true
         
         playerView = UIImageView(frame: CGRect(x: 0, y: LCZStatusBarHeight, width: LCZWidth, height: 215))
@@ -45,7 +44,9 @@ class MovieDetailsView: DiaryBaseView {
         playerController = ZFPlayerController(playerManager: ZFAVPlayerManager(), containerView: playerView)
         playerController.controlView = controlView
         playerController.shouldAutoPlay = false;
-        
+        /// 设置退到后台继续播放
+        playerController.pauseWhenAppResignActive = false
+        /// 播放按钮
         playerButton = UIButton()
         playerView.addSubview(playerButton);
         playerButton.setImage(UIImage(named: "MoviePlayer"), for: .normal)

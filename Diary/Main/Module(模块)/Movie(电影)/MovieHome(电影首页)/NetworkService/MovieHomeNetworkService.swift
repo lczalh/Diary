@@ -8,6 +8,11 @@
 
 import Foundation
 
+enum MovieError: Error {
+    case requestTimeout
+    case requestFailed
+}
+
 class MovieHomeNetworkService {
     
     public func getMovieListData(_ ac: String = "detail",pg: Int) -> Single<[MovieHomeModel]> {
@@ -17,9 +22,9 @@ class MovieHomeNetworkService {
                     single(.success(result.list! as [MovieHomeModel]))
                 } else {
                     LCZProgressHUD.showError(title: result.msg)
+                    single(.error(MovieError.requestTimeout))
                 }
             }) { (error) in
-                LCZPrint(error)
                 single(.error(error))
             }
             return Disposables.create([request])

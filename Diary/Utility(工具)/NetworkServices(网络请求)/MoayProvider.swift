@@ -9,13 +9,13 @@
 import Foundation
 
 //初始化provider
-let networkServicesProvider = MoyaProvider<MultiTarget>(requestClosure : timeoutClosure,plugins:[RequestHudPlugin])
+let networkServicesProvider = MoyaProvider<MultiTarget>(endpointClosure: endpointMapping, requestClosure: timeoutClosure, plugins:[RequestHudPlugin])
 
 /// 设置接口的超时时间
-let timeoutClosure = { (endpoint : Endpoint,closure : MoyaProvider<MultiTarget>.RequestResultClosure) -> Void in
+private let timeoutClosure = { (endpoint : Endpoint,closure : MoyaProvider<MultiTarget>.RequestResultClosure) -> Void in
     
     if var urlRequest = try? endpoint.urlRequest() {
-        urlRequest.timeoutInterval = 10
+        urlRequest.timeoutInterval = 5
         closure(.success(urlRequest))
     }
     else{
@@ -25,7 +25,7 @@ let timeoutClosure = { (endpoint : Endpoint,closure : MoyaProvider<MultiTarget>.
 
 
 /// 管理网络状态的插件
-let RequestHudPlugin = NetworkActivityPlugin { change, target  in
+private let RequestHudPlugin = NetworkActivityPlugin { change, target  in
     switch change {
     case .began:
         //根据不同的请求，是否显示加载框
@@ -49,4 +49,13 @@ let RequestHudPlugin = NetworkActivityPlugin { change, target  in
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
     
+}
+
+/// 打印请求地址，路径，参数
+///
+/// - Parameter target: target description
+/// - Returns: return value description
+private func endpointMapping(target: MultiTarget) -> Endpoint {
+    LCZPrint(target.baseURL, target.path, target.task)
+    return MoyaProvider.defaultEndpointMapping(for: target)
 }

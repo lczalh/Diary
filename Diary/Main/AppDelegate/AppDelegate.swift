@@ -18,20 +18,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // 实时检测网络状态
-        appDelegateNetworkReachabilityManager?.startListening()
-        appDelegateNetworkReachabilityManager?.listener = { state in
-            switch state {
-            case .unknown:
-                LCZProgressHUD.showError(title: "似乎与网络断开了连接!")
-                break
-            case .notReachable:
-                LCZProgressHUD.showError(title: "似乎与网络断开了连接!")
-                break
-            case .reachable(_):
-                break
-            }
-        }
+//        // 实时检测网络状态
+//        appDelegateNetworkReachabilityManager?.startListening()
+//        appDelegateNetworkReachabilityManager?.listener = { state in
+//            switch state {
+//            case .unknown:
+//                LCZProgressHUD.showError(title: "似乎与网络断开了连接!")
+//                break
+//            case .notReachable:
+//                LCZProgressHUD.showError(title: "似乎与网络断开了连接!")
+//                break
+//            case .reachable(_):
+//                break
+//            }
+//        }
         
         // 控制整个功能是否启用
         IQKeyboardManager.shared.enable = true

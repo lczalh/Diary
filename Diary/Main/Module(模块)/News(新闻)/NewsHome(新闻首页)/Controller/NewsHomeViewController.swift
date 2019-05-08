@@ -46,29 +46,35 @@ class NewsHomeViewController: DiaryBaseViewController {
         newsHomeView.categoryView!.contentScrollView = listContainerView!.scrollView;
         
         let viewModel = NewsHomeViewModel()
+        self.categorys = viewModel.newsDictionary.allValues as? [String]
+        self.newsHomeView.categoryView!.titles = self.categorys
+        
+        
+        
+        
+//        // 获取最新的新闻类型数据
+//        self.newsHomeNetworkService.getNewsTypeListData()
+//            .asDriver(onErrorJustReturn: viewModel.getLocalNewsTypeList())
+//            .drive(onNext: { [weak self] (items) in
+//                // 写入数据
+//                (items as NSArray).write(toFile: viewModel.newsTypeListPlistPath, atomically: true)
+//                DispatchQueue.main.async(execute: {
+//                    self!.categorys = items
+//                    self!.newsHomeView.categoryView!.titles = items
+//                    self!.newsHomeView.categoryView?.reloadData()
+//                    self!.listContainerView.reloadData()
+//                })
+//            }).disposed(by: self.rx.disposeBag)
         
         // 实时检测网络状态
-        newsHomeNetworkReachabilityManager?.startListening()
-        newsHomeNetworkReachabilityManager?.listener = { _ in
-            if self.categorys?.isEmpty == true {
-                // 获取最新的新闻类型数据
-                self.newsHomeNetworkService.getNewsTypeListData()
-                    .asDriver(onErrorJustReturn: viewModel.getLocalNewsTypeList())
-                    .drive(onNext: { [weak self] (items) in
-                        // 写入数据
-                        (items as NSArray).write(toFile: viewModel.newsTypeListPlistPath, atomically: true)
-                        DispatchQueue.main.async(execute: {
-                            self!.categorys = items
-                            self!.newsHomeView.categoryView!.titles = items
-                            self!.newsHomeView.categoryView?.reloadData()
-                            self!.listContainerView.reloadData()
-                        })
-                    }).disposed(by: self.rx.disposeBag)
-            }
-        }
-    
+//        newsHomeNetworkReachabilityManager?.startListening()
+//        newsHomeNetworkReachabilityManager?.listener = { _ in
+//            if self.categorys?.isEmpty == true {
+//
+//            }
+//        }
         
-        
+         
     }
     
     
