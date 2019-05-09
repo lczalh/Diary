@@ -42,11 +42,16 @@ private let RequestHudPlugin = NetworkActivityPlugin { change, target  in
         //            break
         //
         //        }
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        DispatchQueue.main.async {
+            UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        }
+        
         
     case .ended:
         // LCZHUDTool.dismiss()
-        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        DispatchQueue.main.async {
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        }
     }
     
 }

@@ -28,8 +28,7 @@ class MovieHomeViewModel {
             footerRefresh: Driver<Void>),
          dependency: (
             disposeBag: DisposeBag,
-            networkService: MovieHomeNetworkService,
-            dataValidation: MovieHomeDataValidation)
+            networkService: MovieHomeNetworkService)
         ) {
         
         // 获取下拉序列结果

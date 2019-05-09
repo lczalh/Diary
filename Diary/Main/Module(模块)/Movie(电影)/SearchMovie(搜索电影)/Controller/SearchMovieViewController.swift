@@ -21,7 +21,7 @@ class SearchMovieViewController: DiaryBaseViewController {
         super.viewDidLoad()
         self.title = self.movieName
         self.view.addSubview(self.searchMovieView)
-        let viewModel = SearchMovieViewModel(input: (self.searchMovieView.tableView.mj_header.rx.refreshing.asDriver(),self.searchMovieView.tableView.mj_footer.rx.refreshing.asDriver(),self.movieName), dependency: (disposeBag: rx.disposeBag, networkService: SearchMovieNetworkService(), dataValidation: MovieHomeDataValidation()))
+        let viewModel = SearchMovieViewModel(input: (self.searchMovieView.tableView.mj_header.rx.refreshing.asDriver(),self.searchMovieView.tableView.mj_footer.rx.refreshing.asDriver(),self.movieName), dependency: (disposeBag: rx.disposeBag, networkService: SearchMovieNetworkService()))
         
         // 下拉刷新状态结束的绑定
         viewModel.endHeaderRefreshing

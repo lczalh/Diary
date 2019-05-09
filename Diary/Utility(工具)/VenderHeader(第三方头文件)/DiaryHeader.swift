@@ -22,8 +22,8 @@
 @_exported import Differentiator
 @_exported import SnapKit
 @_exported import Kingfisher
-@_exported import RealmSwift
-@_exported import Realm
+//@_exported import RealmSwift
+//@_exported import Realm
 @_exported import SVProgressHUD
 @_exported import Alamofire
 @_exported import ZFPlayer

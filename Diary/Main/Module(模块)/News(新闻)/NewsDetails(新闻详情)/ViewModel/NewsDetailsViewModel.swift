@@ -10,36 +10,12 @@ import Foundation
 
 class NewsDetailsViewModel {
     
-    var newsDetailsData: Driver<NewsDetailsModel>
+//    var newsDetailsData: Driver<NewsDetailsModel>
     
-    init(input: (newsId: String,
-                newsTitle: String),
-         dependency: (
-            disposeBag: DisposeBag,
-            networkService: NewsDetailsNetworkService)
-        ) {
-        
-        // 查询数据
-        let model = diaryRealm.objects(NewsDetailsModel.self).filter{ $0.title == input.newsTitle }.first
-        // 查询数据是否存在
-        if model == nil {
-            newsDetailsData = dependency.networkService.getNewsDetailsData(newsId: input.newsId).asDriver(onErrorJustReturn: NewsDetailsModel()).map({ (model) -> NewsDetailsModel in
-                DispatchQueue.main.async(execute: {
-                    try! diaryRealm.write {
-                        diaryRealm.add(model)
-                    }
-                })
-                return model
-            })
-        } else {
-            newsDetailsData = Observable.just(model!).asDriver(onErrorJustReturn: NewsDetailsModel())
-            
-        }
-
-    }
+ 
     
     // 拼接html
-    public func jointHtml(model: NewsDetailsModel) -> String {
+    public func jointHtml(model: SpeedNewsListModel) -> String {
         let html = """
         
         <!DOCTYPE html>
@@ -157,8 +133,8 @@ class NewsDetailsViewModel {
         <div class="head">
         <h1 class="title">\(model.title!))</h1>
         <div class="info">
-        <span class="time js-time">\(model.publishTime!)</span>
-        <span class="source js-source">\(model.source!)</span>
+        <span class="time js-time">\(model.time!)</span>
+        <span class="source js-source">\(model.category!)</span>
         </div>
         </div>
         <div class="content">

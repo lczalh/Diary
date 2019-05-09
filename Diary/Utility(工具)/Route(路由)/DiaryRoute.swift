@@ -14,9 +14,7 @@ enum DiaryRoute {
         // 新闻详情
         navigator.register("diary://newsHome/newsDetails") { url, values, context in
             let newsDetailsVC = NewsDetailsViewController()
-            let model = context as! NewsListModel
-            newsDetailsVC.newsId = model.newsId
-            newsDetailsVC.newsTitle = model.title
+            newsDetailsVC.model = context as? SpeedNewsListModel
             newsDetailsVC.hidesBottomBarWhenPushed = true
             return newsDetailsVC
         }

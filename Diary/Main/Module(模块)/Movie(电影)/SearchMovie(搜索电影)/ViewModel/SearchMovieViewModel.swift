@@ -29,8 +29,7 @@ class SearchMovieViewModel {
         movieName: String),
          dependency: (
         disposeBag: DisposeBag,
-        networkService: SearchMovieNetworkService,
-        dataValidation: MovieHomeDataValidation)
+        networkService: SearchMovieNetworkService)
         ) {
         
         // 获取下拉序列结果

@@ -22,6 +22,9 @@ class NewsHomeCell: DiaryBaseTableViewCell {
     /// 来源
     var sourceLabel: UILabel!
     
+    /// 分割线
+    var lineView: UIView!
+    
     override func config() {
         self.selectionStyle = .none
         // 图片
@@ -63,6 +66,16 @@ class NewsHomeCell: DiaryBaseTableViewCell {
         }
         self.sourceLabel.font = LCZFontSize(size: 12)
         
+        // 分割线
+        self.lineView = UIView()
+        self.contentView.addSubview(self.lineView)
+        self.lineView.snp.makeConstraints { (make) in
+            make.left.equalToSuperview().offset(10)
+            make.right.equalToSuperview().offset(-10)
+            make.bottom.equalToSuperview()
+            make.height.equalTo(1)
+        }
+        self.lineView.backgroundColor = LCZRgbColor(238, 238, 238, 1)
     }
     
 

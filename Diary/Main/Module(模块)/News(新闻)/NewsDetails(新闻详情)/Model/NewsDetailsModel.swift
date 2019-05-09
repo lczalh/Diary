@@ -20,7 +20,7 @@ struct NewsDetailsRootModel: Mappable {
     }
 }
 
-class NewsDetailsModel: Object, Mappable {
+class NewsDetailsModel: NSObject, Mappable {
     
     @objc dynamic var category: String?
     @objc dynamic var source: String?

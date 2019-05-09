@@ -12,13 +12,13 @@ import Foundation
 public enum NewsNetworkServices {
     
     // MARK: - 获取新闻数据
-    case getNewsList(appKey: String, category: String, page: Int)
+    case getNewsList(appkey: String, channel: String, num: Int, start: Int)
     
     // MARK: - 获取所有新闻类型数据
-    case getNewsTypeList(appKey: String)
+    case getNewsTypeList(appkey: String)
     
-    // MARK: - 获取新闻详情
-    case getNewsDetails(appKey: String, newsId: String)
+//    // MARK: - 获取新闻详情
+//    case getNewsDetails(appKey: String, newsId: String)
 }
 
 //设置请求配置
@@ -27,7 +27,7 @@ extension NewsNetworkServices : TargetType {
     //服务器地址
     public var baseURL: URL {
         
-        return URL(string:"http://api.shujuzhihui.cn/")!
+        return URL(string:"https://api.jisuapi.com")!
     }
     
     //各个请求的具体路径
@@ -36,11 +36,10 @@ extension NewsNetworkServices : TargetType {
         switch self {
             
         case .getNewsList:
-            return "api/news/list"
+            return "/news/get"
         case .getNewsTypeList:
-            return "api/news/categories"
-        case .getNewsDetails:
-            return "api/news/detail"
+            return "news/channel"
+        
         }
         
     }
@@ -61,17 +60,15 @@ extension NewsNetworkServices : TargetType {
         // 请求通用参数
         var parameterDict: [String : Any] = Dictionary()
         switch self {
-            
-        case .getNewsList(let appKey, let category, let page):
-            parameterDict["appKey"] = appKey
-            parameterDict["category"] = category
-            parameterDict["page"] = page
-            break
-        case .getNewsTypeList(let appKey):
-            parameterDict["appKey"] = appKey
-        case .getNewsDetails(let appKey, let newsId):
-            parameterDict["appKey"] = appKey
-            parameterDict["newsId"] = newsId
+        
+        case .getNewsTypeList(let appkey):
+            parameterDict["appkey"] = appkey
+        
+        case .getNewsList(let appkey, let channel, let num, let start):
+            parameterDict["appkey"] = appkey
+            parameterDict["channel"] = channel
+            parameterDict["num"] = num
+            parameterDict["start"] = start
         }
         
         return  .requestParameters(parameters: parameterDict, encoding: URLEncoding.default)

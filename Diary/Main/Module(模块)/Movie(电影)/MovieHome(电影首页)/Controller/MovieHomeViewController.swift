@@ -55,8 +55,7 @@ class MovieHomeViewController: DiaryBaseViewController {
         let viewModel = MovieHomeViewModel(input: (headerRefresh: self.movieHomeView.collectionView.mj_header.rx.refreshing.asDriver(),
                                                    footerRefresh: self.movieHomeView.collectionView.mj_footer.rx.refreshing.asDriver()),
                                            dependency: (disposeBag: rx.disposeBag,
-                                                        networkService: MovieHomeNetworkService(),
-                                                        dataValidation: MovieHomeDataValidation()))
+                                                        networkService: MovieHomeNetworkService()))
         
         // 创建数据源
         let dataSource = RxCollectionViewSectionedAnimatedDataSource<AnimatableSectionModel<String, MovieHomeModel>>(

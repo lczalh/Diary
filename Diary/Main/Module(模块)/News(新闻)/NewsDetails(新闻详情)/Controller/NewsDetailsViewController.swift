@@ -10,11 +10,8 @@ import UIKit
 
 class NewsDetailsViewController: DiaryBaseViewController {
     
-    /// 新闻id
-    public var newsId: String!
-    
-    /// 新闻标题
-    public var newsTitle: String!
+    /// 新闻模型
+    public var model: SpeedNewsListModel?
     
     /// 父视图
     private var parentView: NewsDetailsView!
@@ -24,14 +21,9 @@ class NewsDetailsViewController: DiaryBaseViewController {
         self.parentView = NewsDetailsView(frame: CGRect(x: 0, y: 0, width: LCZWidth, height: LCZHeight - LCZNaviBarHeight - LCZStatusBarHeight - LCZSafeAreaBottomHeight))
         self.view.addSubview(self.parentView)
         
-        let viewModel = NewsDetailsViewModel(input: (self.newsId, self.newsTitle), dependency: (disposeBag: rx.disposeBag, networkService: NewsDetailsNetworkService()))
+        let viewModel = NewsDetailsViewModel()
         
-        // 获取新闻详情数据
-        viewModel.newsDetailsData.drive(onNext: { [weak self] (model) in
-            DispatchQueue.main.async {
-                self?.parentView.webView.loadHTMLString(viewModel.jointHtml(model: model), baseURL: nil);
-            }
-        }).disposed(by: rx.disposeBag)
+        self.parentView.webView.loadHTMLString(viewModel.jointHtml(model: model!), baseURL: nil)
 
     }
     

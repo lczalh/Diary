@@ -9,7 +9,7 @@
 import Foundation
 
 /// 数据库
-public let diaryRealm = try! Realm()
+//public let diaryRealm = try! Realm()
 
 /// 路由
 public let diaryRoute = Navigator()

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		7302DB1A228179F700BC7CAC /* LCZAlignTopLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7302DB19228179F700BC7CAC /* LCZAlignTopLabel.swift */; };
-		7302DB1D22818A6F00BC7CAC /* SearchMovieDataValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7302DB1C22818A6F00BC7CAC /* SearchMovieDataValidation.swift */; };
 		7326F8E422251CBD0005696F /* NewsDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7326F8E322251CBD0005696F /* NewsDetailsViewController.swift */; };
 		7326F8E7222520FE0005696F /* NewsDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7326F8E6222520FE0005696F /* NewsDetailsModel.swift */; };
 		732C0464224B123700EA7738 /* NewsHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732C0463224B123700EA7738 /* NewsHomeViewModel.swift */; };
@@ -26,8 +25,6 @@
 		734E9B7022448EA300CC5004 /* MoayProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734E9B6F22448EA300CC5004 /* MoayProvider.swift */; };
 		734E9B7222448F8A00CC5004 /* MovieNetworkServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734E9B7122448F8A00CC5004 /* MovieNetworkServices.swift */; };
 		734E9B742244CF2200CC5004 /* DiaryMacro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734E9B732244CF2200CC5004 /* DiaryMacro.swift */; };
-		734E9B7C2244D26700CC5004 /* NewsHomeDataValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734E9B7B2244D26700CC5004 /* NewsHomeDataValidation.swift */; };
-		734E9B7F2244D3B400CC5004 /* MovieHomeDataValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734E9B7E2244D3B400CC5004 /* MovieHomeDataValidation.swift */; };
 		735BB336225D943900241A59 /* MovieDetailsTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735BB335225D943900241A59 /* MovieDetailsTableHeaderView.swift */; };
 		735BB338225D9CF300241A59 /* UIButton+TextImagelocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735BB337225D9CF300241A59 /* UIButton+TextImagelocation.swift */; };
 		735BB33A225DCF2300241A59 /* SynopsisCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735BB339225DCF2300241A59 /* SynopsisCell.swift */; };
@@ -71,7 +68,6 @@
 
 /* Begin PBXFileReference section */
 		7302DB19228179F700BC7CAC /* LCZAlignTopLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCZAlignTopLabel.swift; sourceTree = "<group>"; };
-		7302DB1C22818A6F00BC7CAC /* SearchMovieDataValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMovieDataValidation.swift; sourceTree = "<group>"; };
 		7326F8E322251CBD0005696F /* NewsDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailsViewController.swift; sourceTree = "<group>"; };
 		7326F8E6222520FE0005696F /* NewsDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailsModel.swift; sourceTree = "<group>"; };
 		732C0463224B123700EA7738 /* NewsHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsHomeViewModel.swift; sourceTree = "<group>"; };
@@ -90,8 +86,6 @@
 		734E9B6F22448EA300CC5004 /* MoayProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoayProvider.swift; sourceTree = "<group>"; };
 		734E9B7122448F8A00CC5004 /* MovieNetworkServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieNetworkServices.swift; sourceTree = "<group>"; };
 		734E9B732244CF2200CC5004 /* DiaryMacro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryMacro.swift; sourceTree = "<group>"; };
-		734E9B7B2244D26700CC5004 /* NewsHomeDataValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsHomeDataValidation.swift; sourceTree = "<group>"; };
-		734E9B7E2244D3B400CC5004 /* MovieHomeDataValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieHomeDataValidation.swift; sourceTree = "<group>"; };
 		735BB335225D943900241A59 /* MovieDetailsTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsTableHeaderView.swift; sourceTree = "<group>"; };
 		735BB337225D9CF300241A59 /* UIButton+TextImagelocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+TextImagelocation.swift"; sourceTree = "<group>"; };
 		735BB339225DCF2300241A59 /* SynopsisCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynopsisCell.swift; sourceTree = "<group>"; };
@@ -164,14 +158,6 @@
 				7302DB19228179F700BC7CAC /* LCZAlignTopLabel.swift */,
 			);
 			path = "CustomUI(自定义UI)";
-			sourceTree = "<group>";
-		};
-		7302DB1B22818A4A00BC7CAC /* DataValidation(数据校验) */ = {
-			isa = PBXGroup;
-			children = (
-				7302DB1C22818A6F00BC7CAC /* SearchMovieDataValidation.swift */,
-			);
-			path = "DataValidation(数据校验)";
 			sourceTree = "<group>";
 		};
 		7314CFB7225C8F82001C2B34 /* Model */ = {
@@ -270,22 +256,6 @@
 				734E9B6B22448D8B00CC5004 /* MovieHomeNetworkService.swift */,
 			);
 			path = NetworkService;
-			sourceTree = "<group>";
-		};
-		734E9B7A2244D23D00CC5004 /* DataValidation(数据校验) */ = {
-			isa = PBXGroup;
-			children = (
-				734E9B7B2244D26700CC5004 /* NewsHomeDataValidation.swift */,
-			);
-			path = "DataValidation(数据校验)";
-			sourceTree = "<group>";
-		};
-		734E9B7D2244D38700CC5004 /* DataValidation(数据校验) */ = {
-			isa = PBXGroup;
-			children = (
-				734E9B7E2244D3B400CC5004 /* MovieHomeDataValidation.swift */,
-			);
-			path = "DataValidation(数据校验)";
 			sourceTree = "<group>";
 		};
 		7367D2EC221FA3AB008FD780 /* Extension(扩展) */ = {
@@ -431,7 +401,6 @@
 		737E1C482213E33A00BF751D /* NewsHome(新闻首页) */ = {
 			isa = PBXGroup;
 			children = (
-				734E9B7A2244D23D00CC5004 /* DataValidation(数据校验) */,
 				7367D2F1221FA893008FD780 /* NetworkService */,
 				737E1C5D2213FCD400BF751D /* Model */,
 				737E1C5A2213F03100BF751D /* ViewModel */,
@@ -542,7 +511,6 @@
 		73B1DDDD2241EEF700BFEF7A /* MovieHome(电影首页) */ = {
 			isa = PBXGroup;
 			children = (
-				734E9B7D2244D38700CC5004 /* DataValidation(数据校验) */,
 				734E9B6A22448D6200CC5004 /* NetworkService */,
 				73B1DDE32242053E00BFEF7A /* ViewModel */,
 				73B1DDE0224204FD00BFEF7A /* Model */,
@@ -602,7 +570,6 @@
 		73C34F682264544B00244B55 /* SearchMovie(搜索电影) */ = {
 			isa = PBXGroup;
 			children = (
-				7302DB1B22818A4A00BC7CAC /* DataValidation(数据校验) */,
 				73409FC422815BF700899563 /* NetworkService */,
 				73409FC1228158B200899563 /* ViewModel */,
 				73C34F6A2264548100244B55 /* View */,
@@ -843,7 +810,6 @@
 				735BB338225D9CF300241A59 /* UIButton+TextImagelocation.swift in Sources */,
 				7348B9CF2282D1A60091F880 /* Moya+DataParsing.swift in Sources */,
 				732C0464224B123700EA7738 /* NewsHomeViewModel.swift in Sources */,
-				7302DB1D22818A6F00BC7CAC /* SearchMovieDataValidation.swift in Sources */,
 				73B1DDE7224206FA00BFEF7A /* DiaryBaseCollectionViewCell.swift in Sources */,
 				73B1DDE22242051400BFEF7A /* MovieHomeModel.swift in Sources */,
 				734E9B6E22448E2400CC5004 /* Moay+Rx.swift in Sources */,
@@ -855,7 +821,6 @@
 				7326F8E7222520FE0005696F /* NewsDetailsModel.swift in Sources */,
 				73D4DADC2213CBF200116541 /* AppDelegate.swift in Sources */,
 				737E1C562213E94D00BF751D /* NewsHomeListView.swift in Sources */,
-				734E9B7F2244D3B400CC5004 /* MovieHomeDataValidation.swift in Sources */,
 				73B1DDE92242080400BFEF7A /* MovieHomeCell.swift in Sources */,
 				733E298F22607094001885CE /* PracticalFunctionCell.swift in Sources */,
 				7367D2F3221FA8DA008FD780 /* NewsHomeNetworkService.swift in Sources */,
@@ -869,7 +834,6 @@
 				737E1C4C2213E3F800BF751D /* MainNavigationController.swift in Sources */,
 				73B1DDDF2241EF5500BFEF7A /* MovieHomeView.swift in Sources */,
 				73B1DDD72241EB8E00BFEF7A /* LCZProgressHUD.swift in Sources */,
-				734E9B7C2244D26700CC5004 /* NewsHomeDataValidation.swift in Sources */,
 				73B1DDE52242055700BFEF7A /* MovieHomeViewModel.swift in Sources */,
 				73409FC02281563600899563 /* SearchMovieView.swift in Sources */,
 				735BB33A225DCF2300241A59 /* SynopsisCell.swift in Sources */,

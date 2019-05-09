@@ -24,7 +24,7 @@ class NewsHomeViewController: DiaryBaseViewController {
     
     var listContainerView: JXCategoryListContainerView!
     
-    let newsHomeNetworkReachabilityManager = NetworkReachabilityManager(host: "http://www.baidu.com")
+//    let newsHomeNetworkReachabilityManager = NetworkReachabilityManager(host: "http://www.baidu.com")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,35 +46,19 @@ class NewsHomeViewController: DiaryBaseViewController {
         newsHomeView.categoryView!.contentScrollView = listContainerView!.scrollView;
         
         let viewModel = NewsHomeViewModel()
-        self.categorys = viewModel.newsDictionary.allValues as? [String]
-        self.newsHomeView.categoryView!.titles = self.categorys
         
         
+        self.newsHomeNetworkService.getNewsTypeListData()
+            .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .userInitiated)) //后台构建序列
+            .observeOn(MainScheduler.instance)  //主线程监听并处理序列结果
+            .asDriver(onErrorJustReturn: viewModel.newsItems )
+            .drive(onNext: { (items) in
+                self.categorys = items
+                self.newsHomeView.categoryView!.titles = self.categorys
+                self.newsHomeView.categoryView?.reloadData()
+                self.listContainerView.reloadData()
+            }).disposed(by: rx.disposeBag)
         
-        
-//        // 获取最新的新闻类型数据
-//        self.newsHomeNetworkService.getNewsTypeListData()
-//            .asDriver(onErrorJustReturn: viewModel.getLocalNewsTypeList())
-//            .drive(onNext: { [weak self] (items) in
-//                // 写入数据
-//                (items as NSArray).write(toFile: viewModel.newsTypeListPlistPath, atomically: true)
-//                DispatchQueue.main.async(execute: {
-//                    self!.categorys = items
-//                    self!.newsHomeView.categoryView!.titles = items
-//                    self!.newsHomeView.categoryView?.reloadData()
-//                    self!.listContainerView.reloadData()
-//                })
-//            }).disposed(by: self.rx.disposeBag)
-        
-        // 实时检测网络状态
-//        newsHomeNetworkReachabilityManager?.startListening()
-//        newsHomeNetworkReachabilityManager?.listener = { _ in
-//            if self.categorys?.isEmpty == true {
-//
-//            }
-//        }
-        
-         
     }
     
     
@@ -113,8 +97,7 @@ extension NewsHomeViewController: JXCategoryListContainerViewDelegate {
                                                   footerRefresh: newsHomeListView.tableView.mj_footer.rx.refreshing.asDriver(),
                                                   currentCategory: currentCategory!),
                                           dependency: (disposeBag: rx.disposeBag,
-                                                  networkService: NewsHomeNetworkService(),
-                                                  dataValidation: NewsHomeDataValidation()))
+                                                  networkService: NewsHomeNetworkService()))
         
         // 下拉刷新状态结束的绑定
         viewModel.endHeaderRefreshing
@@ -128,29 +111,29 @@ extension NewsHomeViewController: JXCategoryListContainerViewDelegate {
      
         // 创建数据源
         let dataSource = RxTableViewSectionedAnimatedDataSource
-            <AnimatableSectionModel<String, NewsListModel>>(configureCell: {
+            <AnimatableSectionModel<String, SpeedNewsListModel>>(configureCell: {
                 (dataSource, tv, indexPath, element) in
                 let cell = tv.dequeueReusableCell(withIdentifier: "NewsHomeCell", for: indexPath) as! NewsHomeCell
                 cell.titleLabel.text = element.title
-                if element.newsImg?.isEmpty == false {
+                if element.pic?.isEmpty == false {
                     cell.newsImageView.kf.indicatorType = .activity
-                    cell.newsImageView.kf.setImage(with: ImageResource(downloadURL: URL(string: element.newsImg!)!), placeholder: UIImage(named: "暂无图片"))
+                    cell.newsImageView.kf.setImage(with: ImageResource(downloadURL: URL(string: element.pic!)!), placeholder: UIImage(named: "暂无图片"))
                 }
-                if element.publishTime?.isEmpty == false {
-                    cell.timeLabel.text = LCZUpdateTimeToCurrennTime(timeStamp: LCZTimeToTimeStamp(time: element.publishTime!))
-                }
-                cell.sourceLabel.text = element.source
+                cell.timeLabel.text = LCZUpdateTimeToCurrennTime(timeStamp: LCZTimeToTimeStamp(time: element.time!))
+                cell.sourceLabel.text = element.category
                 return cell
             })
         
         // 数据绑定
         viewModel.tableData.map {
             [AnimatableSectionModel(model: "", items: $0)]}
+            .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .userInitiated)) //后台构建序列
+            .observeOn(MainScheduler.instance)  //主线程监听并处理序列结果
             .bind(to: newsHomeListView.tableView.rx.items(dataSource: dataSource))
             .disposed(by: rx.disposeBag)
         
         // 同时获取索引和模型
-        Observable.zip(newsHomeListView.tableView.rx.itemSelected, newsHomeListView.tableView.rx.modelSelected(NewsListModel.self))
+        Observable.zip(newsHomeListView.tableView.rx.itemSelected, newsHomeListView.tableView.rx.modelSelected(SpeedNewsListModel.self))
             .bind { indexPath, item in
                 diaryRoute.push("diary://newsHome/newsDetails" ,context: item)
             }.disposed(by: rx.disposeBag)

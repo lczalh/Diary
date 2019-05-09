@@ -11,7 +11,7 @@ import Foundation
 class NewsHomeListViewModel {
     
     // 表格数据序列
-    let tableData = BehaviorRelay<[NewsListModel]>(value: [])
+    let tableData = BehaviorRelay<[SpeedNewsListModel]>(value: [])
     
     // 停止头部刷新状态
     var endHeaderRefreshing: Driver<Bool>!
@@ -19,7 +19,7 @@ class NewsHomeListViewModel {
     // 停止尾部刷新状态
     var endFooterRefreshing: Driver<Bool>!
     
-    /// 当前页数
+    /// 当前数量
     private var page: Int = 0
     
     /// 当前分类
@@ -31,14 +31,8 @@ class NewsHomeListViewModel {
             currentCategory: Observable<String>),
         dependency: (
             disposeBag: DisposeBag,
-            networkService: NewsHomeNetworkService,
-            dataValidation: NewsHomeDataValidation)
+            networkService: NewsHomeNetworkService)
         ) {
-        
-//        try! diaryRealm.write {
-//            diaryRealm.deleteAll()
-//        }
-     
 
         // 获取当前分类
         input.currentCategory.subscribe(onNext: { (str) in
@@ -48,22 +42,16 @@ class NewsHomeListViewModel {
         //下拉结果序列
         let headerRefreshData = input.headerRefresh
             .startWith(()) //初始化时会先自动加载一次数据
-            .flatMapLatest{ _ -> SharedSequence<DriverSharingStrategy, [NewsListModel]> in //也可考虑使用flatMapFirst
-                self.page = 1;
-                return dependency.networkService.getNewsListData(category: self.currentCategory, page: self.page).asDriver(onErrorJustReturn: Array<NewsListModel>())
-//                    .map {
-//                    return dependency.dataValidation.dataHeavy(items: $0, page: self.page, category: self.currentCategory)
-//                }
+            .flatMapLatest{ _ -> SharedSequence<DriverSharingStrategy, [SpeedNewsListModel]> in //也可考虑使用flatMapFirst
+                self.page = 0;
+                return dependency.networkService.getNewsListData(channel: self.currentCategory, start: self.page).asDriver(onErrorJustReturn: Array<SpeedNewsListModel>())
         }
 
         //上拉结果序列
         let footerRefreshData = input.footerRefresh
-            .flatMapLatest{ _ -> SharedSequence<DriverSharingStrategy, [NewsListModel]> in  //也可考虑使用flatMapFirst
-                self.page += 1
-                return dependency.networkService.getNewsListData(category: self.currentCategory, page: self.page).asDriver(onErrorJustReturn: Array<NewsListModel>())
-//                    .map {
-//                    return dependency.dataValidation.dataHeavy(items: $0, page: self.page, category: self.currentCategory)
-//                }
+            .flatMapLatest{ _ -> SharedSequence<DriverSharingStrategy, [SpeedNewsListModel]> in  //也可考虑使用flatMapFirst
+                self.page += 20
+                return dependency.networkService.getNewsListData(channel: self.currentCategory, start: self.page).asDriver(onErrorJustReturn: Array<SpeedNewsListModel>())
         }
 
         //生成停止头部刷新状态序列

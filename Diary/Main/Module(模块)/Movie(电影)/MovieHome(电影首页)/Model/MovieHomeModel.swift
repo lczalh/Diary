@@ -30,7 +30,7 @@ class MovieHomeRootModel: Mappable {
     }
 }
 
-class MovieHomeModel: Object,Mappable{
+class MovieHomeModel: NSObject,Mappable{
     @objc dynamic  var vod_en: String?
     @objc dynamic  var vod_play_note: String?
     @objc dynamic  var vod_pubdate: String?

@@ -8,71 +8,78 @@
 
 import Foundation
 
-// MARK: - 新闻列表模型
-struct NewsRootModel<T: Mappable>: Mappable {
-    var ERRORCODE: String?
-    var RESULT: T?
+struct SpeedNewsRootModel<T: Mappable>: Mappable {
+    var status: Int = 0
+    var msg: String?
+    var result: T?
     
     init?(map: Map) {}
     
     mutating func mapping(map: Map) {
-        ERRORCODE   <- map["ERRORCODE"]
-        RESULT   <- map["RESULT"]
+        status   <- map["status"]
+        msg   <- map["msg"]
+        result   <- map["result"]
     }
 }
 
-struct NewsListResultModel: Mappable {
-    var newsList: Array<NewsListModel>? // 列表数据
-    var page: Int = 0 // 当前页
-    var allPage: Int = 0 // 总页数
+struct SpeedNewsResultModel: Mappable {
+    var num: Int = 0
+    var list = [SpeedNewsListModel]()
+    var channel: String?
+    
     init?(map: Map) {}
     
     mutating func mapping(map: Map) {
-        newsList   <- map["newsList"]
-        page   <- map["page"]
+        num   <- map["num"]
+        list   <- map["list"]
+        channel   <- map["channel"]
     }
 }
 
-class NewsListModel: Object,Mappable {
-    @objc dynamic var publishTime: String? // 发布时间
-    @objc dynamic var category: String? // 类型
-    @objc dynamic var source: String? // 来源
-    @objc dynamic var newsId: String? // 新闻ID
-    @objc dynamic var title: String? // 标题
-    @objc dynamic var newsImg: String? //新闻小图片url
+class SpeedNewsListModel: NSObject,Mappable {
+    var pic: String?
+    var weburl: String?
+    var time: String?
+    var category: String?
+    var title: String?
+    var url: String?
+    var src: String?
+    var content: String?
     
     required convenience init?(map: Map) {
         self.init()
     }
     
     func mapping(map: Map) {
-        publishTime   <- map["publishTime"]
+        pic   <- map["pic"]
+        weburl   <- map["weburl"]
+        time   <- map["time"]
         category   <- map["category"]
-        source   <- map["source"]
-        newsId   <- map["newsId"]
         title   <- map["title"]
-        newsImg   <- map["newsImg"]
+        url   <- map["url"]
+        src   <- map["src"]
+        content   <- map["content"]
     }
 }
 
-extension NewsListModel: IdentifiableType {
-    var identity: NewsListModel {
+extension SpeedNewsListModel: IdentifiableType {
+    var identity: SpeedNewsListModel {
         return self
     }
     
-    typealias Identity = NewsListModel
+    typealias Identity = SpeedNewsListModel
 }
 
-
-// MARK: - 新闻类型列表模型
-struct NewsTypeListModel: Mappable {
-    var RESULT = [String]()
-    var ERRORCODE: String?
+struct SpeedNewschannelModel: Mappable {
+    var status: Int = 0
+    var msg: String?
+    var result = Array<String>()
     
     init?(map: Map) {}
     
     mutating func mapping(map: Map) {
-        RESULT   <- map["RESULT"]
-        ERRORCODE   <- map["ERRORCODE"]
+        status   <- map["status"]
+        msg   <- map["msg"]
+        result   <- map["result"]
     }
 }

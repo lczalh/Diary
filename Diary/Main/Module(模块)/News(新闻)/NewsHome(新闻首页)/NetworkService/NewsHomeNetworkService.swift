@@ -15,12 +15,16 @@ enum NewsError: Error {
 
 class NewsHomeNetworkService {
     
+    public func qqqq() {
+        LCZPrint("1111")
+    }
+    
     // 获取新闻类型列表数据
     public func getNewsTypeListData() -> Single<[String]> {
         return Single<[String]>.create(subscribe: { (single) -> Disposable in
-            let request = networkServicesProvider.rx.requestData(target: MultiTarget(NewsNetworkServices.getNewsTypeList(appKey: "eb7906fea2824f61a26fab22c071fe9a")), model: NewsTypeListModel.self).subscribe(onSuccess: { (result) in
-                if result.ERRORCODE == "0" {
-                    single(.success(result.RESULT))
+            let request = networkServicesProvider.rx.requestData(target: MultiTarget(NewsNetworkServices.getNewsTypeList(appkey: "ac0f7297750aa010")), model: SpeedNewschannelModel.self).subscribe(onSuccess: { (result) in
+                if result.status == 0 {
+                    single(.success(result.result))
                 } else {
                     LCZProgressHUD.showError(title: "暂无相关数据!")
                     single(.error(NewsError.requestTimeout))
@@ -33,13 +37,14 @@ class NewsHomeNetworkService {
     }
     
     // 获取新闻列表数据
-    public func getNewsListData(category: String, page: Int) -> Single<[NewsListModel]> {
-        return Single<[NewsListModel]>.create(subscribe: { (single) -> Disposable in
-            let request = networkServicesProvider.rx.requestData(target: MultiTarget(NewsNetworkServices.getNewsList(appKey: "eb7906fea2824f61a26fab22c071fe9a", category: category, page: page)), model: NewsRootModel<NewsListResultModel>.self).subscribe(onSuccess: { (result) in
-                if result.ERRORCODE == "0" {
-                    single(.success(result.RESULT!.newsList! as [NewsListModel]))
+    public func getNewsListData(channel: String, start: Int) -> Single<[SpeedNewsListModel]> {
+        return Single<[SpeedNewsListModel]>.create(subscribe: { (single) -> Disposable in
+            let request = networkServicesProvider.rx.requestData(target: MultiTarget(NewsNetworkServices.getNewsList(appkey: "ac0f7297750aa010", channel: channel, num: 20, start: start)), model: SpeedNewsRootModel<SpeedNewsResultModel>.self).subscribe(onSuccess: { (result) in
+                
+                if result.status == 0 {
+                    single(.success(result.result!.list as [SpeedNewsListModel]))
                 } else {
-                    LCZProgressHUD.showError(title: "暂无相关数据!")
+                    LCZProgressHUD.showError(title: result.msg)
                     single(.error(NewsError.requestTimeout))
                 }
             }) { (error) in
