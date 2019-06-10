@@ -173,14 +173,15 @@ extension AppDelegate: UITabBarControllerDelegate {
 //            }
 //        }
         
-        let v1 = NewsHomeViewController()
+        let v1 = HomeEntranceViewController()
+//        let v1 = NewsHomeViewController()
         let v2 = MovieHomeViewController()
 //        let v3 = NewsHomeViewController()
 //        let v4 = NewsHomeViewController()
 //        let v5 = NewsHomeViewController()
         
-        self.customIrregularityStyle(tabBarController: tabBarController, viewController: v1, eSTabBarItemContentView: ExampleBouncesContentView(), title: "新闻", image: UIImage(named: "find"), selectImage: UIImage(named: "find"))
-        self.customIrregularityStyle(tabBarController: tabBarController, viewController: v2, eSTabBarItemContentView: ExampleBouncesContentView(), title: "电影", image: UIImage(named: "find"), selectImage: UIImage(named: "find"))
+        self.customIrregularityStyle(tabBarController: tabBarController, viewController: v1, eSTabBarItemContentView: ExampleBouncesContentView(), tabBarTitle: "首页", navigationTitle:"首页", image: UIImage(named: "find"), selectImage: UIImage(named: "find"))
+        self.customIrregularityStyle(tabBarController: tabBarController, viewController: v2, eSTabBarItemContentView: ExampleBouncesContentView(), tabBarTitle: "电影", navigationTitle:"我的", image: UIImage(named: "find"), selectImage: UIImage(named: "find"))
       //  self.customIrregularityStyle(tabBarController: tabBarController, viewController: v3, eSTabBarItemContentView: ExampleBouncesContentView(), title: "测试", image: UIImage(named: "find"), selectImage: UIImage(named: "find"))
       //  self.customIrregularityStyle(tabBarController: tabBarController, viewController: v4, eSTabBarItemContentView: ExampleBouncesContentView(), title: "发现", image: UIImage(named: "find"), selectImage: UIImage(named: "find"))
         //self.customIrregularityStyle(tabBarController: tabBarController, viewController: UIViewController(), eSTabBarItemContentView: ExampleBouncesContentView(), title: "我的", image: UIImage(named: "find"), selectImage: UIImage(named: "find"))
@@ -188,9 +189,10 @@ extension AppDelegate: UITabBarControllerDelegate {
         return tabBarController
     }
     
-    private func customIrregularityStyle(tabBarController: ESTabBarController, viewController: UIViewController?, eSTabBarItemContentView: ESTabBarItemContentView, title: String?, image: UIImage?, selectImage: UIImage?) {
+    private func customIrregularityStyle(tabBarController: ESTabBarController, viewController: UIViewController?, eSTabBarItemContentView: ESTabBarItemContentView, tabBarTitle: String?, navigationTitle: String?, image: UIImage?, selectImage: UIImage?) {
         
-        viewController?.tabBarItem = ESTabBarItem.init(eSTabBarItemContentView, title: title, image: image, selectedImage: selectImage)
+        viewController?.tabBarItem = ESTabBarItem.init(eSTabBarItemContentView, title: tabBarTitle, image: image, selectedImage: selectImage)
+        viewController?.navigationItem.title = navigationTitle
         let navi = MainNavigationController(rootViewController: viewController!)
         tabBarController.addChild(navi)
         tabBarController.selectedIndex = 0

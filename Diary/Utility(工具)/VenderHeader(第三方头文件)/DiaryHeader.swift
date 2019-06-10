@@ -29,3 +29,5 @@
 @_exported import ZFPlayer
 @_exported import SwifterSwift
 @_exported import PYSearch
+@_exported import FSPagerView
+

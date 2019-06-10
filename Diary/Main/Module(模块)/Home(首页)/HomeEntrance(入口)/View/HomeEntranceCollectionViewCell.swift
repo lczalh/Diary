@@ -1,0 +1,38 @@
+//
+//  HomeEntranceCollectionViewCell.swift
+//  Diary
+//
+//  Created by 谷粒公社 on 2019/6/10.
+//  Copyright © 2019 lcz. All rights reserved.
+//
+
+import UIKit
+
+class HomeEntranceCollectionViewCell: DiaryBaseCollectionViewCell {
+    
+    /// 图标
+    public var logoImageView: UIImageView!
+    
+    /// 标题
+    public var titleLabel: UILabel!
+    
+    override func config() {
+        logoImageView = UIImageView()
+        self.contentView.addSubview(logoImageView)
+        self.logoImageView.snp.makeConstraints { (make) in
+            make.left.equalToSuperview().offset(15)
+            make.right.equalToSuperview().offset(-15)
+            make.height.equalTo(70)
+            make.top.equalToSuperview()
+        }
+        self.logoImageView.backgroundColor = UIColor.red
+        
+        titleLabel = UILabel()
+        self.contentView.addSubview(titleLabel)
+        titleLabel.snp.makeConstraints { (make) in
+            make.centerX.bottom.equalToSuperview()
+            make.height.equalTo(30)
+        }
+        titleLabel.font = LCZFontSize(size: 14)
+    }
+}
