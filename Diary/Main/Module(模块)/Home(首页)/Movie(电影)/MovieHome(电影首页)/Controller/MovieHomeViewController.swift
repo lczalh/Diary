@@ -49,7 +49,7 @@ class MovieHomeViewController: DiaryBaseViewController {
             
         }).disposed(by: rx.disposeBag)
         
-        self.movieHomeView = MovieHomeView(frame: CGRect(x: 0, y: 0, width: LCZWidth, height: LCZHeight - LCZNaviBarHeight - LCZStatusBarHeight - LCZTabbarHeight - LCZSafeAreaBottomHeight))
+        self.movieHomeView = MovieHomeView(frame: CGRect(x: 0, y: 0, width: LCZWidth, height: LCZHeight - LCZNaviBarHeight - LCZStatusBarHeight))
         self.view.addSubview(self.movieHomeView);
         
         let viewModel = MovieHomeViewModel(input: (headerRefresh: self.movieHomeView.collectionView.mj_header.rx.refreshing.asDriver(),

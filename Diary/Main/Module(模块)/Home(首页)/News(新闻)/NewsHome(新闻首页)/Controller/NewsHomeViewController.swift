@@ -23,8 +23,6 @@ class NewsHomeViewController: DiaryBaseViewController {
     var currentCategory: Observable<String>?
     
     var listContainerView: JXCategoryListContainerView!
-    
-//    let newsHomeNetworkReachabilityManager = NetworkReachabilityManager(host: "http://www.baidu.com")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +38,7 @@ class NewsHomeViewController: DiaryBaseViewController {
         listContainerView!.frame = CGRect(x: 0,
                                           y: 44,
                                           width: LCZWidth,
-                                          height: LCZHeight - LCZNaviBarHeight - LCZStatusBarHeight - 44 - LCZTabbarHeight)
+                                          height: LCZHeight - LCZNaviBarHeight - LCZStatusBarHeight - 44)
         listContainerView!.defaultSelectedIndex = 0
         newsHomeView.addSubview(listContainerView!)
         newsHomeView.categoryView!.contentScrollView = listContainerView!.scrollView;

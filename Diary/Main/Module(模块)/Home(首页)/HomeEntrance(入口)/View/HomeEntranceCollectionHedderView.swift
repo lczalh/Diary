@@ -10,17 +10,29 @@ import UIKit
 
 class HomeEntranceCollectionHedderView: UICollectionReusableView {
     
+    public var logoImageView: UIImageView!
+    
     public var titleLabel: UILabel!
     
     override init(frame: CGRect) {
         super.init(frame: frame);
+        
+        self.logoImageView = UIImageView()
+        self.addSubview(self.logoImageView)
+        self.logoImageView.snp.makeConstraints { (make) in
+            make.centerY.equalToSuperview()
+            make.left.equalToSuperview().offset(15)
+        }
+        self.logoImageView.contentMode = .scaleAspectFit
+        
         self.titleLabel = UILabel()
         self.addSubview(self.titleLabel)
         self.titleLabel.snp.makeConstraints { (make) in
-            make.centerY.equalToSuperview()
-            make.left.equalToSuperview()
+            make.centerY.equalTo(self.logoImageView)
+            make.left.equalTo(self.logoImageView.snp.right).offset(5)
         }
         self.titleLabel.font = LCZBoldFontSize(size: 16)
+        self.titleLabel.textColor = LCZHexadecimalColor(hexadecimal: "#57310C")
     }
     
     required init?(coder aDecoder: NSCoder) {

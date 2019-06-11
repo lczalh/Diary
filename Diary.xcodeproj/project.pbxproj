@@ -23,6 +23,11 @@
 		73409FC3228158CA00899563 /* SearchMovieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73409FC2228158CA00899563 /* SearchMovieViewModel.swift */; };
 		73409FC622815C2100899563 /* SearchMovieNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73409FC522815C2100899563 /* SearchMovieNetworkService.swift */; };
 		73409FC822815FE100899563 /* SearchMovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73409FC722815FE100899563 /* SearchMovieCell.swift */; };
+		7344B54122AF594F00FC7D4D /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7344B54022AF594E00FC7D4D /* MainTabBarController.swift */; };
+		7344B54922AF8A5100FC7D4D /* MineEntranceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7344B54822AF8A5100FC7D4D /* MineEntranceViewController.swift */; };
+		7344B54B22AF8A6900FC7D4D /* MineEntranceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7344B54A22AF8A6900FC7D4D /* MineEntranceView.swift */; };
+		7344B54D22AF8F6900FC7D4D /* MineEntranceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7344B54C22AF8F6900FC7D4D /* MineEntranceTableViewCell.swift */; };
+		7344B54F22AFA04700FC7D4D /* MineEntranceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7344B54E22AFA04700FC7D4D /* MineEntranceViewModel.swift */; };
 		7348B9CF2282D1A60091F880 /* Moya+DataParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7348B9CE2282D1A60091F880 /* Moya+DataParsing.swift */; };
 		734E9B6C22448D8B00CC5004 /* MovieHomeNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734E9B6B22448D8B00CC5004 /* MovieHomeNetworkService.swift */; };
 		734E9B6E22448E2400CC5004 /* Moay+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734E9B6D22448E2400CC5004 /* Moay+Rx.swift */; };
@@ -42,7 +47,6 @@
 		737E1C3A2213DDF300BF751D /* DiaryRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737E1C392213DDF300BF751D /* DiaryRoute.swift */; };
 		737E1C3F2213DFDF00BF751D /* LCZHomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737E1C3E2213DFDF00BF751D /* LCZHomePage.swift */; };
 		737E1C412213E00300BF751D /* LCZSwiftMacro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737E1C402213E00300BF751D /* LCZSwiftMacro.swift */; };
-		737E1C442213E19F00BF751D /* AppDelegate+TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737E1C432213E19F00BF751D /* AppDelegate+TabBar.swift */; };
 		737E1C472213E21A00BF751D /* DiaryBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737E1C462213E21A00BF751D /* DiaryBaseViewController.swift */; };
 		737E1C4A2213E37900BF751D /* NewsHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737E1C492213E37900BF751D /* NewsHomeViewController.swift */; };
 		737E1C4C2213E3F800BF751D /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737E1C4B2213E3F800BF751D /* MainNavigationController.swift */; };
@@ -88,6 +92,11 @@
 		73409FC2228158CA00899563 /* SearchMovieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMovieViewModel.swift; sourceTree = "<group>"; };
 		73409FC522815C2100899563 /* SearchMovieNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMovieNetworkService.swift; sourceTree = "<group>"; };
 		73409FC722815FE100899563 /* SearchMovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMovieCell.swift; sourceTree = "<group>"; };
+		7344B54022AF594E00FC7D4D /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		7344B54822AF8A5100FC7D4D /* MineEntranceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineEntranceViewController.swift; sourceTree = "<group>"; };
+		7344B54A22AF8A6900FC7D4D /* MineEntranceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineEntranceView.swift; sourceTree = "<group>"; };
+		7344B54C22AF8F6900FC7D4D /* MineEntranceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineEntranceTableViewCell.swift; sourceTree = "<group>"; };
+		7344B54E22AFA04700FC7D4D /* MineEntranceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineEntranceViewModel.swift; sourceTree = "<group>"; };
 		7346603D224339B0007BBD07 /* Diary-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Diary-Bridging-Header.h"; sourceTree = "<group>"; };
 		7348B9CE2282D1A60091F880 /* Moya+DataParsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Moya+DataParsing.swift"; sourceTree = "<group>"; };
 		734E9B6B22448D8B00CC5004 /* MovieHomeNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieHomeNetworkService.swift; sourceTree = "<group>"; };
@@ -108,7 +117,6 @@
 		737E1C392213DDF300BF751D /* DiaryRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryRoute.swift; sourceTree = "<group>"; };
 		737E1C3E2213DFDF00BF751D /* LCZHomePage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCZHomePage.swift; sourceTree = "<group>"; };
 		737E1C402213E00300BF751D /* LCZSwiftMacro.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCZSwiftMacro.swift; sourceTree = "<group>"; };
-		737E1C432213E19F00BF751D /* AppDelegate+TabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+TabBar.swift"; sourceTree = "<group>"; };
 		737E1C462213E21A00BF751D /* DiaryBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryBaseViewController.swift; sourceTree = "<group>"; };
 		737E1C492213E37900BF751D /* NewsHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsHomeViewController.swift; sourceTree = "<group>"; };
 		737E1C4B2213E3F800BF751D /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
@@ -299,6 +307,57 @@
 			path = NetworkService;
 			sourceTree = "<group>";
 		};
+		7344B54222AF866300FC7D4D /* Mine(我的) */ = {
+			isa = PBXGroup;
+			children = (
+				7344B54322AF8A0100FC7D4D /* MineEntrance(入口) */,
+			);
+			path = "Mine(我的)";
+			sourceTree = "<group>";
+		};
+		7344B54322AF8A0100FC7D4D /* MineEntrance(入口) */ = {
+			isa = PBXGroup;
+			children = (
+				7344B54722AF8A1E00FC7D4D /* ViewModel */,
+				7344B54622AF8A1A00FC7D4D /* View */,
+				7344B54522AF8A1500FC7D4D /* Model */,
+				7344B54422AF8A0E00FC7D4D /* Controller */,
+			);
+			path = "MineEntrance(入口)";
+			sourceTree = "<group>";
+		};
+		7344B54422AF8A0E00FC7D4D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7344B54822AF8A5100FC7D4D /* MineEntranceViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		7344B54522AF8A1500FC7D4D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7344B54622AF8A1A00FC7D4D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7344B54A22AF8A6900FC7D4D /* MineEntranceView.swift */,
+				7344B54C22AF8F6900FC7D4D /* MineEntranceTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7344B54722AF8A1E00FC7D4D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				7344B54E22AFA04700FC7D4D /* MineEntranceViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		7346603A22433948007BBD07 /* Bridging(桥接文件) */ = {
 			isa = PBXGroup;
 			children = (
@@ -404,6 +463,7 @@
 		737E1C342213DBCC00BF751D /* Module(模块) */ = {
 			isa = PBXGroup;
 			children = (
+				7344B54222AF866300FC7D4D /* Mine(我的) */,
 				7300251722ADEF8800F05ADC /* Home(首页) */,
 			);
 			path = "Module(模块)";
@@ -413,8 +473,8 @@
 			isa = PBXGroup;
 			children = (
 				73D4DADB2213CBF200116541 /* AppDelegate.swift */,
-				737E1C432213E19F00BF751D /* AppDelegate+TabBar.swift */,
 				737E1C4B2213E3F800BF751D /* MainNavigationController.swift */,
+				7344B54022AF594E00FC7D4D /* MainTabBarController.swift */,
 			);
 			path = AppDelegate;
 			sourceTree = "<group>";
@@ -864,9 +924,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				737E1C522213E82800BF751D /* DiaryBaseView.swift in Sources */,
-				737E1C442213E19F00BF751D /* AppDelegate+TabBar.swift in Sources */,
 				7300252022ADF1B500F05ADC /* HomeEntranceView.swift in Sources */,
 				737E1C3F2213DFDF00BF751D /* LCZHomePage.swift in Sources */,
+				7344B54D22AF8F6900FC7D4D /* MineEntranceTableViewCell.swift in Sources */,
 				737E1C2D2213D43B00BF751D /* DiaryHeader.swift in Sources */,
 				7367D2F0221FA43F008FD780 /* UIViewController+Rx.swift in Sources */,
 				73C34F6C2264552800244B55 /* SearchMovieViewController.swift in Sources */,
@@ -884,6 +944,7 @@
 				735BB33E225DEF7500241A59 /* SelectorEpisodeCell.swift in Sources */,
 				737E1C5F2213FCE800BF751D /* NewsHomeModel.swift in Sources */,
 				7326F8E7222520FE0005696F /* NewsDetailsModel.swift in Sources */,
+				7344B54F22AFA04700FC7D4D /* MineEntranceViewModel.swift in Sources */,
 				73D4DADC2213CBF200116541 /* AppDelegate.swift in Sources */,
 				737E1C562213E94D00BF751D /* NewsHomeListView.swift in Sources */,
 				73B1DDE92242080400BFEF7A /* MovieHomeCell.swift in Sources */,
@@ -902,6 +963,7 @@
 				73B1DDDF2241EF5500BFEF7A /* MovieHomeView.swift in Sources */,
 				73B1DDD72241EB8E00BFEF7A /* LCZProgressHUD.swift in Sources */,
 				73B1DDE52242055700BFEF7A /* MovieHomeViewModel.swift in Sources */,
+				7344B54B22AF8A6900FC7D4D /* MineEntranceView.swift in Sources */,
 				73409FC02281563600899563 /* SearchMovieView.swift in Sources */,
 				735BB33A225DCF2300241A59 /* SynopsisCell.swift in Sources */,
 				737E1C412213E00300BF751D /* LCZSwiftMacro.swift in Sources */,
@@ -920,6 +982,8 @@
 				734E9B6C22448D8B00CC5004 /* MovieHomeNetworkService.swift in Sources */,
 				737E1C542213E89700BF751D /* NewsHomeView.swift in Sources */,
 				737E1C592213ED0C00BF751D /* NewsNetworkServices.swift in Sources */,
+				7344B54122AF594F00FC7D4D /* MainTabBarController.swift in Sources */,
+				7344B54922AF8A5100FC7D4D /* MineEntranceViewController.swift in Sources */,
 				737E1C3A2213DDF300BF751D /* DiaryRoute.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

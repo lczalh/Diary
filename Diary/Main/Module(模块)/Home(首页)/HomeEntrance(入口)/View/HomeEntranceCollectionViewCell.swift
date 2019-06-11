@@ -22,10 +22,9 @@ class HomeEntranceCollectionViewCell: DiaryBaseCollectionViewCell {
         self.logoImageView.snp.makeConstraints { (make) in
             make.left.equalToSuperview().offset(15)
             make.right.equalToSuperview().offset(-15)
-            make.height.equalTo(70)
-            make.top.equalToSuperview()
+            make.height.width.equalTo(40)
         }
-        self.logoImageView.backgroundColor = UIColor.red
+        self.logoImageView.contentMode = .scaleAspectFit
         
         titleLabel = UILabel()
         self.contentView.addSubview(titleLabel)
@@ -34,5 +33,6 @@ class HomeEntranceCollectionViewCell: DiaryBaseCollectionViewCell {
             make.height.equalTo(30)
         }
         titleLabel.font = LCZFontSize(size: 14)
+        titleLabel.textColor = LCZHexadecimalColor(hexadecimal: "#FECE1D")
     }
 }

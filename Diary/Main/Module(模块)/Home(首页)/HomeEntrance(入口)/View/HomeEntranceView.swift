@@ -21,30 +21,33 @@ class HomeEntranceView: DiaryBaseView {
         createShufflingFigure()
     }
     
+    // MARK: - 轮播图
     private func createShufflingFigure() {
         
         fsPagerView = FSPagerView(frame: CGRect(x: 0, y: -180, width: LCZWidth, height: 180))
         collectionView.addSubview(fsPagerView)
         fsPagerView.register(FSPagerViewCell.self, forCellWithReuseIdentifier: "cell")
         fsPagerView.itemSize = FSPagerView.automaticSize
-        fsPagerView.automaticSlidingInterval = 2
+        fsPagerView.automaticSlidingInterval = 3
         fsPagerView.isInfinite = !fsPagerView.isInfinite
         fsPagerView.decelerationDistance = FSPagerView.automaticDistance
         fsPageControl = FSPageControl()
         fsPagerView.addSubview(fsPageControl)
         fsPageControl.snp.makeConstraints { (make) in
-            make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-12)
+            make.right.equalToSuperview().offset(-20)
+            make.bottom.equalToSuperview().offset(-5)
         }
         fsPageControl.contentHorizontalAlignment = .right
-        fsPageControl.contentInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
-        fsPageControl.contentHorizontalAlignment = .center
+        //设置下标指示器颜色（选中状态和普通状态）
+        fsPageControl.setFillColor(LCZHexadecimalColor(hexadecimal: "#57310C"), for: .normal)
+        fsPageControl.setFillColor(LCZHexadecimalColor(hexadecimal: "#FECE1D"), for: .selected)
+        
     }
     
     // MARK: - collectionView
     private func createCollectionView() {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: (LCZWidth - 15) / 4, height: 100)
+        layout.itemSize = CGSize(width: (LCZWidth - 15) / 4, height: 70)
         layout.minimumLineSpacing = 10
         layout.minimumInteritemSpacing = 5
         layout.headerReferenceSize = CGSize(width: LCZWidth, height: 40)

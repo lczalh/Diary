@@ -16,22 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     /// 网络状态管理
     let appDelegateNetworkReachabilityManager = NetworkReachabilityManager(host: "http://www.baidu.com")
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-//        // 实时检测网络状态
-//        appDelegateNetworkReachabilityManager?.startListening()
-//        appDelegateNetworkReachabilityManager?.listener = { state in
-//            switch state {
-//            case .unknown:
-//                LCZProgressHUD.showError(title: "似乎与网络断开了连接!")
-//                break
-//            case .notReachable:
-//                LCZProgressHUD.showError(title: "似乎与网络断开了连接!")
-//                break
-//            case .reachable(_):
-//                break
-//            }
-//        }
         
         // 控制整个功能是否启用
         IQKeyboardManager.shared.enable = true
@@ -45,9 +30,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         // 设置首页
         LCZHomePage.shared.setHomePage(guidePage: { // 引导页
-            self.window?.rootViewController = self.createESTabBarController(delegate: self)
+            self.window?.rootViewController = MainTabBarController()
         }) { // 首页
-            self.window?.rootViewController = self.createESTabBarController(delegate: self)
+            self.window?.rootViewController = MainTabBarController()
         }
         self.window?.makeKeyAndVisible()
         self.window!.backgroundColor = UIColor.white

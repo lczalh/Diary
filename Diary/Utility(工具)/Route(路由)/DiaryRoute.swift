@@ -11,12 +11,27 @@ import Foundation
 enum DiaryRoute {
     
     static func initialize(navigator: NavigatorType) {
+        // 新闻首页
+        navigator.register("diary://newsHome") { url, values, context in
+            let newsHomeVC = NewsHomeViewController()
+            newsHomeVC.hidesBottomBarWhenPushed = true
+            return newsHomeVC
+            
+        }
+        
         // 新闻详情
         navigator.register("diary://newsHome/newsDetails") { url, values, context in
             let newsDetailsVC = NewsDetailsViewController()
             newsDetailsVC.model = context as? SpeedNewsListModel
             newsDetailsVC.hidesBottomBarWhenPushed = true
             return newsDetailsVC
+        }
+        
+        // 电影首页
+        navigator.register("diary://movieHome") { url, values, context in
+            let movieHomeVC = MovieHomeViewController()
+            movieHomeVC.hidesBottomBarWhenPushed = true
+            return movieHomeVC
         }
         
         // 电影详情

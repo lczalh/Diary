@@ -20,7 +20,7 @@ class MovieHomeView: DiaryBaseView {
     /// 创建CollectionView
     private func createCollectionView() {
         let layout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: LCZSafeAreaBottomHeight, right: 10)
         layout.itemSize = CGSize(width: (LCZWidth - 30) / 3 , height: 180 * LCZSizeScale)
         layout.minimumInteritemSpacing = 5
         layout.minimumLineSpacing = 5
