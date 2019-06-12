@@ -98,13 +98,13 @@ extension HomeEntranceViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.section == 0 {
             if indexPath.row == 0 { // 物流查询
-                
+                diaryRoute.push("diary://homeEntrance/courierEntrance")
             } else if indexPath.row == 1 { // 热门新闻
-                diaryRoute.push("diary://newsHome")
+                diaryRoute.push("diary://homeEntrance/newsHome")
             }
         } else if indexPath.section == 1 {
             if indexPath.row == 0 { // 电影
-                diaryRoute.push("diary://movieHome")
+                diaryRoute.push("diary://homeEntrance/movieHome")
             }
         }
     }

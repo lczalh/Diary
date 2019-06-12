@@ -14,7 +14,7 @@ class HomeEntranceViewModel {
     public let shufflingFigureImage: Array<String> = ["1","2","3","4","5","6","7"]
     
     /// 单元格标题
-    public let cellTitles: Array<Array<String>> = [["物流","新闻"],
+    public let cellTitles: Array<Array<String>> = [["快递","新闻"],
                                                    ["视频"]
                                                   ]
     

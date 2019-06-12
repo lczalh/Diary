@@ -8,9 +8,7 @@
 
 import Foundation
 
-/// 数据库
-//public let diaryRealm = try! Realm()
-
 /// 路由
 public let diaryRoute = Navigator()
 
+public let jiSuShuJuAppKey = "ac0f7297750aa010"

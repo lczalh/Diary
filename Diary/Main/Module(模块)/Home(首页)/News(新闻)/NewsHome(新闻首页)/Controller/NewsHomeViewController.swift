@@ -133,7 +133,7 @@ extension NewsHomeViewController: JXCategoryListContainerViewDelegate {
         // 同时获取索引和模型
         Observable.zip(newsHomeListView.tableView.rx.itemSelected, newsHomeListView.tableView.rx.modelSelected(SpeedNewsListModel.self))
             .bind { indexPath, item in
-                diaryRoute.push("diary://newsHome/newsDetails" ,context: item)
+                diaryRoute.push("diary://homeEntrance/newsHome/newsDetails" ,context: item)
             }.disposed(by: rx.disposeBag)
         
         return (newsHomeListView as JXCategoryListContentViewDelegate)

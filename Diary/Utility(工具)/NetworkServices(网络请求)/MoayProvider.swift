@@ -8,6 +8,13 @@
 
 import Foundation
 
+/// 请求错误
+///
+/// - requestTimeout: 请求超时
+enum DiaryRequestError: Error {
+    case requestTimeout
+}
+
 //初始化provider
 let networkServicesProvider = MoyaProvider<MultiTarget>(endpointClosure: endpointMapping, requestClosure: timeoutClosure, plugins:[RequestHudPlugin])
 
@@ -28,27 +35,14 @@ private let timeoutClosure = { (endpoint : Endpoint,closure : MoyaProvider<Multi
 private let RequestHudPlugin = NetworkActivityPlugin { change, target  in
     switch change {
     case .began:
-        //根据不同的请求，是否显示加载框
-        //        switch target as! Intelligent {
         
-        //        case .shufflingFigure(let version):
-        //            break
-        //        case .verifyAccount(let loginName, let passwd):
-        //            LCZHUDTool.show()
-        //            break
-        //        case .replacePicture(let photo, let version, let uid, let token):
-        //            break
-        //        case .functionModule(let version, let uid, let token, let id):
-        //            break
-        //
-        //        }
         DispatchQueue.main.async {
             UIApplication.shared.isNetworkActivityIndicatorVisible = true
         }
         
         
     case .ended:
-        // LCZHUDTool.dismiss()
+       
         DispatchQueue.main.async {
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
         }

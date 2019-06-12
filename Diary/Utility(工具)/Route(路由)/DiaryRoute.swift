@@ -12,43 +12,56 @@ enum DiaryRoute {
     
     static func initialize(navigator: NavigatorType) {
         // 新闻首页
-        navigator.register("diary://newsHome") { url, values, context in
-            let newsHomeVC = NewsHomeViewController()
-            newsHomeVC.hidesBottomBarWhenPushed = true
-            return newsHomeVC
-            
+        navigator.register("diary://homeEntrance/newsHome") { url, values, context in
+            let newsHome = NewsHomeViewController()
+            newsHome.hidesBottomBarWhenPushed = true
+            return newsHome
         }
         
         // 新闻详情
-        navigator.register("diary://newsHome/newsDetails") { url, values, context in
-            let newsDetailsVC = NewsDetailsViewController()
-            newsDetailsVC.model = context as? SpeedNewsListModel
-            newsDetailsVC.hidesBottomBarWhenPushed = true
-            return newsDetailsVC
+        navigator.register("diary://homeEntrance/newsHome/newsDetails") { url, values, context in
+            let newsDetails = NewsDetailsViewController()
+            newsDetails.model = context as? SpeedNewsListModel
+            newsDetails.hidesBottomBarWhenPushed = true
+            return newsDetails
         }
         
         // 电影首页
-        navigator.register("diary://movieHome") { url, values, context in
-            let movieHomeVC = MovieHomeViewController()
-            movieHomeVC.hidesBottomBarWhenPushed = true
-            return movieHomeVC
+        navigator.register("diary://homeEntrance/movieHome") { url, values, context in
+            let movieHome = MovieHomeViewController()
+            movieHome.hidesBottomBarWhenPushed = true
+            return movieHome
         }
         
         // 电影详情
-        navigator.register("diary://movieHome/movieDetails") { url, values, context in
-            let movieDetailsVC = MovieDetailsViewController()
+        navigator.register("diary://homeEntrance/movieHome/movieDetails") { url, values, context in
+            let movieDetails = MovieDetailsViewController()
             let model = context as! MovieHomeModel
-            movieDetailsVC.movieHomeModel = model
-            movieDetailsVC.hidesBottomBarWhenPushed = true
-            return movieDetailsVC
+            movieDetails.movieHomeModel = model
+            movieDetails.hidesBottomBarWhenPushed = true
+            return movieDetails
         }
         
         // 搜索电影
-        navigator.register("diary://movieHome/searchMovie") { url, values, context in
+        navigator.register("diary://homeEntrance/movieHome/searchMovie") { url, values, context in
             let searchMovie = SearchMovieViewController()
-            
             searchMovie.hidesBottomBarWhenPushed = true
             return searchMovie
+        }
+        
+        // 快递
+        navigator.register("diary://homeEntrance/courierEntrance") { url, values, context in
+            let courierEntrance = CourierEntranceTabBarController()
+            courierEntrance.hidesBottomBarWhenPushed = true
+            return courierEntrance
+        }
+        
+        // 快递查询结果
+        navigator.register("diary://homeEntrance/courierEntrance/expressQueryResults") { url, values, context in
+            let expressQueryResults = ExpressQueryResultsViewController()
+            expressQueryResults.model = context as? ExpressQueryResultModel
+            expressQueryResults.hidesBottomBarWhenPushed = true
+            return expressQueryResults
         }
     }
     

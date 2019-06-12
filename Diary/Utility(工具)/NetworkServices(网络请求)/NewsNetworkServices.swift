@@ -17,8 +17,8 @@ public enum NewsNetworkServices {
     // MARK: - 获取所有新闻类型数据
     case getNewsTypeList(appkey: String)
     
-//    // MARK: - 获取新闻详情
-//    case getNewsDetails(appKey: String, newsId: String)
+    // MARK: - 查询快递物流信息
+    case getExpressLogisticsInfo(appkey: String, type: String, number: String)
 }
 
 //设置请求配置
@@ -38,8 +38,9 @@ extension NewsNetworkServices : TargetType {
         case .getNewsList:
             return "/news/get"
         case .getNewsTypeList:
-            return "news/channel"
-        
+            return "/news/channel"
+        case .getExpressLogisticsInfo:
+            return "/express/query"
         }
         
     }
@@ -69,6 +70,10 @@ extension NewsNetworkServices : TargetType {
             parameterDict["channel"] = channel
             parameterDict["num"] = num
             parameterDict["start"] = start
+        case .getExpressLogisticsInfo(let appkey, let type, let number):
+            parameterDict["appkey"] = appkey
+            parameterDict["type"] = type
+            parameterDict["number"] = number
         }
         
         return  .requestParameters(parameters: parameterDict, encoding: URLEncoding.default)

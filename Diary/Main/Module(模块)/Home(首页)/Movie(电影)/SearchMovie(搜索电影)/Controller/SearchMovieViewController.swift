@@ -57,7 +57,7 @@ class SearchMovieViewController: DiaryBaseViewController {
         // 同时获取索引和模型
         Observable.zip(self.searchMovieView.tableView.rx.itemSelected, self.searchMovieView.tableView.rx.modelSelected(MovieHomeModel.self))
             .bind { indexPath, item in
-                diaryRoute.push("diary://movieHome/movieDetails" ,context: item)
+                diaryRoute.push("diary://homeEntrance/movieHome/movieDetails" ,context: item)
             }.disposed(by: rx.disposeBag)
     }
     

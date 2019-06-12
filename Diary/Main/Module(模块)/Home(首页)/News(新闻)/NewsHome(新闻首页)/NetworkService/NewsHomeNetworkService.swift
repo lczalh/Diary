@@ -8,11 +8,6 @@
 
 import Foundation
 
-enum NewsError: Error {
-    case requestTimeout
-    case requestFailed
-}
-
 class NewsHomeNetworkService {
     
     public func qqqq() {
@@ -27,7 +22,7 @@ class NewsHomeNetworkService {
                     single(.success(result.result))
                 } else {
                     LCZProgressHUD.showError(title: "暂无相关数据!")
-                    single(.error(NewsError.requestTimeout))
+                    single(.error(DiaryRequestError.requestTimeout))
                 }
             }, onError: { (error) in
                 single(.error(error))
@@ -45,7 +40,7 @@ class NewsHomeNetworkService {
                     single(.success(result.result!.list as [SpeedNewsListModel]))
                 } else {
                     LCZProgressHUD.showError(title: result.msg)
-                    single(.error(NewsError.requestTimeout))
+                    single(.error(DiaryRequestError.requestTimeout))
                 }
             }) { (error) in
                 single(.error(error))

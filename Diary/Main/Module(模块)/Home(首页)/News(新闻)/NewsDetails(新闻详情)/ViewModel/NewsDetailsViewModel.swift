@@ -9,11 +9,7 @@
 import Foundation
 
 class NewsDetailsViewModel {
-    
-//    var newsDetailsData: Driver<NewsDetailsModel>
-    
- 
-    
+
     // 拼接html
     public func jointHtml(model: SpeedNewsListModel) -> String {
         let html = """
