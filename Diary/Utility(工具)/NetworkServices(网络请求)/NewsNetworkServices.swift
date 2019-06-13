@@ -19,6 +19,7 @@ public enum NewsNetworkServices {
     
     // MARK: - 查询快递物流信息
     case getExpressLogisticsInfo(appkey: String, type: String, number: String)
+    
 }
 
 //设置请求配置

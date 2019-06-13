@@ -22,8 +22,13 @@ class ExpressQueryViewController: DiaryBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(expressQueryView)
+        // 标题
         self.tabBarController?.navigationItem.title = "快递查询"
         self.tabBarController?.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: LCZHexadecimalColor(hexadecimal: "#57310C")]
+        // 返回
+        let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        backBarButtonItem.tintColor = LCZHexadecimalColor(hexadecimal: "#FECE1D")
+        self.tabBarController?.navigationItem.backBarButtonItem = backBarButtonItem
         
         // 监听文本框内容
         expressQueryView.textField.rx.text.orEmpty.asDriver() // 将普通序列转换为 Driver
@@ -38,6 +43,7 @@ class ExpressQueryViewController: DiaryBaseViewController {
         
         // 查询按钮响应事件
         self.expressQueryView.inquireButton.rx.tap.debounce(0.3, scheduler: MainScheduler.instance).subscribe(onNext: { _ in
+//            diaryRoute.push("diary://homeEntrance/courierEntrance/expressQueryResults")
             self.expressQueryView.inquireButton.isEnabled = false
             self.viewModel.inquireExpressLogisticsInfo(number: "3711913697973").subscribe(onSuccess: { (model) in
                 self.expressQueryView.inquireButton.isEnabled = true

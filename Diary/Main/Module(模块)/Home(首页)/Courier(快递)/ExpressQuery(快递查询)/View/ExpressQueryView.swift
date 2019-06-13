@@ -10,13 +10,15 @@ import UIKit
 
 class ExpressQueryView: DiaryBaseView {
     
-//    public var tableView: UITableView!
+    /// 查询按钮
     public var inquireButton: UIButton!
     
     private var boxView: UIView!
     
+    /// 扫码按钮
     public var sancButton: UIButton!
     
+    /// 编码输入框
     public var textField: UITextField!
 
     override func configUI() {
@@ -87,24 +89,6 @@ class ExpressQueryView: DiaryBaseView {
         inquireButton.layer.cornerRadius = 25
         inquireButton.clipsToBounds = true
         inquireButton.setTitle("查询", for: .normal)
-        
-//        inquireButton.rx.tap.subscribe {
-//            LCZPrint("2322232")
-//            }.disposed(by: rx.disposeBag)
     }
-    
-//    private func createTableView() {
-//        tableView = UITableView(frame: self.bounds, style: .plain)
-//        self.addSubview(tableView)
-//        tableView.rowHeight = UITableView.automaticDimension
-//        tableView.estimatedRowHeight = 60
-//        tableView.tableHeaderView = createTableHeaderView()
-//    }
-//
-//    private func createTableHeaderView() -> UIView {
-//        let tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: LCZWidth, height: 300))
-//        tableHeaderView.backgroundColor = UIColor.red
-//
-//        return tableHeaderView
-//    }
+
 }
