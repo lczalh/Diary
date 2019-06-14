@@ -59,7 +59,9 @@ enum DiaryRoute {
         // 快递查询结果
         navigator.register("diary://homeEntrance/courierEntrance/expressQueryResults") { url, values, context in
             let expressQueryResults = ExpressQueryResultsViewController()
-            expressQueryResults.model = context as? ExpressQueryResultModel
+            let contexts = context as! Array<Any>
+            expressQueryResults.expressQueryResultModel = contexts[0] as? ExpressQueryResultModel
+            expressQueryResults.commonExpressCompaniesModel = contexts[1] as! [CourierEntranceModel]
             expressQueryResults.hidesBottomBarWhenPushed = true
             return expressQueryResults
         }

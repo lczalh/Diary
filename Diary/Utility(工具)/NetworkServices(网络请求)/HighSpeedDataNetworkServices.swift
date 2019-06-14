@@ -9,7 +9,7 @@
 import Foundation
 
 /// 定义分类
-public enum NewsNetworkServices {
+public enum HighSpeedDataNetworkServices {
     
     // MARK: - 获取新闻数据
     case getNewsList(appkey: String, channel: String, num: Int, start: Int)
@@ -20,10 +20,11 @@ public enum NewsNetworkServices {
     // MARK: - 查询快递物流信息
     case getExpressLogisticsInfo(appkey: String, type: String, number: String)
     
+    case getCourierCompany(appkey: String)
 }
 
 //设置请求配置
-extension NewsNetworkServices : TargetType {
+extension HighSpeedDataNetworkServices : TargetType {
     
     //服务器地址
     public var baseURL: URL {
@@ -42,6 +43,8 @@ extension NewsNetworkServices : TargetType {
             return "/news/channel"
         case .getExpressLogisticsInfo:
             return "/express/query"
+        case .getCourierCompany:
+            return "/express/type"
         }
         
     }
@@ -75,6 +78,8 @@ extension NewsNetworkServices : TargetType {
             parameterDict["appkey"] = appkey
             parameterDict["type"] = type
             parameterDict["number"] = number
+        case .getCourierCompany(let appkey):
+            parameterDict["appkey"] = appkey
         }
         
         return  .requestParameters(parameters: parameterDict, encoding: URLEncoding.default)

@@ -11,4 +11,5 @@ import Foundation
 /// 路由
 public let diaryRoute = Navigator()
 
-public let jiSuShuJuAppKey = "ac0f7297750aa010"
+/// 极速数据AppKey
+public let highSpeedDataAppKey = "ac0f7297750aa010"

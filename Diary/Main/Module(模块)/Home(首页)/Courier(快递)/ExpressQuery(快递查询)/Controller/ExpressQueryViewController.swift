@@ -10,13 +10,19 @@ import UIKit
 
 class ExpressQueryViewController: DiaryBaseViewController {
     
+    /// 快递公司模型
+    public var commonExpressCompaniesModel: Array<CourierEntranceModel> = []
+    
     lazy var expressQueryView: ExpressQueryView = {
         let view = ExpressQueryView(frame: self.view.bounds)
+        view.tableView.dataSource = self
+        view.tableView.delegate = self
         return view
     }()
     
     lazy var viewModel: ExpressQueryViewModel = {
-        return ExpressQueryViewModel()
+        let vm = ExpressQueryViewModel()
+        return vm
     }()
 
     override func viewDidLoad() {
@@ -43,19 +49,75 @@ class ExpressQueryViewController: DiaryBaseViewController {
         
         // 查询按钮响应事件
         self.expressQueryView.inquireButton.rx.tap.debounce(0.3, scheduler: MainScheduler.instance).subscribe(onNext: { _ in
-//            diaryRoute.push("diary://homeEntrance/courierEntrance/expressQueryResults")
             self.expressQueryView.inquireButton.isEnabled = false
-            self.viewModel.inquireExpressLogisticsInfo(number: "3711913697973").subscribe(onSuccess: { (model) in
-                self.expressQueryView.inquireButton.isEnabled = true
-                diaryRoute.push("diary://homeEntrance/courierEntrance/expressQueryResults" ,context: model)
+            self.viewModel.inquireExpressLogisticsInfo(number: self.expressQueryView.textField.text!).subscribe(onSuccess: { (model) in
+                // 记录
+                self.viewModel.storeHistoryQuery(text: self.expressQueryView.textField.text!)
+                DispatchQueue.main.async(execute: {
+                    self.expressQueryView.tableView.reloadData()
+                    self.expressQueryView.inquireButton.isEnabled = true
+                    diaryRoute.push("diary://homeEntrance/courierEntrance/expressQueryResults" ,context: [model,self.commonExpressCompaniesModel])
+                })
             }, onError: { (error) in
                 self.expressQueryView.inquireButton.isEnabled = true
             }).disposed(by: self.rx.disposeBag)
         }).disposed(by: rx.disposeBag)
         
         
+      
+        
     }
     
+    /// 删除指定的历史记录
+    ///
+    /// - Parameter sender: 当前按钮
+    @objc func deleCellQuery(sender: UIButton) -> () {
+        let cell = LCZGetSuperView(currentView: sender, superView: UITableViewCell.self)
+        let indexPath = self.expressQueryView.tableView.indexPath(for: cell!)
+        let historyQueryHistoryQuery = self.viewModel.getHistoryQuery().mutableCopy() as! NSMutableArray
+        historyQueryHistoryQuery.removeObject(at: indexPath!.row)
+        historyQueryHistoryQuery.write(toFile: self.viewModel.historyQueryPlist, atomically: true)
+        DispatchQueue.main.async(execute: {
+            self.expressQueryView.tableView.reloadData()
+        })
+    }
 
 
+}
+
+extension ExpressQueryViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.viewModel.getHistoryQuery().count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryQueryTableViewCell", for: indexPath) as! HistoryQueryTableViewCell
+        cell.titleLabel.text = self.viewModel.getHistoryQuery()[indexPath.row] as? String
+        // 删除指定的历史记录
+        cell.deleButton.addTarget(self, action: #selector(deleCellQuery), for: .touchUpInside)
+
+        return cell
+    }
+    
+    
+}
+
+extension ExpressQueryViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor.white
+        let titleLabel = UILabel()
+        headerView.addSubview(titleLabel)
+        titleLabel.snp.makeConstraints { (make) in
+            make.left.centerY.equalToSuperview()
+        }
+        titleLabel.font = LCZFontSize(size: 14)
+        titleLabel.textColor = LCZHexadecimalColor(hexadecimal: "#57310C")
+        titleLabel.text = "历史查询"
+        return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 30
+    }
 }

@@ -23,6 +23,7 @@ class CommonlyExpressView: DiaryBaseView {
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: LCZTabbarHeight + LCZSafeAreaBottomHeight + LCZNaviBarHeight + LCZStatusBarHeight, right: 0)
         tableView.register(CommonlyExpressTableViewCell.self, forCellReuseIdentifier: "CommonlyExpressTableViewCell")
         tableView.separatorStyle = .none
+        tableView.showsVerticalScrollIndicator = false
     }
     
 }

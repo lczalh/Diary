@@ -10,13 +10,30 @@ import UIKit
 
 class CourierEntranceTabBarController: UITabBarController {
     
+    private var expressQueryViewController: ExpressQueryViewController = ExpressQueryViewController()
+    
+     private var commonlyExpressViewController: CommonlyExpressViewController = CommonlyExpressViewController()
+    
+    lazy var viewModel: CourierEntranceViewModel = {
+        let vm = CourierEntranceViewModel()
+        return vm
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let v1 = ExpressQueryViewController()
-        let v2 = CommonlyExpressViewController()
         
-        self.setTabBarItem(viewController: v1, tabBarTitle: "快递查询", image: UIImage(named: "huabanfubenhui")?.withRenderingMode(.alwaysOriginal), selectImage: UIImage(named: "huabanfuben")?.withRenderingMode(.alwaysOriginal))
-        self.setTabBarItem( viewController: v2, tabBarTitle: "常用快递", image: UIImage(named: "commonlyExpressAsh")?.withRenderingMode(.alwaysOriginal), selectImage: UIImage(named: "commonlyExpress")?.withRenderingMode(.alwaysOriginal))
+        viewModel.getCommonExpressCompaniesData().subscribe(onSuccess: { (models) in
+            DispatchQueue.main.async {
+                self.expressQueryViewController.commonExpressCompaniesModel = models
+                self.commonlyExpressViewController.commonExpressCompaniesModel = models
+            }
+        }, onError: { (error) in
+            
+        }).disposed(by: rx.disposeBag)
+        
+        self.setTabBarItem(viewController: expressQueryViewController, tabBarTitle: "快递查询", image: UIImage(named: "huabanfubenhui")?.withRenderingMode(.alwaysOriginal), selectImage: UIImage(named: "huabanfuben")?.withRenderingMode(.alwaysOriginal))
+        self.setTabBarItem( viewController: commonlyExpressViewController, tabBarTitle: "常用快递", image: UIImage(named: "commonlyExpressAsh")?.withRenderingMode(.alwaysOriginal), selectImage: UIImage(named: "commonlyExpress")?.withRenderingMode(.alwaysOriginal))
+        
     }
     
     

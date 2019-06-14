@@ -19,7 +19,7 @@ class CommonlyExpressTableViewCell: DiaryBaseTableViewCell {
     /// 电话号码
     public var phoneNumber: UILabel!
     
-    private var rightImageView: UIImageView!
+    public var rightImageView: UIImageView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -40,10 +40,16 @@ class CommonlyExpressTableViewCell: DiaryBaseTableViewCell {
         logoImageView.snp.makeConstraints { (make) in
             make.left.equalToSuperview().offset(15)
             make.centerY.equalToSuperview()
-            make.size.equalTo(50)
+            make.size.equalTo(40)
         }
-        logoImageView.contentMode = .scaleAspectFit
-        logoImageView.backgroundColor = UIColor.red
+        logoImageView.contentMode = .scaleAspectFill
+        logoImageView.layoutIfNeeded()
+        let bezierPath = UIBezierPath(roundedRect: logoImageView.bounds, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: 20, height: 20))
+        let shapeLayer = CAShapeLayer()
+        shapeLayer.frame = logoImageView.bounds
+        shapeLayer.path = bezierPath.cgPath
+        logoImageView.layer.mask = shapeLayer
+        
         
         // 快递公司名称
         titleLabel = UILabel()
@@ -52,7 +58,6 @@ class CommonlyExpressTableViewCell: DiaryBaseTableViewCell {
             make.left.equalTo(logoImageView.snp.right).offset(5)
             make.top.equalTo(logoImageView.snp.top)
         }
-        titleLabel.text = "顺丰快递"
         titleLabel.font = LCZBoldFontSize(size: 16)
         
         // 快递公司号码
@@ -64,7 +69,6 @@ class CommonlyExpressTableViewCell: DiaryBaseTableViewCell {
             make.right.equalToSuperview().offset(-15)
             make.bottom.equalTo(logoImageView.snp.bottom)
         }
-        phoneNumber.text = "tel:1292834822"
         phoneNumber.textColor = LCZRgbColor(175, 173, 175, 1)
         
         // 右图标

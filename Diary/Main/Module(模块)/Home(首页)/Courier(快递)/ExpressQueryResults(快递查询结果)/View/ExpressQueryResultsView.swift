@@ -39,11 +39,11 @@ class ExpressQueryResultsView: DiaryBaseView {
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 34, right: 0)
         tableView.separatorStyle = .none
         tableView.tableHeaderView = createTabelHeaderView()
+        tableView.showsVerticalScrollIndicator = false
     }
     
     private func createTabelHeaderView() -> UIView {
         let tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: LCZWidth, height: 200))
-   //     tableHeaderView.backgroundColor = UIColor.red
         
         let backView = UIView()
         tableHeaderView.addSubview(backView)
@@ -69,9 +69,13 @@ class ExpressQueryResultsView: DiaryBaseView {
             make.top.equalToSuperview().offset(15)
             make.size.equalTo(60)
         }
-        logoImageView.clipsToBounds = true
-        logoImageView.layer.cornerRadius = 30
-        logoImageView.backgroundColor = UIColor.purple
+        logoImageView.contentMode = .scaleAspectFill
+        logoImageView.layoutIfNeeded()
+        let bezierPathTwo = UIBezierPath(roundedRect: logoImageView.bounds, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: 30, height: 30))
+        let shapeLayerTwo = CAShapeLayer()
+        shapeLayerTwo.frame = logoImageView.bounds
+        shapeLayerTwo.path = bezierPathTwo.cgPath
+        logoImageView.layer.mask = shapeLayerTwo
         
         // 快递公司
         courierCompanyLeabel = UILabel()

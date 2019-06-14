@@ -40,7 +40,7 @@ class SearchMovieViewController: DiaryBaseViewController {
                 let cell = tv.dequeueReusableCell(withIdentifier: "SearchMovieCell", for: indexPath) as! SearchMovieCell
                 if element.vod_pic?.isEmpty == false {
                     cell.movieImageView.kf.indicatorType = .activity
-                    cell.movieImageView.kf.setImage(with: ImageResource(downloadURL: URL(string: element.vod_pic!)!), placeholder: UIImage(named: "暂无图片"))
+                    cell.movieImageView.kf.setImage(with: ImageResource(downloadURL: URL(string: element.vod_pic!)!), placeholder: UIImage(named: "zanwutupian"))
                     
                 }
                 cell.titleLabel.text = element.vod_name

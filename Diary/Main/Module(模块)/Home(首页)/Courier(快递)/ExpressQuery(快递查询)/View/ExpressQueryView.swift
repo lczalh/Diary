@@ -20,10 +20,14 @@ class ExpressQueryView: DiaryBaseView {
     
     /// 编码输入框
     public var textField: UITextField!
+    
+    /// 历史查询记录
+    public var tableView: UITableView!
 
     override func configUI() {
         createExpressNumberBox()
         createSelectButton()
+        createHistoryQuery()
     }
     
     /// 创建单号框
@@ -84,11 +88,32 @@ class ExpressQueryView: DiaryBaseView {
             make.centerX.equalToSuperview()
             make.top.equalTo(boxView.snp.bottom).offset(30)
             make.width.equalTo(150)
-            make.height.equalTo(50)
+            make.height.equalTo(40)
         }
-        inquireButton.layer.cornerRadius = 25
-        inquireButton.clipsToBounds = true
         inquireButton.setTitle("查询", for: .normal)
+        inquireButton.layoutIfNeeded()
+        let bezierPath = UIBezierPath(roundedRect: inquireButton.bounds, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: 20, height: 20))
+        let shapeLayer = CAShapeLayer()
+        shapeLayer.path = bezierPath.cgPath
+        shapeLayer.frame = inquireButton.bounds
+        inquireButton.layer.mask = shapeLayer
+        
+    }
+    
+    // 历史查询记录
+    private func createHistoryQuery() {
+        tableView = UITableView(frame: CGRect.zero, style: .plain)
+        self.addSubview(tableView)
+        tableView.snp.makeConstraints { (make) in
+            make.left.equalToSuperview().offset(30)
+            make.right.equalToSuperview().offset(-30)
+            make.top.equalTo(inquireButton.snp.bottom).offset(50)
+            make.bottom.equalToSuperview()
+        }
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: LCZStatusBarHeight + LCZTabbarHeight + LCZNaviBarHeight + LCZSafeAreaBottomHeight + 30, right: 0)
+        tableView.rowHeight = 40
+        tableView.register(HistoryQueryTableViewCell.self, forCellReuseIdentifier: "HistoryQueryTableViewCell")
+        tableView.showsVerticalScrollIndicator = false
     }
 
 }

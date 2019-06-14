@@ -63,7 +63,7 @@ class MovieHomeViewController: DiaryBaseViewController {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieHomeCell", for: indexPath) as! MovieHomeCell
                 if element.vod_pic?.isEmpty == false {
                     cell.imageView.kf.indicatorType = .activity
-                    cell.imageView.kf.setImage(with: ImageResource(downloadURL: URL(string: element.vod_pic!)!), placeholder: UIImage(named: "暂无图片"))
+                    cell.imageView.kf.setImage(with: ImageResource(downloadURL: URL(string: element.vod_pic!)!), placeholder: UIImage(named: "zanwutupian"))
                 }
                 cell.titleLabel.text = element.vod_name
                 return cell
