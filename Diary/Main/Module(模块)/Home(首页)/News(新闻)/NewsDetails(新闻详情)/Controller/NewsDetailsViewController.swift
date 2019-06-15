@@ -18,7 +18,7 @@ class NewsDetailsViewController: DiaryBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.parentView = NewsDetailsView(frame: CGRect(x: 0, y: 0, width: LCZWidth, height: LCZHeight - LCZNaviBarHeight - LCZStatusBarHeight - LCZSafeAreaBottomHeight))
+        self.parentView = NewsDetailsView(frame: self.view.bounds)
         self.view.addSubview(self.parentView)
         
         let viewModel = NewsDetailsViewModel()

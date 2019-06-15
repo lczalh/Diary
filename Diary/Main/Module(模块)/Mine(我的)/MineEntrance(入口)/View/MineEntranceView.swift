@@ -35,5 +35,13 @@ class MineEntranceView: DiaryBaseView {
         headerImageView.image = UIImage(named: "2")
         headerImageView.contentMode = .scaleAspectFill
         headerImageView.clipsToBounds = true
+        
+        // 创建波浪视图
+        let waveView = LCZWaveView(frame: CGRect(x: 0, y: 160, width: LCZWidth, height: 40))
+        headerImageView.addSubview(waveView)
+        waveView.waveHeight = 10
+        waveView.waveOnBottom = false
+        // 开始播放波浪动画
+        waveView.startWave()
     }
 }

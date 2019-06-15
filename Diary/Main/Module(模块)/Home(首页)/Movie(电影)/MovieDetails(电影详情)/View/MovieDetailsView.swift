@@ -58,7 +58,7 @@ class MovieDetailsView: DiaryBaseView {
     // MARK: - 集合视图
     private func createTableView() {
         
-        tableView = UITableView(frame: CGRect(x: 0, y: self.playerView.frame.height + LCZStatusBarHeight, width: LCZWidth, height: LCZHeight - self.playerView.frame.height - LCZStatusBarHeight - LCZSafeAreaBottomHeight), style: .grouped)
+        tableView = UITableView(frame: CGRect(x: 0, y: self.playerView.frame.height + LCZStatusBarHeight, width: LCZWidth, height: LCZHeight - self.playerView.frame.height - LCZStatusBarHeight), style: .grouped)
         self.addSubview(tableView)
         tableView.register(SynopsisCell.self, forCellReuseIdentifier: "SynopsisCell")
         tableView.register(EpisodeCell.self, forCellReuseIdentifier: "EpisodeCell")
@@ -66,7 +66,7 @@ class MovieDetailsView: DiaryBaseView {
         tableView.separatorStyle = .none
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 60
-        
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: LCZSafeAreaBottomHeight, right: 0)
         
     }
 }

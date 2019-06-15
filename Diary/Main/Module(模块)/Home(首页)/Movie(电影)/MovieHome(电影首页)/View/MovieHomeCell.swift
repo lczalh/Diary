@@ -31,6 +31,8 @@ class MovieHomeCell: DiaryBaseCollectionViewCell {
             make.right.equalToSuperview().offset(-10)
         })
         self.titleLabel.textAlignment = .center
+        self.titleLabel.font = LCZFontSize(size: 14)
+        self.titleLabel.textColor = LCZHexadecimalColor(hexadecimal: "#FECE1D")
         
         self.contentView.addSubview(self.imageView)
         self.imageView.contentMode = .scaleAspectFill

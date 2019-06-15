@@ -27,11 +27,14 @@ class MovieHomeViewController: DiaryBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "电影"
-        // 去掉返回按钮上的文字
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+        self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: LCZHexadecimalColor(hexadecimal: "#57310C")]
+        
+        let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        backBarButtonItem.tintColor = LCZHexadecimalColor(hexadecimal: "#FECE1D")
+        self.navigationItem.backBarButtonItem = backBarButtonItem
         
         // 搜索按钮
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "搜索", style: .done, target: self, action: nil)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "sousuo")?.withRenderingMode(.alwaysOriginal), style: .plain, target: nil, action: nil)
         self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
         self.navigationItem.rightBarButtonItem?.rx.tap.subscribe(onNext: { () in
             let nums = ["流浪地球", "封神演义", "复仇者联盟", "斗罗大陆", "斗破苍穹","飞驰人生","新喜剧之王","家和万事惊"]
@@ -45,7 +48,12 @@ class MovieHomeViewController: DiaryBaseViewController {
             searchViewController!.searchHistoryStyle = .default
             searchViewController!.searchViewControllerShowMode = .modePush
             searchViewController!.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(searchViewController!, animated: true)
+            searchViewController?.backButton.setImage(UIImage(named: "zuojiantou")?.withRenderingMode(.alwaysOriginal), for: .normal)
+            searchViewController?.backButton.setTitle("", for: .normal)
+            searchViewController?.navigationItem.backBarButtonItem = backBarButtonItem
+            DispatchQueue.main.async(execute: {
+                self.navigationController?.pushViewController(searchViewController!, animated: true)
+            })
             
         }).disposed(by: rx.disposeBag)
         
@@ -95,6 +103,3 @@ class MovieHomeViewController: DiaryBaseViewController {
 
 }
 
-extension MovieHomeViewController: PYSearchViewControllerDelegate {
-    
-}

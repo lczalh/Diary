@@ -56,6 +56,7 @@ class HomeEntranceViewController: DiaryBaseViewController {
         let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         backBarButtonItem.tintColor = LCZHexadecimalColor(hexadecimal: "#FECE1D")
         self.navigationItem.backBarButtonItem = backBarButtonItem
+        
     }
     
 
@@ -144,3 +145,4 @@ extension HomeEntranceViewController: FSPagerViewDelegate {
         self.homeEntranceView.fsPageControl.currentPage = pagerView.currentIndex
     }
 }
+

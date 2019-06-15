@@ -27,6 +27,11 @@ class NewsHomeViewController: DiaryBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "新闻"
+        self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: LCZHexadecimalColor(hexadecimal: "#57310C")]
+        
+        let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        backBarButtonItem.tintColor = LCZHexadecimalColor(hexadecimal: "#FECE1D")
+        self.navigationItem.backBarButtonItem = backBarButtonItem
         
         // 主视图
         self.newsHomeView = NewsHomeView(frame: self.view.bounds)

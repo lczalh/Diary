@@ -3,36 +3,33 @@ platform :ios, ‘10.0’
 use_frameworks!
 
 target 'Diary' do
-    pod 'URLNavigator'
-    pod 'Alamofire'
-    pod 'MJRefresh'
-    pod 'SnapKit'
-    pod 'Kingfisher'
+    pod 'URLNavigator', '~> 2.2.0'
+    pod 'Alamofire', '~> 4.8.2'
+    pod 'MJRefresh', '~> 3.2.0'
+    pod 'SnapKit', '~> 5.0.0'
+    pod 'Kingfisher', '~> 5.4.0'
     pod 'Moya/RxSwift'
     pod 'RxSwift'
     pod 'RxCocoa'
-    pod 'IQKeyboardManagerSwift'
+    pod 'IQKeyboardManagerSwift', '~> 6.3.0'
     pod 'NSObject+Rx'
     pod 'RxDataSources'
     pod 'Moya-ObjectMapper/RxSwift'
-    pod 'RealmSwift'
-    pod 'SVProgressHUD'
-    pod 'ESTabBarController-swift'
-    pod 'FSPagerView'
-    pod 'pop'
-    pod 'SwiftTheme'
-    pod 'SwifterSwift'
-    pod 'JXCategoryView'
+    pod 'SVProgressHUD', '~> 2.2.5'
+    pod 'FSPagerView', '~> 0.8.2'
+    pod 'SwiftTheme', '~> 0.4.4'
+    pod 'SwifterSwift', '~> 5.0.0'
+    pod 'JXCategoryView', '~> 1.3.4'
     pod 'ZFPlayer', '~> 3.0'
     pod 'ZFPlayer/ControlView', '~> 3.0'
     pod 'ZFPlayer/AVPlayer', '~> 3.0'
-    pod 'PYSearch'
+    pod 'PYSearch', '~> 0.9.1'
 end
 post_install do |installer|
     installer.pods_project.targets.each do |target|
         if target.name == 'Diary'
             target.build_configurations.each do |config|                            
-                config.build_settings['SWIFT_VERSION'] = '4.2'
+                config.build_settings['SWIFT_VERSION'] = '5'
             end
         end
     end

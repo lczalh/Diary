@@ -18,13 +18,13 @@ class NewsHomeView: DiaryBaseView {
         categoryView!.frame = CGRect(x: 0, y: 0, width: LCZWidth, height: 44)
         categoryView!.defaultSelectedIndex = 0
         categoryView!.titleSelectedFont = LCZFontSize(size: 15)
-        categoryView!.titleColorGradientEnabled = true
-        categoryView!.titleLabelZoomEnabled = true
+        categoryView!.isTitleColorGradientEnabled = true
+        categoryView!.isTitleLabelZoomEnabled = true
         categoryView!.titleLabelZoomScale = 1.2
-        categoryView!.titleLabelZoomScrollGradientEnabled = true
-        categoryView!.cellWidthZoomEnabled = true
+        categoryView!.isTitleLabelZoomScrollGradientEnabled = true
+        categoryView!.isCellWidthZoomEnabled = true
         categoryView!.cellWidthZoomScale = 1.2
-        categoryView!.averageCellSpacingEnabled = false
+        categoryView!.isAverageCellSpacingEnabled = false
         // 标题下标
         let lineView = JXCategoryIndicatorLineView()
         categoryView!.indicators = [lineView]
