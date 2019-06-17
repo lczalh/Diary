@@ -62,6 +62,12 @@ class NewsHomeViewController: DiaryBaseViewController {
                 self.listContainerView.reloadData()
             }).disposed(by: rx.disposeBag)
         
+        
+//        networkServicesProvider.rx.request(MultiTarget(DiaryNetworkServices.getMovieList(appName: "11111"))).subscribe(onSuccess: { (Response) in
+//            LCZPrint(try! Response.mapJSON())
+//        }) { (error) in
+//            LCZPrint(error)
+//        }.disposed(by: rx.disposeBag)
     }
     
     

@@ -4,7 +4,7 @@
 //
 //  Created by 谷粒公社 on 2019/2/13.
 //  Copyright © 2019 lcz. All rights reserved.
-//
+//  极速数据接口
 
 import Foundation
 
@@ -20,6 +20,7 @@ public enum HighSpeedDataNetworkServices {
     // MARK: - 查询快递物流信息
     case getExpressLogisticsInfo(appkey: String, type: String, number: String)
     
+    // MARK: - 查询快递公司
     case getCourierCompany(appkey: String)
 }
 
