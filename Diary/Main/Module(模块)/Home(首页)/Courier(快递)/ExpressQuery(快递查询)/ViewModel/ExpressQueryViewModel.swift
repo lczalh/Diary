@@ -12,7 +12,7 @@ class ExpressQueryViewModel {
     // 文件管理器
     private let fileManger = FileManager.default
     
-    // 创建文件路径 用于记录版本号 此时沙盒中并没有plist文件  要写入plist文件在存在
+    // 历史查询记录路径
     public let historyQueryPlist = LCZDocumentPath! + "/historyQuery.plist"
     
     /// 查询快递物流信息

@@ -22,14 +22,29 @@ class CourierEntranceTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel.getCommonExpressCompaniesData().subscribe(onSuccess: { (models) in
-            DispatchQueue.main.async {
-                self.expressQueryViewController.commonExpressCompaniesModel = models
-                self.commonlyExpressViewController.commonExpressCompaniesModel = models
-            }
-        }, onError: { (error) in
-            
-        }).disposed(by: rx.disposeBag)
+        // 文件管理器
+        let fileManger = FileManager.default
+        
+        // 优先使用本地常用快递公司数据。 没有则写入
+        if fileManger.fileExists(atPath: viewModel.commonExpressCompaniesPlist) == true {
+            let models = NSArray(contentsOfFile: viewModel.commonExpressCompaniesPlist)
+            self.expressQueryViewController.commonExpressCompaniesModel = Mapper<CourierEntranceModel>().mapArray(JSONArray: models as! [[String : Any]])
+            self.commonlyExpressViewController.commonExpressCompaniesModel = Mapper<CourierEntranceModel>().mapArray(JSONArray: models as! [[String : Any]])
+        } else {
+            viewModel.getCommonExpressCompaniesData().subscribe(onSuccess: { (models) in
+                DispatchQueue.main.async {
+                    // 存储数据
+                    let commonExpressCompaniesAry = models.toJSON() as NSArray
+                    commonExpressCompaniesAry.write(toFile: self.viewModel.commonExpressCompaniesPlist, atomically: true)
+                    self.expressQueryViewController.commonExpressCompaniesModel = models
+                    self.commonlyExpressViewController.commonExpressCompaniesModel = models
+                }
+            }, onError: { (error) in
+                LCZPrint(error)
+            }).disposed(by: rx.disposeBag)
+        }
+        
+        
         
         self.setTabBarItem(viewController: expressQueryViewController, tabBarTitle: "快递查询", image: UIImage(named: "huabanfubenhui")?.withRenderingMode(.alwaysOriginal), selectImage: UIImage(named: "huabanfuben")?.withRenderingMode(.alwaysOriginal))
         self.setTabBarItem( viewController: commonlyExpressViewController, tabBarTitle: "常用快递", image: UIImage(named: "commonlyExpressAsh")?.withRenderingMode(.alwaysOriginal), selectImage: UIImage(named: "commonlyExpress")?.withRenderingMode(.alwaysOriginal))

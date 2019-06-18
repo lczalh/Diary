@@ -10,6 +10,9 @@ import Foundation
 
 class CourierEntranceViewModel {
     
+    // 常用公司数据路径
+    public let commonExpressCompaniesPlist = LCZDocumentPath! + "/commonExpressCompanies.plist"
+    
     /// 获取常用快递公司数据
     ///
     /// - Returns: 常用快递公司

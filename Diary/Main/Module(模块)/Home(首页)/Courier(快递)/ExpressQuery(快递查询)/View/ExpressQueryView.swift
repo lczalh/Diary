@@ -114,6 +114,7 @@ class ExpressQueryView: DiaryBaseView {
         tableView.rowHeight = 40
         tableView.register(HistoryQueryTableViewCell.self, forCellReuseIdentifier: "HistoryQueryTableViewCell")
         tableView.showsVerticalScrollIndicator = false
+        tableView.separatorStyle = .none
     }
 
 }

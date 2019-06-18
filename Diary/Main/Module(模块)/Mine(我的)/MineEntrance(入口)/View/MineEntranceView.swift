@@ -12,7 +12,9 @@ class MineEntranceView: DiaryBaseView {
     
     var tableView: UITableView!
     
+    /// 图片
     var headerImageView: UIImageView!
+    
     
     override func configUI() {
         createTableView()
@@ -36,12 +38,13 @@ class MineEntranceView: DiaryBaseView {
         headerImageView.contentMode = .scaleAspectFill
         headerImageView.clipsToBounds = true
         
-        // 创建波浪视图
-        let waveView = LCZWaveView(frame: CGRect(x: 0, y: 160, width: LCZWidth, height: 40))
-        headerImageView.addSubview(waveView)
-        waveView.waveHeight = 10
-        waveView.waveOnBottom = false
-        // 开始播放波浪动画
-        waveView.startWave()
+//        // 用户头像
+//        let userAvatarImageView = UIImageView()
+//        headerImageView.addSubview(userAvatarImageView)
+//        userAvatarImageView.snp.makeConstraints { (make) in
+//            make.left.equalToSuperview().offset(15)
+//            make.centerY.equalToSuperview()
+//        }
+//        userAvatarImageView.image = UIImage(named: "portrait_default")
     }
 }

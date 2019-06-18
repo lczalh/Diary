@@ -12,9 +12,6 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    
-    /// 网络状态管理
-    let appDelegateNetworkReachabilityManager = NetworkReachabilityManager(host: "http://www.baidu.com")
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -33,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.rootViewController = MainTabBarController()
         }) { // 首页
             self.window?.rootViewController = MainTabBarController()
+                //LoginViewController()
         }
         self.window?.makeKeyAndVisible()
         self.window!.backgroundColor = UIColor.white

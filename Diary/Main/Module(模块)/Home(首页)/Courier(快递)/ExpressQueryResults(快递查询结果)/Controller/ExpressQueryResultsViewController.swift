@@ -32,14 +32,16 @@ class ExpressQueryResultsViewController: DiaryBaseViewController {
         }
         view.courierCompanyLeabel.text = model.name
         // 计算耗时
-        let initialTime = LCZTimeToTimeStamp(time: expressQueryResultModel.list[0].time!)
-        let endTime = LCZTimeToTimeStamp(time: expressQueryResultModel.list[expressQueryResultModel.list.count-1].time!)
-        let timeDifference = endTime - initialTime
-        // 天
-        let days = Int(abs(timeDifference / 3600 / 24))
-        // 小时
-        let hours = Int(abs((timeDifference / 3600).truncatingRemainder(dividingBy: 24.0)))
-        view.timeConsumingLabel.text = "\(days)天\(hours)小时"
+        if expressQueryResultModel.list[0].time!.isEmpty == false {
+            let initialTime = LCZTimeToTimeStamp(time: expressQueryResultModel.list[0].time!)
+            let endTime = LCZTimeToTimeStamp(time: expressQueryResultModel.list[expressQueryResultModel.list.count-1].time!)
+            let timeDifference = endTime - initialTime
+            // 天
+            let days = Int(abs(timeDifference / 3600 / 24))
+            // 小时
+            let hours = Int(abs((timeDifference / 3600).truncatingRemainder(dividingBy: 24.0)))
+            view.timeConsumingLabel.text = "\(days)天\(hours)小时"
+        }
         return view
     }()
     

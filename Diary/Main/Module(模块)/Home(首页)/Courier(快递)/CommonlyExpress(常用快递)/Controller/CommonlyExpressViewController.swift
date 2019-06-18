@@ -22,30 +22,15 @@ class CommonlyExpressViewController: DiaryBaseViewController {
     
     lazy var viewModel: CommonlyExpressViewModel = {
         let vm = CommonlyExpressViewModel()
-//        vm.getCommonExpressCompanies(headerRefresh: commonlyExpressView.tableView.mj_header.rx.refreshing.asDriver(), disposeBag: rx.disposeBag)
         return vm
     }()
-    
-//    private var models: Array<CommonlyExpressModel>? = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.navigationItem.title = "常用快递"
         self.tabBarController?.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: LCZHexadecimalColor(hexadecimal: "#57310C")]
+        
         self.view.addSubview(commonlyExpressView)
-        
-//        viewModel.tableData.subscribe(onNext: { (models) in
-//            DispatchQueue.main.async(execute: {
-//                self.models = models
-//                self.commonlyExpressView.tableView.reloadData()
-//            })
-//        }).disposed(by: rx.disposeBag)
-        
-        // 下拉刷新状态结束的绑定
-//        viewModel.endHeaderRefreshing
-//            .drive(commonlyExpressView.tableView.mj_header.rx.endRefreshing)
-//            .disposed(by: rx.disposeBag)
-        
         
     }
     
@@ -53,6 +38,7 @@ class CommonlyExpressViewController: DiaryBaseViewController {
 }
 
 extension CommonlyExpressViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.commonExpressCompaniesModel.count
     }
@@ -76,7 +62,6 @@ extension CommonlyExpressViewController: UITableViewDataSource {
         }
         return cell
     }
-    
     
 }
 

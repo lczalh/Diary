@@ -19,7 +19,13 @@ class SearchMovieViewController: DiaryBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = self.movieName
+        self.title = "搜索结果"
+        self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: LCZHexadecimalColor(hexadecimal: "#57310C")]
+        
+        let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        backBarButtonItem.tintColor = LCZHexadecimalColor(hexadecimal: "#FECE1D")
+        self.navigationItem.backBarButtonItem = backBarButtonItem
+        
         self.view.addSubview(self.searchMovieView)
         let viewModel = SearchMovieViewModel(input: (self.searchMovieView.tableView.mj_header.rx.refreshing.asDriver(),self.searchMovieView.tableView.mj_footer.rx.refreshing.asDriver(),self.movieName), dependency: (disposeBag: rx.disposeBag, networkService: SearchMovieNetworkService()))
         
