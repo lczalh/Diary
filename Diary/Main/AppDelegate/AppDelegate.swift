@@ -28,9 +28,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // 设置首页
         LCZHomePage.shared.setHomePage(guidePage: { // 引导页
             self.window?.rootViewController = MainTabBarController()
-        }) { // 首页
-            self.window?.rootViewController = MainTabBarController()
-                //LoginViewController()
+        }) {
+            // 判断用户是否登陆
+            if (LCZUserDefaults.object(forKey: "account") != nil) && (LCZUserDefaults.object(forKey: "password") != nil) { // 首页
+                self.window?.rootViewController = MainTabBarController()
+            } else { // 登陆
+                self.window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
+            }
         }
         self.window?.makeKeyAndVisible()
         self.window!.backgroundColor = UIColor.white

@@ -19,6 +19,12 @@
 		7326F8E422251CBD0005696F /* NewsDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7326F8E322251CBD0005696F /* NewsDetailsViewController.swift */; };
 		7326F8E7222520FE0005696F /* NewsDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7326F8E6222520FE0005696F /* NewsDetailsModel.swift */; };
 		732C0464224B123700EA7738 /* NewsHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732C0463224B123700EA7738 /* NewsHomeViewModel.swift */; };
+		732F735A22B9FAC0008108CD /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732F735922B9FAC0008108CD /* LoginViewModel.swift */; };
+		732F735C22B9FB6B008108CD /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732F735B22B9FB6B008108CD /* LoginModel.swift */; };
+		732F735F22BA00A9008108CD /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732F735E22BA00A9008108CD /* RegisterViewController.swift */; };
+		732F736422BA00CE008108CD /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732F736322BA00CE008108CD /* RegisterView.swift */; };
+		732F736622BA0F76008108CD /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732F736522BA0F76008108CD /* RegisterViewModel.swift */; };
+		732F736822BA1186008108CD /* RegisterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732F736722BA1186008108CD /* RegisterModel.swift */; };
 		73370BFC22B3614000C01FE0 /* LCZUIAlertControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73370BFB22B3614000C01FE0 /* LCZUIAlertControllerExtension.swift */; };
 		73370BFF22B37AA400C01FE0 /* CourierEntranceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73370BFE22B37AA400C01FE0 /* CourierEntranceViewModel.swift */; };
 		73370C0222B37DC700C01FE0 /* CourierEntranceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73370C0122B37DC700C01FE0 /* CourierEntranceModel.swift */; };
@@ -67,7 +73,7 @@
 		737E1C592213ED0C00BF751D /* HighSpeedDataNetworkServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737E1C582213ED0C00BF751D /* HighSpeedDataNetworkServices.swift */; };
 		737E1C5C2213F05900BF751D /* NewsHomeListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737E1C5B2213F05900BF751D /* NewsHomeListViewModel.swift */; };
 		737E1C5F2213FCE800BF751D /* NewsHomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737E1C5E2213FCE800BF751D /* NewsHomeModel.swift */; };
-		7382C83322B776A90033B902 /* DiaryNetworkServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7382C83222B776A90033B902 /* DiaryNetworkServices.swift */; };
+		7382C83322B776A90033B902 /* MobApiNetworkServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7382C83222B776A90033B902 /* MobApiNetworkServices.swift */; };
 		73948B7E2223CF88000ED09A /* NewsHomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73948B7D2223CF88000ED09A /* NewsHomeCell.swift */; };
 		73948B802223CFA5000ED09A /* DiaryBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73948B7F2223CFA5000ED09A /* DiaryBaseTableViewCell.swift */; };
 		73B1DDD72241EB8E00BFEF7A /* LCZProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B1DDD62241EB8E00BFEF7A /* LCZProgressHUD.swift */; };
@@ -108,6 +114,12 @@
 		7326F8E322251CBD0005696F /* NewsDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailsViewController.swift; sourceTree = "<group>"; };
 		7326F8E6222520FE0005696F /* NewsDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailsModel.swift; sourceTree = "<group>"; };
 		732C0463224B123700EA7738 /* NewsHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsHomeViewModel.swift; sourceTree = "<group>"; };
+		732F735922B9FAC0008108CD /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		732F735B22B9FB6B008108CD /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
+		732F735E22BA00A9008108CD /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		732F736322BA00CE008108CD /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		732F736522BA0F76008108CD /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
+		732F736722BA1186008108CD /* RegisterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterModel.swift; sourceTree = "<group>"; };
 		73370BFB22B3614000C01FE0 /* LCZUIAlertControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCZUIAlertControllerExtension.swift; sourceTree = "<group>"; };
 		73370BFE22B37AA400C01FE0 /* CourierEntranceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourierEntranceViewModel.swift; sourceTree = "<group>"; };
 		73370C0122B37DC700C01FE0 /* CourierEntranceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourierEntranceModel.swift; sourceTree = "<group>"; };
@@ -157,7 +169,7 @@
 		737E1C582213ED0C00BF751D /* HighSpeedDataNetworkServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighSpeedDataNetworkServices.swift; sourceTree = "<group>"; };
 		737E1C5B2213F05900BF751D /* NewsHomeListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsHomeListViewModel.swift; sourceTree = "<group>"; };
 		737E1C5E2213FCE800BF751D /* NewsHomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsHomeModel.swift; sourceTree = "<group>"; };
-		7382C83222B776A90033B902 /* DiaryNetworkServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryNetworkServices.swift; sourceTree = "<group>"; };
+		7382C83222B776A90033B902 /* MobApiNetworkServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobApiNetworkServices.swift; sourceTree = "<group>"; };
 		73948B7D2223CF88000ED09A /* NewsHomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsHomeCell.swift; sourceTree = "<group>"; };
 		73948B7F2223CFA5000ED09A /* DiaryBaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryBaseTableViewCell.swift; sourceTree = "<group>"; };
 		73B1DDD62241EB8E00BFEF7A /* LCZProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCZProgressHUD.swift; sourceTree = "<group>"; };
@@ -288,6 +300,10 @@
 		7302333922B8E46D002CD8C4 /* Register(注册) */ = {
 			isa = PBXGroup;
 			children = (
+				732F736222BA00BA008108CD /* Model */,
+				732F736122BA00B1008108CD /* ViewModel */,
+				732F736022BA00AC008108CD /* View */,
+				732F735D22BA008B008108CD /* Controller */,
 			);
 			path = "Register(注册)";
 			sourceTree = "<group>";
@@ -311,6 +327,7 @@
 		7302333F22B8E956002CD8C4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				732F735B22B9FB6B008108CD /* LoginModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -318,6 +335,7 @@
 		7302334022B8E990002CD8C4 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				732F735922B9FAC0008108CD /* LoginViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -362,6 +380,38 @@
 			isa = PBXGroup;
 			children = (
 				7326F8E6222520FE0005696F /* NewsDetailsModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		732F735D22BA008B008108CD /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				732F735E22BA00A9008108CD /* RegisterViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		732F736022BA00AC008108CD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				732F736322BA00CE008108CD /* RegisterView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		732F736122BA00B1008108CD /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				732F736522BA0F76008108CD /* RegisterViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		732F736222BA00BA008108CD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				732F736722BA1186008108CD /* RegisterModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -691,7 +741,7 @@
 				737E1C582213ED0C00BF751D /* HighSpeedDataNetworkServices.swift */,
 				734E9B6F22448EA300CC5004 /* MoayProvider.swift */,
 				734E9B7122448F8A00CC5004 /* MovieNetworkServices.swift */,
-				7382C83222B776A90033B902 /* DiaryNetworkServices.swift */,
+				7382C83222B776A90033B902 /* MobApiNetworkServices.swift */,
 			);
 			path = "NetworkServices(网络请求)";
 			sourceTree = "<group>";
@@ -1200,6 +1250,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7302334222B8E9C1002CD8C4 /* LoginViewController.swift in Sources */,
+				732F735C22B9FB6B008108CD /* LoginModel.swift in Sources */,
 				737E1C522213E82800BF751D /* DiaryBaseView.swift in Sources */,
 				736F50F022B2549700518645 /* CommonlyExpressView.swift in Sources */,
 				7300252022ADF1B500F05ADC /* HomeEntranceView.swift in Sources */,
@@ -1226,12 +1277,14 @@
 				737E1C5F2213FCE800BF751D /* NewsHomeModel.swift in Sources */,
 				7326F8E7222520FE0005696F /* NewsDetailsModel.swift in Sources */,
 				73BB0FCD22B09FA8005F351C /* ExpressQueryViewController.swift in Sources */,
+				732F736822BA1186008108CD /* RegisterModel.swift in Sources */,
 				7344B54F22AFA04700FC7D4D /* MineEntranceViewModel.swift in Sources */,
 				73D4DADC2213CBF200116541 /* AppDelegate.swift in Sources */,
-				7382C83322B776A90033B902 /* DiaryNetworkServices.swift in Sources */,
+				7382C83322B776A90033B902 /* MobApiNetworkServices.swift in Sources */,
 				73BB0FD122B0B0DB005F351C /* CourierEntranceTabBarController.swift in Sources */,
 				737E1C562213E94D00BF751D /* NewsHomeListView.swift in Sources */,
 				73B1DDE92242080400BFEF7A /* MovieHomeCell.swift in Sources */,
+				732F735A22B9FAC0008108CD /* LoginViewModel.swift in Sources */,
 				733E298F22607094001885CE /* PracticalFunctionCell.swift in Sources */,
 				7367D2F3221FA8DA008FD780 /* NewsHomeNetworkService.swift in Sources */,
 				7300251A22ADF0ED00F05ADC /* HomeEntranceViewController.swift in Sources */,
@@ -1240,6 +1293,7 @@
 				736F50F222B255D200518645 /* CommonlyExpressTableViewCell.swift in Sources */,
 				7367D2EE221FA43A008FD780 /* MJRefresh+Rx.swift in Sources */,
 				735AC95422AE27E500C51BF7 /* HomeEntranceViewModel.swift in Sources */,
+				732F736422BA00CE008108CD /* RegisterView.swift in Sources */,
 				73B1DDED2242306100BFEF7A /* MovieDetailsViewController.swift in Sources */,
 				737E1C5C2213F05900BF751D /* NewsHomeListViewModel.swift in Sources */,
 				7337A20A2226304500B19F07 /* NewsDetailsViewModel.swift in Sources */,
@@ -1251,6 +1305,7 @@
 				731A381F22B33F32009FA711 /* CommonlyExpressViewModel.swift in Sources */,
 				73370BFF22B37AA400C01FE0 /* CourierEntranceViewModel.swift in Sources */,
 				73B1DDDF2241EF5500BFEF7A /* MovieHomeView.swift in Sources */,
+				732F736622BA0F76008108CD /* RegisterViewModel.swift in Sources */,
 				73B1DDD72241EB8E00BFEF7A /* LCZProgressHUD.swift in Sources */,
 				73E52AF422B0E5AB0018CBA6 /* ExpressQueryViewModel.swift in Sources */,
 				73E52AF022B0DB6D0018CBA6 /* CommonlyExpressViewController.swift in Sources */,
@@ -1278,6 +1333,7 @@
 				737E1C542213E89700BF751D /* NewsHomeView.swift in Sources */,
 				737E1C592213ED0C00BF751D /* HighSpeedDataNetworkServices.swift in Sources */,
 				7344B54122AF594F00FC7D4D /* MainTabBarController.swift in Sources */,
+				732F735F22BA00A9008108CD /* RegisterViewController.swift in Sources */,
 				7344B54922AF8A5100FC7D4D /* MineEntranceViewController.swift in Sources */,
 				7302334422B8E9D9002CD8C4 /* LoginView.swift in Sources */,
 				737E1C3A2213DDF300BF751D /* DiaryRoute.swift in Sources */,

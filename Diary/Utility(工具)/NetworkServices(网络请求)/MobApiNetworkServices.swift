@@ -4,24 +4,27 @@
 //
 //  Created by 谷粒公社 on 2019/6/17.
 //  Copyright © 2019 lcz. All rights reserved.
-//
+//  MobApi接口
 
 import Foundation
 
 /// 定义分类
-public enum DiaryNetworkServices {
+public enum MobApiNetworkServices {
     
-    // MARK: - 获取电影列表数据
-    case getMovieList(appName: String)
+    // MARK: - 用户登陆
+    case userLogin(key: String, username: String, password: String)
+    
+    // MARK: - 用户注册
+    case userRegister(key: String, username: String, password: String)
 }
 
 //设置请求配置
-extension DiaryNetworkServices : TargetType {
+extension MobApiNetworkServices : TargetType {
     
     //服务器地址
     public var baseURL: URL {
         
-        return URL(string:"http://127.0.0.1:8080/")!
+        return URL(string:"http://apicloud.mob.com/")!
     }
     
     //各个请求的具体路径
@@ -29,9 +32,11 @@ extension DiaryNetworkServices : TargetType {
         
         switch self {
             
-        case .getMovieList:
-            return "user/qqq"
-   
+        case .userLogin:
+            return "user/login"
+            
+        case .userRegister:
+            return "user/rigister"
         }
         
     }
@@ -52,9 +57,14 @@ extension DiaryNetworkServices : TargetType {
         var parameterDict: [String : Any] = Dictionary()
         switch self {
             
-        case .getMovieList(let appName):
-            parameterDict["appName"] = appName
-            break
+        case .userLogin(let key, let username, let password):
+            parameterDict["key"] = key
+            parameterDict["username"] = username
+            parameterDict["password"] = password
+        case .userRegister(let key, let username, let password):
+            parameterDict["key"] = key
+            parameterDict["username"] = username
+            parameterDict["password"] = password
         }
         
         return  .requestParameters(parameters: parameterDict, encoding: URLEncoding.default)

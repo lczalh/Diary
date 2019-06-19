@@ -13,3 +13,9 @@ public let diaryRoute = Navigator()
 
 /// 极速数据AppKey
 public let highSpeedDataAppKey = "ac0f7297750aa010"
+
+/// MobApiKey
+public let mobApiKey = "1f75e29dc6384"
+
+/// mobApiAppSecret
+public let mobApiAppSecret = "30ef617b84e0b43b860cdb165367c94c"

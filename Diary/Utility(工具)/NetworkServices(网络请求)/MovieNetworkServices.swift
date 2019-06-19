@@ -15,6 +15,11 @@ public enum MovieNetworkServices {
     case getMovieList(ac: String,pg: Int)
     // MARK: - 获取搜索的电影列表数据
     case getSearchMovieList(ac: String,pg: Int, wd: String)
+    // MARK: - 用户登陆
+    case userLogin(user_name: String, user_pwd: String)
+    
+    case userRegister(user_name: String, user_pwd: String, user_pwd2: String)
+    //https://www.letaoshijie.com/reut.html
 }
 
 //设置请求配置
@@ -36,6 +41,10 @@ extension MovieNetworkServices : TargetType {
             
         case .getSearchMovieList:
             return "api.php/provide/vod/"
+        case .userLogin:
+            return "index.php/user/login"
+        case .userRegister:
+            return "index.php/user/reg"
         }
         
     }
@@ -65,6 +74,13 @@ extension MovieNetworkServices : TargetType {
             parameterDict["pg"] = pg
             parameterDict["wd"] = wd
             break
+        case .userLogin(let user_name, let user_pwd):
+            parameterDict["user_name"] = user_name
+            parameterDict["user_pwd"] = user_pwd
+        case .userRegister(let user_name, let user_pwd, let user_pwd2):
+            parameterDict["user_name"] = user_name
+            parameterDict["user_pwd"] = user_pwd
+            parameterDict["user_pwd2"] = user_pwd2
         }
         
         return  .requestParameters(parameters: parameterDict, encoding: URLEncoding.default)

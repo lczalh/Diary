@@ -48,8 +48,11 @@ public let LCZiphone7Height = 667
 /// iphone5S屏幕高度
 public let LCZiphone5SHeight = 568
 
+/// APP用户明
+public let LCZAppName: String = Bundle.main.infoDictionary!["CFBundleDisplayName"] as! String
+
 /// 获取根控制器
-public let LCZAppDelegateRootViewController = UIApplication.shared.delegate?.window??.rootViewController
+public var LCZAppDelegateRootViewController = UIApplication.shared.delegate?.window??.rootViewController
 
 // 获取沙盒 Document路径
 public let LCZDocumentPath = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first
