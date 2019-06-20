@@ -166,7 +166,7 @@ class LoginView: DiaryBaseView {
             make.right.equalTo(verticalLineView.snp.left).offset(-30)
             make.centerY.equalTo(verticalLineView)
         }
-        forgotPasswordButton.setTitle("忘记密码", for: .normal)
+        forgotPasswordButton.setTitle("找回密码", for: .normal)
         forgotPasswordButton.setTitleColor(UIColor.black, for: .normal)
         forgotPasswordButton.titleLabel?.font = LCZFontSize(size: 12)
         

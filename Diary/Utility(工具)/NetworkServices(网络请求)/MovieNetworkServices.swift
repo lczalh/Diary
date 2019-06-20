@@ -17,9 +17,11 @@ public enum MovieNetworkServices {
     case getSearchMovieList(ac: String,pg: Int, wd: String)
     // MARK: - 用户登陆
     case userLogin(user_name: String, user_pwd: String)
+    // MARK: - 用户注册
+    case userRegister(user_name: String, user_pwd: String, user_pwd2: String, verify: String)
     
-    case userRegister(user_name: String, user_pwd: String, user_pwd2: String)
-    //https://www.letaoshijie.com/reut.html
+    case retrievePassword(user_name: String, user_question: String, user_answer: String, user_pwd: String, user_pwd2: String, verify: String)
+    
 }
 
 //设置请求配置
@@ -45,6 +47,8 @@ extension MovieNetworkServices : TargetType {
             return "index.php/user/login"
         case .userRegister:
             return "index.php/user/reg"
+        case .retrievePassword:
+            return "index.php/user/findpass"
         }
         
     }
@@ -77,10 +81,18 @@ extension MovieNetworkServices : TargetType {
         case .userLogin(let user_name, let user_pwd):
             parameterDict["user_name"] = user_name
             parameterDict["user_pwd"] = user_pwd
-        case .userRegister(let user_name, let user_pwd, let user_pwd2):
+        case .userRegister(let user_name, let user_pwd, let user_pwd2, let verify):
             parameterDict["user_name"] = user_name
             parameterDict["user_pwd"] = user_pwd
             parameterDict["user_pwd2"] = user_pwd2
+            parameterDict["verify"] = verify
+        case .retrievePassword(let user_name, let user_question, let user_answer, let user_pwd, let user_pwd2, let verify):
+            parameterDict["user_name"] = user_name
+            parameterDict["user_question"] = user_question
+            parameterDict["user_answer"] = user_answer
+            parameterDict["user_pwd"] = user_pwd
+            parameterDict["user_pwd2"] = user_pwd2
+            parameterDict["verify"] = verify
         }
         
         return  .requestParameters(parameters: parameterDict, encoding: URLEncoding.default)

@@ -55,6 +55,8 @@
 		735BB33A225DCF2300241A59 /* SynopsisCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735BB339225DCF2300241A59 /* SynopsisCell.swift */; };
 		735BB33C225DEE1300241A59 /* EpisodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735BB33B225DEE1300241A59 /* EpisodeCell.swift */; };
 		735BB33E225DEF7500241A59 /* SelectorEpisodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735BB33D225DEF7500241A59 /* SelectorEpisodeCell.swift */; };
+		735D64CA22BB81D10092ADEC /* RetrievePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735D64C922BB81D10092ADEC /* RetrievePasswordViewController.swift */; };
+		735D64CC22BB857E0092ADEC /* RetrievePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735D64CB22BB857E0092ADEC /* RetrievePasswordView.swift */; };
 		7367D2EE221FA43A008FD780 /* MJRefresh+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7367D2ED221FA43A008FD780 /* MJRefresh+Rx.swift */; };
 		7367D2F0221FA43F008FD780 /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7367D2EF221FA43F008FD780 /* UIViewController+Rx.swift */; };
 		7367D2F3221FA8DA008FD780 /* NewsHomeNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7367D2F2221FA8DA008FD780 /* NewsHomeNetworkService.swift */; };
@@ -151,6 +153,8 @@
 		735BB339225DCF2300241A59 /* SynopsisCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynopsisCell.swift; sourceTree = "<group>"; };
 		735BB33B225DEE1300241A59 /* EpisodeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeCell.swift; sourceTree = "<group>"; };
 		735BB33D225DEF7500241A59 /* SelectorEpisodeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectorEpisodeCell.swift; sourceTree = "<group>"; };
+		735D64C922BB81D10092ADEC /* RetrievePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrievePasswordViewController.swift; sourceTree = "<group>"; };
+		735D64CB22BB857E0092ADEC /* RetrievePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrievePasswordView.swift; sourceTree = "<group>"; };
 		7367D2ED221FA43A008FD780 /* MJRefresh+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MJRefresh+Rx.swift"; sourceTree = "<group>"; };
 		7367D2EF221FA43F008FD780 /* UIViewController+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
 		7367D2F2221FA8DA008FD780 /* NewsHomeNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsHomeNetworkService.swift; sourceTree = "<group>"; };
@@ -280,6 +284,7 @@
 		7302333722B8E378002CD8C4 /* UserManage(用户管理) */ = {
 			isa = PBXGroup;
 			children = (
+				735D64C422BB815A0092ADEC /* RetrievePassword(找回密码) */,
 				7302333922B8E46D002CD8C4 /* Register(注册) */,
 				7302333822B8E44F002CD8C4 /* Login(登陆) */,
 			);
@@ -544,6 +549,47 @@
 				734E9B6B22448D8B00CC5004 /* MovieHomeNetworkService.swift */,
 			);
 			path = NetworkService;
+			sourceTree = "<group>";
+		};
+		735D64C422BB815A0092ADEC /* RetrievePassword(找回密码) */ = {
+			isa = PBXGroup;
+			children = (
+				735D64C822BB819E0092ADEC /* ViewModel */,
+				735D64C722BB819A0092ADEC /* Model */,
+				735D64C622BB81950092ADEC /* View */,
+				735D64C522BB818E0092ADEC /* Controller */,
+			);
+			path = "RetrievePassword(找回密码)";
+			sourceTree = "<group>";
+		};
+		735D64C522BB818E0092ADEC /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				735D64C922BB81D10092ADEC /* RetrievePasswordViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		735D64C622BB81950092ADEC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				735D64CB22BB857E0092ADEC /* RetrievePasswordView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		735D64C722BB819A0092ADEC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		735D64C822BB819E0092ADEC /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		7367D2EC221FA3AB008FD780 /* Extension(扩展) */ = {
@@ -1272,6 +1318,7 @@
 				735BB336225D943900241A59 /* MovieDetailsTableHeaderView.swift in Sources */,
 				737E1C472213E21A00BF751D /* DiaryBaseViewController.swift in Sources */,
 				7337A20722262CBB00B19F07 /* NewsDetailsView.swift in Sources */,
+				735D64CC22BB857E0092ADEC /* RetrievePasswordView.swift in Sources */,
 				735BB33E225DEF7500241A59 /* SelectorEpisodeCell.swift in Sources */,
 				D0A716A122B4BF20000BC367 /* LCZWaveView.swift in Sources */,
 				737E1C5F2213FCE800BF751D /* NewsHomeModel.swift in Sources */,
@@ -1308,6 +1355,7 @@
 				732F736622BA0F76008108CD /* RegisterViewModel.swift in Sources */,
 				73B1DDD72241EB8E00BFEF7A /* LCZProgressHUD.swift in Sources */,
 				73E52AF422B0E5AB0018CBA6 /* ExpressQueryViewModel.swift in Sources */,
+				735D64CA22BB81D10092ADEC /* RetrievePasswordViewController.swift in Sources */,
 				73E52AF022B0DB6D0018CBA6 /* CommonlyExpressViewController.swift in Sources */,
 				73B1DDE52242055700BFEF7A /* MovieHomeViewModel.swift in Sources */,
 				7344B54B22AF8A6900FC7D4D /* MineEntranceView.swift in Sources */,

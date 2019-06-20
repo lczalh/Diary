@@ -42,11 +42,14 @@ class LoginViewController: DiaryBaseViewController {
         
         self.view.addSubview(loginView)
         
+        let account = loginView.accountTextField.rx.text.orEmpty.map{ $0.count >= 6 && $0.count <= 18}.share(replay: 1)
+        let password = loginView.passwordTextField.rx.text.orEmpty.map{ $0.count >= 6 && $0.count <= 18}.share(replay: 1)
+        
         // 监听账号密码输入框
-        Observable.combineLatest(loginView.accountTextField.rx.text, loginView.passwordTextField.rx.text) {$0!.count > 0 && $1!.count > 0}
-            .subscribe(onNext: { (state) in
+        let zip = Observable.combineLatest(account, password) { $0 && $1 }
+        zip.bind(to: self.loginView.loginButton.rx.isEnabled).disposed(by: rx.disposeBag)
+        zip.subscribe(onNext: { (state) in
                 self.loginView.loginButton.backgroundColor = state == true ? LCZHexadecimalColor(hexadecimal: "#FECE1D") : LCZRgbColor(239, 240, 244, 1)
-                self.loginView.loginButton.isEnabled = state
             }).disposed(by: rx.disposeBag)
      
         // 登陆响应
@@ -70,7 +73,12 @@ class LoginViewController: DiaryBaseViewController {
         
         // 用户注册
         self.loginView.userRegistrationButton.rx.tap.subscribe(onNext: { () in
-            self.navigationController?.pushViewController(RegisterViewController(), animated: true)
+            diaryRoute.push("diary://login/register")
+        }).disposed(by: rx.disposeBag)
+        
+        // 找回密码
+        self.loginView.forgotPasswordButton.rx.tap.subscribe(onNext: { () in
+            diaryRoute.push("diary://login/retrievepassword")
         }).disposed(by: rx.disposeBag)
         
     }

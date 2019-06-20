@@ -11,6 +11,21 @@ import Foundation
 enum DiaryRoute {
     
     static func initialize(navigator: NavigatorType) {
+        
+        // 找回密码
+        navigator.register("diary://login/retrievepassword") { url, values, context in
+            let retrievePassword = RetrievePasswordViewController()
+            retrievePassword.hidesBottomBarWhenPushed = true
+            return retrievePassword
+        }
+        
+        // 注册
+        navigator.register("diary://login/register") { url, values, context in
+            let register = RegisterViewController()
+            register.hidesBottomBarWhenPushed = true
+            return register
+        }
+        
         // 新闻首页
         navigator.register("diary://homeEntrance/newsHome") { url, values, context in
             let newsHome = NewsHomeViewController()

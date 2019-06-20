@@ -28,37 +28,23 @@ class RegisterViewController: DiaryBaseViewController {
         
         self.view.addSubview(registerView)
         
+        
+        let account = registerView.accountTextField.rx.text.orEmpty.map{ $0.count >= 6 && $0.count <= 18}.share(replay: 1)
+        let password = registerView.passwordTextField.rx.text.orEmpty.map{ $0.count >= 6 && $0.count <= 18}.share(replay: 1)
+        let confirmPassword = registerView.confirmPasswordTextField.rx.text.orEmpty.map{ $0.count >= 6 && $0.count <= 18}.share(replay: 1)
+        let code = registerView.codeTextField.rx.text.orEmpty.map{ $0.count == 4 }.share(replay: 1)
+        
         // 监听账号、密码、确认密码输入框
-        Observable.combineLatest(registerView.accountTextField.rx.text, registerView.passwordTextField.rx.text, registerView.confirmPasswordTextField.rx.text, registerView.codeTextField.rx.text) {$0!.count > 0 && $1!.count > 0 && $2!.count > 0 && $3!.count > 0}
-            .subscribe(onNext: { (state) in
+        let zip = Observable.combineLatest(account, password, confirmPassword, code) { $0 && $1 && $2 && $3 }
+        zip.bind(to: self.registerView.registerButton.rx.isEnabled).disposed(by: rx.disposeBag)
+        zip.subscribe(onNext: { (state) in
                 self.registerView.registerButton.backgroundColor = state == true ? LCZHexadecimalColor(hexadecimal: "#FECE1D") : LCZRgbColor(239, 240, 244, 1)
-                self.registerView.registerButton.isEnabled = state
             }).disposed(by: rx.disposeBag)
         
         // 注册响应
         registerView.registerButton.rx.tap.subscribe(onNext: { () in
-            if self.registerView.accountTextField.text!.count < 6 || self.registerView.accountTextField.text!.count > 18 {
-                LCZProgressHUD.showError(title: "您的账号不符合要求，请重新输入！")
-                return
-            }
-            
-            if self.registerView.passwordTextField.text!.count < 6 || self.registerView.passwordTextField.text!.count > 18 {
-                LCZProgressHUD.showError(title: "您的密码不符合要求，请重新输入！")
-                return
-            }
-            
-            if self.registerView.confirmPasswordTextField.text! !=  self.registerView.passwordTextField.text! {
-                LCZProgressHUD.showError(title: "您两次输入的密码不相符，请重新输入！")
-                return
-            }
-            
-            if self.registerView.codeTextField.text!.count <= 0 {
-                LCZProgressHUD.showError(title: "请输入验证码！")
-                return
-            }
-            
             self.registerView.registerButton.isEnabled = false
-            self.viewModel.userRegister(username: self.registerView.accountTextField.text!, password: self.registerView.passwordTextField.text!, passwordTwo: self.registerView.confirmPasswordTextField.text!).subscribe(onSuccess: { (model) in
+            self.viewModel.userRegister(username: self.registerView.accountTextField.text!, password: self.registerView.passwordTextField.text!, passwordTwo: self.registerView.confirmPasswordTextField.text!, verify: self.registerView.codeTextField.text!).subscribe(onSuccess: { (model) in
                 LCZProgressHUD.showSuccess(title: "注册成功！")
                 self.registerView.registerButton.isEnabled = true
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5 , execute: {

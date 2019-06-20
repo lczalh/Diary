@@ -1,15 +1,15 @@
 //
-//  RegisterView.swift
+//  RetrievePasswordView.swift
 //  Diary
 //
-//  Created by 谷粒公社 on 2019/6/19.
+//  Created by 谷粒公社 on 2019/6/20.
 //  Copyright © 2019 lcz. All rights reserved.
 //
 
 import UIKit
 
-class RegisterView: DiaryBaseView {
-    
+class RetrievePasswordView: DiaryBaseView {
+
     /// 确认密码输入框
     public var confirmPasswordTextField: UITextField!
     
@@ -19,14 +19,20 @@ class RegisterView: DiaryBaseView {
     /// 账号输入框
     public var accountTextField: UITextField!
     
-    /// 注册按钮
-    public var registerButton: UIButton!
+    /// 找回按钮
+    public var retrievePasswordButton: UIButton!
     
     /// 验证码图片
     private var codeImageView: UIImageView!
     
     /// 验证码输入框
     public var codeTextField: UITextField!
+    
+    /// 密保问题
+    public var encryptedProblemTextField: UITextField!
+    
+    /// 密保答案
+    public var encryptedAnswersTextField: UITextField!
     
     override func configUI() {
         
@@ -98,11 +104,56 @@ class RegisterView: DiaryBaseView {
         }
         confirmPasswordLineView.backgroundColor = LCZRgbColor(239, 240, 244, 1)
         
+        // 密保问题
+        encryptedProblemTextField = UITextField()
+        self.addSubview(encryptedProblemTextField)
+        encryptedProblemTextField.snp.makeConstraints { (make) in
+            make.left.equalToSuperview().offset(50)
+            make.top.equalTo(confirmPasswordLineView.snp.bottom).offset(20)
+            make.right.equalToSuperview().offset(-50)
+            make.height.equalTo(40)
+        }
+        encryptedProblemTextField.clearButtonMode = .unlessEditing
+        encryptedProblemTextField.placeholder = "请输入您的密保问题"
+        encryptedProblemTextField.font = LCZFontSize(size: 14)
+        encryptedProblemTextField.keyboardType = .numberPad
+        let encryptedProblemLineView = UIView()
+        self.addSubview(encryptedProblemLineView)
+        encryptedProblemLineView.snp.makeConstraints { (make) in
+            make.left.right.equalTo(encryptedProblemTextField)
+            make.top.equalTo(encryptedProblemTextField.snp.bottom)
+            make.height.equalTo(1)
+        }
+        encryptedProblemLineView.backgroundColor = LCZRgbColor(239, 240, 244, 1)
+        
+        // 密保答案
+        encryptedAnswersTextField = UITextField()
+        self.addSubview(encryptedAnswersTextField)
+        encryptedAnswersTextField.snp.makeConstraints { (make) in
+            make.left.equalToSuperview().offset(50)
+            make.top.equalTo(encryptedProblemLineView.snp.bottom).offset(20)
+            make.right.equalToSuperview().offset(-50)
+            make.height.equalTo(40)
+        }
+        encryptedAnswersTextField.clearButtonMode = .unlessEditing
+        encryptedAnswersTextField.placeholder = "请输入您的密码答案"
+        encryptedAnswersTextField.font = LCZFontSize(size: 14)
+        encryptedAnswersTextField.keyboardType = .asciiCapable
+        encryptedAnswersTextField.isSecureTextEntry = true
+        let encryptedAnswersLineView = UIView()
+        self.addSubview(encryptedAnswersLineView)
+        encryptedAnswersLineView.snp.makeConstraints { (make) in
+            make.left.right.equalTo(encryptedAnswersTextField)
+            make.top.equalTo(encryptedAnswersTextField.snp.bottom)
+            make.height.equalTo(1)
+        }
+        encryptedAnswersLineView.backgroundColor = LCZRgbColor(239, 240, 244, 1)
+        
         // 验证码
         codeImageView = UIImageView()
         self.addSubview(codeImageView)
         codeImageView.snp.makeConstraints { (make) in
-            make.top.equalTo(confirmPasswordLineView).offset(20)
+            make.top.equalTo(encryptedAnswersLineView).offset(20)
             make.right.equalToSuperview().offset(-50)
             make.height.equalTo(40)
             make.width.equalTo(100)
@@ -135,22 +186,22 @@ class RegisterView: DiaryBaseView {
         codeLineView.backgroundColor = LCZRgbColor(239, 240, 244, 1)
         
         // 注册
-        registerButton = UIButton(type: .custom)
-        self.addSubview(registerButton)
-        registerButton.snp.makeConstraints { (make) in
+        retrievePasswordButton = UIButton(type: .custom)
+        self.addSubview(retrievePasswordButton)
+        retrievePasswordButton.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
             make.top.equalTo(codeLineView.snp.bottom).offset(40)
             make.size.equalTo(80)
         }
-        registerButton.setTitle("注册", for: .normal)
-        registerButton.setTitleColor(UIColor.white, for: .normal)
-        registerButton.backgroundColor = LCZRgbColor(239, 240, 244, 1)
-        registerButton.layoutIfNeeded()
-        let bezierPath = UIBezierPath(roundedRect: registerButton.bounds, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: 40, height: 40))
+        retrievePasswordButton.setTitle("找回", for: .normal)
+        retrievePasswordButton.setTitleColor(UIColor.white, for: .normal)
+        retrievePasswordButton.backgroundColor = LCZRgbColor(239, 240, 244, 1)
+        retrievePasswordButton.layoutIfNeeded()
+        let bezierPath = UIBezierPath(roundedRect: retrievePasswordButton.bounds, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: 40, height: 40))
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = bezierPath.cgPath
-        shapeLayer.frame = registerButton.bounds
-        registerButton.layer.mask = shapeLayer
+        shapeLayer.frame = retrievePasswordButton.bounds
+        retrievePasswordButton.layer.mask = shapeLayer
         
     }
     
@@ -164,5 +215,6 @@ class RegisterView: DiaryBaseView {
             })
         }
     }
+
 
 }
