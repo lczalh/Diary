@@ -23,10 +23,13 @@ class RegisterView: DiaryBaseView {
     public var registerButton: UIButton!
     
     /// 验证码图片
-    private var codeImageView: UIImageView!
+    public var codeButton: UIButton!
     
     /// 验证码输入框
     public var codeTextField: UITextField!
+    
+    /// 邮箱输入框
+    public var emailTextField: UITextField!
     
     override func configUI() {
         
@@ -98,37 +101,66 @@ class RegisterView: DiaryBaseView {
         }
         confirmPasswordLineView.backgroundColor = LCZRgbColor(239, 240, 244, 1)
         
+        // 邮箱号输入框
+        emailTextField = UITextField()
+        self.addSubview(emailTextField)
+        emailTextField.snp.makeConstraints { (make) in
+            make.left.equalToSuperview().offset(50)
+            make.top.equalTo(confirmPasswordLineView.snp.bottom).offset(20)
+            make.right.equalToSuperview().offset(-50)
+            make.height.equalTo(40)
+        }
+        emailTextField.clearButtonMode = .unlessEditing
+        emailTextField.placeholder = "请输入您的邮箱"
+        emailTextField.font = LCZFontSize(size: 14)
+        emailTextField.keyboardType = .emailAddress
+        let emailLineView = UIView()
+        self.addSubview(emailLineView)
+        emailLineView.snp.makeConstraints { (make) in
+            make.left.right.equalTo(emailTextField)
+            make.top.equalTo(emailTextField.snp.bottom)
+            make.height.equalTo(1)
+        }
+        emailLineView.backgroundColor = LCZRgbColor(239, 240, 244, 1)
+        
         // 验证码
-        codeImageView = UIImageView()
-        self.addSubview(codeImageView)
-        codeImageView.snp.makeConstraints { (make) in
-            make.top.equalTo(confirmPasswordLineView).offset(20)
+        codeButton = UIButton(type: .custom)
+        self.addSubview(codeButton)
+        codeButton.snp.makeConstraints { (make) in
+            make.top.equalTo(emailLineView).offset(20)
             make.right.equalToSuperview().offset(-50)
             make.height.equalTo(40)
             make.width.equalTo(100)
         }
-        codeImageView.isUserInteractionEnabled = true
-        getCodeImage()
-        let tapCodeImageView = UITapGestureRecognizer(target: self, action: #selector(getCodeImage))
-        codeImageView.addGestureRecognizer(tapCodeImageView)
+        codeButton.setTitle("获取验证码", for: .normal)
+        codeButton.titleLabel?.font = LCZFontSize(size: 14)
+        codeButton.backgroundColor = LCZRgbColor(239, 240, 244, 1)
+        codeButton.layoutIfNeeded()
+        let codeBezierPath = UIBezierPath(roundedRect: codeButton.bounds, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: 5, height: 5))
+        let codeShapeLayer = CAShapeLayer()
+        codeShapeLayer.path = codeBezierPath.cgPath
+        codeShapeLayer.frame = codeButton.bounds
+        codeButton.layer.mask = codeShapeLayer
+        
         // 验证码输入框
         codeTextField = UITextField()
         self.addSubview(codeTextField)
         codeTextField.snp.makeConstraints { (make) in
             make.left.equalToSuperview().offset(50)
-            make.top.equalTo(codeImageView)
-            make.right.equalTo(codeImageView.snp.left).offset(-5)
+            make.top.equalTo(codeButton)
+            make.right.equalTo(codeButton.snp.left).offset(-5)
             make.height.equalTo(40)
         }
         codeTextField.clearButtonMode = .unlessEditing
-        codeTextField.placeholder = "请输入验证码"
+        codeTextField.placeholder = "请输入邮箱验证码"
         codeTextField.font = LCZFontSize(size: 14)
         codeTextField.keyboardType = .numberPad
         // 验证码分割线
         let codeLineView = UIView()
         self.addSubview(codeLineView)
         codeLineView.snp.makeConstraints { (make) in
-            make.left.right.equalToSuperview().offset(-50)
+            make.left.equalToSuperview().offset(-50)
+            make.right.equalTo(codeButton.snp.left)
             make.top.equalTo(codeTextField.snp.bottom)
             make.height.equalTo(1)
         }
@@ -154,15 +186,15 @@ class RegisterView: DiaryBaseView {
         
     }
     
-    @objc private func getCodeImage() {
-        LCZProgressHUD.show()
-        DispatchQueue.global().async {
-            let image = UIImage(data: try! Data(contentsOf: URL(string: "https://www.letaoshijie.com/index.php/verify/index.html?v=1560934558?v=1560934558")!))
-            DispatchQueue.main.async(execute: {
-                LCZProgressHUD.dismiss()
-                self.codeImageView.image = image
-            })
-        }
-    }
+//    @objc public func getCodeImage() {
+//        LCZProgressHUD.show()
+//        DispatchQueue.global().async {
+//            let image = UIImage(data: try! Data(contentsOf: URL(string: "https://www.letaoshijie.com/index.php/verify/index.html?v=1560934558?v=1560934558")!))
+//            DispatchQueue.main.async(execute: {
+//                LCZProgressHUD.dismiss()
+//                self.codeButton.image = image
+//            })
+//        }
+//    }
 
 }

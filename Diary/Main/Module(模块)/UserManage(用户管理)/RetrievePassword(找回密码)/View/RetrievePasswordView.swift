@@ -205,7 +205,7 @@ class RetrievePasswordView: DiaryBaseView {
         
     }
     
-    @objc private func getCodeImage() {
+    @objc public func getCodeImage() {
         LCZProgressHUD.show()
         DispatchQueue.global().async {
             let image = UIImage(data: try! Data(contentsOf: URL(string: "https://www.letaoshijie.com/index.php/verify/index.html?v=1560934558?v=1560934558")!))

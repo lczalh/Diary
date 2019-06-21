@@ -29,6 +29,7 @@ class MineEntranceView: DiaryBaseView {
         tableView.register(MineEntranceTableViewCell.self, forCellReuseIdentifier: "MineEntranceTableViewCell")
         tableView.contentInset = UIEdgeInsets(top: 200, left: 0, bottom: 0, right: 0)
         tableView.separatorStyle = .none
+        tableView.backgroundColor = LCZRgbColor(245, 245, 245, 1)
     }
     
     private func createHeaderImageView() {

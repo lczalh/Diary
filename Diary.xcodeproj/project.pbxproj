@@ -75,7 +75,15 @@
 		737E1C592213ED0C00BF751D /* HighSpeedDataNetworkServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737E1C582213ED0C00BF751D /* HighSpeedDataNetworkServices.swift */; };
 		737E1C5C2213F05900BF751D /* NewsHomeListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737E1C5B2213F05900BF751D /* NewsHomeListViewModel.swift */; };
 		737E1C5F2213FCE800BF751D /* NewsHomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737E1C5E2213FCE800BF751D /* NewsHomeModel.swift */; };
-		7382C83322B776A90033B902 /* MobApiNetworkServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7382C83222B776A90033B902 /* MobApiNetworkServices.swift */; };
+		738AD37022BC743600FD0680 /* RetrievePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738AD36F22BC743600FD0680 /* RetrievePasswordViewModel.swift */; };
+		738AD37722BC80ED00FD0680 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738AD37622BC80ED00FD0680 /* SettingViewController.swift */; };
+		738AD37922BC847A00FD0680 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738AD37822BC847A00FD0680 /* SettingView.swift */; };
+		738AD37B22BC85D000FD0680 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738AD37A22BC85D000FD0680 /* SettingTableViewCell.swift */; };
+		738AD37D22BC96C400FD0680 /* ClearCacheTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738AD37C22BC96C400FD0680 /* ClearCacheTableViewCell.swift */; };
+		738AD38022BC993F00FD0680 /* LCZClearCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738AD37F22BC993F00FD0680 /* LCZClearCache.swift */; };
+		738AD38322BC9A0600FD0680 /* LCZTimingCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738AD38222BC9A0500FD0680 /* LCZTimingCounter.swift */; };
+		738AD38A22BCA2CE00FD0680 /* ProblemFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738AD38922BCA2CE00FD0680 /* ProblemFeedbackViewController.swift */; };
+		738AD38C22BCA2FE00FD0680 /* ProblemFeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738AD38B22BCA2FE00FD0680 /* ProblemFeedbackView.swift */; };
 		73948B7E2223CF88000ED09A /* NewsHomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73948B7D2223CF88000ED09A /* NewsHomeCell.swift */; };
 		73948B802223CFA5000ED09A /* DiaryBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73948B7F2223CFA5000ED09A /* DiaryBaseTableViewCell.swift */; };
 		73B1DDD72241EB8E00BFEF7A /* LCZProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B1DDD62241EB8E00BFEF7A /* LCZProgressHUD.swift */; };
@@ -173,7 +181,15 @@
 		737E1C582213ED0C00BF751D /* HighSpeedDataNetworkServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighSpeedDataNetworkServices.swift; sourceTree = "<group>"; };
 		737E1C5B2213F05900BF751D /* NewsHomeListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsHomeListViewModel.swift; sourceTree = "<group>"; };
 		737E1C5E2213FCE800BF751D /* NewsHomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsHomeModel.swift; sourceTree = "<group>"; };
-		7382C83222B776A90033B902 /* MobApiNetworkServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobApiNetworkServices.swift; sourceTree = "<group>"; };
+		738AD36F22BC743600FD0680 /* RetrievePasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrievePasswordViewModel.swift; sourceTree = "<group>"; };
+		738AD37622BC80ED00FD0680 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		738AD37822BC847A00FD0680 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		738AD37A22BC85D000FD0680 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
+		738AD37C22BC96C400FD0680 /* ClearCacheTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearCacheTableViewCell.swift; sourceTree = "<group>"; };
+		738AD37F22BC993F00FD0680 /* LCZClearCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCZClearCache.swift; sourceTree = "<group>"; };
+		738AD38222BC9A0500FD0680 /* LCZTimingCounter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCZTimingCounter.swift; sourceTree = "<group>"; };
+		738AD38922BCA2CE00FD0680 /* ProblemFeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemFeedbackViewController.swift; sourceTree = "<group>"; };
+		738AD38B22BCA2FE00FD0680 /* ProblemFeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemFeedbackView.swift; sourceTree = "<group>"; };
 		73948B7D2223CF88000ED09A /* NewsHomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsHomeCell.swift; sourceTree = "<group>"; };
 		73948B7F2223CFA5000ED09A /* DiaryBaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryBaseTableViewCell.swift; sourceTree = "<group>"; };
 		73B1DDD62241EB8E00BFEF7A /* LCZProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCZProgressHUD.swift; sourceTree = "<group>"; };
@@ -480,6 +496,8 @@
 		7344B54222AF866300FC7D4D /* Mine(我的) */ = {
 			isa = PBXGroup;
 			children = (
+				738AD38422BCA1D800FD0680 /* ProblemFeedback(问题反馈) */,
+				738AD37122BC7FC900FD0680 /* Setting(设置) */,
 				7344B54322AF8A0100FC7D4D /* MineEntrance(入口) */,
 			);
 			path = "Mine(我的)";
@@ -588,6 +606,7 @@
 		735D64C822BB819E0092ADEC /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				738AD36F22BC743600FD0680 /* RetrievePasswordViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -615,6 +634,8 @@
 		737E1C2E2213DA8F00BF751D /* Utility(工具) */ = {
 			isa = PBXGroup;
 			children = (
+				738AD38122BC998300FD0680 /* TimingCounter(时间计时器) */,
+				738AD37E22BC992700FD0680 /* ClearCache(清除缓存) */,
 				7302DB182281797500BC7CAC /* CustomUI(自定义UI) */,
 				7346603A22433948007BBD07 /* Bridging(桥接文件) */,
 				73B1DDD52241EA2F00BFEF7A /* ProgressHUD(进度显示) */,
@@ -787,7 +808,6 @@
 				737E1C582213ED0C00BF751D /* HighSpeedDataNetworkServices.swift */,
 				734E9B6F22448EA300CC5004 /* MoayProvider.swift */,
 				734E9B7122448F8A00CC5004 /* MovieNetworkServices.swift */,
-				7382C83222B776A90033B902 /* MobApiNetworkServices.swift */,
 			);
 			path = "NetworkServices(网络请求)";
 			sourceTree = "<group>";
@@ -807,6 +827,106 @@
 				737E1C5E2213FCE800BF751D /* NewsHomeModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		738AD37122BC7FC900FD0680 /* Setting(设置) */ = {
+			isa = PBXGroup;
+			children = (
+				738AD37522BC805600FD0680 /* ViewModel */,
+				738AD37422BC805200FD0680 /* Model */,
+				738AD37322BC804D00FD0680 /* View */,
+				738AD37222BC804800FD0680 /* Controller */,
+			);
+			path = "Setting(设置)";
+			sourceTree = "<group>";
+		};
+		738AD37222BC804800FD0680 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				738AD37622BC80ED00FD0680 /* SettingViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		738AD37322BC804D00FD0680 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				738AD37822BC847A00FD0680 /* SettingView.swift */,
+				738AD37A22BC85D000FD0680 /* SettingTableViewCell.swift */,
+				738AD37C22BC96C400FD0680 /* ClearCacheTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		738AD37422BC805200FD0680 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		738AD37522BC805600FD0680 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		738AD37E22BC992700FD0680 /* ClearCache(清除缓存) */ = {
+			isa = PBXGroup;
+			children = (
+				738AD37F22BC993F00FD0680 /* LCZClearCache.swift */,
+			);
+			path = "ClearCache(清除缓存)";
+			sourceTree = "<group>";
+		};
+		738AD38122BC998300FD0680 /* TimingCounter(时间计时器) */ = {
+			isa = PBXGroup;
+			children = (
+				738AD38222BC9A0500FD0680 /* LCZTimingCounter.swift */,
+			);
+			path = "TimingCounter(时间计时器)";
+			sourceTree = "<group>";
+		};
+		738AD38422BCA1D800FD0680 /* ProblemFeedback(问题反馈) */ = {
+			isa = PBXGroup;
+			children = (
+				738AD38822BCA2B500FD0680 /* ViewModel */,
+				738AD38722BCA2B100FD0680 /* Model */,
+				738AD38622BCA2AC00FD0680 /* View */,
+				738AD38522BCA2A600FD0680 /* Controller */,
+			);
+			path = "ProblemFeedback(问题反馈)";
+			sourceTree = "<group>";
+		};
+		738AD38522BCA2A600FD0680 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				738AD38922BCA2CE00FD0680 /* ProblemFeedbackViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		738AD38622BCA2AC00FD0680 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				738AD38B22BCA2FE00FD0680 /* ProblemFeedbackView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		738AD38722BCA2B100FD0680 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		738AD38822BCA2B500FD0680 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		73B1DDD52241EA2F00BFEF7A /* ProgressHUD(进度显示) */ = {
@@ -1310,6 +1430,7 @@
 				73409FC822815FE100899563 /* SearchMovieCell.swift in Sources */,
 				735BB338225D9CF300241A59 /* UIButton+TextImagelocation.swift in Sources */,
 				732C0464224B123700EA7738 /* NewsHomeViewModel.swift in Sources */,
+				738AD37022BC743600FD0680 /* RetrievePasswordViewModel.swift in Sources */,
 				73B1DDE7224206FA00BFEF7A /* DiaryBaseCollectionViewCell.swift in Sources */,
 				73B1DDE22242051400BFEF7A /* MovieHomeModel.swift in Sources */,
 				734E9B6E22448E2400CC5004 /* Moay+Rx.swift in Sources */,
@@ -1327,7 +1448,7 @@
 				732F736822BA1186008108CD /* RegisterModel.swift in Sources */,
 				7344B54F22AFA04700FC7D4D /* MineEntranceViewModel.swift in Sources */,
 				73D4DADC2213CBF200116541 /* AppDelegate.swift in Sources */,
-				7382C83322B776A90033B902 /* MobApiNetworkServices.swift in Sources */,
+				738AD38C22BCA2FE00FD0680 /* ProblemFeedbackView.swift in Sources */,
 				73BB0FD122B0B0DB005F351C /* CourierEntranceTabBarController.swift in Sources */,
 				737E1C562213E94D00BF751D /* NewsHomeListView.swift in Sources */,
 				73B1DDE92242080400BFEF7A /* MovieHomeCell.swift in Sources */,
@@ -1357,6 +1478,7 @@
 				73E52AF422B0E5AB0018CBA6 /* ExpressQueryViewModel.swift in Sources */,
 				735D64CA22BB81D10092ADEC /* RetrievePasswordViewController.swift in Sources */,
 				73E52AF022B0DB6D0018CBA6 /* CommonlyExpressViewController.swift in Sources */,
+				738AD38322BC9A0600FD0680 /* LCZTimingCounter.swift in Sources */,
 				73B1DDE52242055700BFEF7A /* MovieHomeViewModel.swift in Sources */,
 				7344B54B22AF8A6900FC7D4D /* MineEntranceView.swift in Sources */,
 				73409FC02281563600899563 /* SearchMovieView.swift in Sources */,
@@ -1365,9 +1487,12 @@
 				737E1C412213E00300BF751D /* LCZSwiftMacro.swift in Sources */,
 				73370C0222B37DC700C01FE0 /* CourierEntranceModel.swift in Sources */,
 				73948B7E2223CF88000ED09A /* NewsHomeCell.swift in Sources */,
+				738AD37D22BC96C400FD0680 /* ClearCacheTableViewCell.swift in Sources */,
 				737E1C4A2213E37900BF751D /* NewsHomeViewController.swift in Sources */,
 				7337A20D222630AE00B19F07 /* NewsDetailsNetworkService.swift in Sources */,
+				738AD38A22BCA2CE00FD0680 /* ProblemFeedbackViewController.swift in Sources */,
 				73B1DDF02242342700BFEF7A /* MovieDetailsView.swift in Sources */,
+				738AD37922BC847A00FD0680 /* SettingView.swift in Sources */,
 				734E9B7022448EA300CC5004 /* MoayProvider.swift in Sources */,
 				735BB33C225DEE1300241A59 /* EpisodeCell.swift in Sources */,
 				734E9B7222448F8A00CC5004 /* MovieNetworkServices.swift in Sources */,
@@ -1379,8 +1504,11 @@
 				734E9B6C22448D8B00CC5004 /* MovieHomeNetworkService.swift in Sources */,
 				73BB0FCF22B09FCB005F351C /* ExpressQueryView.swift in Sources */,
 				737E1C542213E89700BF751D /* NewsHomeView.swift in Sources */,
+				738AD38022BC993F00FD0680 /* LCZClearCache.swift in Sources */,
 				737E1C592213ED0C00BF751D /* HighSpeedDataNetworkServices.swift in Sources */,
 				7344B54122AF594F00FC7D4D /* MainTabBarController.swift in Sources */,
+				738AD37B22BC85D000FD0680 /* SettingTableViewCell.swift in Sources */,
+				738AD37722BC80ED00FD0680 /* SettingViewController.swift in Sources */,
 				732F735F22BA00A9008108CD /* RegisterViewController.swift in Sources */,
 				7344B54922AF8A5100FC7D4D /* MineEntranceViewController.swift in Sources */,
 				7302334422B8E9D9002CD8C4 /* LoginView.swift in Sources */,
@@ -1531,6 +1659,7 @@
 			baseConfigurationReference = AC179B3912B814D4F44DC7E7 /* Pods-Diary.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -1547,7 +1676,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "Diary/Utility(工具)/Bridging(桥接文件)/Diary-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1556,6 +1685,7 @@
 			baseConfigurationReference = 7BF0AA4A0A47E6E656FBD185 /* Pods-Diary.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -1571,7 +1701,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Diary/Utility(工具)/Bridging(桥接文件)/Diary-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

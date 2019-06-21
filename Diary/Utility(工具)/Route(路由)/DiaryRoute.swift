@@ -80,6 +80,20 @@ enum DiaryRoute {
             expressQueryResults.hidesBottomBarWhenPushed = true
             return expressQueryResults
         }
+        
+        // 设置
+        navigator.register("diary://mine/setting") { url, values, context in
+            let setting = SettingViewController()
+            setting.hidesBottomBarWhenPushed = true
+            return setting
+        }
+        
+        // 问题反馈
+        navigator.register("diary://mine/problemfeedback") { url, values, context in
+            let problemFeedback = ProblemFeedbackViewController()
+            problemFeedback.hidesBottomBarWhenPushed = true
+            return problemFeedback
+        }
     }
     
 }

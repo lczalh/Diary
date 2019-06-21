@@ -7,17 +7,3 @@
 //
 
 import Foundation
-
-struct RegisterMobApiModel: Mappable {
-    var retCode: String?
-    var result: String?
-    var msg: String?
-    
-    init?(map: Map) {}
-    
-    mutating func mapping(map: Map) {
-        retCode   <- map["retCode"]
-        result   <- map["result"]
-        msg   <- map["msg"]
-    }
-}

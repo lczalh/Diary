@@ -44,9 +44,24 @@ class MineEntranceViewController: DiaryBaseViewController {
         super.viewDidLoad()
         self.view.addSubview(mineEntranceView)
         
+        // 返回
+        let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        backBarButtonItem.tintColor = LCZHexadecimalColor(hexadecimal: "#FECE1D")
+        self.navigationItem.backBarButtonItem = backBarButtonItem
+        
         // 设置
         let settingBarButtonItem = UIBarButtonItem(image: UIImage(named: "shezhi")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: nil)
         self.navigationItem.rightBarButtonItem = settingBarButtonItem
+        settingBarButtonItem.rx.tap.subscribe(onNext: { () in
+            diaryRoute.push("diary://mine/setting")
+        }).disposed(by: rx.disposeBag)
+        
+        
+//        networkServicesProvider.rx.request(MultiTarget(MovieNetworkServices.problemFeedback(gbook_content: "1231", verify: "123"))).mapJSON().subscribe(onSuccess: { (res) in
+//            LCZPrint(res)
+//        }) { (error) in
+//            
+//        }
     }
     
 
@@ -69,14 +84,12 @@ extension MineEntranceViewController: UITableViewDataSource {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        //设置cell的显示动画为3D缩放
-        //xy方向缩放的初始值为0.1
-//        cell.layer.transform = CATransform3DMakeScale(0.1, 0.1, 1)
-//        //设置动画时间为0.25秒，xy方向缩放的最终值为1
-//        UIView.animate(withDuration: 0.25, animations: {
-//            cell.layer.transform=CATransform3DMakeScale(1, 1, 1)
-//        })
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            if indexPath.row == 0 {
+                diaryRoute.push("diary://mine/problemfeedback")
+            }
+        }
     }
     
 }

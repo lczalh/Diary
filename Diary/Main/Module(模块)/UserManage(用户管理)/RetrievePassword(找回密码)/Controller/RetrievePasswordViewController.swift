@@ -14,6 +14,11 @@ class RetrievePasswordViewController: DiaryBaseViewController {
         let view = RetrievePasswordView(frame: self.view.frame)
         return view
     }()
+    
+    lazy var viewModel: RetrievePasswordViewModel = {
+        let vm = RetrievePasswordViewModel()
+        return vm
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,8 +45,32 @@ class RetrievePasswordViewController: DiaryBaseViewController {
         
         // 找回事件
         self.retrievePasswordView.retrievePasswordButton.rx.tap.subscribe(onNext: { () in
-            LCZPrint("1313414")
+            self.retrievePasswordView.retrievePasswordButton.isEnabled = false
+            self.viewModel.retrievePassword(user_name: self.retrievePasswordView.accountTextField.text!,
+                                            user_question: self.retrievePasswordView.encryptedProblemTextField.text!,
+                                            user_answer: self.retrievePasswordView.encryptedAnswersTextField.text!,
+                                            user_pwd: self.retrievePasswordView.passwordTextField.text!,
+                                            user_pwd2: self.retrievePasswordView.confirmPasswordTextField.text!,
+                                            verify: self.retrievePasswordView.codeTextField.text!).subscribe(onSuccess: { (model) in
+                                                DispatchQueue.main.async(execute: {
+                                                    self.retrievePasswordView.retrievePasswordButton.isEnabled = true
+                                                    LCZProgressHUD.showSuccess(title: "成功找回")
+                                                    self.navigationController?.popViewController(animated: true)
+                                                })
+                                            }, onError: { (error) in
+                                                DispatchQueue.main.async(execute: {
+                                                    self.retrievePasswordView.retrievePasswordButton.isEnabled = true
+                                                    self.retrievePasswordView.getCodeImage()
+                                                })
+                                            }).disposed(by: self.rx.disposeBag)
         }).disposed(by: rx.disposeBag)
+        
+//        networkServicesProvider.rx.request(MultiTarget(MovieNetworkServices.retrievePasswordSendVerificationCode(ac: "email", to: "824092805@qq.com"))).mapJSON().subscribe(onSuccess: { (re) in
+//            let r = re as! Dictionary<String, Any>
+//            LCZPrint(r["msg"])
+//        }) { (error) in
+//            
+//        }
     }
     
 

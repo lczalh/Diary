@@ -12,10 +12,10 @@ class MineEntranceViewModel {
     
     /// cell标题
     public let cellTitles: Array<Array<String>> = [["问题反馈","去评分"],
-                                                   ["关于我们","清除缓存"]
+                                                   ["关于我们"]
                                                   ]
     
     public let cellImages:Array<Array<String>> = [["imfankui","pingfen"],
-                                                  ["guanyuwomen","qingchuhuancun"]
+                                                  ["guanyuwomen"]
                                                  ]
 }

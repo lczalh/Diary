@@ -18,10 +18,14 @@ public enum MovieNetworkServices {
     // MARK: - 用户登陆
     case userLogin(user_name: String, user_pwd: String)
     // MARK: - 用户注册
-    case userRegister(user_name: String, user_pwd: String, user_pwd2: String, verify: String)
-    
+    case userRegister(user_name: String, user_pwd: String, user_pwd2: String, code: String, ac: String, to:String)
+    // MARK: - 找回密码
     case retrievePassword(user_name: String, user_question: String, user_answer: String, user_pwd: String, user_pwd2: String, verify: String)
-    
+    // MARK: - 注册发送验证码
+    case registerSendVerificationCode(ac: String, to: String)
+    // MARK: - 找回密码发送验证码
+    case retrievePasswordSendVerificationCode(ac: String, to: String)
+
 }
 
 //设置请求配置
@@ -40,7 +44,6 @@ extension MovieNetworkServices : TargetType {
             
         case .getMovieList:
             return "api.php/provide/vod/"
-            
         case .getSearchMovieList:
             return "api.php/provide/vod/"
         case .userLogin:
@@ -49,6 +52,10 @@ extension MovieNetworkServices : TargetType {
             return "index.php/user/reg"
         case .retrievePassword:
             return "index.php/user/findpass"
+        case .registerSendVerificationCode:
+            return "index.php/user/reg_msg"
+        case .retrievePasswordSendVerificationCode:
+            return "index.php/user/findpass_msg"
         }
         
     }
@@ -81,11 +88,13 @@ extension MovieNetworkServices : TargetType {
         case .userLogin(let user_name, let user_pwd):
             parameterDict["user_name"] = user_name
             parameterDict["user_pwd"] = user_pwd
-        case .userRegister(let user_name, let user_pwd, let user_pwd2, let verify):
+        case .userRegister(let user_name, let user_pwd, let user_pwd2, let code, let ac, let to):
             parameterDict["user_name"] = user_name
             parameterDict["user_pwd"] = user_pwd
             parameterDict["user_pwd2"] = user_pwd2
-            parameterDict["verify"] = verify
+            parameterDict["code"] = code
+            parameterDict["ac"] = ac
+            parameterDict["to"] = to
         case .retrievePassword(let user_name, let user_question, let user_answer, let user_pwd, let user_pwd2, let verify):
             parameterDict["user_name"] = user_name
             parameterDict["user_question"] = user_question
@@ -93,6 +102,12 @@ extension MovieNetworkServices : TargetType {
             parameterDict["user_pwd"] = user_pwd
             parameterDict["user_pwd2"] = user_pwd2
             parameterDict["verify"] = verify
+        case .registerSendVerificationCode(let ac, let to):
+            parameterDict["ac"] = ac
+            parameterDict["to"] = to
+        case .retrievePasswordSendVerificationCode(let ac, let to):
+            parameterDict["ac"] = ac
+            parameterDict["to"] = to
         }
         
         return  .requestParameters(parameters: parameterDict, encoding: URLEncoding.default)

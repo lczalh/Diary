@@ -8,20 +8,6 @@
 
 import Foundation
 
-struct MobApiModel<T: Mappable>: Mappable {
-    var retCode: String?
-    var result: T?
-    var msg: String?
-    
-    init?(map: Map) {}
-    
-    mutating func mapping(map: Map) {
-        retCode   <- map["retCode"]
-        result   <- map["result"]
-        msg   <- map["msg"]
-    }
-}
-
 struct LoginModel: Mappable {
     var code: Int?
     var msg: String?
