@@ -16,8 +16,14 @@ class RetrievePasswordView: DiaryBaseView {
     /// 密码输入框
     public var passwordTextField: UITextField!
     
-    /// 账号输入框
-    public var accountTextField: UITextField!
+    /// 邮箱输入框
+    public var emailTextField: UITextField!
+    
+    /// 邮箱验证码输入框
+    public var emailCodeTextField: UITextField!
+    
+    //  邮箱获取验证码按钮
+    public var emailCodeButton: UIButton!
     
     /// 找回按钮
     public var retrievePasswordButton: UIButton!
@@ -28,42 +34,83 @@ class RetrievePasswordView: DiaryBaseView {
     /// 验证码输入框
     public var codeTextField: UITextField!
     
-    /// 密保问题
-    public var encryptedProblemTextField: UITextField!
-    
-    /// 密保答案
-    public var encryptedAnswersTextField: UITextField!
+//    /// 密保问题
+//    public var encryptedProblemTextField: UITextField!
+//
+//    /// 密保答案
+//    public var encryptedAnswersTextField: UITextField!
     
     override func configUI() {
         
-        // 账号
-        accountTextField = UITextField()
-        self.addSubview(accountTextField)
-        accountTextField.snp.makeConstraints { (make) in
+        // 邮箱输入框
+        emailTextField = UITextField()
+        self.addSubview(emailTextField)
+        emailTextField.snp.makeConstraints { (make) in
             make.left.equalToSuperview().offset(50)
             make.top.equalToSuperview().offset(50)
             make.right.equalToSuperview().offset(-50)
             make.height.equalTo(40)
         }
-        accountTextField.clearButtonMode = .unlessEditing
-        accountTextField.placeholder = "请输入您的账号（6~18位）"
-        accountTextField.font = LCZFontSize(size: 14)
-        accountTextField.keyboardType = .numberPad
-        let accountLineView = UIView()
-        self.addSubview(accountLineView)
-        accountLineView.snp.makeConstraints { (make) in
-            make.left.right.equalTo(accountTextField)
-            make.top.equalTo(accountTextField.snp.bottom)
+        emailTextField.clearButtonMode = .unlessEditing
+        emailTextField.placeholder = "请输入您绑定的邮箱"
+        emailTextField.font = LCZFontSize(size: 14)
+        emailTextField.keyboardType = .emailAddress
+        let emailLineView = UIView()
+        self.addSubview(emailLineView)
+        emailLineView.snp.makeConstraints { (make) in
+            make.left.right.equalTo(emailTextField)
+            make.top.equalTo(emailTextField.snp.bottom)
             make.height.equalTo(1)
         }
-        accountLineView.backgroundColor = LCZRgbColor(239, 240, 244, 1)
+        emailLineView.backgroundColor = LCZRgbColor(239, 240, 244, 1)
+        
+        //  邮箱获取验证码按钮
+        emailCodeButton = UIButton(type: .custom)
+        self.addSubview(emailCodeButton)
+        emailCodeButton.snp.makeConstraints { (make) in
+            make.top.equalTo(emailLineView.snp.bottom).offset(20)
+            make.right.equalToSuperview().offset(-50)
+            make.height.equalTo(40)
+            make.width.equalTo(100)
+        }
+        emailCodeButton.setTitle("获取验证码", for: .normal)
+        emailCodeButton.titleLabel?.font = LCZFontSize(size: 14)
+        emailCodeButton.backgroundColor = LCZRgbColor(239, 240, 244, 1)
+        emailCodeButton.layoutIfNeeded()
+        let emailCodeBezierPath = UIBezierPath(roundedRect: emailCodeButton.bounds, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: 5, height: 5))
+        let emailCodeShapeLayer = CAShapeLayer()
+        emailCodeShapeLayer.path = emailCodeBezierPath.cgPath
+        emailCodeShapeLayer.frame = emailCodeButton.bounds
+        emailCodeButton.layer.mask = emailCodeShapeLayer
+        
+        // 邮箱验证码输入框
+        emailCodeTextField = UITextField()
+        self.addSubview(emailCodeTextField)
+        emailCodeTextField.snp.makeConstraints { (make) in
+            make.left.equalToSuperview().offset(50)
+            make.top.equalTo(emailTextField.snp.bottom).offset(20)
+            make.right.equalTo(emailCodeButton.snp.left).offset(-5)
+            make.height.equalTo(40)
+        }
+        emailCodeTextField.clearButtonMode = .unlessEditing
+        emailCodeTextField.placeholder = "请输入邮箱验证码"
+        emailCodeTextField.font = LCZFontSize(size: 14)
+        emailCodeTextField.keyboardType = .numberPad
+        let emailCodeLineView = UIView()
+        self.addSubview(emailCodeLineView)
+        emailCodeLineView.snp.makeConstraints { (make) in
+            make.left.right.equalTo(emailCodeTextField)
+            make.top.equalTo(emailCodeTextField.snp.bottom)
+            make.height.equalTo(1)
+        }
+        emailCodeLineView.backgroundColor = LCZRgbColor(239, 240, 244, 1)
         
         // 密码
         passwordTextField = UITextField()
         self.addSubview(passwordTextField)
         passwordTextField.snp.makeConstraints { (make) in
             make.left.equalToSuperview().offset(50)
-            make.top.equalTo(accountLineView.snp.bottom).offset(20)
+            make.top.equalTo(emailCodeLineView.snp.bottom).offset(20)
             make.right.equalToSuperview().offset(-50)
             make.height.equalTo(40)
         }
@@ -104,56 +151,56 @@ class RetrievePasswordView: DiaryBaseView {
         }
         confirmPasswordLineView.backgroundColor = LCZRgbColor(239, 240, 244, 1)
         
-        // 密保问题
-        encryptedProblemTextField = UITextField()
-        self.addSubview(encryptedProblemTextField)
-        encryptedProblemTextField.snp.makeConstraints { (make) in
-            make.left.equalToSuperview().offset(50)
-            make.top.equalTo(confirmPasswordLineView.snp.bottom).offset(20)
-            make.right.equalToSuperview().offset(-50)
-            make.height.equalTo(40)
-        }
-        encryptedProblemTextField.clearButtonMode = .unlessEditing
-        encryptedProblemTextField.placeholder = "请输入您的密保问题"
-        encryptedProblemTextField.font = LCZFontSize(size: 14)
-        encryptedProblemTextField.keyboardType = .numberPad
-        let encryptedProblemLineView = UIView()
-        self.addSubview(encryptedProblemLineView)
-        encryptedProblemLineView.snp.makeConstraints { (make) in
-            make.left.right.equalTo(encryptedProblemTextField)
-            make.top.equalTo(encryptedProblemTextField.snp.bottom)
-            make.height.equalTo(1)
-        }
-        encryptedProblemLineView.backgroundColor = LCZRgbColor(239, 240, 244, 1)
-        
-        // 密保答案
-        encryptedAnswersTextField = UITextField()
-        self.addSubview(encryptedAnswersTextField)
-        encryptedAnswersTextField.snp.makeConstraints { (make) in
-            make.left.equalToSuperview().offset(50)
-            make.top.equalTo(encryptedProblemLineView.snp.bottom).offset(20)
-            make.right.equalToSuperview().offset(-50)
-            make.height.equalTo(40)
-        }
-        encryptedAnswersTextField.clearButtonMode = .unlessEditing
-        encryptedAnswersTextField.placeholder = "请输入您的密码答案"
-        encryptedAnswersTextField.font = LCZFontSize(size: 14)
-        encryptedAnswersTextField.keyboardType = .asciiCapable
-        encryptedAnswersTextField.isSecureTextEntry = true
-        let encryptedAnswersLineView = UIView()
-        self.addSubview(encryptedAnswersLineView)
-        encryptedAnswersLineView.snp.makeConstraints { (make) in
-            make.left.right.equalTo(encryptedAnswersTextField)
-            make.top.equalTo(encryptedAnswersTextField.snp.bottom)
-            make.height.equalTo(1)
-        }
-        encryptedAnswersLineView.backgroundColor = LCZRgbColor(239, 240, 244, 1)
+//        // 密保问题
+//        encryptedProblemTextField = UITextField()
+//        self.addSubview(encryptedProblemTextField)
+//        encryptedProblemTextField.snp.makeConstraints { (make) in
+//            make.left.equalToSuperview().offset(50)
+//            make.top.equalTo(confirmPasswordLineView.snp.bottom).offset(20)
+//            make.right.equalToSuperview().offset(-50)
+//            make.height.equalTo(40)
+//        }
+//        encryptedProblemTextField.clearButtonMode = .unlessEditing
+//        encryptedProblemTextField.placeholder = "请输入您的密保问题"
+//        encryptedProblemTextField.font = LCZFontSize(size: 14)
+//        encryptedProblemTextField.keyboardType = .numberPad
+//        let encryptedProblemLineView = UIView()
+//        self.addSubview(encryptedProblemLineView)
+//        encryptedProblemLineView.snp.makeConstraints { (make) in
+//            make.left.right.equalTo(encryptedProblemTextField)
+//            make.top.equalTo(encryptedProblemTextField.snp.bottom)
+//            make.height.equalTo(1)
+//        }
+//        encryptedProblemLineView.backgroundColor = LCZRgbColor(239, 240, 244, 1)
+//
+//        // 密保答案
+//        encryptedAnswersTextField = UITextField()
+//        self.addSubview(encryptedAnswersTextField)
+//        encryptedAnswersTextField.snp.makeConstraints { (make) in
+//            make.left.equalToSuperview().offset(50)
+//            make.top.equalTo(encryptedProblemLineView.snp.bottom).offset(20)
+//            make.right.equalToSuperview().offset(-50)
+//            make.height.equalTo(40)
+//        }
+//        encryptedAnswersTextField.clearButtonMode = .unlessEditing
+//        encryptedAnswersTextField.placeholder = "请输入您的密码答案"
+//        encryptedAnswersTextField.font = LCZFontSize(size: 14)
+//        encryptedAnswersTextField.keyboardType = .asciiCapable
+//        encryptedAnswersTextField.isSecureTextEntry = true
+//        let encryptedAnswersLineView = UIView()
+//        self.addSubview(encryptedAnswersLineView)
+//        encryptedAnswersLineView.snp.makeConstraints { (make) in
+//            make.left.right.equalTo(encryptedAnswersTextField)
+//            make.top.equalTo(encryptedAnswersTextField.snp.bottom)
+//            make.height.equalTo(1)
+//        }
+//        encryptedAnswersLineView.backgroundColor = LCZRgbColor(239, 240, 244, 1)
         
         // 验证码
         codeImageView = UIImageView()
         self.addSubview(codeImageView)
         codeImageView.snp.makeConstraints { (make) in
-            make.top.equalTo(encryptedAnswersLineView).offset(20)
+            make.top.equalTo(confirmPasswordLineView).offset(20)
             make.right.equalToSuperview().offset(-50)
             make.height.equalTo(40)
             make.width.equalTo(100)

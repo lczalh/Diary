@@ -20,7 +20,7 @@ public enum MovieNetworkServices {
     // MARK: - 用户注册
     case userRegister(user_name: String, user_pwd: String, user_pwd2: String, code: String, ac: String, to:String)
     // MARK: - 找回密码
-    case retrievePassword(user_name: String, user_question: String, user_answer: String, user_pwd: String, user_pwd2: String, verify: String)
+    case retrievePassword(ac: String, to: String, user_pwd: String, user_pwd2: String, verify: String, code: String)
     // MARK: - 注册发送验证码
     case registerSendVerificationCode(ac: String, to: String)
     // MARK: - 找回密码发送验证码
@@ -51,7 +51,7 @@ extension MovieNetworkServices : TargetType {
         case .userRegister:
             return "index.php/user/reg"
         case .retrievePassword:
-            return "index.php/user/findpass"
+            return "index.php/user/findpass_reset"
         case .registerSendVerificationCode:
             return "index.php/user/reg_msg"
         case .retrievePasswordSendVerificationCode:
@@ -95,19 +95,19 @@ extension MovieNetworkServices : TargetType {
             parameterDict["code"] = code
             parameterDict["ac"] = ac
             parameterDict["to"] = to
-        case .retrievePassword(let user_name, let user_question, let user_answer, let user_pwd, let user_pwd2, let verify):
-            parameterDict["user_name"] = user_name
-            parameterDict["user_question"] = user_question
-            parameterDict["user_answer"] = user_answer
-            parameterDict["user_pwd"] = user_pwd
-            parameterDict["user_pwd2"] = user_pwd2
-            parameterDict["verify"] = verify
         case .registerSendVerificationCode(let ac, let to):
             parameterDict["ac"] = ac
             parameterDict["to"] = to
         case .retrievePasswordSendVerificationCode(let ac, let to):
             parameterDict["ac"] = ac
             parameterDict["to"] = to
+        case .retrievePassword(let ac, let to, let user_pwd, let user_pwd2, let verify, let code):
+            parameterDict["ac"] = ac
+            parameterDict["to"] = to
+            parameterDict["user_pwd"] = user_pwd
+            parameterDict["user_pwd2"] = user_pwd2
+            parameterDict["verify"] = verify
+            parameterDict["code"] = code
         }
         
         return  .requestParameters(parameters: parameterDict, encoding: URLEncoding.default)

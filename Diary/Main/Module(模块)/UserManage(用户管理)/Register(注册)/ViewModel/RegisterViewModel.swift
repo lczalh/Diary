@@ -31,7 +31,7 @@ class RegisterViewModel {
     }
     
     public func sendVerificationCode(to: String) -> Single<LoginModel> {
-        LCZProgressHUD.show(title: "正在发送")
+        LCZProgressHUD.show(title: "正在获取")
         return Single<LoginModel>.create(subscribe: { (single) -> Disposable in
             let request = networkServicesProvider.rx.requestData(target: MultiTarget(MovieNetworkServices.registerSendVerificationCode(ac: "email", to: to)), model: LoginModel.self).subscribe(onSuccess: { (result) in
                 LCZProgressHUD.dismiss()

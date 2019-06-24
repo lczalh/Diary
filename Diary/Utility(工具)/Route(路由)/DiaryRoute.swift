@@ -94,6 +94,27 @@ enum DiaryRoute {
             problemFeedback.hidesBottomBarWhenPushed = true
             return problemFeedback
         }
+        
+        // 版权声明
+        navigator.register("diary://mine/copyrightStatement") { url, values, context in
+            let copyrightStatement = CopyrightStatementViewController()
+            copyrightStatement.hidesBottomBarWhenPushed = true
+            return copyrightStatement
+        }
+        
+        // 隐私政策
+        navigator.register("diary://mine/privacyPolicy") { url, values, context in
+            let privacyPolicy = PrivacyPolicyViewController()
+            privacyPolicy.hidesBottomBarWhenPushed = true
+            return privacyPolicy
+        }
+        
+        // 关于我们
+        navigator.register("diary://mine/aboutUs") { url, values, context in
+            let aboutUs = AboutUsViewController()
+            aboutUs.hidesBottomBarWhenPushed = true
+            return aboutUs
+        }
     }
     
 }

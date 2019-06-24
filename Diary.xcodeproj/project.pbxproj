@@ -107,6 +107,15 @@
 		73E52AF222B0E3B60018CBA6 /* ExpressQueryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E52AF122B0E3B60018CBA6 /* ExpressQueryModel.swift */; };
 		73E52AF422B0E5AB0018CBA6 /* ExpressQueryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E52AF322B0E5AB0018CBA6 /* ExpressQueryViewModel.swift */; };
 		73E52AFB22B0F20E0018CBA6 /* ExpressQueryResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E52AFA22B0F20E0018CBA6 /* ExpressQueryResultsViewController.swift */; };
+		73E78C1822C0951B007F35FA /* CopyrightStatementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E78C1722C0951B007F35FA /* CopyrightStatementViewController.swift */; };
+		73E78C1A22C0973B007F35FA /* CopyrightStatementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E78C1922C0973B007F35FA /* CopyrightStatementView.swift */; };
+		73E78C1C22C0AD56007F35FA /* CopyrightStatementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E78C1B22C0AD56007F35FA /* CopyrightStatementViewModel.swift */; };
+		73E78C2722C0B017007F35FA /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E78C2622C0B017007F35FA /* PrivacyPolicyViewController.swift */; };
+		73E78C2922C0B02A007F35FA /* PrivacyPolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E78C2822C0B02A007F35FA /* PrivacyPolicyView.swift */; };
+		73E78C2B22C0B03F007F35FA /* PrivacyPolicyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E78C2A22C0B03F007F35FA /* PrivacyPolicyViewModel.swift */; };
+		73E78C2D22C0C390007F35FA /* NSString+TextSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E78C2C22C0C390007F35FA /* NSString+TextSize.swift */; };
+		73E78C3422C0C738007F35FA /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E78C3322C0C738007F35FA /* AboutUsViewController.swift */; };
+		73E78C3622C0C74B007F35FA /* AboutUsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E78C3522C0C74B007F35FA /* AboutUsView.swift */; };
 		D0A716A122B4BF20000BC367 /* LCZWaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A716A022B4BF20000BC367 /* LCZWaveView.swift */; };
 		F508C2BEAB7A3493341664DD /* Pods_Diary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA3261FCD6C69DA1079FA1DE /* Pods_Diary.framework */; };
 /* End PBXBuildFile section */
@@ -215,6 +224,15 @@
 		73E52AF122B0E3B60018CBA6 /* ExpressQueryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpressQueryModel.swift; sourceTree = "<group>"; };
 		73E52AF322B0E5AB0018CBA6 /* ExpressQueryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpressQueryViewModel.swift; sourceTree = "<group>"; };
 		73E52AFA22B0F20E0018CBA6 /* ExpressQueryResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpressQueryResultsViewController.swift; sourceTree = "<group>"; };
+		73E78C1722C0951B007F35FA /* CopyrightStatementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyrightStatementViewController.swift; sourceTree = "<group>"; };
+		73E78C1922C0973B007F35FA /* CopyrightStatementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyrightStatementView.swift; sourceTree = "<group>"; };
+		73E78C1B22C0AD56007F35FA /* CopyrightStatementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyrightStatementViewModel.swift; sourceTree = "<group>"; };
+		73E78C2622C0B017007F35FA /* PrivacyPolicyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyViewController.swift; sourceTree = "<group>"; };
+		73E78C2822C0B02A007F35FA /* PrivacyPolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyView.swift; sourceTree = "<group>"; };
+		73E78C2A22C0B03F007F35FA /* PrivacyPolicyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyViewModel.swift; sourceTree = "<group>"; };
+		73E78C2C22C0C390007F35FA /* NSString+TextSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSString+TextSize.swift"; sourceTree = "<group>"; };
+		73E78C3322C0C738007F35FA /* AboutUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
+		73E78C3522C0C74B007F35FA /* AboutUsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsView.swift; sourceTree = "<group>"; };
 		7BF0AA4A0A47E6E656FBD185 /* Pods-Diary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Diary.release.xcconfig"; path = "Pods/Target Support Files/Pods-Diary/Pods-Diary.release.xcconfig"; sourceTree = "<group>"; };
 		AC179B3912B814D4F44DC7E7 /* Pods-Diary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Diary.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Diary/Pods-Diary.debug.xcconfig"; sourceTree = "<group>"; };
 		D0A716A022B4BF20000BC367 /* LCZWaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCZWaveView.swift; sourceTree = "<group>"; };
@@ -496,6 +514,9 @@
 		7344B54222AF866300FC7D4D /* Mine(我的) */ = {
 			isa = PBXGroup;
 			children = (
+				73E78C2E22C0C642007F35FA /* AboutUs(关于我们) */,
+				73E78C2122C0AFA9007F35FA /* PrivacyPolicy(隐私政策) */,
+				73E78C1222C094B5007F35FA /* CopyrightStatement(版权声明) */,
 				738AD38422BCA1D800FD0680 /* ProblemFeedback(问题反馈) */,
 				738AD37122BC7FC900FD0680 /* Setting(设置) */,
 				7344B54322AF8A0100FC7D4D /* MineEntrance(入口) */,
@@ -619,6 +640,7 @@
 				734E9B6D22448E2400CC5004 /* Moay+Rx.swift */,
 				735BB337225D9CF300241A59 /* UIButton+TextImagelocation.swift */,
 				73370BFB22B3614000C01FE0 /* LCZUIAlertControllerExtension.swift */,
+				73E78C2C22C0C390007F35FA /* NSString+TextSize.swift */,
 			);
 			path = "Extension(扩展)";
 			sourceTree = "<group>";
@@ -1242,6 +1264,131 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		73E78C1222C094B5007F35FA /* CopyrightStatement(版权声明) */ = {
+			isa = PBXGroup;
+			children = (
+				73E78C1622C094ED007F35FA /* ViewModel */,
+				73E78C1522C094E4007F35FA /* Model */,
+				73E78C1422C094DF007F35FA /* View */,
+				73E78C1322C094D8007F35FA /* Controller */,
+			);
+			path = "CopyrightStatement(版权声明)";
+			sourceTree = "<group>";
+		};
+		73E78C1322C094D8007F35FA /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				73E78C1722C0951B007F35FA /* CopyrightStatementViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		73E78C1422C094DF007F35FA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				73E78C1922C0973B007F35FA /* CopyrightStatementView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		73E78C1522C094E4007F35FA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		73E78C1622C094ED007F35FA /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				73E78C1B22C0AD56007F35FA /* CopyrightStatementViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		73E78C2122C0AFA9007F35FA /* PrivacyPolicy(隐私政策) */ = {
+			isa = PBXGroup;
+			children = (
+				73E78C2522C0AFC1007F35FA /* ViewModel */,
+				73E78C2422C0AFBB007F35FA /* Model */,
+				73E78C2322C0AFB4007F35FA /* View */,
+				73E78C2222C0AFAD007F35FA /* Controller */,
+			);
+			path = "PrivacyPolicy(隐私政策)";
+			sourceTree = "<group>";
+		};
+		73E78C2222C0AFAD007F35FA /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				73E78C2622C0B017007F35FA /* PrivacyPolicyViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		73E78C2322C0AFB4007F35FA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				73E78C2822C0B02A007F35FA /* PrivacyPolicyView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		73E78C2422C0AFBB007F35FA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		73E78C2522C0AFC1007F35FA /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				73E78C2A22C0B03F007F35FA /* PrivacyPolicyViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		73E78C2E22C0C642007F35FA /* AboutUs(关于我们) */ = {
+			isa = PBXGroup;
+			children = (
+				73E78C3222C0C715007F35FA /* ViewModel */,
+				73E78C3122C0C710007F35FA /* Model */,
+				73E78C3022C0C70B007F35FA /* View */,
+				73E78C2F22C0C6EA007F35FA /* Controller */,
+			);
+			path = "AboutUs(关于我们)";
+			sourceTree = "<group>";
+		};
+		73E78C2F22C0C6EA007F35FA /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				73E78C3322C0C738007F35FA /* AboutUsViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		73E78C3022C0C70B007F35FA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				73E78C3522C0C74B007F35FA /* AboutUsView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		73E78C3122C0C710007F35FA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		73E78C3222C0C715007F35FA /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		A2DB02D1E2F32A632184BFC3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1425,6 +1572,7 @@
 				7344B54D22AF8F6900FC7D4D /* MineEntranceTableViewCell.swift in Sources */,
 				737E1C2D2213D43B00BF751D /* DiaryHeader.swift in Sources */,
 				7367D2F0221FA43F008FD780 /* UIViewController+Rx.swift in Sources */,
+				73E78C3422C0C738007F35FA /* AboutUsViewController.swift in Sources */,
 				73C34F6C2264552800244B55 /* SearchMovieViewController.swift in Sources */,
 				7300252222ADFA3F00F05ADC /* HomeEntranceCollectionViewCell.swift in Sources */,
 				73409FC822815FE100899563 /* SearchMovieCell.swift in Sources */,
@@ -1434,6 +1582,7 @@
 				73B1DDE7224206FA00BFEF7A /* DiaryBaseCollectionViewCell.swift in Sources */,
 				73B1DDE22242051400BFEF7A /* MovieHomeModel.swift in Sources */,
 				734E9B6E22448E2400CC5004 /* Moay+Rx.swift in Sources */,
+				73E78C2D22C0C390007F35FA /* NSString+TextSize.swift in Sources */,
 				73370BFC22B3614000C01FE0 /* LCZUIAlertControllerExtension.swift in Sources */,
 				73E52AFB22B0F20E0018CBA6 /* ExpressQueryResultsViewController.swift in Sources */,
 				735BB336225D943900241A59 /* MovieDetailsTableHeaderView.swift in Sources */,
@@ -1443,6 +1592,7 @@
 				735BB33E225DEF7500241A59 /* SelectorEpisodeCell.swift in Sources */,
 				D0A716A122B4BF20000BC367 /* LCZWaveView.swift in Sources */,
 				737E1C5F2213FCE800BF751D /* NewsHomeModel.swift in Sources */,
+				73E78C1A22C0973B007F35FA /* CopyrightStatementView.swift in Sources */,
 				7326F8E7222520FE0005696F /* NewsDetailsModel.swift in Sources */,
 				73BB0FCD22B09FA8005F351C /* ExpressQueryViewController.swift in Sources */,
 				732F736822BA1186008108CD /* RegisterModel.swift in Sources */,
@@ -1450,10 +1600,12 @@
 				73D4DADC2213CBF200116541 /* AppDelegate.swift in Sources */,
 				738AD38C22BCA2FE00FD0680 /* ProblemFeedbackView.swift in Sources */,
 				73BB0FD122B0B0DB005F351C /* CourierEntranceTabBarController.swift in Sources */,
+				73E78C1C22C0AD56007F35FA /* CopyrightStatementViewModel.swift in Sources */,
 				737E1C562213E94D00BF751D /* NewsHomeListView.swift in Sources */,
 				73B1DDE92242080400BFEF7A /* MovieHomeCell.swift in Sources */,
 				732F735A22B9FAC0008108CD /* LoginViewModel.swift in Sources */,
 				733E298F22607094001885CE /* PracticalFunctionCell.swift in Sources */,
+				73E78C2B22C0B03F007F35FA /* PrivacyPolicyViewModel.swift in Sources */,
 				7367D2F3221FA8DA008FD780 /* NewsHomeNetworkService.swift in Sources */,
 				7300251A22ADF0ED00F05ADC /* HomeEntranceViewController.swift in Sources */,
 				734F2EC322B1DC2600927AC1 /* ExpressQueryResultsView.swift in Sources */,
@@ -1470,6 +1622,7 @@
 				737E1C4C2213E3F800BF751D /* MainNavigationController.swift in Sources */,
 				734F2EC522B1E46800927AC1 /* ExpressQueryResultsTableViewCell.swift in Sources */,
 				73E52AF222B0E3B60018CBA6 /* ExpressQueryModel.swift in Sources */,
+				73E78C2722C0B017007F35FA /* PrivacyPolicyViewController.swift in Sources */,
 				731A381F22B33F32009FA711 /* CommonlyExpressViewModel.swift in Sources */,
 				73370BFF22B37AA400C01FE0 /* CourierEntranceViewModel.swift in Sources */,
 				73B1DDDF2241EF5500BFEF7A /* MovieHomeView.swift in Sources */,
@@ -1478,6 +1631,7 @@
 				73E52AF422B0E5AB0018CBA6 /* ExpressQueryViewModel.swift in Sources */,
 				735D64CA22BB81D10092ADEC /* RetrievePasswordViewController.swift in Sources */,
 				73E52AF022B0DB6D0018CBA6 /* CommonlyExpressViewController.swift in Sources */,
+				73E78C2922C0B02A007F35FA /* PrivacyPolicyView.swift in Sources */,
 				738AD38322BC9A0600FD0680 /* LCZTimingCounter.swift in Sources */,
 				73B1DDE52242055700BFEF7A /* MovieHomeViewModel.swift in Sources */,
 				7344B54B22AF8A6900FC7D4D /* MineEntranceView.swift in Sources */,
@@ -1495,6 +1649,7 @@
 				738AD37922BC847A00FD0680 /* SettingView.swift in Sources */,
 				734E9B7022448EA300CC5004 /* MoayProvider.swift in Sources */,
 				735BB33C225DEE1300241A59 /* EpisodeCell.swift in Sources */,
+				73E78C1822C0951B007F35FA /* CopyrightStatementViewController.swift in Sources */,
 				734E9B7222448F8A00CC5004 /* MovieNetworkServices.swift in Sources */,
 				73948B802223CFA5000ED09A /* DiaryBaseTableViewCell.swift in Sources */,
 				7300252422ADFB2F00F05ADC /* HomeEntranceCollectionHedderView.swift in Sources */,
@@ -1505,6 +1660,7 @@
 				73BB0FCF22B09FCB005F351C /* ExpressQueryView.swift in Sources */,
 				737E1C542213E89700BF751D /* NewsHomeView.swift in Sources */,
 				738AD38022BC993F00FD0680 /* LCZClearCache.swift in Sources */,
+				73E78C3622C0C74B007F35FA /* AboutUsView.swift in Sources */,
 				737E1C592213ED0C00BF751D /* HighSpeedDataNetworkServices.swift in Sources */,
 				7344B54122AF594F00FC7D4D /* MainTabBarController.swift in Sources */,
 				738AD37B22BC85D000FD0680 /* SettingTableViewCell.swift in Sources */,

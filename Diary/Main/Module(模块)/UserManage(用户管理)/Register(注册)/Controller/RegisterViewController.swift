@@ -37,13 +37,13 @@ class RegisterViewController: DiaryBaseViewController {
         
         email.bind(to: registerView.codeButton.rx.isEnabled).disposed(by: rx.disposeBag)
         email.subscribe(onNext: { (state) in
-            self.registerView.codeButton.backgroundColor = state == true ? LCZHexadecimalColor(hexadecimal: "#FECE1D") : LCZRgbColor(239, 240, 244, 1)
+            self.registerView.codeButton.backgroundColor = state && self.registerView.codeButton.isEnabled == true ? LCZHexadecimalColor(hexadecimal: "#FECE1D") : LCZRgbColor(239, 240, 244, 1)
         }).disposed(by: rx.disposeBag)
         // 发送验证码事件
         registerView.codeButton.rx.tap.subscribe(onNext: { () in
             self.registerView.codeButton.isEnabled = false
             self.viewModel.sendVerificationCode(to: self.registerView.emailTextField.text!).subscribe(onSuccess: { (model) in
-                LCZProgressHUD.showSuccess(title: "发送成功")
+                LCZProgressHUD.showSuccess(title: "获取验证码成功")
                 DispatchQueue.main.async(execute: {
                     self.registerView.codeButton.backgroundColor = LCZRgbColor(239, 240, 244, 1)
                     LCZTimingCounter.addVerifyCode("RegistrationVerificationCode")

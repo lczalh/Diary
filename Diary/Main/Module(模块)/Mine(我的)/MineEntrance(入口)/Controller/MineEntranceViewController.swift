@@ -7,8 +7,14 @@
 //
 
 import UIKit
+import MessageUI
 
 class MineEntranceViewController: DiaryBaseViewController {
+    
+    // 重现statusBar相关方法
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     //视图将要显示
     override func viewWillAppear(_ animated: Bool) {
@@ -56,12 +62,25 @@ class MineEntranceViewController: DiaryBaseViewController {
             diaryRoute.push("diary://mine/setting")
         }).disposed(by: rx.disposeBag)
         
-        
-//        networkServicesProvider.rx.request(MultiTarget(MovieNetworkServices.problemFeedback(gbook_content: "1231", verify: "123"))).mapJSON().subscribe(onSuccess: { (res) in
-//            LCZPrint(res)
-//        }) { (error) in
-//            
-//        }
+    }
+    
+    // MARK: - 邮件反馈
+    private func emailFeedback() {
+        //首先要判断设备具不具备发送邮件功能
+        if MFMailComposeViewController.canSendMail(){
+            let controller = MFMailComposeViewController()
+            //设置代理
+            controller.mailComposeDelegate = self
+            //设置收件人
+            controller.setToRecipients(["824092805@qq.com"])
+            
+            DispatchQueue.main.async {
+                //打开界面
+                self.present(controller, animated: true, completion: nil)
+            }
+        }else{
+            LCZProgressHUD.showError(title: "当前设备尚未配置邮件帐号，请到邮件APP中添加您的邮箱后再使用此功能！")
+        }
     }
     
 
@@ -85,10 +104,18 @@ extension MineEntranceViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 0 {
-            if indexPath.row == 0 {
-                diaryRoute.push("diary://mine/problemfeedback")
-            }
+        let title = self.mineEntranceViewModel.cellTitles[indexPath.section][indexPath.row]
+        
+        if title == "邮件反馈" {
+            emailFeedback()
+        } else if title == "去评分" {
+            
+        } else if title == "关于我们" {
+            diaryRoute.push("diary://mine/aboutUs")
+        } else if title == "版权声明" {
+            diaryRoute.push("diary://mine/copyrightStatement")
+        } else if title == "隐私政策" {
+            diaryRoute.push("diary://mine/privacyPolicy")
         }
     }
     
@@ -121,4 +148,23 @@ extension MineEntranceViewController: UITableViewDelegate {
         return nil
     }
     
+}
+
+extension MineEntranceViewController: MFMailComposeViewControllerDelegate {
+    //发送邮件代理方法
+    func mailComposeController(_ controller: MFMailComposeViewController,
+                               didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
+        
+        switch result{
+        case .sent:
+            LCZProgressHUD.showSuccess(title: "邮件发送成功")
+        case .cancelled:
+            LCZProgressHUD.showSuccess(title: "邮件取消成功")
+        case .saved:
+            LCZProgressHUD.showSuccess(title: "邮件保存成功")
+        case .failed:
+            LCZProgressHUD.showError(title: "邮件发送失败")
+        }
+    }
 }

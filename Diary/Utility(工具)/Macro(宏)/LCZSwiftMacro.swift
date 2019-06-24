@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-/// 获取当前版本号
+/// 获取当前APP版本号
 public let LCZVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String
 
 /// 获取状态栏高度
@@ -48,7 +48,7 @@ public let LCZiphone7Height = 667
 /// iphone5S屏幕高度
 public let LCZiphone5SHeight = 568
 
-/// APP用户明
+/// APP名称
 public let LCZAppName: String = Bundle.main.infoDictionary!["CFBundleDisplayName"] as! String
 
 /// 获取根控制器

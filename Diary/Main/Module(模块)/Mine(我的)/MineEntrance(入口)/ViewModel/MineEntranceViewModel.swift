@@ -11,11 +11,12 @@ import Foundation
 class MineEntranceViewModel {
     
     /// cell标题
-    public let cellTitles: Array<Array<String>> = [["问题反馈","去评分"],
-                                                   ["关于我们"]
+    public let cellTitles: Array<Array<String>> = [["邮件反馈","去评分"],
+                                                   ["版权声明","隐私政策","关于我们"]
                                                   ]
     
+    /// cell图标
     public let cellImages:Array<Array<String>> = [["imfankui","pingfen"],
-                                                  ["guanyuwomen"]
+                                                  ["banquan","yinsicelve","guanyuwomen"]
                                                  ]
 }

@@ -20,6 +20,11 @@ class LoginViewController: DiaryBaseViewController {
         return vm
     }()
     
+    //隐藏状态栏
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
     //视图将要显示
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

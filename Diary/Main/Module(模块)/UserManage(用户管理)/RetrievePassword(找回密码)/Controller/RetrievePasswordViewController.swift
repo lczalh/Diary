@@ -28,16 +28,57 @@ class RetrievePasswordViewController: DiaryBaseViewController {
         
         self.view.addSubview(retrievePasswordView)
         
-        let account = retrievePasswordView.accountTextField.rx.text.orEmpty.map { $0.count >= 6 && $0.count <= 18 }.share(replay: 1)
+        // 邮箱输入框
+        let email = retrievePasswordView.emailTextField.rx.text.orEmpty.map { $0.count > 0 }.share(replay: 1)
+        // 密码输入框
         let password = retrievePasswordView.passwordTextField.rx.text.orEmpty.map { $0.count >= 6 && $0.count <= 18 }.share(replay: 1)
+        // 确认密码输入框
         let confirmPassword = retrievePasswordView.confirmPasswordTextField.rx.text.orEmpty.map { $0.count >= 6 && $0.count <= 18 }.share(replay: 1)
+        // 验证码输入框
         let code = retrievePasswordView.codeTextField.rx.text.orEmpty.map { $0.count == 4 }.share(replay: 1)
-        let encryptedProblem = retrievePasswordView.encryptedProblemTextField.rx.text.orEmpty.map { $0.count > 0 }.share(replay: 1)
-        let encryptedAnswers = retrievePasswordView.encryptedAnswersTextField.rx.text.orEmpty.map { $0.count > 0 }.share(replay: 1)
+        // 邮箱验证码输入框
+        let emailCode = retrievePasswordView.emailCodeTextField.rx.text.orEmpty.map{ $0.count == 6 }.share(replay: 1)
         
+        email.subscribe(onNext: { (state) in
+            self.retrievePasswordView.emailCodeButton.backgroundColor = state && self.retrievePasswordView.emailCodeButton.isEnabled  == true  ? LCZHexadecimalColor(hexadecimal: "#FECE1D") : LCZRgbColor(239, 240, 244, 1)
+        }).disposed(by: rx.disposeBag)
+        email.bind(to: retrievePasswordView.emailCodeTextField.rx.isEnabled).disposed(by: rx.disposeBag)
+        
+        // 获取邮箱验证码
+        self.retrievePasswordView.emailCodeButton.rx.tap.subscribe(onNext: { () in
+            self.retrievePasswordView.emailCodeButton.isEnabled = false
+            self.viewModel.geteMailCode(to: self.retrievePasswordView.emailTextField.text!).subscribe(onSuccess: { (model) in
+                LCZProgressHUD.showSuccess(title: "获取验证码成功")
+                DispatchQueue.main.async(execute: {
+                    self.retrievePasswordView.emailCodeButton.backgroundColor = LCZRgbColor(239, 240, 244, 1)
+                    LCZTimingCounter.addVerifyCode("RetrievePasswordVerificationCode")
+                })
+            }, onError: { (error) in
+                DispatchQueue.main.async(execute: {
+                    self.retrievePasswordView.emailCodeButton.isEnabled = true
+                })
+            }).disposed(by: self.rx.disposeBag)
+        }).disposed(by: rx.disposeBag)
+        
+        // 监听倒计时
+        NotificationCenter.default.rx.notification(Notification.Name(rawValue: "RetrievePasswordVerificationCode"))
+            .takeUntil(self.rx.deallocated) //页面销毁自动移除通知监听
+            .subscribe(onNext: { (notification) in
+                if (notification.object! as! Int) == 0 {
+                    DispatchQueue.main.async(execute: {
+                        self.retrievePasswordView.emailCodeButton.isEnabled = true
+                        self.retrievePasswordView.emailCodeButton.backgroundColor = LCZHexadecimalColor(hexadecimal: "#FECE1D")
+                        self.retrievePasswordView.emailCodeButton.setTitle("获取验证码", for: .normal)
+                    })
+                }else {
+                    DispatchQueue.main.async(execute: {
+                        self.retrievePasswordView.emailCodeButton.setTitle("\(notification.object!)s", for: .normal)
+                    })
+                }
+            }).disposed(by: rx.disposeBag)
         
         // 监听账号、密码、确认密码等输入框
-        let zip = Observable.combineLatest(account, password, confirmPassword, code, encryptedProblem, encryptedAnswers) { $0 && $1 && $2 && $3 && $4 && $5}
+        let zip = Observable.combineLatest(email, password, confirmPassword, code, emailCode) { $0 && $1 && $2 && $3 && $4 }
         zip.bind(to: self.retrievePasswordView.retrievePasswordButton.rx.isEnabled).disposed(by: rx.disposeBag)
         zip.subscribe(onNext: { (state) in
             self.retrievePasswordView.retrievePasswordButton.backgroundColor = state == true ? LCZHexadecimalColor(hexadecimal: "#FECE1D") : LCZRgbColor(239, 240, 244, 1)
@@ -46,31 +87,25 @@ class RetrievePasswordViewController: DiaryBaseViewController {
         // 找回事件
         self.retrievePasswordView.retrievePasswordButton.rx.tap.subscribe(onNext: { () in
             self.retrievePasswordView.retrievePasswordButton.isEnabled = false
-            self.viewModel.retrievePassword(user_name: self.retrievePasswordView.accountTextField.text!,
-                                            user_question: self.retrievePasswordView.encryptedProblemTextField.text!,
-                                            user_answer: self.retrievePasswordView.encryptedAnswersTextField.text!,
+            
+            self.viewModel.retrievePassword(to: self.retrievePasswordView.emailTextField.text!,
                                             user_pwd: self.retrievePasswordView.passwordTextField.text!,
                                             user_pwd2: self.retrievePasswordView.confirmPasswordTextField.text!,
-                                            verify: self.retrievePasswordView.codeTextField.text!).subscribe(onSuccess: { (model) in
+                                            verify: self.retrievePasswordView.codeTextField.text!,
+                                            code: self.retrievePasswordView.emailCodeTextField.text!).subscribe(onSuccess: { (model) in
                                                 DispatchQueue.main.async(execute: {
                                                     self.retrievePasswordView.retrievePasswordButton.isEnabled = true
                                                     LCZProgressHUD.showSuccess(title: "成功找回")
                                                     self.navigationController?.popViewController(animated: true)
                                                 })
                                             }, onError: { (error) in
-                                                DispatchQueue.main.async(execute: {
+                                                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1, execute: {
                                                     self.retrievePasswordView.retrievePasswordButton.isEnabled = true
                                                     self.retrievePasswordView.getCodeImage()
                                                 })
                                             }).disposed(by: self.rx.disposeBag)
-        }).disposed(by: rx.disposeBag)
-        
-//        networkServicesProvider.rx.request(MultiTarget(MovieNetworkServices.retrievePasswordSendVerificationCode(ac: "email", to: "824092805@qq.com"))).mapJSON().subscribe(onSuccess: { (re) in
-//            let r = re as! Dictionary<String, Any>
-//            LCZPrint(r["msg"])
-//        }) { (error) in
-//            
-//        }
+            }).disposed(by: rx.disposeBag)
+            
     }
     
 
