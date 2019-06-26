@@ -251,6 +251,19 @@ public func LCZGetSuperView<T: UIView>(currentView: UIView, superView: T.Type) -
     return view as? T
 }
 
+public func LCZGetSubViews<T: UIView>(currentView: UIView, subView: T.Type) -> T? {
+    let views = currentView.subviews
+    if views.count == 0 {
+        return nil
+    }
+    for view in views {
+        if view.isKind(of: T.self) == true {
+            return view as? T
+        }
+    }
+    return nil
+}
+
 
 
 

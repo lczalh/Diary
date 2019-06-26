@@ -26,4 +26,5 @@
 @_exported import SwifterSwift
 @_exported import PYSearch
 @_exported import FSPagerView
+@_exported import SkeletonView
 

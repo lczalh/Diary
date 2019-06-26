@@ -41,9 +41,23 @@ enum DiaryRoute {
             return newsDetails
         }
         
+        // 电影入口
+        navigator.register("diary://homeEntrance/movieEntrance") { url, values, context in
+            let movieEntranceTabBarController = MovieEntranceTabBarController()
+            movieEntranceTabBarController.hidesBottomBarWhenPushed = true
+            return movieEntranceTabBarController
+        }
+        
         // 电影首页
         navigator.register("diary://homeEntrance/movieHome") { url, values, context in
             let movieHome = MovieHomeViewController()
+            movieHome.hidesBottomBarWhenPushed = true
+            return movieHome
+        }
+        
+        // 新电影首页
+        navigator.register("diary://homeEntrance/newsMovieHome") { url, values, context in
+            let movieHome = NewsMovieHomeViewController()
             movieHome.hidesBottomBarWhenPushed = true
             return movieHome
         }
@@ -64,7 +78,7 @@ enum DiaryRoute {
             return searchMovie
         }
         
-        // 快递
+        // 快递入口
         navigator.register("diary://homeEntrance/courierEntrance") { url, values, context in
             let courierEntrance = CourierEntranceTabBarController()
             courierEntrance.hidesBottomBarWhenPushed = true

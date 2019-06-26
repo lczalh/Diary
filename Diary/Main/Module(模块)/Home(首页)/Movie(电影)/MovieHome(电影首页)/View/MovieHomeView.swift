@@ -10,7 +10,7 @@ import UIKit
 
 class MovieHomeView: DiaryBaseView {
     
-    var collectionView: UICollectionView!
+    public var collectionView: UICollectionView!
     
 
     override func configUI() {
