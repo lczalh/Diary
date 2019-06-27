@@ -15,6 +15,7 @@ class NewsMovieHomeCollectionHeaderView: UICollectionReusableView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.isSkeletonable = true
         titleLabel = UILabel()
         self.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { (make) in
@@ -23,6 +24,8 @@ class NewsMovieHomeCollectionHeaderView: UICollectionReusableView {
         }
         titleLabel.font = LCZBoldFontSize(size: 16)
         titleLabel.textColor = LCZHexadecimalColor(hexadecimal: "#57310C")
+        titleLabel.isSkeletonable = true
+     
     }
     
     

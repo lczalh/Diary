@@ -17,15 +17,17 @@ class NewsMovieCollectionViewCell: DiaryBaseCollectionViewCell {
     public var titleLabel: UILabel!
     
     override func config() {
+        self.isSkeletonable = true
+        
         imageView = UIImageView()
         self.contentView.addSubview(imageView)
         imageView.snp.makeConstraints { (make) in
             make.left.right.top.equalToSuperview()
             make.height.equalTo(120)
         }
-        imageView.image = UIImage(named: "2")
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
+        imageView.isSkeletonable = true
         
         titleLabel = UILabel()
         self.contentView.addSubview(titleLabel)
@@ -37,7 +39,7 @@ class NewsMovieCollectionViewCell: DiaryBaseCollectionViewCell {
         }
         titleLabel.textAlignment = .center
         titleLabel.font = LCZFontSize(size: 14)
-        titleLabel.text = "大佬开始"
         titleLabel.textColor = LCZHexadecimalColor(hexadecimal: "#FECE1D")
+        titleLabel.isSkeletonable = true
     }
 }

@@ -411,12 +411,12 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		731802A522C3164500ED5D56 /* MovieEntrance */ = {
+		731802A522C3164500ED5D56 /* MovieEntrance(电影入口) */ = {
 			isa = PBXGroup;
 			children = (
 				731802A622C3166500ED5D56 /* Controller */,
 			);
-			path = MovieEntrance;
+			path = "MovieEntrance(电影入口)";
 			sourceTree = "<group>";
 		};
 		731802A622C3166500ED5D56 /* Controller */ = {
@@ -1048,7 +1048,7 @@
 		73B1DDD82241EE2500BFEF7A /* Movie(电影) */ = {
 			isa = PBXGroup;
 			children = (
-				731802A522C3164500ED5D56 /* MovieEntrance */,
+				731802A522C3164500ED5D56 /* MovieEntrance(电影入口) */,
 				73480F9622C30955003BB258 /* NewsMovieHome(新电影首页) */,
 				73C34F682264544B00244B55 /* SearchMovie(搜索电影) */,
 				73B1DDEA22422FD200BFEF7A /* MovieDetails(电影详情) */,

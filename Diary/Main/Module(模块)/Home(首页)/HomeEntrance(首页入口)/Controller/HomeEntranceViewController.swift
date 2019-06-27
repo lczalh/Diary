@@ -105,8 +105,8 @@ extension HomeEntranceViewController: UICollectionViewDataSource {
             }
         } else if indexPath.section == 1 {
             if indexPath.row == 0 { // 电影
-                diaryRoute.push("diary://homeEntrance/movieHome")
-               // diaryRoute.push("diary://homeEntrance/movieEntrance")
+                //diaryRoute.push("diary://homeEntrance/movieHome")
+                diaryRoute.push("diary://homeEntrance/movieEntrance")
             }
         }
     }

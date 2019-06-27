@@ -257,6 +257,7 @@ public func LCZGetSubViews<T: UIView>(currentView: UIView, subView: T.Type) -> T
         return nil
     }
     for view in views {
+        LCZPrint(view)
         if view.isKind(of: T.self) == true {
             return view as? T
         }

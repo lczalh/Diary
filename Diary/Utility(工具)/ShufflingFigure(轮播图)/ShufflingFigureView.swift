@@ -16,6 +16,7 @@ class ShufflingFigureView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.isSkeletonable = true
         fsPagerView = FSPagerView(frame: frame)
         self.addSubview(fsPagerView)
         fsPagerView.register(FSPagerViewCell.self, forCellWithReuseIdentifier: "cell")
@@ -23,6 +24,7 @@ class ShufflingFigureView: UIView {
         fsPagerView.automaticSlidingInterval = 3
         fsPagerView.isInfinite = !fsPagerView.isInfinite
         fsPagerView.decelerationDistance = FSPagerView.automaticDistance
+        fsPagerView.isSkeletonable = true
         fsPageControl = FSPageControl()
         fsPagerView.addSubview(fsPageControl)
         fsPageControl.snp.makeConstraints { (make) in
@@ -33,6 +35,7 @@ class ShufflingFigureView: UIView {
         //设置下标指示器颜色（选中状态和普通状态）
         fsPageControl.setFillColor(LCZHexadecimalColor(hexadecimal: "#57310C"), for: .normal)
         fsPageControl.setFillColor(LCZHexadecimalColor(hexadecimal: "#FECE1D"), for: .selected)
+        fsPageControl.isSkeletonable = true
     }
     
     required init?(coder aDecoder: NSCoder) {
