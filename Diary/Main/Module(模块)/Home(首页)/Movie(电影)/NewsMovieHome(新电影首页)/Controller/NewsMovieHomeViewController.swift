@@ -108,8 +108,8 @@ class NewsMovieHomeViewController: DiaryBaseViewController {
                 }
                 self.cellModels.append(todayHotMore)
                 self.cellModels.append(guessYouLikeModels)
-                self.cellModels.append(recommendToYouModels)
                 self.cellModels.append(cinemaHitModels)
+                self.cellModels.append(recommendToYouModels)
                 self.cellSectionsTitles = ["今日精选","猜你在追","影院热映","为你推荐"]
                 DispatchQueue.main.async(execute: {
                     self.view.hideSkeleton()
