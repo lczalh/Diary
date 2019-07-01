@@ -19,14 +19,20 @@ class NewsMovieHomeViewModel {
     init(headerRefresh: Driver<Void>) {
         headerRefreshData = headerRefresh.startWith(())
             .flatMapLatest { (models) -> SharedSequence<DriverSharingStrategy, Array<MovieHomeModel>> in
-                return self.getMovieListData(pg: 1, h: "24").asDriver(onErrorJustReturn: [])
+                return self.getMovieListData(pg: 1).asDriver(onErrorJustReturn: [])
         }
         endHeaderRefreshing = headerRefreshData.map { _ in true }
     }
     
-    public func getMovieListData(_ ac: String = "detail", pg: Int, h: String) -> Single<[MovieHomeModel]> {
+    /// 获取电影列表数据
+    ///
+    /// - Parameters:
+    ///   - ac: detail
+    ///   - pg: 页数
+    /// - Returns: 数据
+    private func getMovieListData(_ ac: String = "detail",pg: Int) -> Single<[MovieHomeModel]> {
         return Single<[MovieHomeModel]>.create(subscribe: { (single) -> Disposable in
-            let request = networkServicesProvider.rx.requestData(target: MultiTarget(MovieNetworkServices.getVideoToday(ac: ac, pg: pg, h: h)), model: MovieHomeRootModel.self).subscribe(onSuccess: { (result) in
+            let request = networkServicesProvider.rx.requestData(target: MultiTarget(MovieNetworkServices.getMovieList(ac: ac, pg: pg)), model: MovieHomeRootModel.self).subscribe(onSuccess: { (result) in
                 if result.code == 1 {
                     single(.success(result.list! as [MovieHomeModel]))
                 } else {

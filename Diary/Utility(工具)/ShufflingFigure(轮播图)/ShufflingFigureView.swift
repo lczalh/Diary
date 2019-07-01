@@ -13,6 +13,17 @@ class ShufflingFigureView: UIView {
     public var fsPagerView: FSPagerView!
     
     public var fsPageControl: FSPageControl!
+    
+    /// 轮播图样式
+    private let shufflingFigureTransformerTypes: [FSPagerViewTransformerType] = [.crossFading,
+                                                                                .zoomOut,
+                                                                                .depth,
+                                                                                .linear,
+                                                                                .overlap,
+                                                                                .ferrisWheel,
+                                                                                .invertedFerrisWheel,
+                                                                                .coverFlow,
+                                                                                .cubic]
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -36,6 +47,29 @@ class ShufflingFigureView: UIView {
         fsPageControl.setFillColor(LCZHexadecimalColor(hexadecimal: "#57310C"), for: .normal)
         fsPageControl.setFillColor(LCZHexadecimalColor(hexadecimal: "#FECE1D"), for: .selected)
         fsPageControl.isSkeletonable = true
+        // 随机轮播图样式
+        let i = arc4random_uniform(9 - 0) + 0
+        let type = shufflingFigureTransformerTypes[Int(i)]
+        fsPagerView.transformer = FSPagerViewTransformer(type:type)
+        switch type {
+        case .crossFading, .zoomOut, .depth:
+            fsPagerView.itemSize = FSPagerView.automaticSize
+            fsPagerView.decelerationDistance = 1
+        case .linear, .overlap:
+            let transform = CGAffineTransform(scaleX: 0.6, y: 0.75)
+            fsPagerView.itemSize = fsPagerView.frame.size.applying(transform)
+            fsPagerView.decelerationDistance = FSPagerView.automaticDistance
+        case .ferrisWheel, .invertedFerrisWheel:
+            fsPagerView.itemSize = CGSize(width: 180, height: 140)
+            fsPagerView.decelerationDistance = FSPagerView.automaticDistance
+        case .coverFlow:
+            fsPagerView.itemSize = CGSize(width: 220, height: 170)
+            fsPagerView.decelerationDistance = FSPagerView.automaticDistance
+        case .cubic:
+            let transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+            fsPagerView.itemSize = fsPagerView.frame.size.applying(transform)
+            fsPagerView.decelerationDistance = 1
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {

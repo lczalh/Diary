@@ -42,9 +42,8 @@ class NewsMovieHomeViewController: DiaryBaseViewController {
         self.tabBarController!.navigationItem.backBarButtonItem = backBarButtonItem
         
         // 搜索按钮
-        self.tabBarController!.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "sousuo")?.withRenderingMode(.alwaysOriginal), style: .plain, target: nil, action: nil)
-        self.tabBarController!.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
-        self.tabBarController!.navigationItem.rightBarButtonItem?.rx.tap.subscribe(onNext: { () in
+        let searchBarButtonItem = UIBarButtonItem(image: UIImage(named: "sousuo")?.withRenderingMode(.alwaysOriginal), style: .plain, target: nil, action: nil)
+        searchBarButtonItem.rx.tap.subscribe(onNext: { () in
             let nums = ["流浪地球", "封神演义", "复仇者联盟", "斗罗大陆", "斗破苍穹","飞驰人生","新喜剧之王","家和万事惊"]
             let searchViewController = PYSearchViewController(hotSearches: nums, searchBarPlaceholder: NSLocalizedString("NSLocalizedString",value: "搜索电影", comment: ""), didSearch: { controller,searchBar,searchText in
                 let searchMovieVC = SearchMovieViewController()
@@ -64,6 +63,14 @@ class NewsMovieHomeViewController: DiaryBaseViewController {
             })
             
         }).disposed(by: rx.disposeBag)
+        
+        // 更多按钮
+        let moreBarButtonItem = UIBarButtonItem(image: UIImage(named: "quanbugengduo")?.withRenderingMode(.alwaysOriginal), style: .plain, target: nil, action: nil)
+        moreBarButtonItem.rx.tap.subscribe(onNext: { () in
+            diaryRoute.push("diary://homeEntrance/newsMovieHome/MoreMovies")
+        }).disposed(by: rx.disposeBag)
+        
+        self.tabBarController!.navigationItem.setRightBarButtonItems([searchBarButtonItem,moreBarButtonItem], animated: true)
         
         self.view.addSubview(newsMovieHomeContentView)
         
@@ -179,8 +186,12 @@ extension NewsMovieHomeViewController: SkeletonCollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let model = self.cellModels[indexPath.section][indexPath.row]
-        diaryRoute.push("diary://homeEntrance/movieHome/movieDetails" ,context: model)
+    
+        guard self.cellModels.count == 0 else {
+            let model = self.cellModels[indexPath.section][indexPath.row]
+            diaryRoute.push("diary://homeEntrance/movieHome/movieDetails" ,context: model)
+            return
+        }
     }
     
 }

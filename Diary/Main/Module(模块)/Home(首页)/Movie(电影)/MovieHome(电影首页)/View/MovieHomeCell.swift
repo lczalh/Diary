@@ -18,7 +18,7 @@ class MovieHomeCell: DiaryBaseCollectionViewCell {
     
     
     override func config() {
-        
+        self.isSkeletonable = true
         self.contentView.layer.cornerRadius = 10
         self.layer.cornerRadius = 10
         self.contentView.clipsToBounds = true
@@ -33,6 +33,8 @@ class MovieHomeCell: DiaryBaseCollectionViewCell {
         self.titleLabel.textAlignment = .center
         self.titleLabel.font = LCZFontSize(size: 14)
         self.titleLabel.textColor = LCZHexadecimalColor(hexadecimal: "#FECE1D")
+        self.titleLabel.isSkeletonable = true
+        self.titleLabel.text = "乐淘视界"
         
         self.contentView.addSubview(self.imageView)
         self.imageView.contentMode = .scaleAspectFill
@@ -41,6 +43,7 @@ class MovieHomeCell: DiaryBaseCollectionViewCell {
             make.left.top.right.equalToSuperview()
             make.bottom.equalTo(self.titleLabel.snp.top).offset(-10)
         }
+        self.imageView.isSkeletonable = true
     }
     
   
