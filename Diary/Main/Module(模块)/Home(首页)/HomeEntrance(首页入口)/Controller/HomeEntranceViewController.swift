@@ -57,6 +57,19 @@ class HomeEntranceViewController: DiaryBaseViewController {
         backBarButtonItem.tintColor = LCZHexadecimalColor(hexadecimal: "#FECE1D")
         self.navigationItem.backBarButtonItem = backBarButtonItem
         
+        let la = LCZMarqueeLabel.init(location: CGPoint(x: 0, y: 100), text: "萨法第三款福克斯大家噶圣诞节格拉可视电话个临时的214", duration: 20)
+        self.view.addSubview(la)
+        la.backgroundColor = UIColor.blue
+        la.textColor = UIColor.red
+       // la.text = "3213112312"dasf
+//        let positionAnimation = CABasicAnimation(keyPath: "position.x")
+//        positionAnimation.duration = 10.0;
+//        positionAnimation.fromValue = (-10);
+//        positionAnimation.toValue = (LCZWidth / 2.0);
+//       // positionAnimation.fillMode = .Formatter
+//       // positionAnimation.isRemovedOnCompletion = false
+//        la.layer.add(positionAnimation, forKey: "position.x")
+        
     }
     
 

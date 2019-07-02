@@ -13,7 +13,7 @@ class SearchMovieView: DiaryBaseView {
     public var tableView: UITableView!
 
     override func configUI() {
-       // self.backgroundColor = UIColor.purple
+        self.isSkeletonable = true
         tableView = UITableView(frame: self.bounds, style: .plain)
         self.addSubview(tableView)
         tableView.rowHeight = 120
@@ -23,6 +23,7 @@ class SearchMovieView: DiaryBaseView {
         //设置尾部刷新控件
         tableView.mj_footer = MJRefreshBackNormalFooter()
         tableView.separatorStyle = .none
+        tableView.isSkeletonable = true
 
     }
 

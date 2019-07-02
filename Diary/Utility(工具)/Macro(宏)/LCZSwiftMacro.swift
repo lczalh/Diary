@@ -239,31 +239,31 @@ func LCZUpdateTimeToCurrennTime(timeStamp: Double, dateFormat:String = "yyyy-MM-
 ///   - currentView: 当前视图
 ///   - superView: 目标父视图
 /// - Returns: 返回父视图
-public func LCZGetSuperView<T: UIView>(currentView: UIView, superView: T.Type) -> T? {
-    var view: UIView = currentView.superview!
-    
-    while view.isKind(of: T.self) != true {
-        guard view.superview != nil else {
-            return nil
-        }
-        view = view.superview!
-    }
-    return view as? T
-}
+//public func LCZGetSuperView<T: UIView>(currentView: UIView, superView: T.Type) -> T? {
+//    var view: UIView = currentView.superview!
+//    
+//    while view.isKind(of: T.self) != true {
+//        guard view.superview != nil else {
+//            return nil
+//        }
+//        view = view.superview!
+//    }
+//    return view as? T
+//}
 
-public func LCZGetSubViews<T: UIView>(currentView: UIView, subView: T.Type) -> T? {
-    let views = currentView.subviews
-    if views.count == 0 {
-        return nil
-    }
-    for view in views {
-        LCZPrint(view)
-        if view.isKind(of: T.self) == true {
-            return view as? T
-        }
-    }
-    return nil
-}
+//public func LCZGetSubViews<T: UIView>(currentView: UIView, subView: T.Type) -> T? {
+//    let views = currentView.subviews
+//    if views.count == 0 {
+//        return nil
+//    }
+//    for view in views {
+//        LCZPrint(view)
+//        if view.isKind(of: T.self) == true {
+//            return view as? T
+//        }
+//    }
+//    return nil
+//}
 
 
 

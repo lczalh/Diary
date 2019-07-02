@@ -26,7 +26,7 @@ public enum MovieNetworkServices {
     // MARK: - 找回密码发送验证码
     case retrievePasswordSendVerificationCode(ac: String, to: String)
     // MARK: - 获取今日视频
-    case getVideoToday(ac: String,pg: Int, h: String)
+//    case getVideoToday(ac: String,pg: Int, h: String)
 }
 
 //设置请求配置
@@ -57,8 +57,8 @@ extension MovieNetworkServices : TargetType {
             return "index.php/user/reg_msg"
         case .retrievePasswordSendVerificationCode:
             return "index.php/user/findpass_msg"
-        case .getVideoToday:
-            return "api.php/provide/vod/"
+//        case .getVideoToday:
+//            return "api.php/provide/vod/"
         }
         
     }
@@ -111,10 +111,10 @@ extension MovieNetworkServices : TargetType {
             parameterDict["user_pwd2"] = user_pwd2
             parameterDict["verify"] = verify
             parameterDict["code"] = code
-        case .getVideoToday(let ac, let pg, let h):
-            parameterDict["ac"] = ac
-            parameterDict["pg"] = pg
-            parameterDict["h"] = h
+//        case .getVideoToday(let ac, let pg, let h):
+//            parameterDict["ac"] = ac
+//            parameterDict["pg"] = pg
+//            parameterDict["h"] = h
         }
         
         return  .requestParameters(parameters: parameterDict, encoding: URLEncoding.default)

@@ -37,7 +37,7 @@ class NewsMovieHomeViewModel {
                     single(.success(result.list! as [MovieHomeModel]))
                 } else {
                     LCZProgressHUD.showError(title: result.msg)
-                    single(.error(MovieError.requestTimeout))
+                    single(.error(DiaryRequestError.requestTimeout))
                 }
             }) { (error) in
                 single(.error(error))

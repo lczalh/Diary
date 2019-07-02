@@ -12,8 +12,12 @@ class SearchMovieViewController: DiaryBaseViewController {
     
     public var movieName: String!
     
+    /// 模型数据
+    private var models: [MovieHomeModel] = []
+    
     private lazy var searchMovieView: SearchMovieView = {
         let view = SearchMovieView(frame: CGRect(x: 0, y: 0, width: LCZWidth, height: LCZHeight - LCZStatusBarHeight - LCZNaviBarHeight - LCZSafeAreaBottomHeight))
+        view.tableView.dataSource = self
         return view
     }()
 
@@ -27,7 +31,12 @@ class SearchMovieViewController: DiaryBaseViewController {
         self.navigationItem.backBarButtonItem = backBarButtonItem
         
         self.view.addSubview(self.searchMovieView)
+
+        self.searchMovieView.tableView.visibleCells.forEach { $0.showAnimatedGradientSkeleton(usingGradient: SkeletonGradient(baseColor: UIColor.clouds),animation: GradientDirection.topLeftBottomRight.slidingAnimation()) }
+        
+        
         let viewModel = SearchMovieViewModel(input: (self.searchMovieView.tableView.mj_header.rx.refreshing.asDriver(),self.searchMovieView.tableView.mj_footer.rx.refreshing.asDriver(),self.movieName), dependency: (disposeBag: rx.disposeBag, networkService: SearchMovieNetworkService()))
+        
         
         // 下拉刷新状态结束的绑定
         viewModel.endHeaderRefreshing
@@ -38,36 +47,44 @@ class SearchMovieViewController: DiaryBaseViewController {
         viewModel.endFooterRefreshing
             .drive(self.searchMovieView.tableView.mj_footer.rx.endRefreshing)
             .disposed(by: rx.disposeBag)
-
-        // 创建数据源
-        let dataSource = RxTableViewSectionedAnimatedDataSource
-            <AnimatableSectionModel<String, MovieHomeModel>>(configureCell: {
-                (dataSource, tv, indexPath, element) in
-                let cell = tv.dequeueReusableCell(withIdentifier: "SearchMovieCell", for: indexPath) as! SearchMovieCell
-                if element.vod_pic?.isEmpty == false {
-                    cell.movieImageView.kf.indicatorType = .activity
-                    cell.movieImageView.kf.setImage(with: ImageResource(downloadURL: URL(string: element.vod_pic!)!), placeholder: UIImage(named: "zanwutupian"))
-                    
-                }
-                cell.titleLabel.text = element.vod_name
-                cell.detailsLabel.text = element.vod_blurb
-                return cell
-            })
-
-        // 数据绑定
-        viewModel.tableData.map {
-            [AnimatableSectionModel(model: "", items: $0)]}
-            .bind(to: self.searchMovieView.tableView.rx.items(dataSource: dataSource))
-            .disposed(by: rx.disposeBag)
-
-        // 同时获取索引和模型
-        Observable.zip(self.searchMovieView.tableView.rx.itemSelected, self.searchMovieView.tableView.rx.modelSelected(MovieHomeModel.self))
-            .bind { indexPath, item in
-                diaryRoute.push("diary://homeEntrance/movieHome/movieDetails" ,context: item)
-            }.disposed(by: rx.disposeBag)
+        
+        viewModel.tableData.subscribe(onNext: { (models) in
+            if models.count > 0 {
+                self.models = models
+                DispatchQueue.main.async(execute: {
+                    self.view.hideSkeleton()
+                    self.searchMovieView.tableView.reloadData()
+                })
+            }
+        }).disposed(by: rx.disposeBag)
+        
     }
     
     
     
+
+}
+
+extension SearchMovieViewController: SkeletonTableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.models.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let model = self.models[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchMovieCell", for: indexPath) as! SearchMovieCell
+        if model.vod_pic?.isEmpty == false {
+            cell.movieImageView.kf.indicatorType = .activity
+            cell.movieImageView.kf.setImage(with: ImageResource(downloadURL: URL(string: model.vod_pic!)!), placeholder: UIImage(named: "zanwutupian"))
+
+        }
+        cell.titleLabel.text = model.vod_name
+        cell.detailsLabel.text = model.vod_blurb
+        return cell
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return "SearchMovieCell"
+    }
 
 }

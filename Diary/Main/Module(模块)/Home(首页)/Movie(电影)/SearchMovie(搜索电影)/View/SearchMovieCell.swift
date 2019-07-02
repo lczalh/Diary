@@ -21,6 +21,7 @@ class SearchMovieCell: DiaryBaseTableViewCell {
     
     
     override func config() {
+        self.isSkeletonable = true
         movieImageView = UIImageView()
         self.contentView.addSubview(movieImageView)
         movieImageView.snp.makeConstraints { (make) in
@@ -34,6 +35,7 @@ class SearchMovieCell: DiaryBaseTableViewCell {
         movieImageView.contentMode = .scaleAspectFill
         movieImageView.setContentHuggingPriority(.required, for: .horizontal)
         movieImageView.setContentCompressionResistancePriority(.required, for: .horizontal)
+        movieImageView.isSkeletonable = true
         
         titleLabel = UILabel()
         self.contentView.addSubview(titleLabel)
@@ -45,6 +47,9 @@ class SearchMovieCell: DiaryBaseTableViewCell {
         titleLabel.font = LCZBoldFontSize(size: 16)
         titleLabel.setContentHuggingPriority(.required, for: .vertical)
         titleLabel.setContentCompressionResistancePriority(.required, for: .vertical)
+        titleLabel.text = "xxxxxxxxx"
+        titleLabel.isSkeletonable = true
+        titleLabel.textAlignment = .left
         
         detailsLabel = LCZAlignTopLabel()
         self.contentView.addSubview(detailsLabel)
@@ -57,7 +62,8 @@ class SearchMovieCell: DiaryBaseTableViewCell {
         detailsLabel.font = LCZFontSize(size: 14)
         detailsLabel.numberOfLines = 0;
         detailsLabel.textColor = LCZRgbColor(160, 160, 160, 1)
-        
+        detailsLabel.isSkeletonable = true
+        detailsLabel.textAlignment = .left
     }
     
 }

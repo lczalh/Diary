@@ -12,7 +12,8 @@ import Foundation
 ///
 /// - requestTimeout: 请求超时
 enum DiaryRequestError: Error {
-    case requestTimeout
+    case requestTimeout // 请求超时
+    case requestFailed // 请求失败
 }
 
 //初始化provider
@@ -20,7 +21,6 @@ let networkServicesProvider = MoyaProvider<MultiTarget>(endpointClosure: endpoin
 
 /// 设置接口的超时时间
 private let timeoutClosure = { (endpoint : Endpoint,closure : MoyaProvider<MultiTarget>.RequestResultClosure) -> Void in
-    
     if var urlRequest = try? endpoint.urlRequest() {
         urlRequest.timeoutInterval = 5
         closure(.success(urlRequest))
@@ -35,19 +35,14 @@ private let timeoutClosure = { (endpoint : Endpoint,closure : MoyaProvider<Multi
 private let RequestHudPlugin = NetworkActivityPlugin { change, target  in
     switch change {
     case .began:
-        
         DispatchQueue.main.async {
             UIApplication.shared.isNetworkActivityIndicatorVisible = true
         }
-        
-        
     case .ended:
-       
         DispatchQueue.main.async {
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
         }
     }
-    
 }
 
 /// 打印请求地址，路径，参数

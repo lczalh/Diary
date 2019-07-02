@@ -53,6 +53,7 @@ class MovieDetailsView: DiaryBaseView {
         playerButton.snp.makeConstraints { (make) in
             make.center.equalToSuperview()
         }
+        
     }
     
     // MARK: - 集合视图
