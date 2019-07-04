@@ -121,9 +121,22 @@ extension NewsHomeViewController: JXCategoryListContainerViewDelegate {
                 if element.pic?.isEmpty == false {
                     cell.newsImageView.kf.indicatorType = .activity
                     cell.newsImageView.kf.setImage(with: ImageResource(downloadURL: URL(string: element.pic!)!), placeholder: UIImage(named: "zanwutupian"))
+                } else {
+                    cell.newsImageView.image = UIImage(named: "zanwutupian")
                 }
-                cell.timeLabel.text = LCZUpdateTimeToCurrennTime(timeStamp: LCZTimeToTimeStamp(time: element.time!))
-                cell.sourceLabel.text = element.category
+                
+                if element.time?.isEmpty == false {
+                    cell.timeLabel.text = LCZUpdateTimeToCurrennTime(timeStamp: LCZTimeToTimeStamp(time: element.time!))
+                } else {
+                    cell.timeLabel.text = ""
+                }
+                
+                if element.category?.isEmpty == false {
+                    cell.sourceLabel.text = element.category
+                } else {
+                    cell.sourceLabel.text = ""
+                }
+                
                 return cell
             })
         

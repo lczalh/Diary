@@ -121,6 +121,9 @@ class NewsMovieHomeViewController: DiaryBaseViewController {
                 DispatchQueue.main.async(execute: {
                     self.view.hideSkeleton()
                     self.newsMovieHomeContentView.collectionView.reloadData()
+                    // 刷新轮播图
+                    let shufflingFigureHeaderView = self.newsMovieHomeContentView.LCZGetSubViews(subView: NewsMovieHomeShufflingFigureCollectionHeaderView.self)
+                    shufflingFigureHeaderView!.shufflingFigureView.fsPagerView.reloadData()
                 })
             }
         }).disposed(by: rx.disposeBag)
@@ -128,7 +131,6 @@ class NewsMovieHomeViewController: DiaryBaseViewController {
         self.viewModel.endHeaderRefreshing.drive(newsMovieHomeContentView.collectionView.mj_header.rx.endRefreshing).disposed(by: rx.disposeBag)
 
     }
-    
 
 
 }
@@ -149,6 +151,18 @@ extension NewsMovieHomeViewController: SkeletonCollectionViewDataSource {
     
     func numSections(in collectionSkeletonView: UICollectionView) -> Int {
         return 10
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UICollectionView, supplementaryViewIdentifierOfKind: String, at indexPath: IndexPath) -> ReusableCellIdentifier? {
+        if supplementaryViewIdentifierOfKind == UICollectionView.elementKindSectionHeader {
+            if indexPath.section == 0 {
+                return "NewsMovieHomeShufflingFigureCollectionHeaderView"
+            } else {
+                return "NewsMovieHomeCollectionHeaderView"
+            }
+        } else {
+            return nil
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

@@ -33,6 +33,7 @@ class NewsMovieHomeShufflingFigureCollectionHeaderView: UICollectionReusableView
         titleLabel.font = LCZBoldFontSize(size: 16)
         titleLabel.textColor = LCZHexadecimalColor(hexadecimal: "#57310C")
         titleLabel.isSkeletonable = true
+        titleLabel.text = "乐淘世界"
     }
     
     required init?(coder aDecoder: NSCoder) {

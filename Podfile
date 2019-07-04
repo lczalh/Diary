@@ -19,13 +19,13 @@ target 'Diary' do
     pod 'FSPagerView', '~> 0.8.2'
     pod 'SwiftTheme', '~> 0.4.4'
     pod 'SwifterSwift', '~> 5.0.0'
-    pod 'JXCategoryView', '~> 1.3.4'
+    pod 'JXCategoryView', '~> 1.3.14'
     pod 'ZFPlayer', '~> 3.0'
     pod 'ZFPlayer/ControlView', '~> 3.0'
     pod 'ZFPlayer/AVPlayer', '~> 3.0'
     pod 'PYSearch', '~> 0.9.1'
     pod 'swiftScan', '~> 1.1.2'
-    pod 'SkeletonView', '~> 1.6'
+    pod 'SkeletonView', '~> 1.7'
 end
 post_install do |installer|
     installer.pods_project.targets.each do |target|

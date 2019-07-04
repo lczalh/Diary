@@ -18,6 +18,7 @@ class SearchMovieViewController: DiaryBaseViewController {
     private lazy var searchMovieView: SearchMovieView = {
         let view = SearchMovieView(frame: CGRect(x: 0, y: 0, width: LCZWidth, height: LCZHeight - LCZStatusBarHeight - LCZNaviBarHeight - LCZSafeAreaBottomHeight))
         view.tableView.dataSource = self
+        view.tableView.delegate = self
         return view
     }()
 
@@ -31,9 +32,9 @@ class SearchMovieViewController: DiaryBaseViewController {
         self.navigationItem.backBarButtonItem = backBarButtonItem
         
         self.view.addSubview(self.searchMovieView)
-
-        self.searchMovieView.tableView.visibleCells.forEach { $0.showAnimatedGradientSkeleton(usingGradient: SkeletonGradient(baseColor: UIColor.clouds),animation: GradientDirection.topLeftBottomRight.slidingAnimation()) }
         
+        view.isSkeletonable = true
+        view.showAnimatedGradientSkeleton(usingGradient: SkeletonGradient(baseColor: UIColor.clouds),animation: GradientDirection.topLeftBottomRight.slidingAnimation())
         
         let viewModel = SearchMovieViewModel(input: (self.searchMovieView.tableView.mj_header.rx.refreshing.asDriver(),self.searchMovieView.tableView.mj_footer.rx.refreshing.asDriver(),self.movieName), dependency: (disposeBag: rx.disposeBag, networkService: SearchMovieNetworkService()))
         
@@ -86,5 +87,16 @@ extension SearchMovieViewController: SkeletonTableViewDataSource {
     func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
         return "SearchMovieCell"
     }
+    
+    
+}
 
+extension SearchMovieViewController: SkeletonTableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard self.models.count == 0 else {
+            let model = self.models[indexPath.row]
+            diaryRoute.push("diary://homeEntrance/movieHome/movieDetails" ,context: model)
+            return
+        }
+    }
 }

@@ -13,7 +13,7 @@ extension UIView {
     
     /// 获取指定父控制器
     ///
-    /// - Parameter viewController: 指定父控制器类型
+    /// - Parameter viewController: 查找的父控制器类型
     /// - Returns: 父控制器
     public func LCZGetSuperViewController<T: UIViewController>(viewController: T.Type) -> T? {
         var view: UIView = self.superview!
@@ -28,7 +28,7 @@ extension UIView {
     
     /// 获取指定父视图
     ///
-    /// - Parameter superView: 指定父视图类型
+    /// - Parameter superView: 查找的父视图类型
     /// - Returns: 父视图
     public func LCZGetSuperView<T: UIView>(superView: T.Type) -> T? {
         var view: UIView = self.superview!
@@ -41,17 +41,27 @@ extension UIView {
         return view as? T
     }
     
-//    public func LCZGetSubViews<T: UIView>(subView: T.Type) -> T? {
-//        let views = self.subviews
-//        if views.count == 0 {
-//            return nil
-//        }
-//        for view in views {
-//            LCZPrint(view)
-//            if view.isKind(of: T.self) == true {
-//                return view as? T
-//            }
-//        }
-//        return nil
-//    }
+    /// 获取指定子视图
+    ///
+    /// - Parameter subView: 查找的子视图类型
+    /// - Returns: 子视图
+    public func LCZGetSubViews<T: UIView>(subView: T.Type) -> T? {
+        return getView(currenView: self, superView: T.self)
+    }
+    private func getView<T: UIView>(currenView: UIView, superView: T.Type) -> T? {
+        // 遍历子视图
+        for view in currenView.subviews {
+            if view.isKind(of: T.self) == true {
+                return view as? T
+            } else {
+                // 递归查询
+                let v = getView(currenView: view, superView: T.self)
+                if v != nil {
+                    return v
+                }
+            }
+        }
+        return nil
+    }
+   
 }
