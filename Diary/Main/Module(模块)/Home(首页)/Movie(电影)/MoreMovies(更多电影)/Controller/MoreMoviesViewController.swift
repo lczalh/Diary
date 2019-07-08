@@ -43,13 +43,14 @@ class MoreMoviesViewController: DiaryBaseViewController {
                                                    animation: GradientDirection.topLeftBottomRight.slidingAnimation())
         })
         
-        viewModel.collectionData.subscribe(onNext: { (models) in
+        viewModel.collectionData.subscribe(onNext: {[weak self] (models) in
             if models.count > 0 {
-                self.models = models
-                DispatchQueue.main.async(execute: {
-                    self.view.hideSkeleton()
-                    self.moreMoviesView.collectionView.reloadData()
-                })
+                self!.models = models
+                DispatchQueue.main.async {
+                    self!.moreMoviesView.collectionView.reloadData({
+                        self!.view.hideSkeleton()
+                    })
+                }
             }
         }).disposed(by: rx.disposeBag)
         

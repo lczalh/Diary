@@ -27,4 +27,5 @@
 @_exported import PYSearch
 @_exported import FSPagerView
 @_exported import SkeletonView
+@_exported import swiftScan
 

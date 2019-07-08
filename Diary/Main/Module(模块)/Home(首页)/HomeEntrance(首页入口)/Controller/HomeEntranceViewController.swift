@@ -14,40 +14,38 @@ class HomeEntranceViewController: DiaryBaseViewController {
         let view = HomeEntranceView(frame: self.view.bounds)
         view.collectionView.delegate = self
         view.collectionView.dataSource = self
-        view.fsPagerView.dataSource = self
-        view.fsPagerView.delegate = self
-        view.fsPageControl.numberOfPages = viewModel.shufflingFigureImage.count
-        
-        // 随机轮播图样式
-        let i = arc4random_uniform(9 - 0) + 0
-        LCZPrint(i)
-        let type = self.viewModel.shufflingFigureTransformerTypes[Int(i)]
-        view.fsPagerView.transformer = FSPagerViewTransformer(type:type)
-        switch type {
-        case .crossFading, .zoomOut, .depth:
-            view.fsPagerView.itemSize = FSPagerView.automaticSize
-            view.fsPagerView.decelerationDistance = 1
-        case .linear, .overlap:
-            let transform = CGAffineTransform(scaleX: 0.6, y: 0.75)
-            view.fsPagerView.itemSize = view.fsPagerView.frame.size.applying(transform)
-            view.fsPagerView.decelerationDistance = FSPagerView.automaticDistance
-        case .ferrisWheel, .invertedFerrisWheel:
-            view.fsPagerView.itemSize = CGSize(width: 180, height: 140)
-            view.fsPagerView.decelerationDistance = FSPagerView.automaticDistance
-        case .coverFlow:
-            view.fsPagerView.itemSize = CGSize(width: 220, height: 170)
-            view.fsPagerView.decelerationDistance = FSPagerView.automaticDistance
-        case .cubic:
-            let transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-            view.fsPagerView.itemSize = view.fsPagerView.frame.size.applying(transform)
-            view.fsPagerView.decelerationDistance = 1
-        }
+        view.shufflingFigureView.fsPagerView.dataSource = self
+        view.shufflingFigureView.fsPagerView.delegate = self
+        view.shufflingFigureView.fsPageControl.numberOfPages = viewModel.shufflingFigureImage.count
         return view
     }()
     
     lazy var viewModel: HomeEntranceViewModel = {
         return HomeEntranceViewModel()
     }()
+    
+    // 重现statusBar相关方法
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    //视图将要显示
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isTranslucent = true
+        //设置导航栏背景透明
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+    }
+    
+    //视图将要消失
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.navigationBar.isTranslucent = false
+        //重置导航栏背景
+        self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+        self.navigationController?.navigationBar.shadowImage = nil
+    }
     
     
     override func viewDidLoad() {
@@ -139,11 +137,11 @@ extension HomeEntranceViewController: FSPagerViewDelegate {
     }
     
     func pagerViewWillEndDragging(_ pagerView: FSPagerView, targetIndex: Int) {
-        self.homeEntranceView.fsPageControl.currentPage = targetIndex
+        self.homeEntranceView.shufflingFigureView.fsPageControl.currentPage = targetIndex
     }
     
     func pagerViewDidEndScrollAnimation(_ pagerView: FSPagerView) {
-        self.homeEntranceView.fsPageControl.currentPage = pagerView.currentIndex
+        self.homeEntranceView.shufflingFigureView.fsPageControl.currentPage = pagerView.currentIndex
     }
 }
 

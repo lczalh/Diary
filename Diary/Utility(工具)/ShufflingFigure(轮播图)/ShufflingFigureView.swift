@@ -27,7 +27,7 @@ class ShufflingFigureView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        fsPagerView = FSPagerView(frame: frame)
+        fsPagerView = FSPagerView(frame: bounds)
         self.addSubview(fsPagerView)
         fsPagerView.register(FSPagerViewCell.self, forCellWithReuseIdentifier: "cell")
         fsPagerView.itemSize = FSPagerView.automaticSize
@@ -41,6 +41,7 @@ class ShufflingFigureView: UIView {
             make.bottom.equalToSuperview().offset(-5)
         }
         fsPageControl.contentHorizontalAlignment = .right
+        fsPagerView.contentMode = .scaleAspectFill
         //设置下标指示器颜色（选中状态和普通状态）
         fsPageControl.setFillColor(LCZHexadecimalColor(hexadecimal: "#57310C"), for: .normal)
         fsPageControl.setFillColor(LCZHexadecimalColor(hexadecimal: "#FECE1D"), for: .selected)

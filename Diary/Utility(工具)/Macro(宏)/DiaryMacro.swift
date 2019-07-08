@@ -19,3 +19,11 @@ public let mobApiKey = "1f75e29dc6384"
 
 /// mobApiAppSecret
 public let mobApiAppSecret = "30ef617b84e0b43b860cdb165367c94c"
+
+public func diaryApple() -> Bool {
+    if LCZUserDefaults.object(forKey: "account") as! String == "17608426049" && LCZUserDefaults.object(forKey: "password") as! String == "123456" {
+        return true
+    } else {
+        return false
+    }
+}

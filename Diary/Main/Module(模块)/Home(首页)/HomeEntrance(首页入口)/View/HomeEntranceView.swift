@@ -12,9 +12,12 @@ class HomeEntranceView: DiaryBaseView {
     
     public var collectionView: UICollectionView!
     
-    public var fsPagerView: FSPagerView!
+//    public var fsPagerView: FSPagerView!
+//
+//    public var fsPageControl: FSPageControl!
     
-    public var fsPageControl: FSPageControl!
+    /// 轮播图
+    public var shufflingFigureView: ShufflingFigureView!
 
     override func configUI() {
         createCollectionView()
@@ -23,25 +26,9 @@ class HomeEntranceView: DiaryBaseView {
     
     // MARK: - 轮播图
     private func createShufflingFigure() {
-        
-        fsPagerView = FSPagerView(frame: CGRect(x: 0, y: -180, width: LCZWidth, height: 180))
-        collectionView.addSubview(fsPagerView)
-        fsPagerView.register(FSPagerViewCell.self, forCellWithReuseIdentifier: "cell")
-        fsPagerView.itemSize = FSPagerView.automaticSize
-        fsPagerView.automaticSlidingInterval = 3
-        fsPagerView.isInfinite = !fsPagerView.isInfinite
-        fsPagerView.decelerationDistance = FSPagerView.automaticDistance
-        fsPageControl = FSPageControl()
-        fsPagerView.addSubview(fsPageControl)
-        fsPageControl.snp.makeConstraints { (make) in
-            make.right.equalToSuperview().offset(-20)
-            make.bottom.equalToSuperview().offset(-5)
-        }
-        fsPageControl.contentHorizontalAlignment = .right
-        //设置下标指示器颜色（选中状态和普通状态）
-        fsPageControl.setFillColor(LCZHexadecimalColor(hexadecimal: "#57310C"), for: .normal)
-        fsPageControl.setFillColor(LCZHexadecimalColor(hexadecimal: "#FECE1D"), for: .selected)
-        
+        shufflingFigureView = ShufflingFigureView(frame: CGRect(x: 0, y: -180, width: LCZWidth, height: 180))
+        collectionView.addSubview(shufflingFigureView)
+        shufflingFigureView.isSkeletonable = true
     }
     
     // MARK: - collectionView
@@ -51,7 +38,7 @@ class HomeEntranceView: DiaryBaseView {
         layout.minimumLineSpacing = 10
         layout.minimumInteritemSpacing = 5
         layout.headerReferenceSize = CGSize(width: LCZWidth, height: 40)
-        collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: LCZWidth, height: LCZHeight - LCZNaviBarHeight - LCZStatusBarHeight - LCZSafeAreaBottomHeight - LCZTabbarHeight), collectionViewLayout: layout)
+        collectionView = UICollectionView(frame: CGRect(x: 0, y: -(LCZStatusBarHeight + LCZNaviBarHeight), width: LCZWidth, height: LCZHeight - LCZSafeAreaBottomHeight - LCZTabbarHeight), collectionViewLayout: layout)
         self.addSubview(collectionView);
         collectionView.backgroundColor = UIColor.white
         collectionView.contentInset = UIEdgeInsets(top: 180, left: 0, bottom: 0, right: 0)

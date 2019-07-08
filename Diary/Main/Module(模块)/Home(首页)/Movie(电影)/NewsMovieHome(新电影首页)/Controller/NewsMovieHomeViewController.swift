@@ -31,6 +31,16 @@ class NewsMovieHomeViewController: DiaryBaseViewController {
     /// cell模型数组
     private var cellModels: Array<Array<MovieHomeModel>> = []
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.navigationController?.navigationBar.isTranslucent = false
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.tabBarController?.navigationController?.navigationBar.isTranslucent = true
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()

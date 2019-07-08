@@ -63,6 +63,52 @@ class ExpressQueryViewController: DiaryBaseViewController {
             }).disposed(by: self.rx.disposeBag)
         }).disposed(by: rx.disposeBag)
         
+        // 扫码查询
+        self.expressQueryView.sancButton.rx.tap.subscribe(onNext: { () in
+            //设置扫码区域参数
+            var style = LBXScanViewStyle()
+            
+            style.centerUpOffset = 60
+            style.xScanRetangleOffset = 30
+            
+            if UIScreen.main.bounds.size.height <= 480 {
+                //3.5inch 显示的扫码缩小
+                style.centerUpOffset = 40
+                style.xScanRetangleOffset = 20
+            }
+            
+            style.color_NotRecoginitonArea = UIColor(red: 0.4, green: 0.4, blue: 0.4, alpha: 0.4)
+            
+            style.photoframeAngleStyle = LBXScanViewPhotoframeAngleStyle.Inner
+            style.photoframeLineW = 2.0
+            style.photoframeAngleW = 16
+            style.photoframeAngleH = 16
+            
+            style.isNeedShowRetangle = false
+            
+            style.anmiationStyle = LBXScanViewAnimationStyle.NetGrid
+            style.animationImage = UIImage(named: "qrcode_scan_full_net")
+            
+            let vc = LBXScanViewController()
+            vc.scanResultDelegate = self
+            vc.scanStyle = style
+            vc.arrayCodeType = [
+                                AVMetadataObject.ObjectType.upce,
+                                AVMetadataObject.ObjectType.ean8,
+                                AVMetadataObject.ObjectType.ean13,
+                                AVMetadataObject.ObjectType.itf14,
+                                AVMetadataObject.ObjectType.interleaved2of5,
+                                AVMetadataObject.ObjectType.aztec,
+                                AVMetadataObject.ObjectType.pdf417,
+                                AVMetadataObject.ObjectType.dataMatrix,
+                                AVMetadataObject.ObjectType.qr,
+                                AVMetadataObject.ObjectType.code39,
+                                AVMetadataObject.ObjectType.code93,
+                                AVMetadataObject.ObjectType.code128,
+                                AVMetadataObject.ObjectType.code39Mod43
+                               ]
+            self.navigationController?.pushViewController(vc, animated: true)
+        }).disposed(by: rx.disposeBag)
         
       
         
@@ -119,5 +165,21 @@ extension ExpressQueryViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 30
+    }
+}
+
+
+extension ExpressQueryViewController: LBXScanViewControllerDelegate {
+    
+    func scanFinished(scanResult: LBXScanResult, error: String?) {
+        self.viewModel.inquireExpressLogisticsInfo(number: scanResult.strScanned!).subscribe(onSuccess: { (model) in
+            // 记录
+            self.viewModel.storeHistoryQuery(text: scanResult.strScanned!)
+            DispatchQueue.main.async(execute: {
+                self.expressQueryView.tableView.reloadData()
+                diaryRoute.push("diary://homeEntrance/courierEntrance/expressQueryResults" ,context: [model,self.commonExpressCompaniesModel])
+            })
+        }, onError: { (error) in
+        }).disposed(by: self.rx.disposeBag)
     }
 }
