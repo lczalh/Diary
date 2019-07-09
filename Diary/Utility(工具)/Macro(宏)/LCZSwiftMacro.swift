@@ -34,19 +34,19 @@ public let LCZSafeAreaBottomHeight: CGFloat =  (LCZHeight == 812.0 ? 34.0 : 0.0)
 public let LCZUserDefaults = UserDefaults.standard
 
 /// 字体大小比例。@2x、@3x比例
-public let LCZSizeScale : CGFloat = LCZWidth / 375.0
+public let LCZSizeScale: CGFloat = LCZWidth / 375.0
 
 /// iphone7Plus屏幕高度
-public let LCZiphone7PlusHeight = 736
+public let LCZiphone7PlusHeight: CGFloat = 736.0
 
 /// iphoneX屏幕高度
-public let LCZiphoneXHeight = 812
+public let LCZiphoneXHeight: CGFloat = 812.0
 
 /// iphone7屏幕高度
-public let LCZiphone7Height = 667
+public let LCZiphone7Height: CGFloat = 667.0
 
 /// iphone5S屏幕高度
-public let LCZiphone5SHeight = 568
+public let LCZiphone5SHeight: CGFloat = 568.0
 
 /// APP名称
 public let LCZAppName: String = Bundle.main.infoDictionary!["CFBundleDisplayName"] as! String

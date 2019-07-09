@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         // 设置首页
         LCZHomePage.shared.setHomePage(guidePage: { // 引导页
-            self.window?.rootViewController = MainTabBarController()
+            self.window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
         }) {
             // 判断用户是否登陆
             if (LCZUserDefaults.object(forKey: "account") != nil) && (LCZUserDefaults.object(forKey: "password") != nil) { // 首页
@@ -50,9 +50,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     }
-
+    
+    // 应用重后台进入
     func applicationWillEnterForeground(_ application: UIApplication) {
-        // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+//        let splashAd = GDTSplashAd.init(appId: "1109542481", placementId: "4040071110541328")
+//        splashAd!.delegate = self
+//        splashAd!.fetchDelay = 3
+//        var splashImage = UIImage.init(named: "SplashNormal")
+//        if LCZiphoneXHeight == LCZHeight {
+//            splashImage = UIImage.init(named: "SplashX")
+//        } else  {
+//            splashImage = UIImage.init(named: "SplashSmall")
+//        }
+//        splashAd!.backgroundImage = splashImage
+//        let bottomView = UIView.init(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.height * 0.25)))
+//        bottomView.backgroundColor = .white
+//        let logo = UIImageView.init(image: UIImage.init(named: "SplashLogo"))
+//        logo.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: 311, height: 47))
+//        logo.center = bottomView.center
+//        bottomView.addSubview(logo)
+//        let window = UIApplication.shared.keyWindow
+//        splashAd!.loadAndShow(in: window, withBottomView: bottomView, skip: nil)
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -66,3 +84,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+//extension AppDelegate: GDTSplashAdDelegate {
+//    func splashAdSuccessPresentScreen(_ splashAd: GDTSplashAd!) {
+//        LCZPrint(123)
+//    }
+//
+//    func splashAdFail(toPresent splashAd: GDTSplashAd!, withError error: Error!) {
+//        LCZPrint(error)
+//    }
+//}

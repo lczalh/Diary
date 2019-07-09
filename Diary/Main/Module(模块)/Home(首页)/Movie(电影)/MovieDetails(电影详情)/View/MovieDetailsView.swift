@@ -60,7 +60,7 @@ class MovieDetailsView: DiaryBaseView {
     private func createTableView() {
         let marqueeLabel = LCZMarqueeLabel.init(location: CGPoint(x: 0, y: self.playerView.frame.height + LCZStatusBarHeight), text: "本站视频采集自网络，视频滚动水印广告请勿相信，谨防上当受骗。特此告知！！！")
         self.addSubview(marqueeLabel)
-        marqueeLabel.textColor = LCZHexadecimalColor(hexadecimal: "#FECE1D")
+        marqueeLabel.textColor = LCZHexadecimalColor(hexadecimal: "#57310C")
         tableView = UITableView(frame: CGRect(x: 0, y: self.playerView.frame.height + LCZStatusBarHeight + marqueeLabel.frame.height, width: LCZWidth, height: LCZHeight - self.playerView.frame.height - LCZStatusBarHeight), style: .grouped)
         self.addSubview(tableView)
         tableView.register(SynopsisCell.self, forCellReuseIdentifier: "SynopsisCell")

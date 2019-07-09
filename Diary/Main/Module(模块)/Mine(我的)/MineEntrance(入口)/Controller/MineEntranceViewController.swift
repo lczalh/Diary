@@ -108,8 +108,8 @@ extension MineEntranceViewController: UITableViewDataSource {
         
         if title == "邮件反馈" {
             emailFeedback()
-        } else if title == "去评分" {
-            
+        } else if title == "去评分" {//1101649671
+            UIApplication.shared.open(URL(string: "https://itunes.apple.com/us/app/itunes-u/id1472107585?action=write-review&mt=8")!, options: [:], completionHandler: nil)
         } else if title == "关于我们" {
             diaryRoute.push("diary://mine/aboutUs")
         } else if title == "版权声明" {

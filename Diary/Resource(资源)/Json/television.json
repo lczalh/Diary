@@ -1,0 +1,62 @@
+{
+    "title": "电视列表",
+    "list": [
+        {
+            "sectionTitle": "卫视频道",
+            "cellList": [
+                {
+                    "image": "zhejiangtv",
+                    "title":"浙江卫视",
+                    "playUrl":""
+                },
+                {
+                    "image": "hunantv",
+                    "title":"湖南卫视",
+                    "playUrl":"http://ivi.bupt.edu.cn/hls/hunanhd.m3u8"
+                },
+                {
+                    "image": "1111",
+                    "title":"天津卫视",
+                    "playUrl":""
+                },
+                {
+                    "image": "1111",
+                    "title":"安徽卫视",
+                    "playUrl":""
+                },
+                {
+                    "image": "1111",
+                    "title":"四川卫视",
+                    "playUrl":""
+                },
+                {
+                    "image": "1111",
+                    "title":"北京卫视",
+                    "playUrl":""
+                },
+                {
+                    "image": "1111",
+                    "title":"广东卫视",
+                    "playUrl":""
+                },
+                {
+                    "image": "1111",
+                    "title":"河南卫视",
+                    "playUrl":""
+                }
+            ]
+        },
+         {
+            "sectionTitle": "央视频道",
+            "cellList": [
+               
+            ]
+        },
+         {
+            "sectionTitle": "体育频道",
+            "cellList": [
+               
+            ]
+        }
+    ]
+}

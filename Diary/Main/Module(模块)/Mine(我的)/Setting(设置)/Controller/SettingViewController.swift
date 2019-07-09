@@ -28,7 +28,7 @@ class SettingViewController: DiaryBaseViewController {
             DispatchQueue.main.async(execute: {
                 LCZUserDefaults.removeObject(forKey: "account")
                 LCZUserDefaults.removeObject(forKey: "password")
-                LCZProgressHUD.showSuccess(title: "成功退出")
+                LCZProgressHUD.showSuccess(title: "退出成功！")
                 UIApplication.shared.delegate?.window??.rootViewController = UINavigationController(rootViewController: LoginViewController())
             })
         }).disposed(by: rx.disposeBag)

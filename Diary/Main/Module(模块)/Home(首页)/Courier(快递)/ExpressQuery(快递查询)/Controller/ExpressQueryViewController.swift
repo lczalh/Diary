@@ -145,6 +145,18 @@ extension ExpressQueryViewController: UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let number = self.viewModel.getHistoryQuery()[indexPath.row] as? String
+        self.viewModel.inquireExpressLogisticsInfo(number: number!).subscribe(onSuccess: { (model) in
+            // 记录
+            self.viewModel.storeHistoryQuery(text: self.expressQueryView.textField.text!)
+            DispatchQueue.main.async(execute: {
+                self.expressQueryView.tableView.reloadData()
+                diaryRoute.push("diary://homeEntrance/courierEntrance/expressQueryResults" ,context: [model,self.commonExpressCompaniesModel])
+            })
+        }, onError: { (error) in
+        }).disposed(by: self.rx.disposeBag)
+    }
     
 }
 

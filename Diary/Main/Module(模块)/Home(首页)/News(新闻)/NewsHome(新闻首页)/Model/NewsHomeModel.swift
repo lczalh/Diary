@@ -9,7 +9,7 @@
 import Foundation
 
 struct SpeedNewsRootModel<T: Mappable>: Mappable {
-    var status: Int = 0
+    var status: Int?
     var msg: String?
     var result: T?
     

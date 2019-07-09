@@ -28,6 +28,7 @@ target 'Diary' do
     pod 'SkeletonView', '~> 1.7'
     pod 'Hero'
     pod 'pop', '~> 1.0'
+    pod 'GDTMobSDK', '~> 4.10.5'
 end
 post_install do |installer|
     installer.pods_project.targets.each do |target|
