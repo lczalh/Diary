@@ -28,4 +28,6 @@
 @_exported import FSPagerView
 @_exported import SkeletonView
 @_exported import swiftScan
+@_exported import pop
+@_exported import Hero
 

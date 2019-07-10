@@ -14,6 +14,7 @@
 		7302334222B8E9C1002CD8C4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7302334122B8E9C1002CD8C4 /* LoginViewController.swift */; };
 		7302334422B8E9D9002CD8C4 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7302334322B8E9D9002CD8C4 /* LoginView.swift */; };
 		7302DB1A228179F700BC7CAC /* LCZAlignTopLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7302DB19228179F700BC7CAC /* LCZAlignTopLabel.swift */; };
+		73107D3F22D5DDF10094981F /* TelevisionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73107D3E22D5DDF10094981F /* TelevisionViewController.swift */; };
 		73162F6D22C99EE900561094 /* MoreMoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73162F6C22C99EE900561094 /* MoreMoviesViewController.swift */; };
 		73162F6F22C99EFE00561094 /* MoreMoviesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73162F6E22C99EFE00561094 /* MoreMoviesView.swift */; };
 		73162F7122C9A5B500561094 /* MoreMoviesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73162F7022C9A5B500561094 /* MoreMoviesViewModel.swift */; };
@@ -138,6 +139,7 @@
 		7302334122B8E9C1002CD8C4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7302334322B8E9D9002CD8C4 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		7302DB19228179F700BC7CAC /* LCZAlignTopLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCZAlignTopLabel.swift; sourceTree = "<group>"; };
+		73107D3E22D5DDF10094981F /* TelevisionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelevisionViewController.swift; sourceTree = "<group>"; };
 		73162F6C22C99EE900561094 /* MoreMoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreMoviesViewController.swift; sourceTree = "<group>"; };
 		73162F6E22C99EFE00561094 /* MoreMoviesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreMoviesView.swift; sourceTree = "<group>"; };
 		73162F7022C9A5B500561094 /* MoreMoviesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreMoviesViewModel.swift; sourceTree = "<group>"; };
@@ -283,11 +285,10 @@
 		7300251722ADEF8800F05ADC /* Home(首页) */ = {
 			isa = PBXGroup;
 			children = (
-				7350945022D475840050AAE7 /* Television(电视) */,
 				73BB0FC622B09EFF005F351C /* Courier(快递) */,
 				7300251822ADF09600F05ADC /* HomeEntrance(首页入口) */,
 				737E1C452213E1E000BF751D /* News(新闻) */,
-				73B1DDD82241EE2500BFEF7A /* Movie(电影) */,
+				73B1DDD82241EE2500BFEF7A /* Video(视频) */,
 			);
 			path = "Home(首页)";
 			sourceTree = "<group>";
@@ -409,6 +410,35 @@
 			path = "CustomUI(自定义UI)";
 			sourceTree = "<group>";
 		};
+		73107D3A22D5DD000094981F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				73107D3E22D5DDF10094981F /* TelevisionViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		73107D3B22D5DD0D0094981F /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		73107D3C22D5DD110094981F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		73107D3D22D5DD150094981F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		7314CFB7225C8F82001C2B34 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -460,12 +490,12 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		731802A522C3164500ED5D56 /* MovieEntrance(电影入口) */ = {
+		731802A522C3164500ED5D56 /* MovieEntrance(视频入口) */ = {
 			isa = PBXGroup;
 			children = (
 				731802A622C3166500ED5D56 /* Controller */,
 			);
-			path = "MovieEntrance(电影入口)";
+			path = "MovieEntrance(视频入口)";
 			sourceTree = "<group>";
 		};
 		731802A622C3166500ED5D56 /* Controller */ = {
@@ -719,6 +749,10 @@
 		7350945022D475840050AAE7 /* Television(电视) */ = {
 			isa = PBXGroup;
 			children = (
+				73107D3D22D5DD150094981F /* ViewModel */,
+				73107D3C22D5DD110094981F /* Model */,
+				73107D3B22D5DD0D0094981F /* View */,
+				73107D3A22D5DD000094981F /* Controller */,
 			);
 			path = "Television(电视)";
 			sourceTree = "<group>";
@@ -1112,16 +1146,17 @@
 			path = "ProgressHUD(进度显示)";
 			sourceTree = "<group>";
 		};
-		73B1DDD82241EE2500BFEF7A /* Movie(电影) */ = {
+		73B1DDD82241EE2500BFEF7A /* Video(视频) */ = {
 			isa = PBXGroup;
 			children = (
+				7350945022D475840050AAE7 /* Television(电视) */,
 				73162F6722C99E8A00561094 /* MoreMovies(更多电影) */,
-				731802A522C3164500ED5D56 /* MovieEntrance(电影入口) */,
+				731802A522C3164500ED5D56 /* MovieEntrance(视频入口) */,
 				73480F9622C30955003BB258 /* NewsMovieHome(新电影首页) */,
 				73C34F682264544B00244B55 /* SearchMovie(搜索电影) */,
 				73B1DDEA22422FD200BFEF7A /* MovieDetails(电影详情) */,
 			);
-			path = "Movie(电影)";
+			path = "Video(视频)";
 			sourceTree = "<group>";
 		};
 		73B1DDEA22422FD200BFEF7A /* MovieDetails(电影详情) */ = {
@@ -1723,6 +1758,7 @@
 				73162F6F22C99EFE00561094 /* MoreMoviesView.swift in Sources */,
 				7344B54F22AFA04700FC7D4D /* MineEntranceViewModel.swift in Sources */,
 				73480F9C22C309AA003BB258 /* NewsMovieHomeViewController.swift in Sources */,
+				73107D3F22D5DDF10094981F /* TelevisionViewController.swift in Sources */,
 				73D4DADC2213CBF200116541 /* AppDelegate.swift in Sources */,
 				738AD38C22BCA2FE00FD0680 /* ProblemFeedbackView.swift in Sources */,
 				73BB0FD122B0B0DB005F351C /* CourierEntranceTabBarController.swift in Sources */,

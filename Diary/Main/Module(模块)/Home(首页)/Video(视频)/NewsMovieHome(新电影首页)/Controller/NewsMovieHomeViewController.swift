@@ -10,7 +10,7 @@ import UIKit
 
 class NewsMovieHomeViewController: DiaryBaseViewController {
     
-    private var cellSectionsTitles: Array<String> = []
+    private var cellSectionsTitles: Array<Dictionary<String,String>> = [] as! Array<Dictionary<String,String>>
     
     lazy var newsMovieHomeContentView: NewsMovieHomeContentView = {
         let view = NewsMovieHomeContentView(frame: self.view.bounds)
@@ -127,7 +127,24 @@ class NewsMovieHomeViewController: DiaryBaseViewController {
                 self.cellModels.append(guessYouLikeModels)
                 self.cellModels.append(cinemaHitModels)
                 self.cellModels.append(recommendToYouModels)
-                self.cellSectionsTitles = ["今日精选","猜你在追","影院热映","为你推荐"]
+                
+                // 分组头数据
+                self.cellSectionsTitles = [[
+                                            "title":"今日精选",
+                                            "image":"choiceness"
+                                            ],
+                                           [
+                                            "title":"猜你在追",
+                                            "image":"zhuizong"
+                                            ],
+                                           [
+                                            "title":"影院热映",
+                                            "image":"redu"
+                                            ],
+                                           [
+                                            "title":"为你推荐",
+                                            "image":"tuijian"
+                                            ]]
                 DispatchQueue.main.async(execute: {
                     self.view.hideSkeleton()
                     self.newsMovieHomeContentView.collectionView.reloadData()
@@ -189,7 +206,9 @@ extension NewsMovieHomeViewController: SkeletonCollectionViewDataSource {
         if kind == UICollectionView.elementKindSectionHeader {
             if indexPath.section == 0 {
                 let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "NewsMovieHomeShufflingFigureCollectionHeaderView", for: indexPath) as! NewsMovieHomeShufflingFigureCollectionHeaderView
-                headerView.titleLabel.text = self.cellSectionsTitles[indexPath.section]
+                let dict = self.cellSectionsTitles[indexPath.section]
+                headerView.titleLabel.text = dict["title"]
+                headerView.imageView.image = UIImage(named: dict["image"]!)
                 headerView.shufflingFigureView.fsPagerView.dataSource = self
                 headerView.shufflingFigureView.fsPagerView.delegate = self
                 headerView.shufflingFigureView.fsPageControl.numberOfPages = self.shufflingFigureModels.count
@@ -197,7 +216,9 @@ extension NewsMovieHomeViewController: SkeletonCollectionViewDataSource {
                 return headerView
             }else {
                 let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "NewsMovieHomeCollectionHeaderView", for: indexPath) as! NewsMovieHomeCollectionHeaderView
-                headerView.titleLabel.text = self.cellSectionsTitles[indexPath.section]
+                let dict = self.cellSectionsTitles[indexPath.section]
+                headerView.titleLabel.text = dict["title"]
+                headerView.imageView.image = UIImage(named: dict["image"]!)
                 return headerView
             }
             

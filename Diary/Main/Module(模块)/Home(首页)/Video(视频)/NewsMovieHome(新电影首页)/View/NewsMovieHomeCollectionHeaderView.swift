@@ -13,14 +13,30 @@ class NewsMovieHomeCollectionHeaderView: UICollectionReusableView {
     /// 标题
     public var titleLabel: UILabel!
     
+    /// 图标
+    public var imageView: UIImageView!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.isSkeletonable = true
+        
+        // 图标
+        imageView = UIImageView()
+        self.addSubview(imageView)
+        imageView.isSkeletonable = true
+        imageView.contentMode = .scaleAspectFill
+        imageView.snp.makeConstraints { (make) in
+            make.left.equalToSuperview().offset(15)
+            make.top.equalToSuperview()
+            make.size.equalTo(20)
+        }
+        
+        // 标题
         titleLabel = UILabel()
         self.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { (make) in
-            make.left.equalToSuperview().offset(15)
-            make.centerY.equalToSuperview()
+            make.left.equalTo(imageView.snp.right).offset(5)
+            make.centerY.equalTo(imageView)
         }
         titleLabel.font = LCZBoldFontSize(size: 16)
         titleLabel.textColor = LCZHexadecimalColor(hexadecimal: "#57310C")

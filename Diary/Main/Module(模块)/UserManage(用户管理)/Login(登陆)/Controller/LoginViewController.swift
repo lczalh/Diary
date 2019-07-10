@@ -55,6 +55,7 @@ class LoginViewController: DiaryBaseViewController {
         zip.bind(to: self.loginView.loginButton.rx.isEnabled).disposed(by: rx.disposeBag)
         zip.subscribe(onNext: { (state) in
                 self.loginView.loginButton.backgroundColor = state == true ? LCZHexadecimalColor(hexadecimal: "#FECE1D") : LCZRgbColor(239, 240, 244, 1)
+            state == true ? self.loginView.loginButton.layer.pop_add(self.loginView.loginButtonAnimation, forKey: "loginButtonAnimation") : self.loginView.loginButton.layer.pop_removeAnimation(forKey: "loginButtonAnimation")
             }).disposed(by: rx.disposeBag)
      
         // 登陆响应
@@ -62,14 +63,15 @@ class LoginViewController: DiaryBaseViewController {
             self.loginView.loginButton.isEnabled = false
             
             if self.loginView.accountTextField.text! == "17608426049" && self.loginView.passwordTextField.text! == "123456" {
+                LCZProgressHUD.show()
                 self.loginView.loginButton.isEnabled = true
                 // 将uid，token写入偏好设置
                 LCZUserDefaults.set(self.loginView.accountTextField.text!, forKey: "account")
                 LCZUserDefaults.set(self.loginView.passwordTextField.text!, forKey: "password")
                 // 跳转到首页
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5, execute: {
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2, execute: {
                     LCZProgressHUD.showSuccess(title: "登陆成功！")
-                    UIApplication.shared.delegate?.window??.rootViewController = MainTabBarController()
+                    self.setMainTabBarToRootController()
                 })
                 return
             }
@@ -83,7 +85,7 @@ class LoginViewController: DiaryBaseViewController {
                 LCZUserDefaults.set(self.loginView.passwordTextField.text!, forKey: "password")
                 // 跳转到首页
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5, execute: {
-                    UIApplication.shared.delegate?.window??.rootViewController = MainTabBarController()
+                    self.setMainTabBarToRootController()
                 })
             }, onError: { (error) in
                 self.loginView.loginButton.isEnabled = true
@@ -102,7 +104,14 @@ class LoginViewController: DiaryBaseViewController {
         
     }
     
-
+    /// 设置 MainTabBar 为 根控制器 淡入淡出效果
+    private func setMainTabBarToRootController() -> () {
+        let tabbar = MainTabBarController()
+        tabbar.modalTransitionStyle = .crossDissolve
+        UIView.transition(with: (UIApplication.shared.delegate?.window ?? nil)!, duration: 2, options: .transitionCrossDissolve, animations: {
+            UIApplication.shared.delegate?.window??.rootViewController = tabbar
+        }, completion: nil)
+    }
    
 
 }

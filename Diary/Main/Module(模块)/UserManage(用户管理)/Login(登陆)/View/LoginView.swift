@@ -25,6 +25,9 @@ class LoginView: DiaryBaseView {
     /// 用户注册
     public var userRegistrationButton: UIButton!
     
+    /// 登陆按钮呼吸动画
+    public var loginButtonAnimation: POPBasicAnimation!
+    
     override func configUI() {
         // appIcon图标
         let iconImageView = UIImageView()
@@ -63,6 +66,13 @@ class LoginView: DiaryBaseView {
         accountShapeLayer.frame = accountView.bounds
         accountShapeLayer.path = accountBezierPath.cgPath
         accountView.layer.mask = accountShapeLayer
+        // 账号视图动画
+        let accountViewAnimation = POPBasicAnimation(propertyNamed: kPOPLayerPositionX)
+        accountViewAnimation!.duration = 1.5
+        accountViewAnimation!.timingFunction = CAMediaTimingFunction.init(name: .easeInEaseOut)
+        accountViewAnimation!.toValue = (accountView.frame.width / 2.0 + 50)
+        accountViewAnimation!.fromValue = (-(accountView.frame.width / 2))
+        accountView.layer.pop_add(accountViewAnimation, forKey: "accountViewAnimation")
         
         // 账号图标
         let accountImageView = UIImageView()
@@ -104,6 +114,13 @@ class LoginView: DiaryBaseView {
         passwordShapeLayer.frame = passwordView.bounds
         passwordShapeLayer.path = passwordBezierPath.cgPath
         passwordView.layer.mask = passwordShapeLayer
+        // 密码视图动画
+        let passwordViewAnimation = POPBasicAnimation(propertyNamed: kPOPLayerPositionX)
+        passwordViewAnimation!.duration = 1.5
+        passwordViewAnimation!.timingFunction = CAMediaTimingFunction.init(name: .easeInEaseOut)
+        passwordViewAnimation!.toValue = (passwordView.frame.width / 2.0 + 50)
+        passwordViewAnimation!.fromValue = ((passwordView.frame.width + 100))
+        passwordView.layer.pop_add(passwordViewAnimation, forKey: "passwordViewAnimation")
         
         // 密码图标
         let passwordImageView = UIImageView()
@@ -147,6 +164,23 @@ class LoginView: DiaryBaseView {
         loginButton.layer.mask = loginShapeLayer
         loginButton.backgroundColor = LCZRgbColor(239, 240, 244, 1)
         loginButton.isEnabled = false
+        // 密码视图呼吸动画
+        loginButtonAnimation = POPBasicAnimation(propertyNamed: kPOPLayerScaleXY)
+        loginButtonAnimation.duration = 1.5
+        loginButtonAnimation.repeatForever = true
+        loginButtonAnimation.autoreverses = true
+        loginButtonAnimation.timingFunction = CAMediaTimingFunction.init(name: .easeInEaseOut)
+        loginButtonAnimation.toValue = NSValue(cgSize: CGSize(width: 0.5, height: 0.5))
+        loginButtonAnimation.fromValue = NSValue(cgSize: CGSize(width: 1.0, height: 1.0))
+        
+        
+//        let loginButtonAnimationOne = POPBasicAnimation(propertyNamed: kPOPLayerScaleXY)
+//        loginButtonAnimationOne?.duration = 1.5
+//       // loginButtonAnimationOne!.repeatForever = true
+//        loginButtonAnimationOne!.timingFunction = CAMediaTimingFunction.init(name: .easeInEaseOut)
+//        loginButtonAnimationOne!.toValue = NSValue(cgSize: CGSize(width: 0.5, height: 0.5))
+//        loginButtonAnimationOne!.fromValue = NSValue(cgSize: CGSize(width: 1.0, height: 1.0))
+//        loginButton.layer.pop_add(loginButtonAnimationOne, forKey: "loginButtonAnimationOne")
         
         // 分割线
         let verticalLineView = UIView()

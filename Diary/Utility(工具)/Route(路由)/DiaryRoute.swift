@@ -48,13 +48,6 @@ enum DiaryRoute {
             return movieEntranceTabBarController
         }
         
-//        // 电影首页
-//        navigator.register("diary://homeEntrance/movieHome") { url, values, context in
-//            let movieHome = MovieHomeViewController()
-//            movieHome.hidesBottomBarWhenPushed = true
-//            return movieHome
-//        }
-        
         // 新电影首页
         navigator.register("diary://homeEntrance/newsMovieHome") { url, values, context in
             let movieHome = NewsMovieHomeViewController()

@@ -13,6 +13,9 @@ class NewsMovieHomeShufflingFigureCollectionHeaderView: UICollectionReusableView
     /// 标题
     public var titleLabel: UILabel!
     
+    /// 图标
+    public var imageView: UIImageView!
+    
     /// 轮播图
     public var shufflingFigureView: ShufflingFigureView!
     
@@ -24,11 +27,22 @@ class NewsMovieHomeShufflingFigureCollectionHeaderView: UICollectionReusableView
         self.addSubview(shufflingFigureView)
         shufflingFigureView.isSkeletonable = true
         
+        // 图标
+        imageView = UIImageView()
+        self.addSubview(imageView)
+        imageView.isSkeletonable = true
+        imageView.contentMode = .scaleAspectFill
+        imageView.snp.makeConstraints { (make) in
+            make.left.equalToSuperview().offset(15)
+            make.top.equalTo(shufflingFigureView.snp.bottom).offset(10)
+            make.size.equalTo(20)
+        }
+        
         titleLabel = UILabel()
         self.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { (make) in
-            make.left.equalToSuperview().offset(15)
-            make.top.equalTo(shufflingFigureView.snp.bottom).offset(15)
+            make.left.equalTo(imageView.snp.right).offset(5)
+            make.centerY.equalTo(imageView)
         }
         titleLabel.font = LCZBoldFontSize(size: 16)
         titleLabel.textColor = LCZHexadecimalColor(hexadecimal: "#57310C")

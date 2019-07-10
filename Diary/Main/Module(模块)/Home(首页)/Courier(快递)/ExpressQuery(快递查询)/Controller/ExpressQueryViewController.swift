@@ -152,6 +152,7 @@ extension ExpressQueryViewController: UITableViewDataSource {
             self.viewModel.storeHistoryQuery(text: self.expressQueryView.textField.text!)
             DispatchQueue.main.async(execute: {
                 self.expressQueryView.tableView.reloadData()
+               // self.navigationController?.hero.navigationAnimationType = .zoom
                 diaryRoute.push("diary://homeEntrance/courierEntrance/expressQueryResults" ,context: [model,self.commonExpressCompaniesModel])
             })
         }, onError: { (error) in
