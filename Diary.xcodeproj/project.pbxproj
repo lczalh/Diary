@@ -100,6 +100,9 @@
 		738D3E5222CB5C9600A68487 /* LCZMarqueeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738D3E5122CB5C9600A68487 /* LCZMarqueeLabel.swift */; };
 		73948B7E2223CF88000ED09A /* NewsHomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73948B7D2223CF88000ED09A /* NewsHomeCell.swift */; };
 		73948B802223CFA5000ED09A /* DiaryBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73948B7F2223CFA5000ED09A /* DiaryBaseTableViewCell.swift */; };
+		739510D422D6D3CC00814BFF /* LCZUINavigationControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739510D322D6D3CC00814BFF /* LCZUINavigationControllerExtension.swift */; };
+		739510D722D7078000814BFF /* NewsEntranceTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739510D622D7078000814BFF /* NewsEntranceTabBarController.swift */; };
+		739510DA22D72D4900814BFF /* LCZPlaceholderFigureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739510D922D72D4900814BFF /* LCZPlaceholderFigureView.swift */; };
 		73B1DDD72241EB8E00BFEF7A /* LCZProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B1DDD62241EB8E00BFEF7A /* LCZProgressHUD.swift */; };
 		73B1DDE22242051400BFEF7A /* MovieHomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B1DDE12242051400BFEF7A /* MovieHomeModel.swift */; };
 		73B1DDE7224206FA00BFEF7A /* DiaryBaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B1DDE6224206FA00BFEF7A /* DiaryBaseCollectionViewCell.swift */; };
@@ -226,6 +229,9 @@
 		738D3E5122CB5C9600A68487 /* LCZMarqueeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCZMarqueeLabel.swift; sourceTree = "<group>"; };
 		73948B7D2223CF88000ED09A /* NewsHomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsHomeCell.swift; sourceTree = "<group>"; };
 		73948B7F2223CFA5000ED09A /* DiaryBaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryBaseTableViewCell.swift; sourceTree = "<group>"; };
+		739510D322D6D3CC00814BFF /* LCZUINavigationControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCZUINavigationControllerExtension.swift; sourceTree = "<group>"; };
+		739510D622D7078000814BFF /* NewsEntranceTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsEntranceTabBarController.swift; sourceTree = "<group>"; };
+		739510D922D72D4900814BFF /* LCZPlaceholderFigureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCZPlaceholderFigureView.swift; sourceTree = "<group>"; };
 		73B1DDD62241EB8E00BFEF7A /* LCZProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCZProgressHUD.swift; sourceTree = "<group>"; };
 		73B1DDE12242051400BFEF7A /* MovieHomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MovieHomeModel.swift; path = "../../MovieHome(电影首页)/Model/MovieHomeModel.swift"; sourceTree = "<group>"; };
 		73B1DDE6224206FA00BFEF7A /* DiaryBaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryBaseCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -817,6 +823,7 @@
 				73370BFB22B3614000C01FE0 /* LCZUIAlertControllerExtension.swift */,
 				73E78C2C22C0C390007F35FA /* NSString+TextSize.swift */,
 				738D3E4C22CB42C400A68487 /* LCZUIViewExtension.swift */,
+				739510D322D6D3CC00814BFF /* LCZUINavigationControllerExtension.swift */,
 			);
 			path = "Extension(扩展)";
 			sourceTree = "<group>";
@@ -832,6 +839,7 @@
 		737E1C2E2213DA8F00BF751D /* Utility(工具) */ = {
 			isa = PBXGroup;
 			children = (
+				739510D822D72BE200814BFF /* PlaceholderFigure(占位图) */,
 				738D3E4E22CB5BB800A68487 /* Marquee(跑马灯) */,
 				731802A922C318AC00ED5D56 /* ShufflingFigure(轮播图) */,
 				738AD38122BC998300FD0680 /* TimingCounter(时间计时器) */,
@@ -864,17 +872,17 @@
 			children = (
 				7350945122D494F30050AAE7 /* Json */,
 				737E1C322213DB0800BF751D /* Image(图片) */,
-				737E1C312213DAFA00BF751D /* Plist(文件) */,
+				737E1C312213DAFA00BF751D /* Plist */,
 			);
 			path = "Resource(资源)";
 			sourceTree = "<group>";
 		};
-		737E1C312213DAFA00BF751D /* Plist(文件) */ = {
+		737E1C312213DAFA00BF751D /* Plist */ = {
 			isa = PBXGroup;
 			children = (
 				73D4DAE72213CBF400116541 /* Info.plist */,
 			);
-			path = "Plist(文件)";
+			path = Plist;
 			sourceTree = "<group>";
 		};
 		737E1C322213DB0800BF751D /* Image(图片) */ = {
@@ -949,6 +957,7 @@
 		737E1C452213E1E000BF751D /* News(新闻) */ = {
 			isa = PBXGroup;
 			children = (
+				739510D522D706F700814BFF /* NewsEntrance(新闻入口) */,
 				7326F8E122251C6E0005696F /* NewsDetails(新闻详情) */,
 				737E1C482213E33A00BF751D /* NewsHome(新闻首页) */,
 			);
@@ -1136,6 +1145,22 @@
 				738D3E5122CB5C9600A68487 /* LCZMarqueeLabel.swift */,
 			);
 			path = "Marquee(跑马灯)";
+			sourceTree = "<group>";
+		};
+		739510D522D706F700814BFF /* NewsEntrance(新闻入口) */ = {
+			isa = PBXGroup;
+			children = (
+				739510D622D7078000814BFF /* NewsEntranceTabBarController.swift */,
+			);
+			path = "NewsEntrance(新闻入口)";
+			sourceTree = "<group>";
+		};
+		739510D822D72BE200814BFF /* PlaceholderFigure(占位图) */ = {
+			isa = PBXGroup;
+			children = (
+				739510D922D72D4900814BFF /* LCZPlaceholderFigureView.swift */,
+			);
+			path = "PlaceholderFigure(占位图)";
 			sourceTree = "<group>";
 		};
 		73B1DDD52241EA2F00BFEF7A /* ProgressHUD(进度显示) */ = {
@@ -1579,7 +1604,7 @@
 						LastSwiftMigration = 1010;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
-								enabled = 1;
+								enabled = 0;
 							};
 							com.apple.Maps.iOS = {
 								enabled = 0;
@@ -1732,6 +1757,7 @@
 				7300252222ADFA3F00F05ADC /* HomeEntranceCollectionViewCell.swift in Sources */,
 				73409FC822815FE100899563 /* SearchMovieCell.swift in Sources */,
 				735BB338225D9CF300241A59 /* UIButton+TextImagelocation.swift in Sources */,
+				739510DA22D72D4900814BFF /* LCZPlaceholderFigureView.swift in Sources */,
 				731802B122C3453100ED5D56 /* NewsMovieCollectionViewCell.swift in Sources */,
 				732C0464224B123700EA7738 /* NewsHomeViewModel.swift in Sources */,
 				738AD37022BC743600FD0680 /* RetrievePasswordViewModel.swift in Sources */,
@@ -1743,6 +1769,7 @@
 				73E52AFB22B0F20E0018CBA6 /* ExpressQueryResultsViewController.swift in Sources */,
 				735BB336225D943900241A59 /* MovieDetailsTableHeaderView.swift in Sources */,
 				737E1C472213E21A00BF751D /* DiaryBaseViewController.swift in Sources */,
+				739510D422D6D3CC00814BFF /* LCZUINavigationControllerExtension.swift in Sources */,
 				7337A20722262CBB00B19F07 /* NewsDetailsView.swift in Sources */,
 				735D64CC22BB857E0092ADEC /* RetrievePasswordView.swift in Sources */,
 				731802B822C35D7100ED5D56 /* NewsMovieHomeShufflingFigureCollectionHeaderView.swift in Sources */,
@@ -1802,6 +1829,7 @@
 				738D3E5222CB5C9600A68487 /* LCZMarqueeLabel.swift in Sources */,
 				73948B7E2223CF88000ED09A /* NewsHomeCell.swift in Sources */,
 				731802B322C346F100ED5D56 /* NewsMovieHomeCollectionHeaderView.swift in Sources */,
+				739510D722D7078000814BFF /* NewsEntranceTabBarController.swift in Sources */,
 				738AD37D22BC96C400FD0680 /* ClearCacheTableViewCell.swift in Sources */,
 				737E1C4A2213E37900BF751D /* NewsHomeViewController.swift in Sources */,
 				73162F7122C9A5B500561094 /* MoreMoviesViewModel.swift in Sources */,
@@ -1982,7 +2010,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4EB962NN4T;
-				INFOPLIST_FILE = "Diary/Resource(资源)/Plist(文件)/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Diary/Resource(资源)/Plist/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2008,7 +2036,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4EB962NN4T;
-				INFOPLIST_FILE = "Diary/Resource(资源)/Plist(文件)/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Diary/Resource(资源)/Plist/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

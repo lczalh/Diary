@@ -21,7 +21,7 @@ class NewsMovieHomeViewController: DiaryBaseViewController {
     
     
     lazy var viewModel:NewsMovieHomeViewModel = {
-        let vm = NewsMovieHomeViewModel(headerRefresh: self.newsMovieHomeContentView.collectionView.mj_header.rx.refreshing.asDriver())
+        let vm = NewsMovieHomeViewModel()
         return vm
     }()
     
@@ -44,17 +44,24 @@ class NewsMovieHomeViewController: DiaryBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tabBarController!.navigationItem.title = "视频"
-        self.tabBarController!.navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: LCZHexadecimalColor(hexadecimal: "#57310C")]
-        
+
         let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         backBarButtonItem.tintColor = LCZHexadecimalColor(hexadecimal: "#FECE1D")
-        self.tabBarController!.navigationItem.backBarButtonItem = backBarButtonItem
+        self.navigationItem.backBarButtonItem = backBarButtonItem
+        
+        // 返回按钮
+        let returnBarButtonItem = UIBarButtonItem(image: UIImage(named: "zuojiantou")?.withRenderingMode(.alwaysOriginal), style: .plain, target: nil, action: nil)
+        self.navigationItem.leftBarButtonItem = returnBarButtonItem
+        returnBarButtonItem.rx.tap.subscribe(onNext: { () in
+            UIView.transition(with: (self.view ?? nil)!, duration: 0.5, options: .transitionFlipFromRight, animations: {
+                self.tabBarController?.dismiss(animated: true, completion: nil)
+            }, completion: nil)
+        }).disposed(by: rx.disposeBag)
         
         // 搜索按钮
         let searchBarButtonItem = UIBarButtonItem(image: UIImage(named: "sousuo")?.withRenderingMode(.alwaysOriginal), style: .plain, target: nil, action: nil)
         searchBarButtonItem.rx.tap.subscribe(onNext: { () in
-            let nums = ["流浪地球", "封神演义", "复仇者联盟", "斗罗大陆", "斗破苍穹","飞驰人生","新喜剧之王","家和万事惊"]
+            let nums = ["怒海潜沙", "陈情令", "美好时光", "斗罗大陆", "画江湖之不良人","雷霆沙赞","四目先生","明日之子"]
             let searchViewController = PYSearchViewController(hotSearches: nums, searchBarPlaceholder: NSLocalizedString("NSLocalizedString",value: "搜索电影", comment: ""), didSearch: { controller,searchBar,searchText in
                 let searchMovieVC = SearchMovieViewController()
                 searchMovieVC.hidesBottomBarWhenPushed = true
@@ -69,7 +76,7 @@ class NewsMovieHomeViewController: DiaryBaseViewController {
             searchViewController?.backButton.setTitle("", for: .normal)
             searchViewController?.navigationItem.backBarButtonItem = backBarButtonItem
             DispatchQueue.main.async(execute: {
-                self.tabBarController!.navigationController?.pushViewController(searchViewController!, animated: true)
+                self.navigationController?.pushViewController(searchViewController!, animated: true)
             })
             
         }).disposed(by: rx.disposeBag)
@@ -80,7 +87,7 @@ class NewsMovieHomeViewController: DiaryBaseViewController {
             diaryRoute.push("diary://homeEntrance/newsMovieHome/MoreMovies")
         }).disposed(by: rx.disposeBag)
         
-        self.tabBarController!.navigationItem.setRightBarButtonItems([searchBarButtonItem,moreBarButtonItem], animated: true)
+        self.navigationItem.setRightBarButtonItems([searchBarButtonItem,moreBarButtonItem], animated: true)
         
         self.view.addSubview(newsMovieHomeContentView)
         
@@ -91,8 +98,12 @@ class NewsMovieHomeViewController: DiaryBaseViewController {
                                                    animation: GradientDirection.topLeftBottomRight.slidingAnimation())
         })
         
-        // 拼接视频数据
-        self.viewModel.headerRefreshData.drive(onNext: { (models) in
+        getMovieListData()
+
+    }
+    
+    private func getMovieListData() {
+        self.viewModel.getMovieListData().subscribe(onSuccess: { (models) in
             // 清空数据
             self.cellModels.removeAll()
             self.shufflingFigureModels.removeAll()
@@ -153,12 +164,12 @@ class NewsMovieHomeViewController: DiaryBaseViewController {
                     shufflingFigureHeaderView!.shufflingFigureView.fsPagerView.reloadData()
                 })
             }
-        }).disposed(by: rx.disposeBag)
-        
-        self.viewModel.endHeaderRefreshing.drive(newsMovieHomeContentView.collectionView.mj_header.rx.endRefreshing).disposed(by: rx.disposeBag)
-
+        }) { (error) in
+            DispatchQueue.main.async(execute: {
+                self.view.hideSkeleton()
+            })
+        }.disposed(by: rx.disposeBag)
     }
-
 
 }
 

@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSLocationUsageDescription</key>
-	<string>显示物流位置,需要开启定位服务权限</string>
 	<key>CFBundleAllowMixedLocalizations</key>
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>
@@ -23,7 +21,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>1.0.6</string>
+	<string>1.0.9</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -43,17 +41,14 @@
 	<string>显示物流位置,需要开启定位服务权限</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>显示物流位置,需要开启定位服务权限</string>
+	<key>NSLocationUsageDescription</key>
+	<string>显示物流位置,需要开启定位服务权限</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>显示物流位置,需要开启定位服务权限</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>需要您的同意,才能保存图片到相册</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>需要您的同意,才能访问您的相册</string>
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>fetch</string>
-		<string>location</string>
-	</array>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

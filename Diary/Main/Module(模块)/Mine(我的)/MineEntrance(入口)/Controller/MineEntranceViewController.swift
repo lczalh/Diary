@@ -21,8 +21,7 @@ class MineEntranceViewController: DiaryBaseViewController {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isTranslucent = true
         //设置导航栏背景透明
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController!.LCZSetNavigationBarTransparency()
         
     }
     
@@ -31,8 +30,7 @@ class MineEntranceViewController: DiaryBaseViewController {
         super.viewWillDisappear(animated)
         self.navigationController?.navigationBar.isTranslucent = false
         //重置导航栏背景
-        self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
-        self.navigationController?.navigationBar.shadowImage = nil
+        self.navigationController!.LCZRestoreTheTransparentNavigationBar()
     }
     
     lazy var mineEntranceView: MineEntranceView = {

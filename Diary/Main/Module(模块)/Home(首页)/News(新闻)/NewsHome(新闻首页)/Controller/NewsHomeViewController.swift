@@ -26,8 +26,13 @@ class NewsHomeViewController: DiaryBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "新闻"
-        self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: LCZHexadecimalColor(hexadecimal: "#57310C")]
+        
+        // 返回按钮
+        let returnBarButtonItem = UIBarButtonItem(image: UIImage(named: "zuojiantou")?.withRenderingMode(.alwaysOriginal), style: .plain, target: nil, action: nil)
+        self.navigationItem.leftBarButtonItem = returnBarButtonItem
+        returnBarButtonItem.rx.tap.subscribe(onNext: { () in
+            self.tabBarController?.dismiss(animated: true, completion: nil)
+        }).disposed(by: rx.disposeBag)
         
         let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         backBarButtonItem.tintColor = LCZHexadecimalColor(hexadecimal: "#FECE1D")

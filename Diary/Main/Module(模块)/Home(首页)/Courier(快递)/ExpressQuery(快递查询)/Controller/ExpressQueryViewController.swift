@@ -28,13 +28,18 @@ class ExpressQueryViewController: DiaryBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(expressQueryView)
-        // 标题
-        self.tabBarController?.navigationItem.title = "快递查询"
-        self.tabBarController?.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: LCZHexadecimalColor(hexadecimal: "#57310C")]
-        // 返回
+
+        // 下级控制器返回按钮
         let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         backBarButtonItem.tintColor = LCZHexadecimalColor(hexadecimal: "#FECE1D")
-        self.tabBarController?.navigationItem.backBarButtonItem = backBarButtonItem
+        self.navigationItem.backBarButtonItem = backBarButtonItem
+        
+        // 返回按钮
+        let returnBarButtonItem = UIBarButtonItem(image: UIImage(named: "zuojiantou")?.withRenderingMode(.alwaysOriginal), style: .plain, target: nil, action: nil)
+        self.navigationItem.leftBarButtonItem = returnBarButtonItem
+        returnBarButtonItem.rx.tap.subscribe(onNext: { () in
+            self.tabBarController?.dismiss(animated: true, completion: nil)
+        }).disposed(by: rx.disposeBag)
         
         // 监听文本框内容
         expressQueryView.textField.rx.text.orEmpty.asDriver() // 将普通序列转换为 Driver

@@ -28,7 +28,7 @@ class NewsMovieHomeContentView: DiaryBaseView {
         collectionView.register(NewsMovieHomeCollectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "NewsMovieHomeCollectionHeaderView")
         collectionView.register(NewsMovieHomeShufflingFigureCollectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "NewsMovieHomeShufflingFigureCollectionHeaderView")
         collectionView.register(NewsMovieCollectionViewCell.self, forCellWithReuseIdentifier: "NewsMovieCollectionViewCell")
-        collectionView.mj_header = MJRefreshNormalHeader()
+      //  collectionView.mj_header = MJRefreshNormalHeader()
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: LCZTabbarHeight + LCZSafeAreaBottomHeight + LCZStatusBarHeight + LCZNaviBarHeight, right: 0)
         collectionView.backgroundColor = UIColor.clear
         collectionView.isSkeletonable = true

@@ -30,5 +30,4 @@ class DiaryBaseViewController: UIViewController {
         LCZPrint("控制器销毁了！！！！")
     }
    
-
 }

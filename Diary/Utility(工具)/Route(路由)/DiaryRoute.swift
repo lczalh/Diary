@@ -26,11 +26,11 @@ enum DiaryRoute {
             return register
         }
         
-        // 新闻首页
-        navigator.register("diary://homeEntrance/newsHome") { url, values, context in
-            let newsHome = NewsHomeViewController()
-            newsHome.hidesBottomBarWhenPushed = true
-            return newsHome
+        // 新闻入口
+        navigator.register("diary://homeEntrance/newsEntranceTabBarController") { url, values, context in
+            let newsEntrance = NewsEntranceTabBarController()
+            newsEntrance.hidesBottomBarWhenPushed = true
+            return newsEntrance
         }
         
         // 新闻详情

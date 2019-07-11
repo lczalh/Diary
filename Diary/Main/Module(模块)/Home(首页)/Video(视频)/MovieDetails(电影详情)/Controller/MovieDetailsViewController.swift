@@ -32,13 +32,13 @@ class MovieDetailsViewController: DiaryBaseViewController {
     /// 实用功能状态 0:不点击 1:可点击
     private var practicalFunctionStateArray: Array<String> = []
     
+    //导航栏背景视图
+    var barImageView:UIView?
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         movieDetailsView.playerController.isViewControllerDisappear = false;
-        //设置导航栏背景透明
-        self.navigationController?.navigationBar.isTranslucent = true
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController!.LCZSetNavigationBarTransparency()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -46,8 +46,7 @@ class MovieDetailsViewController: DiaryBaseViewController {
         movieDetailsView.playerController.isViewControllerDisappear = true;
         //重置导航栏背景
         self.navigationController?.navigationBar.isTranslucent = false
-        self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
-        self.navigationController?.navigationBar.shadowImage = nil
+        self.navigationController!.LCZRestoreTheTransparentNavigationBar()
     }
     
     // 是否支持屏幕旋转

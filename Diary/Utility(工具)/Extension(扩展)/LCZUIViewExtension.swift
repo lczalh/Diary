@@ -46,16 +46,16 @@ extension UIView {
     /// - Parameter subView: 查找的子视图类型
     /// - Returns: 子视图
     public func LCZGetSubViews<T: UIView>(subView: T.Type) -> T? {
-        return getView(currenView: self, superView: T.self)
+        return LCZGetView(currenView: self, superView: T.self)
     }
-    private func getView<T: UIView>(currenView: UIView, superView: T.Type) -> T? {
+    private func LCZGetView<T: UIView>(currenView: UIView, superView: T.Type) -> T? {
         // 遍历子视图
         for view in currenView.subviews {
             if view.isKind(of: T.self) == true {
                 return view as? T
             } else {
                 // 递归查询
-                let v = getView(currenView: view, superView: T.self)
+                let v = LCZGetView(currenView: view, superView: T.self)
                 if v != nil {
                     return v
                 }

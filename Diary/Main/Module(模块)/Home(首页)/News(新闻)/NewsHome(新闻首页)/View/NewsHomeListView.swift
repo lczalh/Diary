@@ -25,7 +25,7 @@ class NewsHomeListView: DiaryBaseView {
         //设置尾部刷新控件
         self.tableView.mj_footer = MJRefreshBackNormalFooter()
         tableView.separatorStyle = .none
-        self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: LCZSafeAreaBottomHeight, right: 0)
+        self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: LCZSafeAreaBottomHeight + LCZTabbarHeight, right: 0)
         
     }
 

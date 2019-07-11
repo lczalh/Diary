@@ -32,20 +32,16 @@ class HomeEntranceViewController: DiaryBaseViewController {
     //视图将要显示
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.isTranslucent = true
-        //设置导航栏背景透明
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController!.LCZSetNavigationBarTransparency()
     }
     
     //视图将要消失
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.navigationController?.navigationBar.isTranslucent = false
-        //重置导航栏背景
-        self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
-        self.navigationController?.navigationBar.shadowImage = nil
+        self.navigationController!.LCZRestoreTheTransparentNavigationBar()
     }
+    
+    
     
     
     override func viewDidLoad() {
@@ -95,17 +91,15 @@ extension HomeEntranceViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath.section == 0 {
-            if indexPath.row == 0 { // 物流查询
-                diaryRoute.push("diary://homeEntrance/courierEntrance")
-            } else if indexPath.row == 1 { // 热门新闻
-                diaryRoute.push("diary://homeEntrance/newsHome")
-            }
-        } else if indexPath.section == 1 {
-            if indexPath.row == 0 { // 电影
-                //diaryRoute.push("diary://homeEntrance/movieHome")
-                diaryRoute.push("diary://homeEntrance/movieEntrance")
-            }
+        let title = self.viewModel.cellTitles[indexPath.section][indexPath.row]
+        if title == "快递" {
+            diaryRoute.present("diary://homeEntrance/courierEntrance")
+        } else if title == "新闻" {
+            diaryRoute.present("diary://homeEntrance/newsEntranceTabBarController")
+        } else if title == "视频" {
+            UIView.transition(with: (self.view ?? nil)!, duration: 0.5, options: .transitionFlipFromLeft, animations: {
+                diaryRoute.present("diary://homeEntrance/movieEntrance")
+            }, completion: nil)
         }
     }
     
