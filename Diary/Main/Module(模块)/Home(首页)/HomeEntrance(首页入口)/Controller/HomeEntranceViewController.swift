@@ -51,6 +51,8 @@ class HomeEntranceViewController: DiaryBaseViewController {
         backBarButtonItem.tintColor = LCZHexadecimalColor(hexadecimal: "#FECE1D")
         self.navigationItem.backBarButtonItem = backBarButtonItem
         
+        
+        //self.createPlaceholderFigureView(frame: CGRect(x: 0, y: 0, width: LCZWidth, height: LCZHeight - LCZTabbarHeight ), fatherView: self.view)
     }
     
 

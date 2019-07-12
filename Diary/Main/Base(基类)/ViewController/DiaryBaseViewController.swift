@@ -29,5 +29,5 @@ class DiaryBaseViewController: UIViewController {
     deinit {
         LCZPrint("控制器销毁了！！！！")
     }
-   
+    
 }

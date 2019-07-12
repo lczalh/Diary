@@ -24,6 +24,7 @@ class SearchMovieView: DiaryBaseView {
         tableView.mj_footer = MJRefreshBackNormalFooter()
         tableView.separatorStyle = .none
         tableView.isSkeletonable = true
+        tableView.lcz_isUseComponent = true
 
     }
 

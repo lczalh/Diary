@@ -36,8 +36,12 @@ class SearchMovieViewController: DiaryBaseViewController {
         view.isSkeletonable = true
         view.showAnimatedGradientSkeleton(usingGradient: SkeletonGradient(baseColor: UIColor.clouds),animation: GradientDirection.topLeftBottomRight.slidingAnimation())
         
-        let viewModel = SearchMovieViewModel(input: (self.searchMovieView.tableView.mj_header.rx.refreshing.asDriver(),self.searchMovieView.tableView.mj_footer.rx.refreshing.asDriver(),self.movieName), dependency: (disposeBag: rx.disposeBag, networkService: SearchMovieNetworkService()))
-        
+        let viewModel = SearchMovieViewModel(input: (self.searchMovieView.tableView.mj_header.rx.refreshing.asDriver(),
+                                                     self.searchMovieView.tableView.mj_footer.rx.refreshing.asDriver(),
+                                                     self.movieName),
+                                             dependency: (disposeBag: rx.disposeBag,
+                                                          networkService: SearchMovieNetworkService())
+                                            )
         
         // 下拉刷新状态结束的绑定
         viewModel.endHeaderRefreshing
@@ -49,16 +53,20 @@ class SearchMovieViewController: DiaryBaseViewController {
             .drive(self.searchMovieView.tableView.mj_footer.rx.endRefreshing)
             .disposed(by: rx.disposeBag)
         
-        viewModel.tableData.subscribe(onNext: { (models) in
-            if models.count > 0 {
-                self.models = models
-                DispatchQueue.main.async(execute: {
-                    self.view.hideSkeleton()
-                    self.searchMovieView.tableView.reloadData()
-                })
-            }
+        viewModel.tableData.skip(1).subscribe(onNext: { (models) in
+            self.models = models
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5, execute: {
+                self.searchMovieView.tableView.reloadData()
+                self.view.hideSkeleton()
+            })
         }).disposed(by: rx.disposeBag)
         
+        // 重新加载
+        self.searchMovieView.tableView.lcz_reloadClick = { _ in
+            DispatchQueue.main.async(execute: {
+                self.searchMovieView.tableView.mj_header.beginRefreshing()
+            })
+        }
     }
     
     
