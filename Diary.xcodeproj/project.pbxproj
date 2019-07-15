@@ -106,6 +106,7 @@
 		73948B802223CFA5000ED09A /* DiaryBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73948B7F2223CFA5000ED09A /* DiaryBaseTableViewCell.swift */; };
 		739510D422D6D3CC00814BFF /* LCZUINavigationControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739510D322D6D3CC00814BFF /* LCZUINavigationControllerExtension.swift */; };
 		739510D722D7078000814BFF /* NewsEntranceTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739510D622D7078000814BFF /* NewsEntranceTabBarController.swift */; };
+		7396A9D222DC0D3700525F64 /* UICollectionView+LCZPlaceholderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7396A9D122DC0D3700525F64 /* UICollectionView+LCZPlaceholderView.m */; };
 		73B1DDD72241EB8E00BFEF7A /* LCZProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B1DDD62241EB8E00BFEF7A /* LCZProgressHUD.swift */; };
 		73B1DDE22242051400BFEF7A /* MovieHomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B1DDE12242051400BFEF7A /* MovieHomeModel.swift */; };
 		73B1DDE7224206FA00BFEF7A /* DiaryBaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B1DDE6224206FA00BFEF7A /* DiaryBaseCollectionViewCell.swift */; };
@@ -241,6 +242,8 @@
 		73948B7F2223CFA5000ED09A /* DiaryBaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryBaseTableViewCell.swift; sourceTree = "<group>"; };
 		739510D322D6D3CC00814BFF /* LCZUINavigationControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCZUINavigationControllerExtension.swift; sourceTree = "<group>"; };
 		739510D622D7078000814BFF /* NewsEntranceTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsEntranceTabBarController.swift; sourceTree = "<group>"; };
+		7396A9D022DC0D3700525F64 /* UICollectionView+LCZPlaceholderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+LCZPlaceholderView.h"; sourceTree = "<group>"; };
+		7396A9D122DC0D3700525F64 /* UICollectionView+LCZPlaceholderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+LCZPlaceholderView.m"; sourceTree = "<group>"; };
 		73B1DDD62241EB8E00BFEF7A /* LCZProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCZProgressHUD.swift; sourceTree = "<group>"; };
 		73B1DDE12242051400BFEF7A /* MovieHomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MovieHomeModel.swift; path = "../../MovieHome(电影首页)/Model/MovieHomeModel.swift"; sourceTree = "<group>"; };
 		73B1DDE6224206FA00BFEF7A /* DiaryBaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryBaseCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -1174,6 +1177,8 @@
 				734E7C7722D828E2009DAD4D /* UITableView+LCZPlaceholderView.m */,
 				734E7C7E22D832C9009DAD4D /* LCZPlaceholderView.h */,
 				734E7C7F22D832C9009DAD4D /* LCZPlaceholderView.m */,
+				7396A9D022DC0D3700525F64 /* UICollectionView+LCZPlaceholderView.h */,
+				7396A9D122DC0D3700525F64 /* UICollectionView+LCZPlaceholderView.m */,
 			);
 			path = "PlaceholderView(占位图)";
 			sourceTree = "<group>";
@@ -1837,6 +1842,7 @@
 				738AD38322BC9A0600FD0680 /* LCZTimingCounter.swift in Sources */,
 				7344B54B22AF8A6900FC7D4D /* MineEntranceView.swift in Sources */,
 				73409FC02281563600899563 /* SearchMovieView.swift in Sources */,
+				7396A9D222DC0D3700525F64 /* UICollectionView+LCZPlaceholderView.m in Sources */,
 				731A382122B33FE3009FA711 /* CommonlyExpressModel.swift in Sources */,
 				735BB33A225DCF2300241A59 /* SynopsisCell.swift in Sources */,
 				737E1C412213E00300BF751D /* LCZSwiftMacro.swift in Sources */,

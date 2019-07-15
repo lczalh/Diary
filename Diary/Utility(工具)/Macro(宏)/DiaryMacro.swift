@@ -33,3 +33,6 @@ public func diaryApple() -> Bool {
         }
     }
 }
+
+///
+public let AppEmail = "824092805@qq.com"

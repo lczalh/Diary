@@ -42,12 +42,14 @@ class NewsMovieHomeShufflingFigureCollectionHeaderView: UICollectionReusableView
         self.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { (make) in
             make.left.equalTo(imageView.snp.right).offset(5)
+            make.width.equalTo(100)
+            make.height.equalTo(30)
             make.centerY.equalTo(imageView)
         }
         titleLabel.font = LCZBoldFontSize(size: 16)
         titleLabel.textColor = LCZHexadecimalColor(hexadecimal: "#57310C")
         titleLabel.isSkeletonable = true
-        titleLabel.text = "乐淘世界"
+
     }
     
     required init?(coder aDecoder: NSCoder) {

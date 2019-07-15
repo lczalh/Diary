@@ -21,6 +21,7 @@
 - (void)createUI {
     self.backgroundColor = [UIColor whiteColor];
     
+    // 图标
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width / 2 - 75, self.frame.size.height / 2 - 75, 150, 150)];
     [self addSubview:imageView];
     imageView.image = [[UIImage imageNamed:@"wuwifi"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];

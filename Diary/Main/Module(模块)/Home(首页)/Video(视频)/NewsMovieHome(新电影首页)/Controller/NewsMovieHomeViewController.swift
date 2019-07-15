@@ -91,6 +91,16 @@ class NewsMovieHomeViewController: DiaryBaseViewController {
         
         self.view.addSubview(newsMovieHomeContentView)
         
+        getMovieListData()
+        
+        // 重新加载数据
+        self.newsMovieHomeContentView.collectionView.lcz_reloadClick = { _ in
+            self.getMovieListData()
+        }
+
+    }
+    
+    private func getMovieListData() {
         // 占位图
         view.isSkeletonable = true
         self.newsMovieHomeContentView.collectionView.prepareSkeleton(completion: { done in
@@ -98,11 +108,6 @@ class NewsMovieHomeViewController: DiaryBaseViewController {
                                                    animation: GradientDirection.topLeftBottomRight.slidingAnimation())
         })
         
-        getMovieListData()
-
-    }
-    
-    private func getMovieListData() {
         self.viewModel.getMovieListData().subscribe(onSuccess: { (models) in
             // 清空数据
             self.cellModels.removeAll()
@@ -157,8 +162,8 @@ class NewsMovieHomeViewController: DiaryBaseViewController {
                                             "image":"tuijian"
                                             ]]
                 DispatchQueue.main.async(execute: {
-                    self.view.hideSkeleton()
                     self.newsMovieHomeContentView.collectionView.reloadData()
+                    self.view.hideSkeleton()
                     // 刷新轮播图
                     let shufflingFigureHeaderView = self.newsMovieHomeContentView.LCZGetSubViews(subView: NewsMovieHomeShufflingFigureCollectionHeaderView.self)
                     shufflingFigureHeaderView!.shufflingFigureView.fsPagerView.reloadData()

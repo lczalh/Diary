@@ -70,7 +70,7 @@ class MineEntranceViewController: DiaryBaseViewController {
             //设置代理
             controller.mailComposeDelegate = self
             //设置收件人
-            controller.setToRecipients(["824092805@qq.com"])
+            controller.setToRecipients([AppEmail])
             
             DispatchQueue.main.async {
                 //打开界面

@@ -20,9 +20,21 @@ class NewsHomeViewController: DiaryBaseViewController {
     let newsHomeNetworkService = NewsHomeNetworkService()
     
     /// 当前类别
-    var currentCategory: Observable<String>?
+ //   var currentCategory: String?
     
     var listContainerView: JXCategoryListContainerView!
+    
+    var models: Array<SpeedNewsListModel> = []
+    
+    let listViewModel = NewsHomeListViewModel()
+    
+    /// 起始新闻数量
+    var start: Int = 0
+    
+    /// 存储每个view中的数据
+    var datas: NSMutableDictionary = [:]
+    
+//    var itemSelectIndex: Int!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,7 +95,6 @@ extension NewsHomeViewController: JXCategoryViewDelegate {
     
     func categoryView(_ categoryView: JXCategoryBaseView!, didSelectedItemAt index: Int) {
         self.listContainerView.didClickSelectedItem(at: index)
-        currentCategory = Observable.just(self.categorys![index])
     }
 
 }
@@ -96,70 +107,125 @@ extension NewsHomeViewController: JXCategoryListContainerViewDelegate {
     }
     
     func listContainerView(_ listContainerView: JXCategoryListContainerView!, initListFor index: Int) -> JXCategoryListContentViewDelegate! {
+        // 初始化时清空原有数据
+        self.models.removeAll()
         // 内容视图
         let newsHomeListView = NewsHomeListView(frame:listContainerView.bounds)
+        self.start = 0
+        //设置头部刷新控件
+        newsHomeListView.tableView.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: #selector(dropDownRefresh))
+        //设置尾部刷新控件
+        newsHomeListView.tableView.mj_footer = MJRefreshBackNormalFooter(refreshingTarget: self, refreshingAction: #selector(pullToRefresh))
         listContainerView.didAppearPercent = 0.99
-        currentCategory = Observable.just(self.categorys![index])
-        // viewModel
-        let viewModel = NewsHomeListViewModel(input: (headerRefresh: newsHomeListView.tableView.mj_header.rx.refreshing.asDriver(),
-                                                  footerRefresh: newsHomeListView.tableView.mj_footer.rx.refreshing.asDriver(),
-                                                  currentCategory: currentCategory!),
-                                          dependency: (disposeBag: rx.disposeBag,
-                                                  networkService: NewsHomeNetworkService()))
         
-        // 下拉刷新状态结束的绑定
-        viewModel.endHeaderRefreshing
-            .drive(newsHomeListView.tableView.mj_header.rx.endRefreshing)
-            .disposed(by: rx.disposeBag)
+        newsHomeListView.tableView.dataSource = self
+        newsHomeListView.tableView.delegate = self
         
-        // 上拉刷新状态结束的绑定
-        viewModel.endFooterRefreshing
-            .drive(newsHomeListView.tableView.mj_footer.rx.endRefreshing)
-            .disposed(by: rx.disposeBag)
-     
-        // 创建数据源
-        let dataSource = RxTableViewSectionedAnimatedDataSource
-            <AnimatableSectionModel<String, SpeedNewsListModel>>(configureCell: {
-                (dataSource, tv, indexPath, element) in
-                let cell = tv.dequeueReusableCell(withIdentifier: "NewsHomeCell", for: indexPath) as! NewsHomeCell
-                cell.titleLabel.text = element.title
-                if element.pic?.isEmpty == false {
-                    cell.newsImageView.kf.indicatorType = .activity
-                    cell.newsImageView.kf.setImage(with: ImageResource(downloadURL: URL(string: element.pic!)!), placeholder: UIImage(named: "zanwutupian"))
-                } else {
-                    cell.newsImageView.image = UIImage(named: "zanwutupian")
-                }
-                
-                if element.time?.isEmpty == false {
-                    cell.timeLabel.text = LCZUpdateTimeToCurrennTime(timeStamp: LCZTimeToTimeStamp(time: element.time!))
-                } else {
-                    cell.timeLabel.text = ""
-                }
-                
-                if element.category?.isEmpty == false {
-                    cell.sourceLabel.text = element.category
-                } else {
-                    cell.sourceLabel.text = ""
-                }
-                
-                return cell
-            })
+        reloadData(view: newsHomeListView, index: index)
         
-        // 数据绑定
-        viewModel.tableData.map {
-            [AnimatableSectionModel(model: "", items: $0)]}
-            .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .userInitiated)) //后台构建序列
-            .observeOn(MainScheduler.instance)  //主线程监听并处理序列结果
-            .bind(to: newsHomeListView.tableView.rx.items(dataSource: dataSource))
-            .disposed(by: rx.disposeBag)
-        
-        // 同时获取索引和模型
-        Observable.zip(newsHomeListView.tableView.rx.itemSelected, newsHomeListView.tableView.rx.modelSelected(SpeedNewsListModel.self))
-            .bind { indexPath, item in
-                diaryRoute.push("diary://homeEntrance/newsHome/newsDetails" ,context: item)
-            }.disposed(by: rx.disposeBag)
+        newsHomeListView.tableView.lcz_reloadClick = { [weak self] _ in
+            let viewDictionary = listContainerView.validListDict! as NSDictionary
+            var view = viewDictionary.object(forKey: self!.newsHomeView.categoryView!.selectedIndex) as? NewsHomeListView
+            if view == nil  {
+                view = newsHomeListView
+            }
+            self!.reloadData(view: newsHomeListView, index: index)
+        }
+
         
         return (newsHomeListView as JXCategoryListContentViewDelegate)
     }
     
+    /// 下拉刷新
+    @objc private func dropDownRefresh() {
+        let viewDictionary = self.listContainerView.validListDict! as NSDictionary
+        let view = viewDictionary.object(forKey: newsHomeView.categoryView!.selectedIndex) as! NewsHomeListView
+        self.start = 0
+        self.listViewModel.getNewsListData(channel: self.categorys![self.newsHomeView.categoryView!.selectedIndex], start: self.start).subscribe(onSuccess: { (models) in
+            self.datas.setValue(models, forKey: "\(self.newsHomeView.categoryView!.selectedIndex)")
+            self.models = models
+            DispatchQueue.main.async(execute: {
+                view.tableView.mj_header.endRefreshing()
+                view.tableView.reloadData()
+            })
+        }) { (error) in
+            DispatchQueue.main.async(execute: {
+                view.tableView.mj_header.endRefreshing()
+            })
+        }.disposed(by: rx.disposeBag)
+    }
+    
+    /// 上拉刷新
+    @objc private func pullToRefresh() {
+        let viewDictionary = self.listContainerView.validListDict! as NSDictionary
+        let view = viewDictionary.object(forKey: newsHomeView.categoryView!.selectedIndex) as! NewsHomeListView
+        let datas = self.datas.object(forKey: newsHomeView.categoryView!.selectedIndex) as! [SpeedNewsListModel]
+        self.start += 20
+        self.listViewModel.getNewsListData(channel: self.categorys![self.newsHomeView.categoryView!.selectedIndex], start: self.start).subscribe(onSuccess: { (models) in
+            self.datas.setValue(datas + models, forKey: "\(self.newsHomeView.categoryView!.selectedIndex)")
+            self.models = datas + models
+            DispatchQueue.main.async(execute: {
+                view.tableView.mj_footer.endRefreshing()
+                view.tableView.reloadData()
+            })
+        }) { (error) in
+            DispatchQueue.main.async(execute: {
+                view.tableView.mj_footer.endRefreshing()
+            })
+        }.disposed(by: rx.disposeBag)
+    }
+    
+    private func reloadData(view: NewsHomeListView, index: Int) {
+        self.listViewModel.getNewsListData(channel: self.categorys![index], start: self.start).subscribe(onSuccess: { (models) in
+            self.datas.setValue(models, forKey: "\(index)")
+            self.models = models
+            DispatchQueue.main.async(execute: {
+                view.tableView.reloadData()
+            })
+        }) { (error) in
+            
+        }.disposed(by: rx.disposeBag)
+    }
+    
+}
+
+extension NewsHomeViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.models.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "NewsHomeCell", for: indexPath) as! NewsHomeCell
+        let element = self.models[indexPath.row]
+        cell.titleLabel.text = element.title
+        if element.pic?.isEmpty == false {
+            cell.newsImageView.kf.indicatorType = .activity
+            cell.newsImageView.kf.setImage(with: ImageResource(downloadURL: URL(string: element.pic!)!), placeholder: UIImage(named: "zanwutupian"))
+        } else {
+            cell.newsImageView.image = UIImage(named: "zanwutupian")
+        }
+        
+        if element.time?.isEmpty == false {
+            cell.timeLabel.text = LCZUpdateTimeToCurrennTime(timeStamp: LCZTimeToTimeStamp(time: element.time!))
+        } else {
+            cell.timeLabel.text = ""
+        }
+        
+        if element.category?.isEmpty == false {
+            cell.sourceLabel.text = element.category
+        } else {
+            cell.sourceLabel.text = ""
+        }
+        
+        return cell
+    }
+    
+}
+
+extension NewsHomeViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let model = self.models[indexPath.row]
+        diaryRoute.push("diary://homeEntrance/newsHome/newsDetails" ,context: model)
+    }
 }

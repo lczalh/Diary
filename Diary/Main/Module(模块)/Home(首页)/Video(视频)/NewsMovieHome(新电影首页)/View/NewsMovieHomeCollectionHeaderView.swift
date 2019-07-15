@@ -40,7 +40,7 @@ class NewsMovieHomeCollectionHeaderView: UICollectionReusableView {
         }
         titleLabel.font = LCZBoldFontSize(size: 16)
         titleLabel.textColor = LCZHexadecimalColor(hexadecimal: "#57310C")
-        titleLabel.text = "乐淘世界"
+        //titleLabel.text = "乐淘世界"
         titleLabel.isSkeletonable = true
      
     }

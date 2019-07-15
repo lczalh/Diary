@@ -10,10 +10,6 @@ import Foundation
 
 class NewsHomeNetworkService {
     
-    public func qqqq() {
-        LCZPrint("1111")
-    }
-    
     // 获取新闻类型列表数据
     public func getNewsTypeListData() -> Single<[String]> {
         return Single<[String]>.create(subscribe: { (single) -> Disposable in

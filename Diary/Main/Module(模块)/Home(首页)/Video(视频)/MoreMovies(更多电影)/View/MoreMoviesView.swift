@@ -29,8 +29,7 @@ class MoreMoviesView: DiaryBaseView {
         collectionView.isSkeletonable = true
         collectionView.backgroundColor = LCZRgbColor(238, 238, 238, 1)
         collectionView.register(MovieHomeCell.self, forCellWithReuseIdentifier: "MovieHomeCell")
-        collectionView.mj_header = MJRefreshNormalHeader()
-        collectionView.mj_footer = MJRefreshBackNormalFooter()
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: LCZSafeAreaBottomHeight + LCZStatusBarHeight + LCZTabbarHeight, right: 0)
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: LCZSafeAreaBottomHeight, right: 0)
+        collectionView.lcz_isUseComponent = true
     }
 }

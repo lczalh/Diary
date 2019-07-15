@@ -19,11 +19,7 @@ class NewsHomeListView: DiaryBaseView {
         self.tableView!.register(NewsHomeCell.self, forCellReuseIdentifier: "NewsHomeCell")
         self.addSubview(tableView)
         tableView.cellLayoutMarginsFollowReadableWidth = false
-        tableView.rowHeight = 110;
-        //设置头部刷新控件
-        self.tableView.mj_header = MJRefreshNormalHeader()
-        //设置尾部刷新控件
-        self.tableView.mj_footer = MJRefreshBackNormalFooter()
+        tableView.rowHeight = 110 * LCZSizeScale;
         tableView.separatorStyle = .none
         self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: LCZSafeAreaBottomHeight + LCZTabbarHeight, right: 0)
         

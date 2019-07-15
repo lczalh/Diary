@@ -10,8 +10,9 @@
 #import "GDTSplashAd.h"
 #import "GDTSDKConfig.h"
 
-//
+// 占位图
 #import "UITableView+LCZPlaceholderView.h"
+#import "UICollectionView+LCZPlaceholderView.h"
 
 
 // runtime
