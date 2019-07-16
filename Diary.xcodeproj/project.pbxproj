@@ -65,6 +65,9 @@
 		734F2EC322B1DC2600927AC1 /* ExpressQueryResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734F2EC222B1DC2600927AC1 /* ExpressQueryResultsView.swift */; };
 		734F2EC522B1E46800927AC1 /* ExpressQueryResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734F2EC422B1E46800927AC1 /* ExpressQueryResultsTableViewCell.swift */; };
 		7350945322D495110050AAE7 /* television.json in Resources */ = {isa = PBXBuildFile; fileRef = 7350945222D495110050AAE7 /* television.json */; };
+		735123C422DD7A78008900C4 /* TelevisionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735123C322DD7A78008900C4 /* TelevisionView.swift */; };
+		735123C622DD9996008900C4 /* TelevisionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735123C522DD9996008900C4 /* TelevisionLayout.swift */; };
+		735123C822DDA19E008900C4 /* TelevisionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735123C722DDA19E008900C4 /* TelevisionCollectionViewCell.swift */; };
 		735AC95422AE27E500C51BF7 /* HomeEntranceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735AC95322AE27E500C51BF7 /* HomeEntranceViewModel.swift */; };
 		735BB336225D943900241A59 /* MovieDetailsTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735BB335225D943900241A59 /* MovieDetailsTableHeaderView.swift */; };
 		735BB338225D9CF300241A59 /* UIButton+TextImagelocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735BB337225D9CF300241A59 /* UIButton+TextImagelocation.swift */; };
@@ -75,7 +78,6 @@
 		735D64CC22BB857E0092ADEC /* RetrievePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735D64CB22BB857E0092ADEC /* RetrievePasswordView.swift */; };
 		7367D2EE221FA43A008FD780 /* MJRefresh+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7367D2ED221FA43A008FD780 /* MJRefresh+Rx.swift */; };
 		7367D2F0221FA43F008FD780 /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7367D2EF221FA43F008FD780 /* UIViewController+Rx.swift */; };
-		7367D2F3221FA8DA008FD780 /* NewsHomeNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7367D2F2221FA8DA008FD780 /* NewsHomeNetworkService.swift */; };
 		736F50F022B2549700518645 /* CommonlyExpressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736F50EF22B2549700518645 /* CommonlyExpressView.swift */; };
 		736F50F222B255D200518645 /* CommonlyExpressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736F50F122B255D200518645 /* CommonlyExpressTableViewCell.swift */; };
 		737E1C2D2213D43B00BF751D /* DiaryHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737E1C2C2213D43B00BF751D /* DiaryHeader.swift */; };
@@ -201,6 +203,9 @@
 		734F2EC222B1DC2600927AC1 /* ExpressQueryResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpressQueryResultsView.swift; sourceTree = "<group>"; };
 		734F2EC422B1E46800927AC1 /* ExpressQueryResultsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpressQueryResultsTableViewCell.swift; sourceTree = "<group>"; };
 		7350945222D495110050AAE7 /* television.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = television.json; sourceTree = "<group>"; };
+		735123C322DD7A78008900C4 /* TelevisionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelevisionView.swift; sourceTree = "<group>"; };
+		735123C522DD9996008900C4 /* TelevisionLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelevisionLayout.swift; sourceTree = "<group>"; };
+		735123C722DDA19E008900C4 /* TelevisionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelevisionCollectionViewCell.swift; sourceTree = "<group>"; };
 		735AC95322AE27E500C51BF7 /* HomeEntranceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEntranceViewModel.swift; sourceTree = "<group>"; };
 		735BB335225D943900241A59 /* MovieDetailsTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsTableHeaderView.swift; sourceTree = "<group>"; };
 		735BB337225D9CF300241A59 /* UIButton+TextImagelocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+TextImagelocation.swift"; sourceTree = "<group>"; };
@@ -211,7 +216,6 @@
 		735D64CB22BB857E0092ADEC /* RetrievePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrievePasswordView.swift; sourceTree = "<group>"; };
 		7367D2ED221FA43A008FD780 /* MJRefresh+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MJRefresh+Rx.swift"; sourceTree = "<group>"; };
 		7367D2EF221FA43F008FD780 /* UIViewController+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
-		7367D2F2221FA8DA008FD780 /* NewsHomeNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsHomeNetworkService.swift; sourceTree = "<group>"; };
 		736F50EF22B2549700518645 /* CommonlyExpressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonlyExpressView.swift; sourceTree = "<group>"; };
 		736F50F122B255D200518645 /* CommonlyExpressTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonlyExpressTableViewCell.swift; sourceTree = "<group>"; };
 		737E1C2C2213D43B00BF751D /* DiaryHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryHeader.swift; sourceTree = "<group>"; };
@@ -439,6 +443,9 @@
 		73107D3B22D5DD0D0094981F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				735123C322DD7A78008900C4 /* TelevisionView.swift */,
+				735123C522DD9996008900C4 /* TelevisionLayout.swift */,
+				735123C722DDA19E008900C4 /* TelevisionCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -843,14 +850,6 @@
 			path = "Extension(扩展)";
 			sourceTree = "<group>";
 		};
-		7367D2F1221FA893008FD780 /* NetworkService */ = {
-			isa = PBXGroup;
-			children = (
-				7367D2F2221FA8DA008FD780 /* NewsHomeNetworkService.swift */,
-			);
-			path = NetworkService;
-			sourceTree = "<group>";
-		};
 		737E1C2E2213DA8F00BF751D /* Utility(工具) */ = {
 			isa = PBXGroup;
 			children = (
@@ -982,7 +981,6 @@
 		737E1C482213E33A00BF751D /* NewsHome(新闻首页) */ = {
 			isa = PBXGroup;
 			children = (
-				7367D2F1221FA893008FD780 /* NetworkService */,
 				737E1C5D2213FCD400BF751D /* Model */,
 				737E1C5A2213F03100BF751D /* ViewModel */,
 				737E1C4E2213E7CF00BF751D /* View */,
@@ -1761,13 +1759,16 @@
 			files = (
 				7302334222B8E9C1002CD8C4 /* LoginViewController.swift in Sources */,
 				734E7C7B22D82A7E009DAD4D /* NSObject+Swizzling.m in Sources */,
+				735123C822DDA19E008900C4 /* TelevisionCollectionViewCell.swift in Sources */,
 				732F735C22B9FB6B008108CD /* LoginModel.swift in Sources */,
 				737E1C522213E82800BF751D /* DiaryBaseView.swift in Sources */,
 				731802B622C354B500ED5D56 /* NewsMovieHomeViewModel.swift in Sources */,
 				736F50F022B2549700518645 /* CommonlyExpressView.swift in Sources */,
 				7300252022ADF1B500F05ADC /* HomeEntranceView.swift in Sources */,
 				73370C0422B3942200C01FE0 /* HistoryQueryTableViewCell.swift in Sources */,
+				735123C422DD7A78008900C4 /* TelevisionView.swift in Sources */,
 				737E1C3F2213DFDF00BF751D /* LCZHomePage.swift in Sources */,
+				735123C622DD9996008900C4 /* TelevisionLayout.swift in Sources */,
 				731802AB22C318D800ED5D56 /* ShufflingFigureView.swift in Sources */,
 				7344B54D22AF8F6900FC7D4D /* MineEntranceTableViewCell.swift in Sources */,
 				738D3E4D22CB42C400A68487 /* LCZUIViewExtension.swift in Sources */,
@@ -1815,7 +1816,6 @@
 				732F735A22B9FAC0008108CD /* LoginViewModel.swift in Sources */,
 				733E298F22607094001885CE /* PracticalFunctionCell.swift in Sources */,
 				73E78C2B22C0B03F007F35FA /* PrivacyPolicyViewModel.swift in Sources */,
-				7367D2F3221FA8DA008FD780 /* NewsHomeNetworkService.swift in Sources */,
 				7300251A22ADF0ED00F05ADC /* HomeEntranceViewController.swift in Sources */,
 				734F2EC322B1DC2600927AC1 /* ExpressQueryResultsView.swift in Sources */,
 				7302DB1A228179F700BC7CAC /* LCZAlignTopLabel.swift in Sources */,

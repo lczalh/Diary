@@ -22,7 +22,8 @@ class NewsHomeListView: DiaryBaseView {
         tableView.rowHeight = 110 * LCZSizeScale;
         tableView.separatorStyle = .none
         self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: LCZSafeAreaBottomHeight + LCZTabbarHeight, right: 0)
-        
+        tableView.isSkeletonable = true
+        tableView.lcz_isUseComponent = true
     }
 
 }

@@ -51,6 +51,7 @@
     }
     self.lcz_placeholderView.hidden = isEmpty == YES ? NO : YES;
     self.scrollEnabled = isEmpty == YES ? NO : YES;
+    self.bounces = isEmpty == YES ? NO : YES;
 }
 
 - (void)makeDefaultPlaceholderView {

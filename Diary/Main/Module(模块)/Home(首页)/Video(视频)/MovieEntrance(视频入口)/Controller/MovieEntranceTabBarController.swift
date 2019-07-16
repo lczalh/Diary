@@ -13,7 +13,7 @@ class MovieEntranceTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setTabBarItem(viewController: NewsMovieHomeViewController(), navigationTitle: "电影", tabBarTitle: "电影", image: UIImage(named: "shipinhui")?.withRenderingMode(.alwaysOriginal), selectImage: UIImage(named: "shipin")?.withRenderingMode(.alwaysOriginal))
-      //  self.setTabBarItem(viewController: TelevisionViewController(), navigationTitle: "电视", tabBarTitle: "电视", image: UIImage(named: "dianshijihui")?.withRenderingMode(.alwaysOriginal), selectImage: UIImage(named: "dianshiji")?.withRenderingMode(.alwaysOriginal))
+        self.setTabBarItem(viewController: TelevisionViewController(), navigationTitle: "电视", tabBarTitle: "电视", image: UIImage(named: "dianshijihui")?.withRenderingMode(.alwaysOriginal), selectImage: UIImage(named: "dianshiji")?.withRenderingMode(.alwaysOriginal))
         
     }
     

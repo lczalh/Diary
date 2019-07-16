@@ -16,25 +16,17 @@ class NewsHomeViewController: DiaryBaseViewController {
     /// 所有类别
     var categorys: Array<String>? = Array()
     
-    /// 网络服务
-    let newsHomeNetworkService = NewsHomeNetworkService()
-    
-    /// 当前类别
- //   var currentCategory: String?
-    
     var listContainerView: JXCategoryListContainerView!
     
     var models: Array<SpeedNewsListModel> = []
     
-    let listViewModel = NewsHomeListViewModel()
+    let viewModel = NewsHomeViewModel()
     
     /// 起始新闻数量
     var start: Int = 0
     
     /// 存储每个view中的数据
     var datas: NSMutableDictionary = [:]
-    
-//    var itemSelectIndex: Int!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,20 +57,20 @@ class NewsHomeViewController: DiaryBaseViewController {
         newsHomeView.addSubview(listContainerView!)
         newsHomeView.categoryView!.contentScrollView = listContainerView!.scrollView;
         
-        let viewModel = NewsHomeViewModel()
-        
-        
-        self.newsHomeNetworkService.getNewsTypeListData()
-            .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .userInitiated)) //后台构建序列
-            .observeOn(MainScheduler.instance)  //主线程监听并处理序列结果
-            .asDriver(onErrorJustReturn: viewModel.newsItems )
-            .drive(onNext: { (items) in
+        self.viewModel.getNewsTypeListData()
+            .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .userInitiated))
+            .observeOn(MainScheduler.instance)
+            .subscribe(onSuccess: { (items) in
                 self.categorys = items
                 self.newsHomeView.categoryView!.titles = self.categorys
                 self.newsHomeView.categoryView?.reloadData()
                 self.listContainerView.reloadData()
-            }).disposed(by: rx.disposeBag)
-        
+        }) { [weak self] (error) in
+                self!.categorys = self!.viewModel.newsItems
+                self!.newsHomeView.categoryView!.titles = self!.categorys
+                self!.newsHomeView.categoryView?.reloadData()
+                self!.listContainerView.reloadData()
+        }.disposed(by: rx.disposeBag)
     }
     
     
@@ -125,14 +117,14 @@ extension NewsHomeViewController: JXCategoryListContainerViewDelegate {
         
         newsHomeListView.tableView.lcz_reloadClick = { [weak self] _ in
             let viewDictionary = listContainerView.validListDict! as NSDictionary
-            var view = viewDictionary.object(forKey: self!.newsHomeView.categoryView!.selectedIndex) as? NewsHomeListView
+            let view = viewDictionary.object(forKey: self!.newsHomeView.categoryView!.selectedIndex) as? NewsHomeListView
             if view == nil  {
-                view = newsHomeListView
+                self!.reloadData(view: newsHomeListView, index: index)
+            } else {
+                self!.reloadData(view: view!, index: self!.newsHomeView.categoryView!.selectedIndex)
             }
-            self!.reloadData(view: newsHomeListView, index: index)
         }
 
-        
         return (newsHomeListView as JXCategoryListContentViewDelegate)
     }
     
@@ -141,18 +133,18 @@ extension NewsHomeViewController: JXCategoryListContainerViewDelegate {
         let viewDictionary = self.listContainerView.validListDict! as NSDictionary
         let view = viewDictionary.object(forKey: newsHomeView.categoryView!.selectedIndex) as! NewsHomeListView
         self.start = 0
-        self.listViewModel.getNewsListData(channel: self.categorys![self.newsHomeView.categoryView!.selectedIndex], start: self.start).subscribe(onSuccess: { (models) in
-            self.datas.setValue(models, forKey: "\(self.newsHomeView.categoryView!.selectedIndex)")
-            self.models = models
-            DispatchQueue.main.async(execute: {
-                view.tableView.mj_header.endRefreshing()
-                view.tableView.reloadData()
-            })
-        }) { (error) in
-            DispatchQueue.main.async(execute: {
-                view.tableView.mj_header.endRefreshing()
-            })
-        }.disposed(by: rx.disposeBag)
+        self.viewModel.getNewsListData(channel: self.categorys![self.newsHomeView.categoryView!.selectedIndex],
+                                       start: self.start)
+                      .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .userInitiated))
+                      .observeOn(MainScheduler.instance)
+                      .subscribe(onSuccess: { (models) in
+                            self.datas.setValue(models, forKey: "\(self.newsHomeView.categoryView!.selectedIndex)")
+                            self.models = models
+                            view.tableView.mj_header.endRefreshing()
+                            view.tableView.reloadData()
+                       }) { (error) in
+                            view.tableView.mj_header.endRefreshing()
+                       }.disposed(by: rx.disposeBag)
     }
     
     /// 上拉刷新
@@ -161,35 +153,42 @@ extension NewsHomeViewController: JXCategoryListContainerViewDelegate {
         let view = viewDictionary.object(forKey: newsHomeView.categoryView!.selectedIndex) as! NewsHomeListView
         let datas = self.datas.object(forKey: newsHomeView.categoryView!.selectedIndex) as! [SpeedNewsListModel]
         self.start += 20
-        self.listViewModel.getNewsListData(channel: self.categorys![self.newsHomeView.categoryView!.selectedIndex], start: self.start).subscribe(onSuccess: { (models) in
-            self.datas.setValue(datas + models, forKey: "\(self.newsHomeView.categoryView!.selectedIndex)")
-            self.models = datas + models
-            DispatchQueue.main.async(execute: {
-                view.tableView.mj_footer.endRefreshing()
-                view.tableView.reloadData()
-            })
-        }) { (error) in
-            DispatchQueue.main.async(execute: {
-                view.tableView.mj_footer.endRefreshing()
-            })
-        }.disposed(by: rx.disposeBag)
+        self.viewModel.getNewsListData(channel: self.categorys![self.newsHomeView.categoryView!.selectedIndex],
+                                       start: self.start)
+                      .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .userInitiated))
+                      .observeOn(MainScheduler.instance)
+                      .subscribe(onSuccess: { (models) in
+                            self.datas.setValue(datas + models, forKey: "\(self.newsHomeView.categoryView!.selectedIndex)")
+                            self.models = datas + models
+                            view.tableView.mj_footer.endRefreshing()
+                            view.tableView.reloadData()
+                      }) { (error) in
+                            view.tableView.mj_footer.endRefreshing()
+                      }.disposed(by: rx.disposeBag)
     }
     
     private func reloadData(view: NewsHomeListView, index: Int) {
-        self.listViewModel.getNewsListData(channel: self.categorys![index], start: self.start).subscribe(onSuccess: { (models) in
-            self.datas.setValue(models, forKey: "\(index)")
-            self.models = models
-            DispatchQueue.main.async(execute: {
-                view.tableView.reloadData()
-            })
-        }) { (error) in
-            
-        }.disposed(by: rx.disposeBag)
+        view.isSkeletonable = true
+        view.showAnimatedGradientSkeleton(usingGradient: SkeletonGradient(baseColor: UIColor.clouds),animation: GradientDirection.topLeftBottomRight.slidingAnimation())
+        self.viewModel.getNewsListData(channel: self.categorys![index],
+                                       start: self.start)
+                      .subscribe(onSuccess: { (models) in
+                            self.datas.setValue(models, forKey: "\(index)")
+                            self.models = models
+                            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5, execute: {
+                                view.tableView.reloadData()
+                                view.hideSkeleton()
+                            })
+                      }) { (error) in
+                            DispatchQueue.main.async(execute: {
+                                view.hideSkeleton()
+                            })
+                      }.disposed(by: rx.disposeBag)
     }
     
 }
 
-extension NewsHomeViewController: UITableViewDataSource {
+extension NewsHomeViewController: SkeletonTableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.models.count
     }
@@ -220,9 +219,12 @@ extension NewsHomeViewController: UITableViewDataSource {
         return cell
     }
     
+    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return "NewsHomeCell"
+    }
 }
 
-extension NewsHomeViewController: UITableViewDelegate {
+extension NewsHomeViewController: SkeletonTableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let model = self.models[indexPath.row]
