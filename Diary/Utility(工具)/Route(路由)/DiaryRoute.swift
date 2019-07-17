@@ -129,6 +129,14 @@ enum DiaryRoute {
             aboutUs.hidesBottomBarWhenPushed = true
             return aboutUs
         }
+        
+        // 电视播放
+        navigator.register("diary://homeEntrance/televisionPlayer") { url, values, context in
+            let televisionPlayer = TelevisionPlayerViewController()
+            televisionPlayer.model = (context as! TelevisionCellModel)
+            televisionPlayer.hidesBottomBarWhenPushed = true
+            return televisionPlayer
+        }
     }
     
 }

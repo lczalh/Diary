@@ -101,9 +101,10 @@ extension NewsHomeViewController: JXCategoryListContainerViewDelegate {
     func listContainerView(_ listContainerView: JXCategoryListContainerView!, initListFor index: Int) -> JXCategoryListContentViewDelegate! {
         // 初始化时清空原有数据
         self.models.removeAll()
+        //
+        self.start = 0
         // 内容视图
         let newsHomeListView = NewsHomeListView(frame:listContainerView.bounds)
-        self.start = 0
         //设置头部刷新控件
         newsHomeListView.tableView.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: #selector(dropDownRefresh))
         //设置尾部刷新控件
@@ -112,9 +113,9 @@ extension NewsHomeViewController: JXCategoryListContainerViewDelegate {
         
         newsHomeListView.tableView.dataSource = self
         newsHomeListView.tableView.delegate = self
-        
+       
         reloadData(view: newsHomeListView, index: index)
-        
+    
         newsHomeListView.tableView.lcz_reloadClick = { [weak self] _ in
             let viewDictionary = listContainerView.validListDict! as NSDictionary
             let view = viewDictionary.object(forKey: self!.newsHomeView.categoryView!.selectedIndex) as? NewsHomeListView

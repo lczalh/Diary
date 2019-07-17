@@ -62,8 +62,9 @@ class TelevisionLayout: UICollectionViewLayout {
             if indexPath.row == 0 {
                 attribute.frame = CGRect(x: 0, y: 50, width: UIScreen.main.bounds.width, height: 200)
             } else {
+                
                 if indexPath.row % 2 == 0 {
-//                    attribute.frame = CGRect(x: UIScreen.main.bounds.width / 2, y: CGFloat(150 * (indexPath.row / 2) + 250), width: UIScreen.main.bounds.width / 2, height: 150)
+                    attribute.frame = CGRect(x: UIScreen.main.bounds.width / 2, y: CGFloat(150 * (n - 2) + 250), width: UIScreen.main.bounds.width / 2, height: 150)
     
                 } else {
                     n += 1

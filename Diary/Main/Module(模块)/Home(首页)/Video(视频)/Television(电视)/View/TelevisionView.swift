@@ -10,16 +10,32 @@ import UIKit
 
 class TelevisionView: DiaryBaseView {
     
-    public lazy var collectionView: UICollectionView! = {
-        let layout = TelevisionLayout()
-        let view = UICollectionView(frame: self.bounds, collectionViewLayout: layout)
-        view.register(TelevisionCollectionViewCell.self, forCellWithReuseIdentifier: "TelevisionCollectionViewCell")
-        view.register(NewsMovieHomeCollectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "NewsMovieHomeCollectionHeaderView")
-        return view
-    }()
-
+//    public var collectionView: UICollectionView!
+    
+    public var categoryView: JXCategoryTitleView?
+    
     override func configUI() {
-        self.addSubview(collectionView)
+        self.isSkeletonable = true
+        
+        // 标题UI
+        categoryView = JXCategoryTitleView()
+        categoryView!.frame = CGRect(x: 0, y: 0, width: LCZWidth, height: 44)
+        categoryView!.defaultSelectedIndex = 0
+        categoryView!.titleSelectedFont = LCZFontSize(size: 15)
+        categoryView!.isTitleColorGradientEnabled = true
+        categoryView!.isTitleLabelZoomEnabled = true
+        categoryView!.titleLabelZoomScale = 1.2
+        categoryView!.isTitleLabelZoomScrollGradientEnabled = true
+        categoryView!.isCellWidthZoomEnabled = true
+        categoryView!.cellWidthZoomScale = 1.2
+        categoryView!.isAverageCellSpacingEnabled = true
+        // 标题下标
+        let lineView = JXCategoryIndicatorLineView()
+        categoryView!.indicators = [lineView]
+        lineView.lineStyle = .IQIYI;
+        self.addSubview(categoryView!)
     }
+    
+    
 
 }
