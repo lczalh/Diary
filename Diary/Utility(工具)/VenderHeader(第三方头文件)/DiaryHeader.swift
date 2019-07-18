@@ -30,4 +30,5 @@
 @_exported import swiftScan
 @_exported import pop
 @_exported import Hero
+@_exported import Firebase
 

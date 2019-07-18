@@ -111,10 +111,6 @@ extension MovieNetworkServices : TargetType {
             parameterDict["user_pwd2"] = user_pwd2
             parameterDict["verify"] = verify
             parameterDict["code"] = code
-//        case .getVideoToday(let ac, let pg, let h):
-//            parameterDict["ac"] = ac
-//            parameterDict["pg"] = pg
-//            parameterDict["h"] = h
         }
         
         return  .requestParameters(parameters: parameterDict, encoding: URLEncoding.default)

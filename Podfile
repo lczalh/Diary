@@ -28,7 +28,12 @@ target 'Diary' do
     pod 'SkeletonView', '~> 1.7'
     pod 'Hero'
     pod 'pop', '~> 1.0'
+    # 优量汇广告
     pod 'GDTMobSDK', '~> 4.10.5'
+    # Firebase
+    pod 'Firebase/Core'
+    pod 'Firebase/MLVision'
+    pod 'Firebase/MLVisionFaceModel'
 end
 post_install do |installer|
     installer.pods_project.targets.each do |target|

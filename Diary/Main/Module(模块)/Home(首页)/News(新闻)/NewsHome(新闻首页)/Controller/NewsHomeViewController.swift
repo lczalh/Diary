@@ -35,7 +35,9 @@ class NewsHomeViewController: DiaryBaseViewController {
         let returnBarButtonItem = UIBarButtonItem(image: UIImage(named: "zuojiantou")?.withRenderingMode(.alwaysOriginal), style: .plain, target: nil, action: nil)
         self.navigationItem.leftBarButtonItem = returnBarButtonItem
         returnBarButtonItem.rx.tap.subscribe(onNext: { () in
-            self.tabBarController?.dismiss(animated: true, completion: nil)
+            UIView.transition(with: (self.view ?? nil)!, duration: 0.5, options: .transitionFlipFromRight, animations: {
+                self.tabBarController?.dismiss(animated: true, completion: nil)
+            }, completion: nil)
         }).disposed(by: rx.disposeBag)
         
         let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
@@ -87,6 +89,15 @@ extension NewsHomeViewController: JXCategoryViewDelegate {
     
     func categoryView(_ categoryView: JXCategoryBaseView!, didSelectedItemAt index: Int) {
         self.listContainerView.didClickSelectedItem(at: index)
+        // 获取当前索引的view
+        let viewDictionary = self.listContainerView.validListDict! as NSDictionary
+        if let listView = viewDictionary.object(forKey: index) as? NewsHomeListView, let datas = self.datas.object(forKey: index) as? [SpeedNewsListModel] {
+            // 获取当前view中的数据
+            self.models = datas
+            listView.tableView.reloadData()
+        }
+        
+        
     }
 
 }
@@ -185,6 +196,7 @@ extension NewsHomeViewController: JXCategoryListContainerViewDelegate {
                                 view.hideSkeleton()
                             })
                       }.disposed(by: rx.disposeBag)
+        LCZPrint("12341242")
     }
     
 }

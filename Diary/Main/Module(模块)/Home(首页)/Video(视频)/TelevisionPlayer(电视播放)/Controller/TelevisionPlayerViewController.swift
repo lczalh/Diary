@@ -21,10 +21,12 @@ class TelevisionPlayerViewController: DiaryBaseViewController {
         self.televisionPlayerView.playerManager.assetURL = URL(string: (model?.playUrl!)!)!
         self.televisionPlayerView.controlView.showTitle(model?.title, cover: model?.image?.isEmpty == false ? UIImage(data: try! Data(contentsOf: URL(string: model!.image!)!)) : nil, fullScreenMode: .automatic)
         
-        self.televisionPlayerView.controlView.backBtnClickCallback = {
-            self.televisionPlayerView.playerController?.enterFullScreen(false, animated: false)
-            self.televisionPlayerView.playerController?.stop()
-            self.navigationController?.popViewController(animated: false)
+        // 返回
+        self.televisionPlayerView.controlView.backBtnClickCallback = { [weak self] in
+            self!.televisionPlayerView.playerController?.enterFullScreen(false, animated: false)
+            self!.televisionPlayerView.playerController?.stop()
+            self?.navigationController?.popViewController(animated: true)
+            
         }
         
     }

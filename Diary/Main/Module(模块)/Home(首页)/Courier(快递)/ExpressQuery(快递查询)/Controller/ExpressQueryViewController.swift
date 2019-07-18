@@ -38,7 +38,9 @@ class ExpressQueryViewController: DiaryBaseViewController {
         let returnBarButtonItem = UIBarButtonItem(image: UIImage(named: "zuojiantou")?.withRenderingMode(.alwaysOriginal), style: .plain, target: nil, action: nil)
         self.navigationItem.leftBarButtonItem = returnBarButtonItem
         returnBarButtonItem.rx.tap.subscribe(onNext: { () in
-            self.tabBarController?.dismiss(animated: true, completion: nil)
+            UIView.transition(with: (self.view ?? nil)!, duration: 0.5, options: .transitionFlipFromRight, animations: {
+                self.tabBarController?.dismiss(animated: true, completion: nil)
+            }, completion: nil)
         }).disposed(by: rx.disposeBag)
         
         // 监听文本框内容

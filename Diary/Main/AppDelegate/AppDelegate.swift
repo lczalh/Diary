@@ -14,6 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        FirebaseApp.configure()
         // 控制整个功能是否启用
         IQKeyboardManager.shared.enable = true
         // 控制点击背景是否收起键盘
@@ -40,43 +41,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         return true
     }
-
+    
+    // 程序将要失去Active状态时调用，比如按下Home键或有电话信息进来。对应applicationWillEnterForeground（将进入前台）
     func applicationWillResignActive(_ application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
+        // 加载开屏广告
+        let splashAd = GDTSplashAd.init(appId: youLiangHuiAppId, placementId: "4040071110541328")
+       // splashAd!.delegate = self
+        splashAd!.loadAndShow(in: window)
     }
-
+    
+    // 程序已经进入后台时调用，对应applicationDidBecomeActive（已经变成前台）
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     }
     
-    // 应用重后台进入
+    // 程序即将进去前台时调用，对应applicationWillResignActive（将进入后台）。这个方法用来撤销applicationWillResignActive中做的改变。
     func applicationWillEnterForeground(_ application: UIApplication) {
-//        let splashAd = GDTSplashAd.init(appId: "1109542481", placementId: "4040071110541328")
-//        splashAd!.delegate = self
-//        splashAd!.fetchDelay = 3
-//        var splashImage = UIImage.init(named: "SplashNormal")
-//        if LCZiphoneXHeight == LCZHeight {
-//            splashImage = UIImage.init(named: "SplashX")
-//        } else  {
-//            splashImage = UIImage.init(named: "SplashSmall")
-//        }
-//        splashAd!.backgroundImage = splashImage
-//        let bottomView = UIView.init(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.height * 0.25)))
-//        bottomView.backgroundColor = .white
-//        let logo = UIImageView.init(image: UIImage.init(named: "SplashLogo"))
-//        logo.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: 311, height: 47))
-//        logo.center = bottomView.center
-//        bottomView.addSubview(logo)
-//        let window = UIApplication.shared.keyWindow
-//        splashAd!.loadAndShow(in: window, withBottomView: bottomView, skip: nil)
+        
+      //  Thread.main.sleep(forTimeInterval: 1)
     }
-
+    
+    // 当程序复原时，另一个名为 applicationDidBecomeActive 委托方法会被调用，在此你可以通过之前挂起前保存的数据来恢复你的应用程序
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
 
+    // 程序意外暂行
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }

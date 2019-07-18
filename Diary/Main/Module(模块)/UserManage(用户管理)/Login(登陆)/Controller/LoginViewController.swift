@@ -107,8 +107,7 @@ class LoginViewController: DiaryBaseViewController {
     /// 设置 MainTabBar 为 根控制器 淡入淡出效果
     private func setMainTabBarToRootController() -> () {
         let tabbar = MainTabBarController()
-        tabbar.modalTransitionStyle = .crossDissolve
-        UIView.transition(with: (UIApplication.shared.delegate?.window ?? nil)!, duration: 2, options: .transitionCrossDissolve, animations: {
+        UIView.transition(with: (UIApplication.shared.delegate?.window ?? nil)!, duration: 1, options: .transitionCrossDissolve, animations: {
             UIApplication.shared.delegate?.window??.rootViewController = tabbar
         }, completion: nil)
     }

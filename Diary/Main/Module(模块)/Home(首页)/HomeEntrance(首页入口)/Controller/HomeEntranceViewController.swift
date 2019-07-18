@@ -51,8 +51,15 @@ class HomeEntranceViewController: DiaryBaseViewController {
         backBarButtonItem.tintColor = LCZHexadecimalColor(hexadecimal: "#FECE1D")
         self.navigationItem.backBarButtonItem = backBarButtonItem
         
-        
-        //self.createPlaceholderFigureView(frame: CGRect(x: 0, y: 0, width: LCZWidth, height: LCZHeight - LCZTabbarHeight ), fatherView: self.view)
+        // 下载电视列表数据
+        networkServicesProvider.request(MultiTarget(Resource.televisionJson)) { (result) in
+            switch result {
+            case .success(_):
+                break;
+            case .failure(_):
+                break;
+            }
+        }
     }
     
 
@@ -95,12 +102,20 @@ extension HomeEntranceViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let title = self.viewModel.cellTitles[indexPath.section][indexPath.row]
         if title == "快递" {
-            diaryRoute.present("diary://homeEntrance/courierEntrance")
+            UIView.transition(with: (self.view ?? nil)!, duration: 0.5, options: .transitionFlipFromLeft, animations: {
+                diaryRoute.present("diary://homeEntrance/courierEntrance")
+            }, completion: nil)
         } else if title == "新闻" {
-            diaryRoute.present("diary://homeEntrance/newsEntranceTabBarController")
+            UIView.transition(with: (self.view ?? nil)!, duration: 0.5, options: .transitionFlipFromLeft, animations: {
+                diaryRoute.present("diary://homeEntrance/newsEntranceTabBarController")
+            }, completion: nil)
         } else if title == "视频" {
             UIView.transition(with: (self.view ?? nil)!, duration: 0.5, options: .transitionFlipFromLeft, animations: {
                 diaryRoute.present("diary://homeEntrance/movieEntrance")
+            }, completion: nil)
+        } else if title == "人脸识别" {
+            UIView.transition(with: (self.view ?? nil)!, duration: 0.5, options: .transitionFlipFromLeft, animations: {
+                diaryRoute.push("diary://homeEntrance/faceRecognition")
             }, completion: nil)
         }
     }

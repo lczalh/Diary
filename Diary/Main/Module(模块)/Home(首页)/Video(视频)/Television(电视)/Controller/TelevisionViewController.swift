@@ -24,9 +24,6 @@ class TelevisionViewController: DiaryBaseViewController {
         listContainerView!.defaultSelectedIndex = 0
         view.addSubview(listContainerView!)
         view.categoryView!.contentScrollView = listContainerView!.scrollView;
-        
-//        view.collectionView.dataSource = self
-//        view.collectionView.delegate = self
         return view
     }()
     
@@ -38,18 +35,22 @@ class TelevisionViewController: DiaryBaseViewController {
     private var models: TelevisionBaseModel?
     
     private var sectionModels: TelevisionSectionModel?
+    
+    /// 类别
+    private var categorys: Array<String>? = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(televisionView)
         
-        let path = Bundle.main.path(forResource: "television", ofType: "json")
-        
-        let jsonString = try? String(contentsOfFile: path!)
+        let jsonString = try? String(contentsOf: resourcePath.appendingPathComponent("television.json"))
       
         
         self.models = TelevisionBaseModel(JSONString: jsonString!)
-        televisionView.categoryView!.titles = ["卫视","央视","体育","少儿","港澳","地方"]
+        for sectionModel in self.models!.list {
+            categorys?.append(sectionModel.sectionTitle!)
+        }
+        televisionView.categoryView!.titles = categorys
     }
     
 
@@ -68,8 +69,8 @@ extension TelevisionViewController: JXCategoryViewDelegate {
         self.listContainerView.didClickSelectedItem(at: index)
         let listDict = self.listContainerView.validListDict as NSDictionary
         
-        if let view  = listDict.object(forKey: (index)) as? TelevisionListView {
-            self.sectionModels = self.models?.list[index]
+        if let view  = listDict.object(forKey: (index)) as? TelevisionListView, let models = self.models?.list[index] {
+            self.sectionModels = models
             view.collectionView.reloadData()
         }
     }
@@ -80,7 +81,7 @@ extension TelevisionViewController: JXCategoryViewDelegate {
 extension TelevisionViewController: JXCategoryListContainerViewDelegate {
 
     func number(ofListsInlistContainerView listContainerView: JXCategoryListContainerView!) -> Int {
-        return 6
+        return categorys!.count
     }
 
     func listContainerView(_ listContainerView: JXCategoryListContainerView!, initListFor index: Int) -> JXCategoryListContentViewDelegate! {
@@ -137,7 +138,12 @@ extension TelevisionViewController: SkeletonCollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cellModel = self.sectionModels?.cellList[indexPath.row]
-        diaryRoute.push("diary://homeEntrance/televisionPlayer", context: cellModel)
+        if cellModel?.playUrl?.isEmpty == false {
+            diaryRoute.push("diary://homeEntrance/televisionPlayer", context: cellModel)
+        } else {
+            LCZProgressHUD.showError(title: "暂无播放源")
+        }
+        
     }
     
 }

@@ -32,8 +32,8 @@ class MovieDetailsViewController: DiaryBaseViewController {
     /// 实用功能状态 0:不点击 1:可点击
     private var practicalFunctionStateArray: Array<String> = []
     
-    //导航栏背景视图
-    var barImageView:UIView?
+//    //导航栏背景视图
+//     var barImageView:UIView?
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -43,6 +43,7 @@ class MovieDetailsViewController: DiaryBaseViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        movieDetailsView.marqueeLabel.removeSubviews()
         movieDetailsView.playerController.isViewControllerDisappear = true;
         //重置导航栏背景
         self.navigationController?.navigationBar.isTranslucent = false
@@ -209,7 +210,7 @@ extension MovieDetailsViewController: UITableViewDelegate {
             headerView.synopsisButton?.isHidden = false
             headerView.synopsisButton?.addTarget(self, action: #selector(synopsisButtonAction), for: .touchUpInside)
             headerView.synopsisButton?.isSelected = self.synopsisState
-            headerView.otherInformationLabel.text = "热度 \(self.movieHomeModel.vod_score_all) / \(self.movieHomeModel.vod_score ?? "") / \(self.movieHomeModel.vod_class ?? "") / 更新至\(self.movieUrls.count)集"
+            headerView.otherInformationLabel.text = "热度 \(self.movieHomeModel.vod_score_all) / \(self.movieHomeModel.vod_score ?? "") / \(self.movieHomeModel.vod_class ?? "") / 更新至\(self.movieUrls.count)集或已完结"
             headerView.collectionView.isHidden = false
             headerView.movieDetailsTableHeaderViewDelegate = self
         } else if section == 1 {

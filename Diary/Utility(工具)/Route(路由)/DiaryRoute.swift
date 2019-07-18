@@ -137,6 +137,13 @@ enum DiaryRoute {
             televisionPlayer.hidesBottomBarWhenPushed = true
             return televisionPlayer
         }
+        
+        // 人脸识别
+        navigator.register("diary://homeEntrance/faceRecognition") { url, values, context in
+            let faceRecognition = FaceRecognitionViewController()
+            faceRecognition.hidesBottomBarWhenPushed = true
+            return faceRecognition
+        }
     }
     
 }

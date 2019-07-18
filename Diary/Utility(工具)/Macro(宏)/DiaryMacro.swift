@@ -20,6 +20,9 @@ public let mobApiKey = "1f75e29dc6384"
 /// mobApiAppSecret
 public let mobApiAppSecret = "30ef617b84e0b43b860cdb165367c94c"
 
+/// 优量汇appid
+public let youLiangHuiAppId = "1109542481"
+
 /// 校验用户
 public func diaryApple() -> Bool {
     let account = LCZUserDefaults.object(forKey: "account") as? String
