@@ -22,7 +22,7 @@ class HomeEntranceCollectionViewCell: DiaryBaseCollectionViewCell {
         self.logoImageView.snp.makeConstraints { (make) in
             make.left.equalToSuperview().offset(15)
             make.right.equalToSuperview().offset(-15)
-            make.height.width.equalTo(40)
+            make.height.width.equalTo(40 * LCZSizeScale)
         }
         self.logoImageView.contentMode = .scaleAspectFit
         

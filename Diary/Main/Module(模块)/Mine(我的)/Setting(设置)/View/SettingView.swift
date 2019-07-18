@@ -20,13 +20,13 @@ class SettingView: DiaryBaseView {
         self.addSubview(tableView)
         tableView.register(ClearCacheTableViewCell.self, forCellReuseIdentifier: "ClearCacheTableViewCell")
         tableView.tableFooterView = createrTableFooterView()
-        tableView.rowHeight = 50
+        tableView.rowHeight = 50 * LCZSizeScale
         tableView.separatorStyle = .none
         tableView.backgroundColor = LCZRgbColor(245, 245, 245, 1)
     }
     
     private func createrTableFooterView() -> UIView {
-        let tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: LCZWidth, height: 50))
+        let tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: LCZWidth, height: 50 * LCZSizeScale))
         tableFooterView.backgroundColor = UIColor.white
         loggedOutButton = UIButton(type: .custom)
         tableFooterView.addSubview(loggedOutButton)

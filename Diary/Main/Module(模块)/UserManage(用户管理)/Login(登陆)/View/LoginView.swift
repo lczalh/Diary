@@ -58,7 +58,7 @@ class LoginView: DiaryBaseView {
             make.left.equalToSuperview().offset(50)
             make.right.equalToSuperview().offset(-50)
             make.top.equalTo(iconImageView.snp.bottom).offset(30)
-            make.height.equalTo(60)
+            make.height.equalTo(60 * LCZSizeScale)
         }
         accountView.layoutIfNeeded()
         let accountBezierPath = UIBezierPath(roundedRect: accountView.bounds, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: accountView.bounds.width / 2, height: accountView.bounds.height / 2))
@@ -106,7 +106,7 @@ class LoginView: DiaryBaseView {
             make.left.equalToSuperview().offset(50)
             make.right.equalToSuperview().offset(-50)
             make.top.equalTo(accountView.snp.bottom).offset(30)
-            make.height.equalTo(60)
+            make.height.equalTo(60 * LCZSizeScale)
         }
         passwordView.layoutIfNeeded()
         let passwordBezierPath = UIBezierPath(roundedRect: passwordView.bounds, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: passwordView.bounds.width / 2, height: passwordView.bounds.height / 2))
@@ -153,7 +153,7 @@ class LoginView: DiaryBaseView {
         loginButton.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
             make.top.equalTo(passwordView.snp.bottom).offset(50)
-            make.size.equalTo(80)
+            make.size.equalTo(80 * LCZSizeScale)
         }
         loginButton.setImage(UIImage(named: "jiantoudingweixiangyou"), for: .normal)
         loginButton.layoutIfNeeded()

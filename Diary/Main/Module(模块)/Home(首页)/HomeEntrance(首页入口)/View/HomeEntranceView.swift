@@ -26,7 +26,7 @@ class HomeEntranceView: DiaryBaseView {
     
     // MARK: - 轮播图
     private func createShufflingFigure() {
-        shufflingFigureView = ShufflingFigureView(frame: CGRect(x: 0, y: -180, width: LCZWidth, height: 180))
+        shufflingFigureView = ShufflingFigureView(frame: CGRect(x: 0, y: -180 * LCZSizeScale, width: LCZWidth, height: 180 * LCZSizeScale))
         collectionView.addSubview(shufflingFigureView)
         shufflingFigureView.isSkeletonable = true
     }
@@ -34,14 +34,14 @@ class HomeEntranceView: DiaryBaseView {
     // MARK: - collectionView
     private func createCollectionView() {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: (LCZWidth - 15) / 4, height: 70)
+        layout.itemSize = CGSize(width: (LCZWidth - 15) / 4, height: 70 * LCZSizeScale)
         layout.minimumLineSpacing = 10
         layout.minimumInteritemSpacing = 5
-        layout.headerReferenceSize = CGSize(width: LCZWidth, height: 40)
+        layout.headerReferenceSize = CGSize(width: LCZWidth, height: 40 * LCZSizeScale)
         collectionView = UICollectionView(frame: CGRect(x: 0, y: -(LCZStatusBarHeight + LCZNaviBarHeight), width: LCZWidth, height: LCZHeight - LCZSafeAreaBottomHeight - LCZTabbarHeight), collectionViewLayout: layout)
         self.addSubview(collectionView);
         collectionView.backgroundColor = UIColor.white
-        collectionView.contentInset = UIEdgeInsets(top: 180, left: 0, bottom: 0, right: 0)
+        collectionView.contentInset = UIEdgeInsets(top: 180 * LCZSizeScale, left: 0, bottom: 0, right: 0)
         collectionView.register(HomeEntranceCollectionViewCell.self, forCellWithReuseIdentifier: "HomeEntranceCollectionViewCell")
         collectionView.register(HomeEntranceCollectionHedderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HomeEntranceCollectionHedderView")
     }

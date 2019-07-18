@@ -49,7 +49,7 @@ class RetrievePasswordView: DiaryBaseView {
             make.left.equalToSuperview().offset(50)
             make.top.equalToSuperview().offset(50)
             make.right.equalToSuperview().offset(-50)
-            make.height.equalTo(40)
+            make.height.equalTo(40 * LCZSizeScale)
         }
         emailTextField.clearButtonMode = .unlessEditing
         emailTextField.placeholder = "请输入您绑定的邮箱"
@@ -70,8 +70,8 @@ class RetrievePasswordView: DiaryBaseView {
         emailCodeButton.snp.makeConstraints { (make) in
             make.top.equalTo(emailLineView.snp.bottom).offset(20)
             make.right.equalToSuperview().offset(-50)
-            make.height.equalTo(40)
-            make.width.equalTo(100)
+            make.height.equalTo(40 * LCZSizeScale)
+            make.width.equalTo(100 * LCZSizeScale)
         }
         emailCodeButton.setTitle("获取验证码", for: .normal)
         emailCodeButton.titleLabel?.font = LCZFontSize(size: 14)
@@ -90,7 +90,7 @@ class RetrievePasswordView: DiaryBaseView {
             make.left.equalToSuperview().offset(50)
             make.top.equalTo(emailTextField.snp.bottom).offset(20)
             make.right.equalTo(emailCodeButton.snp.left).offset(-5)
-            make.height.equalTo(40)
+            make.height.equalTo(40 * LCZSizeScale)
         }
         emailCodeTextField.clearButtonMode = .unlessEditing
         emailCodeTextField.placeholder = "请输入邮箱验证码"
@@ -112,7 +112,7 @@ class RetrievePasswordView: DiaryBaseView {
             make.left.equalToSuperview().offset(50)
             make.top.equalTo(emailCodeLineView.snp.bottom).offset(20)
             make.right.equalToSuperview().offset(-50)
-            make.height.equalTo(40)
+            make.height.equalTo(40 * LCZSizeScale)
         }
         passwordTextField.clearButtonMode = .unlessEditing
         passwordTextField.placeholder = "请输入您的密码（6~18位）"
@@ -135,7 +135,7 @@ class RetrievePasswordView: DiaryBaseView {
             make.left.equalToSuperview().offset(50)
             make.top.equalTo(passwordLineView.snp.bottom).offset(20)
             make.right.equalToSuperview().offset(-50)
-            make.height.equalTo(40)
+            make.height.equalTo(40 * LCZSizeScale)
         }
         confirmPasswordTextField.clearButtonMode = .unlessEditing
         confirmPasswordTextField.placeholder = "请确认您的密码（6~18位）"
@@ -151,59 +151,14 @@ class RetrievePasswordView: DiaryBaseView {
         }
         confirmPasswordLineView.backgroundColor = LCZRgbColor(239, 240, 244, 1)
         
-//        // 密保问题
-//        encryptedProblemTextField = UITextField()
-//        self.addSubview(encryptedProblemTextField)
-//        encryptedProblemTextField.snp.makeConstraints { (make) in
-//            make.left.equalToSuperview().offset(50)
-//            make.top.equalTo(confirmPasswordLineView.snp.bottom).offset(20)
-//            make.right.equalToSuperview().offset(-50)
-//            make.height.equalTo(40)
-//        }
-//        encryptedProblemTextField.clearButtonMode = .unlessEditing
-//        encryptedProblemTextField.placeholder = "请输入您的密保问题"
-//        encryptedProblemTextField.font = LCZFontSize(size: 14)
-//        encryptedProblemTextField.keyboardType = .numberPad
-//        let encryptedProblemLineView = UIView()
-//        self.addSubview(encryptedProblemLineView)
-//        encryptedProblemLineView.snp.makeConstraints { (make) in
-//            make.left.right.equalTo(encryptedProblemTextField)
-//            make.top.equalTo(encryptedProblemTextField.snp.bottom)
-//            make.height.equalTo(1)
-//        }
-//        encryptedProblemLineView.backgroundColor = LCZRgbColor(239, 240, 244, 1)
-//
-//        // 密保答案
-//        encryptedAnswersTextField = UITextField()
-//        self.addSubview(encryptedAnswersTextField)
-//        encryptedAnswersTextField.snp.makeConstraints { (make) in
-//            make.left.equalToSuperview().offset(50)
-//            make.top.equalTo(encryptedProblemLineView.snp.bottom).offset(20)
-//            make.right.equalToSuperview().offset(-50)
-//            make.height.equalTo(40)
-//        }
-//        encryptedAnswersTextField.clearButtonMode = .unlessEditing
-//        encryptedAnswersTextField.placeholder = "请输入您的密码答案"
-//        encryptedAnswersTextField.font = LCZFontSize(size: 14)
-//        encryptedAnswersTextField.keyboardType = .asciiCapable
-//        encryptedAnswersTextField.isSecureTextEntry = true
-//        let encryptedAnswersLineView = UIView()
-//        self.addSubview(encryptedAnswersLineView)
-//        encryptedAnswersLineView.snp.makeConstraints { (make) in
-//            make.left.right.equalTo(encryptedAnswersTextField)
-//            make.top.equalTo(encryptedAnswersTextField.snp.bottom)
-//            make.height.equalTo(1)
-//        }
-//        encryptedAnswersLineView.backgroundColor = LCZRgbColor(239, 240, 244, 1)
-        
         // 验证码
         codeImageView = UIImageView()
         self.addSubview(codeImageView)
         codeImageView.snp.makeConstraints { (make) in
             make.top.equalTo(confirmPasswordLineView).offset(20)
             make.right.equalToSuperview().offset(-50)
-            make.height.equalTo(40)
-            make.width.equalTo(100)
+            make.height.equalTo(40 * LCZSizeScale)
+            make.width.equalTo(100 * LCZSizeScale)
         }
         codeImageView.isUserInteractionEnabled = true
         getCodeImage()
@@ -216,7 +171,7 @@ class RetrievePasswordView: DiaryBaseView {
             make.left.equalToSuperview().offset(50)
             make.top.equalTo(codeImageView)
             make.right.equalTo(codeImageView.snp.left).offset(-5)
-            make.height.equalTo(40)
+            make.height.equalTo(40 * LCZSizeScale)
         }
         codeTextField.clearButtonMode = .unlessEditing
         codeTextField.placeholder = "请输入验证码"
@@ -238,13 +193,13 @@ class RetrievePasswordView: DiaryBaseView {
         retrievePasswordButton.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
             make.top.equalTo(codeLineView.snp.bottom).offset(40)
-            make.size.equalTo(80)
+            make.size.equalTo(80 * LCZSizeScale)
         }
         retrievePasswordButton.setTitle("找回", for: .normal)
         retrievePasswordButton.setTitleColor(UIColor.white, for: .normal)
         retrievePasswordButton.backgroundColor = LCZRgbColor(239, 240, 244, 1)
         retrievePasswordButton.layoutIfNeeded()
-        let bezierPath = UIBezierPath(roundedRect: retrievePasswordButton.bounds, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: 40, height: 40))
+        let bezierPath = UIBezierPath(roundedRect: retrievePasswordButton.bounds, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: 40 * LCZSizeScale, height: 40 * LCZSizeScale))
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = bezierPath.cgPath
         shapeLayer.frame = retrievePasswordButton.bounds

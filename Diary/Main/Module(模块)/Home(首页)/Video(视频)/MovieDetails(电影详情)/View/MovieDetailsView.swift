@@ -38,7 +38,7 @@ class MovieDetailsView: DiaryBaseView {
         controlView = ZFPlayerControlView()
         controlView.fastViewAnimated = true
         
-        playerView = UIImageView(frame: CGRect(x: 0, y: LCZStatusBarHeight, width: LCZWidth, height: 215))
+        playerView = UIImageView(frame: CGRect(x: 0, y: LCZStatusBarHeight, width: LCZWidth, height: 215 * LCZSizeScale))
         playerView.contentMode = .scaleAspectFill
         playerView.clipsToBounds = true
         self.addSubview(playerView)

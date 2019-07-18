@@ -23,7 +23,7 @@ class NewsMovieHomeShufflingFigureCollectionHeaderView: UICollectionReusableView
         super.init(frame: frame)
         self.isSkeletonable = true
         
-        shufflingFigureView = ShufflingFigureView(frame: CGRect(x: 0, y: 0, width: LCZWidth, height: 180))
+        shufflingFigureView = ShufflingFigureView(frame: CGRect(x: 0, y: 0, width: LCZWidth, height: 180 * LCZSizeScale))
         self.addSubview(shufflingFigureView)
         shufflingFigureView.isSkeletonable = true
         
@@ -35,14 +35,14 @@ class NewsMovieHomeShufflingFigureCollectionHeaderView: UICollectionReusableView
         imageView.snp.makeConstraints { (make) in
             make.left.equalToSuperview().offset(15)
             make.top.equalTo(shufflingFigureView.snp.bottom).offset(10)
-            make.size.equalTo(20)
+            make.size.equalTo(20 * LCZSizeScale)
         }
         
         titleLabel = UILabel()
         self.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { (make) in
             make.left.equalTo(imageView.snp.right).offset(5)
-            make.width.equalTo(100)
+            make.width.equalTo(150)
             make.height.equalTo(30)
             make.centerY.equalTo(imageView)
         }

@@ -261,9 +261,9 @@ extension NewsMovieHomeViewController: SkeletonCollectionViewDataSource {
 extension NewsMovieHomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         if section == 0 {
-            return CGSize(width: LCZWidth, height: 220)
+            return CGSize(width: LCZWidth, height: 220 * LCZSizeScale)
         } else {
-            return CGSize(width: LCZWidth, height: 30)
+            return CGSize(width: LCZWidth, height: 30 * LCZSizeScale)
         }
     }
 }

@@ -40,7 +40,7 @@ class RegisterView: DiaryBaseView {
             make.left.equalToSuperview().offset(50)
             make.top.equalToSuperview().offset(50)
             make.right.equalToSuperview().offset(-50)
-            make.height.equalTo(40)
+            make.height.equalTo(40 * LCZSizeScale)
         }
         accountTextField.clearButtonMode = .unlessEditing
         accountTextField.placeholder = "请输入您的账号（6~18位）"
@@ -62,7 +62,7 @@ class RegisterView: DiaryBaseView {
             make.left.equalToSuperview().offset(50)
             make.top.equalTo(accountLineView.snp.bottom).offset(20)
             make.right.equalToSuperview().offset(-50)
-            make.height.equalTo(40)
+            make.height.equalTo(40 * LCZSizeScale)
         }
         passwordTextField.clearButtonMode = .unlessEditing
         passwordTextField.placeholder = "请输入您的密码（6~18位）"
@@ -85,7 +85,7 @@ class RegisterView: DiaryBaseView {
             make.left.equalToSuperview().offset(50)
             make.top.equalTo(passwordLineView.snp.bottom).offset(20)
             make.right.equalToSuperview().offset(-50)
-            make.height.equalTo(40)
+            make.height.equalTo(40 * LCZSizeScale)
         }
         confirmPasswordTextField.clearButtonMode = .unlessEditing
         confirmPasswordTextField.placeholder = "请确认您的密码（6~18位）"
@@ -108,7 +108,7 @@ class RegisterView: DiaryBaseView {
             make.left.equalToSuperview().offset(50)
             make.top.equalTo(confirmPasswordLineView.snp.bottom).offset(20)
             make.right.equalToSuperview().offset(-50)
-            make.height.equalTo(40)
+            make.height.equalTo(40 * LCZSizeScale)
         }
         emailTextField.clearButtonMode = .unlessEditing
         emailTextField.placeholder = "请输入您的邮箱"
@@ -129,8 +129,8 @@ class RegisterView: DiaryBaseView {
         codeButton.snp.makeConstraints { (make) in
             make.top.equalTo(emailLineView).offset(20)
             make.right.equalToSuperview().offset(-50)
-            make.height.equalTo(40)
-            make.width.equalTo(100)
+            make.height.equalTo(40 * LCZSizeScale)
+            make.width.equalTo(100 * LCZSizeScale)
         }
         codeButton.setTitle("获取验证码", for: .normal)
         codeButton.titleLabel?.font = LCZFontSize(size: 14)
@@ -149,7 +149,7 @@ class RegisterView: DiaryBaseView {
             make.left.equalToSuperview().offset(50)
             make.top.equalTo(codeButton)
             make.right.equalTo(codeButton.snp.left).offset(-5)
-            make.height.equalTo(40)
+            make.height.equalTo(40 * LCZSizeScale)
         }
         codeTextField.clearButtonMode = .unlessEditing
         codeTextField.placeholder = "请输入邮箱验证码"
@@ -172,29 +172,18 @@ class RegisterView: DiaryBaseView {
         registerButton.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
             make.top.equalTo(codeLineView.snp.bottom).offset(40)
-            make.size.equalTo(80)
+            make.size.equalTo(80 * LCZSizeScale)
         }
         registerButton.setTitle("注册", for: .normal)
         registerButton.setTitleColor(UIColor.white, for: .normal)
         registerButton.backgroundColor = LCZRgbColor(239, 240, 244, 1)
         registerButton.layoutIfNeeded()
-        let bezierPath = UIBezierPath(roundedRect: registerButton.bounds, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: 40, height: 40))
+        let bezierPath = UIBezierPath(roundedRect: registerButton.bounds, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: 40 * LCZSizeScale, height: 40 * LCZSizeScale))
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = bezierPath.cgPath
         shapeLayer.frame = registerButton.bounds
         registerButton.layer.mask = shapeLayer
         
     }
-    
-//    @objc public func getCodeImage() {
-//        LCZProgressHUD.show()
-//        DispatchQueue.global().async {
-//            let image = UIImage(data: try! Data(contentsOf: URL(string: "https://www.letaoshijie.com/index.php/verify/index.html?v=1560934558?v=1560934558")!))
-//            DispatchQueue.main.async(execute: {
-//                LCZProgressHUD.dismiss()
-//                self.codeButton.image = image
-//            })
-//        }
-//    }
 
 }

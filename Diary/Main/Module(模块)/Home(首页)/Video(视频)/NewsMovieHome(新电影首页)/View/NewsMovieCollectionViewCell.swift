@@ -23,7 +23,7 @@ class NewsMovieCollectionViewCell: DiaryBaseCollectionViewCell {
         self.contentView.addSubview(imageView)
         imageView.snp.makeConstraints { (make) in
             make.left.right.top.equalToSuperview()
-            make.height.equalTo(120)
+            make.height.equalTo(120 * LCZSizeScale)
         }
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true

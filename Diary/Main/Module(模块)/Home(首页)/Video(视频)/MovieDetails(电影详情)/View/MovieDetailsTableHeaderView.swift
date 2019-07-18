@@ -79,7 +79,7 @@ class MovieDetailsTableHeaderView: UITableViewHeaderFooterView {
         bottonLineView.backgroundColor = LCZRgbColor(244, 244, 244, 1)
         
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: (LCZWidth - 20 - 50) / 6, height: 35)
+        layout.itemSize = CGSize(width: (LCZWidth - 20 - 50) / 6, height: 35 * LCZSizeScale)
         layout.minimumLineSpacing = 5
         layout.minimumInteritemSpacing = 5
         collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)

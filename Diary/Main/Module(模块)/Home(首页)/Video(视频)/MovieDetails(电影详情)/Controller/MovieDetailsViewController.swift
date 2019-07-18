@@ -226,7 +226,7 @@ extension MovieDetailsViewController: UITableViewDelegate {
         if section == 0 {
             return 100 * LCZSizeScale
         } else {
-            return 50
+            return 50 * LCZSizeScale
         }
     }
     
