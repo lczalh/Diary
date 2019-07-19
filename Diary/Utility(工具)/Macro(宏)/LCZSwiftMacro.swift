@@ -243,7 +243,18 @@ public func getLastWindow() -> UIWindow? {
     return nil
 }
 
-
+/// sampleBuffer 转 UIImage
+///
+/// - Parameter sampleBuffer: sampleBuffer
+/// - Returns: UIImage
+public func LCZImageFromSampleBuffer(sampleBuffer: CMSampleBuffer) -> UIImage {
+    let imageBuffer: CVPixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)!
+    let ciimage : CIImage = CIImage(cvPixelBuffer: imageBuffer)
+    let context:CIContext = CIContext.init(options: nil)
+    let cgImage:CGImage = context.createCGImage(ciimage, from: ciimage.extent)!
+    let image:UIImage = UIImage.init(cgImage: cgImage)
+    return image
+}
 
 
 

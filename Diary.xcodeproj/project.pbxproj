@@ -79,6 +79,7 @@
 		7367D2F0221FA43F008FD780 /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7367D2EF221FA43F008FD780 /* UIViewController+Rx.swift */; };
 		736F50F022B2549700518645 /* CommonlyExpressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736F50EF22B2549700518645 /* CommonlyExpressView.swift */; };
 		736F50F222B255D200518645 /* CommonlyExpressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736F50F122B255D200518645 /* CommonlyExpressTableViewCell.swift */; };
+		7377BAAD22E19423000BBBE9 /* LCZSwiftScan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7377BAAC22E19423000BBBE9 /* LCZSwiftScan.swift */; };
 		737D697822DEB3360007A483 /* TelevisionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737D697722DEB3360007A483 /* TelevisionViewModel.swift */; };
 		737D697A22DEB57B0007A483 /* TelevisionBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737D697922DEB57B0007A483 /* TelevisionBaseModel.swift */; };
 		737D697D22DECF5F0007A483 /* TelevisionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737D697C22DECF5F0007A483 /* TelevisionListView.swift */; };
@@ -224,6 +225,7 @@
 		7367D2EF221FA43F008FD780 /* UIViewController+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
 		736F50EF22B2549700518645 /* CommonlyExpressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonlyExpressView.swift; sourceTree = "<group>"; };
 		736F50F122B255D200518645 /* CommonlyExpressTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonlyExpressTableViewCell.swift; sourceTree = "<group>"; };
+		7377BAAC22E19423000BBBE9 /* LCZSwiftScan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCZSwiftScan.swift; sourceTree = "<group>"; };
 		737D697722DEB3360007A483 /* TelevisionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelevisionViewModel.swift; sourceTree = "<group>"; };
 		737D697922DEB57B0007A483 /* TelevisionBaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelevisionBaseModel.swift; sourceTree = "<group>"; };
 		737D697C22DECF5F0007A483 /* TelevisionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelevisionListView.swift; sourceTree = "<group>"; };
@@ -867,6 +869,14 @@
 			path = "Extension(扩展)";
 			sourceTree = "<group>";
 		};
+		7377BAAB22E193E6000BBBE9 /* Scanner(扫描器) */ = {
+			isa = PBXGroup;
+			children = (
+				7377BAAC22E19423000BBBE9 /* LCZSwiftScan.swift */,
+			);
+			path = "Scanner(扫描器)";
+			sourceTree = "<group>";
+		};
 		737D698022DEF9BB0007A483 /* TelevisionPlayer(电视播放) */ = {
 			isa = PBXGroup;
 			children = (
@@ -911,6 +921,7 @@
 		737E1C2E2213DA8F00BF751D /* Utility(工具) */ = {
 			isa = PBXGroup;
 			children = (
+				7377BAAB22E193E6000BBBE9 /* Scanner(扫描器) */,
 				739510D822D72BE200814BFF /* PlaceholderView(占位图) */,
 				738D3E4E22CB5BB800A68487 /* Marquee(跑马灯) */,
 				731802A922C318AC00ED5D56 /* ShufflingFigure(轮播图) */,
@@ -1907,6 +1918,7 @@
 				737E1C3F2213DFDF00BF751D /* LCZHomePage.swift in Sources */,
 				735123C622DD9996008900C4 /* TelevisionLayout.swift in Sources */,
 				731802AB22C318D800ED5D56 /* ShufflingFigureView.swift in Sources */,
+				7377BAAD22E19423000BBBE9 /* LCZSwiftScan.swift in Sources */,
 				7344B54D22AF8F6900FC7D4D /* MineEntranceTableViewCell.swift in Sources */,
 				738D3E4D22CB42C400A68487 /* LCZUIViewExtension.swift in Sources */,
 				737E1C2D2213D43B00BF751D /* DiaryHeader.swift in Sources */,
@@ -2178,7 +2190,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4EB962NN4T;
 				INFOPLIST_FILE = "$(SRCROOT)/Diary/Resource(资源)/Plist/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2204,7 +2216,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4EB962NN4T;
 				INFOPLIST_FILE = "$(SRCROOT)/Diary/Resource(资源)/Plist/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
