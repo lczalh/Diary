@@ -8,6 +8,12 @@
 
 import UIKit
 
+enum LCZCameraPosition {
+
+    case back // 后
+    case front // 前
+}
+
 protocol LCZCameraManageDelegate {
     
     /// 获取实时图像，这个代理方法的回调频率很快，几乎与手机屏幕的刷新频率一样快
@@ -23,9 +29,11 @@ class LCZCameraManage: NSObject {
     
     private override init() {}
     
-    /// LCZSwiftScanProtocol协议
+    /// LCZCameraManageDelegate协议
     public var delegate: LCZCameraManageDelegate?
     
+    /// 相机方向
+    public var cameraPosition: LCZCameraPosition? = .back
     
     /// 前摄像头
     private lazy var frontAVCaptureDevice: AVCaptureDevice = {
@@ -46,12 +54,12 @@ class LCZCameraManage: NSObject {
             }
             device!.unlockForConfiguration()
         }
+        self.cameraPosition = .front
         return device!
     }()
     
-    /// 前摄像头
+    /// 后摄像头
     private lazy var backAVCaptureDevice: AVCaptureDevice = {
-        // 默认前摄像头
         let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: AVMediaType.video, position: .back)
         if ((try! device?.lockForConfiguration()) == nil) {
             // 自动白平衡
@@ -68,13 +76,20 @@ class LCZCameraManage: NSObject {
             }
             device!.unlockForConfiguration()
         }
+        self.cameraPosition = .back
         return device!
     }()
     
     
-    /// 硬件的输入流
-    private lazy var avCaptureDeviceInput: AVCaptureDeviceInput = {
+    /// 硬件前置的输入流
+    private lazy var frontAVCaptureDeviceInput: AVCaptureDeviceInput = {
         let input = try! AVCaptureDeviceInput(device: self.frontAVCaptureDevice)
+        return input
+    }()
+    
+    /// 硬件后置的输入流
+    private lazy var backAVCaptureDeviceInput: AVCaptureDeviceInput = {
+        let input = try! AVCaptureDeviceInput(device: self.backAVCaptureDevice)
         return input
     }()
     
@@ -82,9 +97,17 @@ class LCZCameraManage: NSObject {
     /// 协调输入和输出数据的会话，然后把input添加到会话中
     public lazy var avCaptureSession: AVCaptureSession = {
         let session = AVCaptureSession()
-        if session.canAddInput(self.avCaptureDeviceInput) {
-            session.addInput(self.avCaptureDeviceInput)
+        // 设置默认的相机方向
+        if self.cameraPosition == .back {
+            if session.canAddInput(self.backAVCaptureDeviceInput) {
+                session.addInput(self.backAVCaptureDeviceInput)
+            }
+        } else {
+            if session.canAddInput(self.frontAVCaptureDeviceInput) {
+                session.addInput(self.frontAVCaptureDeviceInput)
+            }
         }
+        
 //        if session.canAddOutput(self.avCaptureVideoDataOutput) {
 //            session.addOutput(self.avCaptureVideoDataOutput)
 //        }
@@ -120,7 +143,6 @@ class LCZCameraManage: NSObject {
                                             CIDetectorEyeBlink: true
                                            ]
                                   )
-        
         return detector!
     }()
     
@@ -144,36 +166,45 @@ class LCZCameraManage: NSObject {
     
     /// 切换前后摄像头
     public func switchCamera() {
-        // 获取摄像头数量
-//        let deviceCount = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: .video, position: self.frontAVCaptureDevice.position).devices.count
-//        //摄像头的数量小于等于1的时候直接返回
-//        if deviceCount <= 1 {
-//            return
-//        }
-        // 获取当前相机的方向
-        let position = self.frontAVCaptureDevice.position
         // 为摄像头的转换加转场动画
-        let an = CATransition()
-        an.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
-        an.duration = 0.2
-        an.type = CATransitionType(rawValue: "ogl")
-        
-        
-        
-        
-        if position == AVCaptureDevice.Position.front {
-            let input = try! AVCaptureDeviceInput(device: self.backAVCaptureDevice)
-            self.avCaptureSession.removeInput(self.avCaptureDeviceInput)
-            an.subtype = .fromLeft
-            if self.avCaptureSession.canAddInput(input) {
-                self.avCaptureSession.addInput(input)
+        let caTransition = CATransition()
+        caTransition.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+        caTransition.type = .init(rawValue: "oglFlip")
+        caTransition.duration = 2
+        if self.cameraPosition == .back {
+            self.avCaptureSession.removeInput(self.backAVCaptureDeviceInput)
+            caTransition.subtype = .fromRight
+            if self.avCaptureSession.canAddInput(self.frontAVCaptureDeviceInput) {
+                self.avCaptureSession.addInput(self.frontAVCaptureDeviceInput)
+                self.cameraPosition = .front
             }
-            self.avCaptureVideoPreviewLayer.add(an, forKey: nil)
-        } else if position == AVCaptureDevice.Position.back {
-            
+        } else {
+            self.avCaptureSession.removeInput(self.frontAVCaptureDeviceInput)
+            caTransition.subtype = .fromLeft
+            if self.avCaptureSession.canAddInput(self.backAVCaptureDeviceInput) {
+                self.avCaptureSession.addInput(self.backAVCaptureDeviceInput)
+                self.cameraPosition = .back
+            }
         }
         
         
+
+//        if position == AVCaptureDevice.Position.front {
+//            self.avCaptureSession.removeInput(self.frontAVCaptureDeviceInput)
+//            an.subtype = .fromLeft
+//            if self.avCaptureSession.canAddInput(self.backAVCaptureDeviceInput) {
+//                self.avCaptureSession.addInput(self.backAVCaptureDeviceInput)
+//            }
+//
+//        } else if position == AVCaptureDevice.Position.back {
+//            self.avCaptureSession.removeInput(self.backAVCaptureDeviceInput)
+//            an.subtype = .fromRight
+//            if self.avCaptureSession.canAddInput(self.frontAVCaptureDeviceInput) {
+//                self.avCaptureSession.addInput(self.frontAVCaptureDeviceInput)
+//            }
+//        }
+        
+        self.avCaptureVideoPreviewLayer.add(caTransition, forKey: nil)
         
     }
     

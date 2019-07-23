@@ -37,7 +37,7 @@ class FaceRecognitionViewController: DiaryBaseViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         //self.lczCameraManage.takingPictures()
-        self.lczCameraManage.switchCamera()
+       // self.lczCameraManage.switchCamera()
     }
     
     @objc private func saveImage(image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: AnyObject) {
