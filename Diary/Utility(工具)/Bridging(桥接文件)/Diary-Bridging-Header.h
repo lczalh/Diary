@@ -15,5 +15,4 @@
 #import "UICollectionView+LCZPlaceholderView.h"
 
 
-// runtime
-#import "NSObject+Swizzling.h"
+

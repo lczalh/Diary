@@ -26,8 +26,6 @@ class MainTabBarController: UITabBarController {
         viewController?.tabBarItem.image = image
         viewController?.tabBarItem.selectedImage = selectImage
         //改变文字颜色
-        UITabBarItem.appearance().setTitleTextAttributes(
-            [NSAttributedString.Key.foregroundColor: LCZHexadecimalColor(hexadecimal: "#FECE1D")], for: .selected)
         let navi = MainNavigationController(rootViewController: viewController!)
         self.addChild(navi)
         

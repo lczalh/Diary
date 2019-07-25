@@ -40,10 +40,6 @@ class NewsHomeViewController: DiaryBaseViewController {
             }, completion: nil)
         }).disposed(by: rx.disposeBag)
         
-        let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        backBarButtonItem.tintColor = LCZHexadecimalColor(hexadecimal: "#FECE1D")
-        self.navigationItem.backBarButtonItem = backBarButtonItem
-        
         // 主视图
         self.newsHomeView = NewsHomeView(frame: self.view.bounds)
         self.newsHomeView.categoryView!.delegate = self

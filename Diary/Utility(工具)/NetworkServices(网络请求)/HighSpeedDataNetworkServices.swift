@@ -22,6 +22,8 @@ public enum HighSpeedDataNetworkServices {
     
     // MARK: - 查询快递公司
     case getCourierCompany(appkey: String)
+    
+    case searchNews(appkey: String, keyword: String)
 }
 
 //设置请求配置
@@ -46,6 +48,8 @@ extension HighSpeedDataNetworkServices : TargetType {
             return "/express/query"
         case .getCourierCompany:
             return "/express/type"
+        case .searchNews:
+            return "/news/search"
         }
         
     }
@@ -81,6 +85,9 @@ extension HighSpeedDataNetworkServices : TargetType {
             parameterDict["number"] = number
         case .getCourierCompany(let appkey):
             parameterDict["appkey"] = appkey
+        case .searchNews(let appkey, let keyword):
+            parameterDict["appkey"] = appkey
+            parameterDict["keyword"] = keyword
         }
         
         return  .requestParameters(parameters: parameterDict, encoding: URLEncoding.default)

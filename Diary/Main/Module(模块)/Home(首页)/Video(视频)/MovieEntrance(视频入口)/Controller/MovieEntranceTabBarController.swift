@@ -23,9 +23,6 @@ class MovieEntranceTabBarController: UITabBarController {
         viewController?.tabBarItem.title = tabBarTitle
         viewController?.tabBarItem.image = image
         viewController?.tabBarItem.selectedImage = selectImage
-        //改变选中的tabbar文字颜色
-        UITabBarItem.appearance().setTitleTextAttributes(
-            [NSAttributedString.Key.foregroundColor: LCZHexadecimalColor(hexadecimal: "#FECE1D")], for: .selected)
         let navigationController = UINavigationController(rootViewController: viewController!)
         // 修改导航颜色
         navigationController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: LCZHexadecimalColor(hexadecimal: "#57310C")]

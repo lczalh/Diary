@@ -9,6 +9,9 @@
 import Foundation
 
 class NewsDetailsViewModel {
+    
+    // 存储收藏新闻数据
+    public let enshrineNewsPlist = LCZDocumentPath! + "/enshrineNews.plist"
 
     // 拼接html
     public func jointHtml(model: SpeedNewsListModel) -> String {
@@ -130,7 +133,7 @@ class NewsDetailsViewModel {
         <h1 class="title">\(model.title!))</h1>
         <div class="info">
         <span class="time js-time">\(model.time!)</span>
-        <span class="source js-source">\(model.category!)</span>
+        <span class="source js-source">\(model.category ?? "")</span>
         </div>
         </div>
         <div class="content">
@@ -148,5 +151,26 @@ class NewsDetailsViewModel {
         
         """
         return html
+    }
+    
+    
+    /// 检验收藏数据是否存在
+    ///
+    /// - Parameter model: 待检验的数据
+    public func verifyTheExistenceOfCollectionData(model: SpeedNewsListModel) -> Bool {
+        // 文件管理器
+        let fileManger = FileManager.default
+        // 检验是否存在本地收藏数据
+        if fileManger.fileExists(atPath: self.enshrineNewsPlist) == true { // 存在
+            // 检验此次偏新闻是否已收藏
+            let enshrineListJson = NSArray(contentsOfFile: self.enshrineNewsPlist) // 读取本地数据
+            let models = Mapper<SpeedNewsListModel>().mapArray(JSONArray: enshrineListJson as! [[String : Any]]) // 转模型
+            for enshrineModel in models {
+                if enshrineModel.title == model.title, enshrineModel.time == model.time { // 已收藏
+                    return true
+                }
+            }
+        }
+        return false
     }
 }

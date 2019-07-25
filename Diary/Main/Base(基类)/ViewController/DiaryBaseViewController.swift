@@ -22,7 +22,10 @@ class DiaryBaseViewController: UIViewController {
         self.navigationController?.navigationBar.isTranslucent = false
         // 禁止tabbar半透明
         self.tabBarController?.tabBar.isTranslucent = false
-        
+        // 统一设置返回按钮
+        let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        backBarButtonItem.tintColor = LCZHexadecimalColor(hexadecimal: "#FECE1D")
+        self.navigationItem.backBarButtonItem = backBarButtonItem
         
     }
     

@@ -14,7 +14,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        FirebaseApp.configure()
+        // 全局修改TabBarItem 选中的文字颜色
+        UITabBarItem.appearance().setTitleTextAttributes(
+            [NSAttributedString.Key.foregroundColor: LCZHexadecimalColor(hexadecimal: "#FECE1D")], for: .selected)
         // 控制整个功能是否启用
         IQKeyboardManager.shared.enable = true
         // 控制点击背景是否收起键盘
@@ -44,22 +46,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // 程序将要失去Active状态时调用，比如按下Home键或有电话信息进来。对应applicationWillEnterForeground（将进入前台）
     func applicationWillResignActive(_ application: UIApplication) {
-        // 加载开屏广告
-        let splashAd = GDTSplashAd.init(appId: youLiangHuiAppId, placementId: "4040071110541328")
-       // splashAd!.delegate = self
-        splashAd!.loadAndShow(in: window)
+        
     }
     
     // 程序已经进入后台时调用，对应applicationDidBecomeActive（已经变成前台）
     func applicationDidEnterBackground(_ application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        // 加载开屏广告
+        let splashAd = GDTSplashAd.init(appId: youLiangHuiAppId, placementId: "4040071110541328")
+        splashAd!.loadAndShow(in: window)
     }
     
     // 程序即将进去前台时调用，对应applicationWillResignActive（将进入后台）。这个方法用来撤销applicationWillResignActive中做的改变。
     func applicationWillEnterForeground(_ application: UIApplication) {
         
-      //  Thread.main.sleep(forTimeInterval: 1)
     }
     
     // 当程序复原时，另一个名为 applicationDidBecomeActive 委托方法会被调用，在此你可以通过之前挂起前保存的数据来恢复你的应用程序
