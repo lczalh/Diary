@@ -144,6 +144,13 @@ enum DiaryRoute {
             faceRecognition.hidesBottomBarWhenPushed = true
             return faceRecognition
         }
+        
+        // 笑话入口
+        navigator.register("diary://homeEntrance/jokeEntrance") { url, values, context in
+            let jokeEntrance = JokeEntranceTabBarController()
+            jokeEntrance.hidesBottomBarWhenPushed = true
+            return jokeEntrance
+        }
     }
     
 }

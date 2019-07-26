@@ -53,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         // 加载开屏广告
         let splashAd = GDTSplashAd.init(appId: youLiangHuiAppId, placementId: "4040071110541328")
-        splashAd!.loadAndShow(in: window)
+        splashAd!.loadAndShow(in: LCZGetLastWindow())
     }
     
     // 程序即将进去前台时调用，对应applicationWillResignActive（将进入后台）。这个方法用来撤销applicationWillResignActive中做的改变。

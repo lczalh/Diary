@@ -25,8 +25,9 @@ class NewsDetailsViewController: DiaryBaseViewController {
         
         self.parentView.webView.loadHTMLString(viewModel.jointHtml(model: model!), baseURL: nil)
         
+        // 收藏按钮
         let enshrineButton = UIButton(type: .custom)
-        getLastWindow()?.addSubview(enshrineButton)
+        LCZGetLastWindow()?.addSubview(enshrineButton)
         self.view.addSubview(enshrineButton)
         enshrineButton.setImage(UIImage(named: "shoucanghui")?.withRenderingMode(.alwaysOriginal), for: .normal)
         enshrineButton.setImage(UIImage(named: "shoucang")?.withRenderingMode(.alwaysOriginal), for: .selected)
@@ -50,34 +51,40 @@ class NewsDetailsViewController: DiaryBaseViewController {
         } else {
             enshrineButton.isSelected = false
         }
-        
-//        var enshrineButton = UIButton(type: .custom)
-//        if state { // 收藏
-//            enshrineButton.setImage(UIImage(named: "shoucang")?.withRenderingMode(.alwaysOriginal), for: .selected)
-//            enshrineButton.isSelected = true
-//        } else {
-//            enshrineButton.setImage(UIImage(named: "shoucanghui")?.withRenderingMode(.alwaysOriginal), for: .normal)
-//            enshrineButton.isSelected = false
-//        }
-//        
-//        
-//        
-//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: enshrineButton)
-//        
-//        enshrineButton.rx.tap
-//            .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .userInitiated))
-//            .observeOn(MainScheduler.instance)
-//            .subscribe(onNext: {[weak self] () in
-//                if viewModel.verifyTheExistenceOfCollectionData(model: self!.model!) { // 收藏则移除数据
-//                    LCZProgressHUD.showSuccess(title: "已取消")
-//                    // 切换按钮样式
-//                    enshrineButton.isSelected = false
-//                } else { // 未收藏则添加数据
-//                    LCZProgressHUD.showSuccess(title: "已收藏")
-//                    // 切换按钮样式
-//                    enshrineButton.isSelected = true
-//                }
-//        }).disposed(by: rx.disposeBag)
+       
+        enshrineButton.rx.tap
+            .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .userInitiated))
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: {[weak self] () in
+                let enshrineListJson = NSArray(contentsOfFile: viewModel.enshrineNewsPlist) // 读取本地数据
+                var models = Mapper<SpeedNewsListModel>().mapArray(JSONArray: enshrineListJson as! [[String : Any]]) // 转模型
+                if enshrineButton.isSelected == true {
+                    // 拷贝数据
+                    var newModels = models
+                    for enshrineModel in models {
+                        // 移除已收藏的这条数据
+                        if enshrineModel.title == self!.model!.title, enshrineModel.time == self!.model!.time { // 已收藏
+                            newModels.removeAll(enshrineModel)
+                        }
+                    }
+                    (newModels.toJSON() as NSArray).write(toFile: viewModel.enshrineNewsPlist, atomically: true)
+                    // 移除本地数据 重新写入
+                    LCZProgressHUD.showSuccess(title: "已取消")
+                    // 切换按钮样式
+                    enshrineButton.isSelected = false
+                } else {
+                    if models.isEmpty == true {
+                        models = []
+                    }
+                    // 写入数据
+                    models.append(self!.model!)
+                    (models.toJSON() as NSArray).write(toFile: viewModel.enshrineNewsPlist, atomically: true)
+                    // 写入本地数据
+                    LCZProgressHUD.showSuccess(title: "已收藏")
+                    // 切换按钮样式
+                    enshrineButton.isSelected = true
+                }
+        }).disposed(by: rx.disposeBag)
     }
     
     

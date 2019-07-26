@@ -234,7 +234,7 @@ func LCZUpdateTimeToCurrennTime(timeStamp: Double, dateFormat:String = "yyyy-MM-
 }
 
 /// 获取最上层window
-public func getLastWindow() -> UIWindow? {
+public func LCZGetLastWindow() -> UIWindow? {
     for window in UIApplication.shared.windows.reversed() {
         if window.isKind(of: UIWindow.self) && window.bounds == UIScreen.main.bounds {
             return window

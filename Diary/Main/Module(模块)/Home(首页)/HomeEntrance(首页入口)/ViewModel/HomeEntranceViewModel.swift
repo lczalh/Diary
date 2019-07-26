@@ -19,7 +19,7 @@ class HomeEntranceViewModel {
             return [["快递","新闻"]
                    ]
         } else {
-            return [["快递","新闻","人脸识别"],
+            return [["快递","新闻","人脸识别","笑话"],
                     ["视频"]
                    ]
         }
@@ -33,7 +33,7 @@ class HomeEntranceViewModel {
                    ]
         } else {
             return [
-                    ["xingqiu","bangzhu","renlianshibie"],
+                    ["xingqiu","bangzhu","renlianshibie","xiaohua"],
                     ["shipin"]
                    ]
         }

@@ -1,20 +1,21 @@
 //
-//  MainNavigationViewController.swift
+//  DiaryBaseNavigationController.swift
 //  Diary
 //
-//  Created by 谷粒公社 on 2019/2/13.
+//  Created by glgl on 2019/7/26.
 //  Copyright © 2019 lcz. All rights reserved.
 //
 
 import UIKit
 
-class MainNavigationController: UINavigationController {
+class DiaryBaseNavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // 禁用侧滑返回
         self.interactivePopGestureRecognizer?.isEnabled = false
-        
+        // 修改导航标题颜色
+        self.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: LCZHexadecimalColor(hexadecimal: "#57310C")]
     }
     
 

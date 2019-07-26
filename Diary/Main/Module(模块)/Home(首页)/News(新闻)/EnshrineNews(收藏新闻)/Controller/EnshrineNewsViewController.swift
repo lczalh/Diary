@@ -19,14 +19,32 @@ class EnshrineNewsViewController: DiaryBaseViewController {
     
     /// 新闻数据
     private var models: Array<SpeedNewsListModel> = []
+    
+    private var viewModel = EnshrineNewsViewModel()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getLocalEnshrineData()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(searchNewsView)
         
+        self.searchNewsView.tableView.lcz_reloadClick = { sender in
+            LCZProgressHUD.showError(title: "暂无收藏新闻")
+        }
+        
     }
     
-
+    
+    /// 读取本地数据 并刷新
+    private func getLocalEnshrineData() {
+        // 读取本地收藏数据
+        let enshrineListJson = NSArray(contentsOfFile: viewModel.enshrineNewsPlist) // 读取本地数据
+        self.models = Mapper<SpeedNewsListModel>().mapArray(JSONArray: enshrineListJson as! [[String : Any]])
+        self.searchNewsView.tableView.reloadData()
+    }
     
 
 }

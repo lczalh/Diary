@@ -159,7 +159,7 @@ extension NewsHomeViewController: JXCategoryListContainerViewDelegate {
     @objc private func pullToRefresh() {
         let viewDictionary = self.listContainerView.validListDict! as NSDictionary
         let view = viewDictionary.object(forKey: newsHomeView.categoryView!.selectedIndex) as! NewsHomeListView
-        let datas = self.datas.object(forKey: newsHomeView.categoryView!.selectedIndex) as! [SpeedNewsListModel]
+        let datas = self.datas.object(forKey: "\(self.newsHomeView.categoryView!.selectedIndex)") as! [SpeedNewsListModel]
         self.start += 20
         self.viewModel.getNewsListData(channel: self.categorys![self.newsHomeView.categoryView!.selectedIndex],
                                        start: self.start)
@@ -192,7 +192,6 @@ extension NewsHomeViewController: JXCategoryListContainerViewDelegate {
                                 view.hideSkeleton()
                             })
                       }.disposed(by: rx.disposeBag)
-        LCZPrint("12341242")
     }
     
 }

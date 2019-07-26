@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CourierEntranceTabBarController: UITabBarController {
+class CourierEntranceTabBarController: DiaryBaseTabBarController {
     
     private var expressQueryViewController: ExpressQueryViewController = ExpressQueryViewController()
     
@@ -46,21 +46,9 @@ class CourierEntranceTabBarController: UITabBarController {
         
         
         
-        self.setTabBarItem(viewController: expressQueryViewController, navigationTitle: "快递查询", tabBarTitle: "快递查询", image: UIImage(named: "huabanfubenhui")?.withRenderingMode(.alwaysOriginal), selectImage: UIImage(named: "huabanfuben")?.withRenderingMode(.alwaysOriginal))
-        self.setTabBarItem( viewController: commonlyExpressViewController, navigationTitle: "常用快递", tabBarTitle: "常用快递", image: UIImage(named: "commonlyExpressAsh")?.withRenderingMode(.alwaysOriginal), selectImage: UIImage(named: "commonlyExpress")?.withRenderingMode(.alwaysOriginal))
+        self.LCZSetTabBarItem(viewController: expressQueryViewController, navigationTitle: "快递查询", tabBarTitle: "快递查询", image: UIImage(named: "huabanfubenhui")?.withRenderingMode(.alwaysOriginal), selectImage: UIImage(named: "huabanfuben")?.withRenderingMode(.alwaysOriginal))
+        self.LCZSetTabBarItem( viewController: commonlyExpressViewController, navigationTitle: "常用快递", tabBarTitle: "常用快递", image: UIImage(named: "commonlyExpressAsh")?.withRenderingMode(.alwaysOriginal), selectImage: UIImage(named: "commonlyExpress")?.withRenderingMode(.alwaysOriginal))
         
     }
     
-    
-    private func setTabBarItem(viewController: UIViewController?, navigationTitle: String?, tabBarTitle: String?, image: UIImage?, selectImage: UIImage?) {
-        viewController?.navigationItem.title = navigationTitle
-        viewController?.tabBarItem.title = tabBarTitle
-        viewController?.tabBarItem.image = image
-        viewController?.tabBarItem.selectedImage = selectImage
-        let navigationController = UINavigationController(rootViewController: viewController!)
-        // 修改导航颜色
-        navigationController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: LCZHexadecimalColor(hexadecimal: "#57310C")]
-        self.addChild(navigationController)
-        
-    }
 }

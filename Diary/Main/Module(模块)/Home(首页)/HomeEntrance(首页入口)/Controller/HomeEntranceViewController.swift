@@ -117,6 +117,10 @@ extension HomeEntranceViewController: UICollectionViewDataSource {
             UIView.transition(with: (self.view ?? nil)!, duration: 0.5, options: .transitionFlipFromLeft, animations: {
                 diaryRoute.push("diary://homeEntrance/faceRecognition")
             }, completion: nil)
+        } else if title == "笑话" {
+            UIView.transition(with: (self.view ?? nil)!, duration: 0.5, options: .transitionFlipFromLeft, animations: {
+                diaryRoute.present("diary://homeEntrance/jokeEntrance")
+            }, completion: nil)
         }
     }
     

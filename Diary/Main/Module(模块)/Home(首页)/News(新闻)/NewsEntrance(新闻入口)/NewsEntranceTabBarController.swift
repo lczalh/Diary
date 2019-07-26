@@ -8,12 +8,12 @@
 
 import UIKit
 
-class NewsEntranceTabBarController: UITabBarController {
+class NewsEntranceTabBarController: DiaryBaseTabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.setTabBarItem(viewController: NewsHomeViewController(), navigationTitle: "新闻", tabBarTitle: "新闻", image: UIImage(named: "bangzhuhui")?.withRenderingMode(.alwaysOriginal), selectImage: UIImage(named: "bangzhu")?.withRenderingMode(.alwaysOriginal))
+        self.LCZSetTabBarItem(viewController: NewsHomeViewController(), navigationTitle: "新闻", tabBarTitle: "新闻", image: UIImage(named: "bangzhuhui")?.withRenderingMode(.alwaysOriginal), selectImage: UIImage(named: "bangzhu")?.withRenderingMode(.alwaysOriginal))
         
         let nums = ["怒海潜沙", "陈情令", "美好时光", "斗罗大陆", "画江湖之不良人","雷霆沙赞","四目先生","明日之子"]
         let searchViewController = PYSearchViewController(hotSearches: nums, searchBarPlaceholder: NSLocalizedString("NSLocalizedString",value: "搜索新闻", comment: ""), didSearch: { controller,searchBar,searchText in
@@ -29,22 +29,9 @@ class NewsEntranceTabBarController: UITabBarController {
         backBarButtonItem.tintColor = LCZHexadecimalColor(hexadecimal: "#FECE1D")
         searchViewController?.navigationItem.backBarButtonItem = backBarButtonItem
         // 搜索
-        self.setTabBarItem(viewController: searchViewController, navigationTitle: "搜索", tabBarTitle: "搜索", image: UIImage(named: "sousuohui")?.withRenderingMode(.alwaysOriginal), selectImage: UIImage(named: "sousuo")?.withRenderingMode(.alwaysOriginal))
+        self.LCZSetTabBarItem(viewController: searchViewController, navigationTitle: "搜索", tabBarTitle: "搜索", image: UIImage(named: "sousuohui")?.withRenderingMode(.alwaysOriginal), selectImage: UIImage(named: "sousuo")?.withRenderingMode(.alwaysOriginal))
         // 收藏
-        self.setTabBarItem(viewController: EnshrineNewsViewController(), navigationTitle: "收藏", tabBarTitle: "收藏", image: UIImage(named: "shoucanghui")?.withRenderingMode(.alwaysOriginal), selectImage: UIImage(named: "shoucang")?.withRenderingMode(.alwaysOriginal))
-    }
-    
-
-    private func setTabBarItem(viewController: UIViewController?, navigationTitle: String?, tabBarTitle: String?, image: UIImage?, selectImage: UIImage?) {
-        viewController?.navigationItem.title = navigationTitle
-        viewController?.tabBarItem.title = tabBarTitle
-        viewController?.tabBarItem.image = image
-        viewController?.tabBarItem.selectedImage = selectImage
-        let navigationController = UINavigationController(rootViewController: viewController!)
-        // 修改导航颜色
-        navigationController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: LCZHexadecimalColor(hexadecimal: "#57310C")]
-        self.addChild(navigationController)
-        
+        self.LCZSetTabBarItem(viewController: EnshrineNewsViewController(), navigationTitle: "收藏", tabBarTitle: "收藏", image: UIImage(named: "shoucanghui")?.withRenderingMode(.alwaysOriginal), selectImage: UIImage(named: "shoucang")?.withRenderingMode(.alwaysOriginal))
     }
 
 }
