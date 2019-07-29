@@ -40,7 +40,7 @@ class ExpressQueryView: DiaryBaseView {
             make.right.equalToSuperview().offset(-30)
             make.height.equalTo(40)
         }
-        boxView.layer.borderColor = LCZHexadecimalColor(hexadecimal: "#57310C").cgColor;
+        boxView.layer.borderColor = LCZHexadecimalColor(hexadecimal: AppTitleColor).cgColor;
         boxView.layer.borderWidth = 1
         boxView.layer.cornerRadius = 5
         boxView.clipsToBounds = true

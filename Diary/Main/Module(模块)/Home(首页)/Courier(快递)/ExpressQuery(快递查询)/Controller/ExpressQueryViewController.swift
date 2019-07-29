@@ -31,7 +31,7 @@ class ExpressQueryViewController: DiaryBaseViewController {
 
         // 下级控制器返回按钮
         let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        backBarButtonItem.tintColor = LCZHexadecimalColor(hexadecimal: "#FECE1D")
+        backBarButtonItem.tintColor = LCZHexadecimalColor(hexadecimal: AppContentColor)
         self.navigationItem.backBarButtonItem = backBarButtonItem
         
         // 返回按钮
@@ -48,8 +48,8 @@ class ExpressQueryViewController: DiaryBaseViewController {
                         .throttle(0.5) //在主线程中操作，0.3秒内值若多次改变，取最后一次
                         .map{$0.count > 0}
                         .drive(onNext: { (state) in
-                            self.expressQueryView.inquireButton.backgroundColor = state == true ? LCZHexadecimalColor(hexadecimal: "#57310C") : LCZHexadecimalColor(hexadecimal: "#bfbfbf")
-                            self.expressQueryView.inquireButton.setTitleColor(state == true ? LCZHexadecimalColor(hexadecimal: "#FECE1D") : UIColor.white, for: .normal)
+                            self.expressQueryView.inquireButton.backgroundColor = state == true ? LCZHexadecimalColor(hexadecimal: AppTitleColor) : LCZHexadecimalColor(hexadecimal: "#bfbfbf")
+                            self.expressQueryView.inquireButton.setTitleColor(state == true ? LCZHexadecimalColor(hexadecimal: AppContentColor) : UIColor.white, for: .normal)
                             self.expressQueryView.inquireButton.isEnabled = state
                         })
                         .disposed(by: rx.disposeBag)
@@ -178,7 +178,7 @@ extension ExpressQueryViewController: UITableViewDelegate {
             make.left.centerY.equalToSuperview()
         }
         titleLabel.font = LCZFontSize(size: 14)
-        titleLabel.textColor = LCZHexadecimalColor(hexadecimal: "#57310C")
+        titleLabel.textColor = LCZHexadecimalColor(hexadecimal: AppTitleColor)
         titleLabel.text = "历史查询"
         return headerView
     }

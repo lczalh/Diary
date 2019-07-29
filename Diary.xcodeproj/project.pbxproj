@@ -123,6 +123,7 @@
 		739510D422D6D3CC00814BFF /* LCZUINavigationControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739510D322D6D3CC00814BFF /* LCZUINavigationControllerExtension.swift */; };
 		739510D722D7078000814BFF /* NewsEntranceTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739510D622D7078000814BFF /* NewsEntranceTabBarController.swift */; };
 		7396A9D222DC0D3700525F64 /* UICollectionView+LCZPlaceholderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7396A9D122DC0D3700525F64 /* UICollectionView+LCZPlaceholderView.m */; };
+		7396F4A522EE96C000D3C74B /* LCZPublicHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7396F4A422EE96C000D3C74B /* LCZPublicHelper.swift */; };
 		73B1DDD72241EB8E00BFEF7A /* LCZProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B1DDD62241EB8E00BFEF7A /* LCZProgressHUD.swift */; };
 		73B1DDE22242051400BFEF7A /* MovieHomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B1DDE12242051400BFEF7A /* MovieHomeModel.swift */; };
 		73B1DDE7224206FA00BFEF7A /* DiaryBaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B1DDE6224206FA00BFEF7A /* DiaryBaseCollectionViewCell.swift */; };
@@ -139,7 +140,6 @@
 		73D4DAE62213CBF400116541 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73D4DAE42213CBF400116541 /* LaunchScreen.storyboard */; };
 		73DD29FB22E0435B003242CF /* ResourceDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DD29FA22E0435B003242CF /* ResourceDownloader.swift */; };
 		73DD2A0422E076F0003242CF /* FaceRecognitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DD2A0322E076F0003242CF /* FaceRecognitionViewController.swift */; };
-		73DD2A0622E07741003242CF /* FaceRecognitionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DD2A0522E07741003242CF /* FaceRecognitionView.swift */; };
 		73E52AF022B0DB6D0018CBA6 /* CommonlyExpressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E52AEF22B0DB6D0018CBA6 /* CommonlyExpressViewController.swift */; };
 		73E52AF222B0E3B60018CBA6 /* ExpressQueryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E52AF122B0E3B60018CBA6 /* ExpressQueryModel.swift */; };
 		73E52AF422B0E5AB0018CBA6 /* ExpressQueryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E52AF322B0E5AB0018CBA6 /* ExpressQueryViewModel.swift */; };
@@ -279,6 +279,7 @@
 		739510D622D7078000814BFF /* NewsEntranceTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsEntranceTabBarController.swift; sourceTree = "<group>"; };
 		7396A9D022DC0D3700525F64 /* UICollectionView+LCZPlaceholderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+LCZPlaceholderView.h"; sourceTree = "<group>"; };
 		7396A9D122DC0D3700525F64 /* UICollectionView+LCZPlaceholderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+LCZPlaceholderView.m"; sourceTree = "<group>"; };
+		7396F4A422EE96C000D3C74B /* LCZPublicHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCZPublicHelper.swift; sourceTree = "<group>"; };
 		73B1DDD62241EB8E00BFEF7A /* LCZProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCZProgressHUD.swift; sourceTree = "<group>"; };
 		73B1DDE12242051400BFEF7A /* MovieHomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MovieHomeModel.swift; path = "../../MovieHome(电影首页)/Model/MovieHomeModel.swift"; sourceTree = "<group>"; };
 		73B1DDE6224206FA00BFEF7A /* DiaryBaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryBaseCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -297,7 +298,6 @@
 		73D4DAE72213CBF400116541 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		73DD29FA22E0435B003242CF /* ResourceDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceDownloader.swift; sourceTree = "<group>"; };
 		73DD2A0322E076F0003242CF /* FaceRecognitionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceRecognitionViewController.swift; sourceTree = "<group>"; };
-		73DD2A0522E07741003242CF /* FaceRecognitionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceRecognitionView.swift; sourceTree = "<group>"; };
 		73E52AEF22B0DB6D0018CBA6 /* CommonlyExpressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonlyExpressViewController.swift; sourceTree = "<group>"; };
 		73E52AF122B0E3B60018CBA6 /* ExpressQueryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpressQueryModel.swift; sourceTree = "<group>"; };
 		73E52AF322B0E5AB0018CBA6 /* ExpressQueryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpressQueryViewModel.swift; sourceTree = "<group>"; };
@@ -342,7 +342,7 @@
 			isa = PBXGroup;
 			children = (
 				7338CC1F22EAEC7C0025BCDC /* Joke(笑话) */,
-				73DD29FE22E0760A003242CF /* FaceRecognition(人脸识别) */,
+				73DD29FE22E0760A003242CF /* Camera(相机) */,
 				73BB0FC622B09EFF005F351C /* Courier(快递) */,
 				7300251822ADF09600F05ADC /* HomeEntrance(首页入口) */,
 				737E1C452213E1E000BF751D /* News(新闻) */,
@@ -1162,6 +1162,7 @@
 		737E1C2E2213DA8F00BF751D /* Utility(工具) */ = {
 			isa = PBXGroup;
 			children = (
+				7396F4A222EE967700D3C74B /* PublicHelper(公共辅助) */,
 				7377BAAB22E193E6000BBBE9 /* Scanner(扫描器) */,
 				739510D822D72BE200814BFF /* PlaceholderView(占位图) */,
 				738D3E4E22CB5BB800A68487 /* Marquee(跑马灯) */,
@@ -1494,6 +1495,14 @@
 			path = "PlaceholderView(占位图)";
 			sourceTree = "<group>";
 		};
+		7396F4A222EE967700D3C74B /* PublicHelper(公共辅助) */ = {
+			isa = PBXGroup;
+			children = (
+				7396F4A422EE96C000D3C74B /* LCZPublicHelper.swift */,
+			);
+			path = "PublicHelper(公共辅助)";
+			sourceTree = "<group>";
+		};
 		73B1DDD52241EA2F00BFEF7A /* ProgressHUD(进度显示) */ = {
 			isa = PBXGroup;
 			children = (
@@ -1680,7 +1689,7 @@
 			path = Diary;
 			sourceTree = "<group>";
 		};
-		73DD29FE22E0760A003242CF /* FaceRecognition(人脸识别) */ = {
+		73DD29FE22E0760A003242CF /* Camera(相机) */ = {
 			isa = PBXGroup;
 			children = (
 				73DD2A0222E076C6003242CF /* ViewModel */,
@@ -1688,7 +1697,7 @@
 				73DD2A0022E076BC003242CF /* View */,
 				73DD29FF22E076B4003242CF /* Controller */,
 			);
-			path = "FaceRecognition(人脸识别)";
+			path = "Camera(相机)";
 			sourceTree = "<group>";
 		};
 		73DD29FF22E076B4003242CF /* Controller */ = {
@@ -1702,7 +1711,6 @@
 		73DD2A0022E076BC003242CF /* View */ = {
 			isa = PBXGroup;
 			children = (
-				73DD2A0522E07741003242CF /* FaceRecognitionView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2172,7 +2180,6 @@
 				7344B54F22AFA04700FC7D4D /* MineEntranceViewModel.swift in Sources */,
 				73480F9C22C309AA003BB258 /* NewsMovieHomeViewController.swift in Sources */,
 				73107D3F22D5DDF10094981F /* TelevisionViewController.swift in Sources */,
-				73DD2A0622E07741003242CF /* FaceRecognitionView.swift in Sources */,
 				7333A0EB22EAF856008A6920 /* JokeEntranceTabBarController.swift in Sources */,
 				73D4DADC2213CBF200116541 /* AppDelegate.swift in Sources */,
 				738AD38C22BCA2FE00FD0680 /* ProblemFeedbackView.swift in Sources */,
@@ -2188,6 +2195,7 @@
 				7302DB1A228179F700BC7CAC /* LCZAlignTopLabel.swift in Sources */,
 				736F50F222B255D200518645 /* CommonlyExpressTableViewCell.swift in Sources */,
 				7367D2EE221FA43A008FD780 /* MJRefresh+Rx.swift in Sources */,
+				7396F4A522EE96C000D3C74B /* LCZPublicHelper.swift in Sources */,
 				735AC95422AE27E500C51BF7 /* HomeEntranceViewModel.swift in Sources */,
 				7338CC2722EAED970025BCDC /* FunnyPicturesViewController.swift in Sources */,
 				732F736422BA00CE008108CD /* RegisterView.swift in Sources */,

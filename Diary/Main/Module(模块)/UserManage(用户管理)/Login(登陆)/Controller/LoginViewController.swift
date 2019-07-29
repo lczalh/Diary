@@ -42,7 +42,7 @@ class LoginViewController: DiaryBaseViewController {
         super.viewDidLoad()
         // 返回
         let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        backBarButtonItem.tintColor = LCZHexadecimalColor(hexadecimal: "#FECE1D")
+        backBarButtonItem.tintColor = LCZHexadecimalColor(hexadecimal: AppContentColor)
         self.navigationItem.backBarButtonItem = backBarButtonItem
         
         self.view.addSubview(loginView)
@@ -54,7 +54,7 @@ class LoginViewController: DiaryBaseViewController {
         let zip = Observable.combineLatest(account, password) { $0 && $1 }
         zip.bind(to: self.loginView.loginButton.rx.isEnabled).disposed(by: rx.disposeBag)
         zip.subscribe(onNext: { (state) in
-                self.loginView.loginButton.backgroundColor = state == true ? LCZHexadecimalColor(hexadecimal: "#FECE1D") : LCZRgbColor(239, 240, 244, 1)
+                self.loginView.loginButton.backgroundColor = state == true ? LCZHexadecimalColor(hexadecimal: AppContentColor) : LCZRgbColor(239, 240, 244, 1)
             state == true ? self.loginView.loginButton.layer.pop_add(self.loginView.loginButtonAnimation, forKey: "loginButtonAnimation") : self.loginView.loginButton.layer.pop_removeAnimation(forKey: "loginButtonAnimation")
             }).disposed(by: rx.disposeBag)
      
@@ -62,7 +62,7 @@ class LoginViewController: DiaryBaseViewController {
         loginView.loginButton.rx.tap.subscribe(onNext: { _ in
             self.loginView.loginButton.isEnabled = false
             
-            if self.loginView.accountTextField.text! == "17608426049" && self.loginView.passwordTextField.text! == "123456" {
+            if self.loginView.accountTextField.text! == AppAccount && self.loginView.passwordTextField.text! == AppPassword {
                 LCZProgressHUD.show()
                 self.loginView.loginButton.isEnabled = true
                 // 将uid，token写入偏好设置

@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // 全局修改TabBarItem 选中的文字颜色
         UITabBarItem.appearance().setTitleTextAttributes(
-            [NSAttributedString.Key.foregroundColor: LCZHexadecimalColor(hexadecimal: "#FECE1D")], for: .selected)
+            [NSAttributedString.Key.foregroundColor: LCZHexadecimalColor(hexadecimal: AppContentColor)], for: .selected)
         // 控制整个功能是否启用
         IQKeyboardManager.shared.enable = true
         // 控制点击背景是否收起键盘
@@ -29,13 +29,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         // 设置首页
         LCZHomePage.shared.setHomePage(guidePage: { // 引导页
-            self.window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
+            self.window?.rootViewController = DiaryBaseNavigationController(rootViewController: LoginViewController())
         }) {
             // 判断用户是否登陆
             if (LCZUserDefaults.object(forKey: "account") != nil) && (LCZUserDefaults.object(forKey: "password") != nil) { // 首页
                 self.window?.rootViewController = MainTabBarController()
             } else { // 登陆
-                self.window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
+                self.window?.rootViewController = DiaryBaseNavigationController(rootViewController: LoginViewController())
             }
         }
         self.window?.makeKeyAndVisible()
@@ -51,9 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // 程序已经进入后台时调用，对应applicationDidBecomeActive（已经变成前台）
     func applicationDidEnterBackground(_ application: UIApplication) {
-        // 加载开屏广告
-        let splashAd = GDTSplashAd.init(appId: youLiangHuiAppId, placementId: "4040071110541328")
-        splashAd!.loadAndShow(in: LCZGetLastWindow())
+       
     }
     
     // 程序即将进去前台时调用，对应applicationWillResignActive（将进入后台）。这个方法用来撤销applicationWillResignActive中做的改变。

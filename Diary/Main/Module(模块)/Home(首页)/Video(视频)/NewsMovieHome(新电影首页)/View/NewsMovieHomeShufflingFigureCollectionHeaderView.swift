@@ -47,7 +47,7 @@ class NewsMovieHomeShufflingFigureCollectionHeaderView: UICollectionReusableView
             make.centerY.equalTo(imageView)
         }
         titleLabel.font = LCZBoldFontSize(size: 16)
-        titleLabel.textColor = LCZHexadecimalColor(hexadecimal: "#57310C")
+        titleLabel.textColor = LCZHexadecimalColor(hexadecimal: AppTitleColor)
         titleLabel.isSkeletonable = true
 
     }

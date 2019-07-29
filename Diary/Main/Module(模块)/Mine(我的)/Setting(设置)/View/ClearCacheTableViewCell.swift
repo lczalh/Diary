@@ -35,7 +35,7 @@ class ClearCacheTableViewCell: DiaryBaseTableViewCell {
             make.centerY.equalToSuperview()
         }
         titleLabel.font = LCZFontSize(size: 14)
-        titleLabel.textColor = LCZHexadecimalColor(hexadecimal: "#FECE1D")
+        titleLabel.textColor = LCZHexadecimalColor(hexadecimal: AppContentColor)
         
         cacheSizeLabel = UILabel()
         self.contentView.addSubview(cacheSizeLabel)

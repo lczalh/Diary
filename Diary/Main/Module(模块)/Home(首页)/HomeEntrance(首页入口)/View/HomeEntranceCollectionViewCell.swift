@@ -33,6 +33,6 @@ class HomeEntranceCollectionViewCell: DiaryBaseCollectionViewCell {
             make.height.equalTo(30)
         }
         titleLabel.font = LCZFontSize(size: 14)
-        titleLabel.textColor = LCZHexadecimalColor(hexadecimal: "#FECE1D")
+        titleLabel.textColor = LCZHexadecimalColor(hexadecimal: AppContentColor)
     }
 }

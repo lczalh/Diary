@@ -32,7 +32,7 @@ class HomeEntranceCollectionHedderView: UICollectionReusableView {
             make.left.equalTo(self.logoImageView.snp.right).offset(5)
         }
         self.titleLabel.font = LCZBoldFontSize(size: 16)
-        self.titleLabel.textColor = LCZHexadecimalColor(hexadecimal: "#57310C")
+        self.titleLabel.textColor = LCZHexadecimalColor(hexadecimal: AppTitleColor)
     }
     
     required init?(coder aDecoder: NSCoder) {

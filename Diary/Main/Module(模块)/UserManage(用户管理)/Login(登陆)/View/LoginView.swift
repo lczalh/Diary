@@ -48,7 +48,7 @@ class LoginView: DiaryBaseView {
         }
         appNameLabel.text = LCZAppName
         appNameLabel.font = LCZBoldFontSize(size: 20)
-        appNameLabel.textColor = LCZHexadecimalColor(hexadecimal: "#FECE1D")
+        appNameLabel.textColor = LCZHexadecimalColor(hexadecimal: AppContentColor)
         
         // 账号
         let accountView = UIView()
@@ -173,15 +173,6 @@ class LoginView: DiaryBaseView {
         loginButtonAnimation.toValue = NSValue(cgSize: CGSize(width: 0.5, height: 0.5))
         loginButtonAnimation.fromValue = NSValue(cgSize: CGSize(width: 1.0, height: 1.0))
         
-        
-//        let loginButtonAnimationOne = POPBasicAnimation(propertyNamed: kPOPLayerScaleXY)
-//        loginButtonAnimationOne?.duration = 1.5
-//       // loginButtonAnimationOne!.repeatForever = true
-//        loginButtonAnimationOne!.timingFunction = CAMediaTimingFunction.init(name: .easeInEaseOut)
-//        loginButtonAnimationOne!.toValue = NSValue(cgSize: CGSize(width: 0.5, height: 0.5))
-//        loginButtonAnimationOne!.fromValue = NSValue(cgSize: CGSize(width: 1.0, height: 1.0))
-//        loginButton.layer.pop_add(loginButtonAnimationOne, forKey: "loginButtonAnimationOne")
-        
         // 分割线
         let verticalLineView = UIView()
         self.addSubview(verticalLineView)
@@ -203,6 +194,7 @@ class LoginView: DiaryBaseView {
         forgotPasswordButton.setTitle("找回密码", for: .normal)
         forgotPasswordButton.setTitleColor(UIColor.black, for: .normal)
         forgotPasswordButton.titleLabel?.font = LCZFontSize(size: 12)
+        forgotPasswordButton.setTitleColor(LCZHexadecimalColor(hexadecimal: AppContentColor), for: .normal)
         
         // 用户注册
         userRegistrationButton = UIButton(type: .custom)
@@ -214,6 +206,7 @@ class LoginView: DiaryBaseView {
         userRegistrationButton.setTitle("用户注册", for: .normal)
         userRegistrationButton.setTitleColor(UIColor.black, for: .normal)
         userRegistrationButton.titleLabel?.font = LCZFontSize(size: 12)
+        userRegistrationButton.setTitleColor(LCZHexadecimalColor(hexadecimal: AppContentColor), for: .normal)
     }
 
 }

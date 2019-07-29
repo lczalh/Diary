@@ -39,7 +39,7 @@ class NewsMovieCollectionViewCell: DiaryBaseCollectionViewCell {
         }
         titleLabel.textAlignment = .center
         titleLabel.font = LCZFontSize(size: 14)
-        titleLabel.textColor = LCZHexadecimalColor(hexadecimal: "#FECE1D")
+        titleLabel.textColor = LCZHexadecimalColor(hexadecimal: AppContentColor)
         titleLabel.isSkeletonable = true
     }
 }

@@ -42,8 +42,11 @@ class EnshrineNewsViewController: DiaryBaseViewController {
     private func getLocalEnshrineData() {
         // 读取本地收藏数据
         let enshrineListJson = NSArray(contentsOfFile: viewModel.enshrineNewsPlist) // 读取本地数据
-        self.models = Mapper<SpeedNewsListModel>().mapArray(JSONArray: enshrineListJson as! [[String : Any]])
-        self.searchNewsView.tableView.reloadData()
+        if enshrineListJson != nil {
+            self.models = Mapper<SpeedNewsListModel>().mapArray(JSONArray: enshrineListJson as! [[String : Any]])
+            self.searchNewsView.tableView.reloadData()
+        }
+        
     }
     
 

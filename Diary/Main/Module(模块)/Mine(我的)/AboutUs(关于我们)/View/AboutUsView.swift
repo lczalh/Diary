@@ -27,7 +27,7 @@ class AboutUsView: DiaryBaseView {
         }
         appNameLabel.font = LCZBoldFontSize(size: 18)
         appNameLabel.text = LCZAppName
-        appNameLabel.textColor = LCZHexadecimalColor(hexadecimal: "#FECE1D")
+        appNameLabel.textColor = LCZHexadecimalColor(hexadecimal: AppContentColor)
         
         let explainLabel = UILabel()
         self.addSubview(explainLabel)

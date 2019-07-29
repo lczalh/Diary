@@ -27,8 +27,6 @@ class CommonlyExpressViewController: DiaryBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-       // self.tabBarController?.navigationItem.title = "常用快递"
-       // self.tabBarController?.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: LCZHexadecimalColor(hexadecimal: "#57310C")]
         
         self.view.addSubview(commonlyExpressView)
         

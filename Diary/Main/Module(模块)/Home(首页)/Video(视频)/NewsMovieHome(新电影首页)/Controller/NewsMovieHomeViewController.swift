@@ -46,8 +46,7 @@ class NewsMovieHomeViewController: DiaryBaseViewController {
         super.viewDidLoad()
 
         let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        backBarButtonItem.tintColor = LCZHexadecimalColor(hexadecimal: "#FECE1D")
-//        self.navigationItem.backBarButtonItem = backBarButtonItem
+        backBarButtonItem.tintColor = LCZHexadecimalColor(hexadecimal: AppContentColor)
         
         // 返回按钮
         let returnBarButtonItem = UIBarButtonItem(image: UIImage(named: "zuojiantou")?.withRenderingMode(.alwaysOriginal), style: .plain, target: nil, action: nil)

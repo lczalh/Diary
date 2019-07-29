@@ -48,7 +48,7 @@ class HomeEntranceViewController: DiaryBaseViewController {
         super.viewDidLoad()
         self.view.addSubview(homeEntranceView)
         let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        backBarButtonItem.tintColor = LCZHexadecimalColor(hexadecimal: "#FECE1D")
+        backBarButtonItem.tintColor = LCZHexadecimalColor(hexadecimal: AppContentColor)
         self.navigationItem.backBarButtonItem = backBarButtonItem
         
         // 下载电视列表数据

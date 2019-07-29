@@ -32,7 +32,7 @@ class MovieHomeCell: DiaryBaseCollectionViewCell {
         })
         self.titleLabel.textAlignment = .center
         self.titleLabel.font = LCZFontSize(size: 14)
-        self.titleLabel.textColor = LCZHexadecimalColor(hexadecimal: "#FECE1D")
+        self.titleLabel.textColor = LCZHexadecimalColor(hexadecimal: AppContentColor)
         self.titleLabel.isSkeletonable = true
         self.titleLabel.text = "乐淘视界"
         

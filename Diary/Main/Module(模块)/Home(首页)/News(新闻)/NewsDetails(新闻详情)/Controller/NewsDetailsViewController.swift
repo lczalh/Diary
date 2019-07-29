@@ -57,28 +57,31 @@ class NewsDetailsViewController: DiaryBaseViewController {
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: {[weak self] () in
                 let enshrineListJson = NSArray(contentsOfFile: viewModel.enshrineNewsPlist) // 读取本地数据
-                var models = Mapper<SpeedNewsListModel>().mapArray(JSONArray: enshrineListJson as! [[String : Any]]) // 转模型
+                var models: [SpeedNewsListModel]?
                 if enshrineButton.isSelected == true {
+                    models = Mapper<SpeedNewsListModel>().mapArray(JSONArray: enshrineListJson as! [[String : Any]]) // 转模型
                     // 拷贝数据
                     var newModels = models
-                    for enshrineModel in models {
+                    for enshrineModel in models! {
                         // 移除已收藏的这条数据
                         if enshrineModel.title == self!.model!.title, enshrineModel.time == self!.model!.time { // 已收藏
-                            newModels.removeAll(enshrineModel)
+                            newModels!.removeAll(enshrineModel)
                         }
                     }
-                    (newModels.toJSON() as NSArray).write(toFile: viewModel.enshrineNewsPlist, atomically: true)
+                    (newModels!.toJSON() as NSArray).write(toFile: viewModel.enshrineNewsPlist, atomically: true)
                     // 移除本地数据 重新写入
                     LCZProgressHUD.showSuccess(title: "已取消")
                     // 切换按钮样式
                     enshrineButton.isSelected = false
                 } else {
-                    if models.isEmpty == true {
+                    if models!.isEmpty == true {
                         models = []
+                    } else {
+                        models = Mapper<SpeedNewsListModel>().mapArray(JSONArray: enshrineListJson as! [[String : Any]]) // 转模型
                     }
                     // 写入数据
-                    models.append(self!.model!)
-                    (models.toJSON() as NSArray).write(toFile: viewModel.enshrineNewsPlist, atomically: true)
+                    models?.append(self!.model!)
+                    (models!.toJSON() as NSArray).write(toFile: viewModel.enshrineNewsPlist, atomically: true)
                     // 写入本地数据
                     LCZProgressHUD.showSuccess(title: "已收藏")
                     // 切换按钮样式

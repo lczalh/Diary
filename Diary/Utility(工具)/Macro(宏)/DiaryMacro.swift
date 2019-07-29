@@ -14,22 +14,13 @@ public let diaryRoute = Navigator()
 /// 极速数据AppKey
 public let highSpeedDataAppKey = "ac0f7297750aa010"
 
-/// MobApiKey
-public let mobApiKey = "1f75e29dc6384"
-
-/// mobApiAppSecret
-public let mobApiAppSecret = "30ef617b84e0b43b860cdb165367c94c"
-
-/// 优量汇appid
-public let youLiangHuiAppId = "1109542481"
-
 /// 校验用户
 public func diaryApple() -> Bool {
     let account = LCZUserDefaults.object(forKey: "account") as? String
     if account?.isEmpty == true || account == nil {
         return true
     } else {
-        if LCZUserDefaults.object(forKey: "account") as! String == "17608426049" && LCZUserDefaults.object(forKey: "password") as! String == "123456" {
+        if LCZUserDefaults.object(forKey: "account") as! String == AppAccount && LCZUserDefaults.object(forKey: "password") as! String == AppPassword {
             return true
         } else {
             return false
@@ -37,5 +28,19 @@ public func diaryApple() -> Bool {
     }
 }
 
-///
+/// 邮箱
 public let AppEmail = "824092805@qq.com"
+
+/// 账号
+public let AppAccount = "123456"
+
+/// 密码
+public let AppPassword = "123456"
+
+/// 标题颜色
+public let AppTitleColor = "#57310C"
+
+/// 内容颜色
+public let AppContentColor = "#FECE1D"
+
+public let AppStoreId = "1472107585"

@@ -50,7 +50,7 @@ class MineEntranceViewController: DiaryBaseViewController {
         
         // 返回
         let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        backBarButtonItem.tintColor = LCZHexadecimalColor(hexadecimal: "#FECE1D")
+        backBarButtonItem.tintColor = LCZHexadecimalColor(hexadecimal: AppContentColor)
         self.navigationItem.backBarButtonItem = backBarButtonItem
         
         // 设置
@@ -60,25 +60,6 @@ class MineEntranceViewController: DiaryBaseViewController {
             diaryRoute.push("diary://mine/setting")
         }).disposed(by: rx.disposeBag)
         
-    }
-    
-    // MARK: - 邮件反馈
-    private func emailFeedback() {
-        //首先要判断设备具不具备发送邮件功能
-        if MFMailComposeViewController.canSendMail(){
-            let controller = MFMailComposeViewController()
-            //设置代理
-            controller.mailComposeDelegate = self
-            //设置收件人
-            controller.setToRecipients([AppEmail])
-            
-            DispatchQueue.main.async {
-                //打开界面
-                self.present(controller, animated: true, completion: nil)
-            }
-        }else{
-            LCZProgressHUD.showError(title: "当前设备尚未配置邮件帐号，请到邮件APP中添加您的邮箱后再使用此功能！")
-        }
     }
     
     
@@ -108,9 +89,10 @@ extension MineEntranceViewController: UITableViewDataSource {
         let title = self.mineEntranceViewModel.cellTitles[indexPath.section][indexPath.row]
         
         if title == "邮件反馈" {
-            emailFeedback()
-        } else if title == "去评分" {//1101649671
-            UIApplication.shared.open(URL(string: "https://itunes.apple.com/us/app/itunes-u/id1472107585?action=write-review&mt=8")!, options: [:], completionHandler: nil)
+            LCZPublicHelper.shared.LCZSendEmail(recipients: AppEmail)
+            //LCZPublicHelper.shared.LCZNativeShare(title: "nil", image: nil, url: nil)
+        } else if title == "去评分" {
+            LCZPublicHelper.shared.LCZAppStoreScore(appId: AppStoreId)
         } else if title == "关于我们" {
             diaryRoute.push("diary://mine/aboutUs")
         } else if title == "版权声明" {
@@ -151,21 +133,3 @@ extension MineEntranceViewController: UITableViewDelegate {
     
 }
 
-extension MineEntranceViewController: MFMailComposeViewControllerDelegate {
-    //发送邮件代理方法
-    func mailComposeController(_ controller: MFMailComposeViewController,
-                               didFinishWith result: MFMailComposeResult, error: Error?) {
-        controller.dismiss(animated: true, completion: nil)
-        
-        switch result{
-        case .sent:
-            LCZProgressHUD.showSuccess(title: "邮件发送成功")
-        case .cancelled:
-            LCZProgressHUD.showSuccess(title: "邮件取消成功")
-        case .saved:
-            LCZProgressHUD.showSuccess(title: "邮件保存成功")
-        case .failed:
-            LCZProgressHUD.showError(title: "邮件发送失败")
-        }
-    }
-}

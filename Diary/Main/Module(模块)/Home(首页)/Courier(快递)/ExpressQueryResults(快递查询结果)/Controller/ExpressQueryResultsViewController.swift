@@ -71,7 +71,7 @@ class ExpressQueryResultsViewController: DiaryBaseViewController {
         
         // 标题
         self.navigationItem.title = "快递详情"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: LCZHexadecimalColor(hexadecimal: "#57310C")]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: LCZHexadecimalColor(hexadecimal: AppTitleColor)]
         
         
         
