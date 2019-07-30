@@ -18,6 +18,14 @@ class NewsDetailsViewController: DiaryBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // 分享
+        let shareBarButton = UIBarButtonItem(image: UIImage(named: "fenxiang")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: nil)
+        self.navigationItem.rightBarButtonItem = shareBarButton
+        shareBarButton.rx.tap.subscribe(onNext: { () in
+            LCZPublicHelper.shared.LCZNativeShare(title: self.model?.title, image: self.model?.pic, url: self.model!.url)
+        }).disposed(by: rx.disposeBag)
+        
         self.parentView = NewsDetailsView(frame: self.view.bounds)
         self.view.addSubview(self.parentView)
         
@@ -74,7 +82,7 @@ class NewsDetailsViewController: DiaryBaseViewController {
                     // 切换按钮样式
                     enshrineButton.isSelected = false
                 } else {
-                    if models!.isEmpty == true {
+                    if enshrineListJson == nil {
                         models = []
                     } else {
                         models = Mapper<SpeedNewsListModel>().mapArray(JSONArray: enshrineListJson as! [[String : Any]]) // 转模型

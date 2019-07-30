@@ -90,7 +90,6 @@ extension MineEntranceViewController: UITableViewDataSource {
         
         if title == "邮件反馈" {
             LCZPublicHelper.shared.LCZSendEmail(recipients: AppEmail)
-            //LCZPublicHelper.shared.LCZNativeShare(title: "nil", image: nil, url: nil)
         } else if title == "去评分" {
             LCZPublicHelper.shared.LCZAppStoreScore(appId: AppStoreId)
         } else if title == "关于我们" {

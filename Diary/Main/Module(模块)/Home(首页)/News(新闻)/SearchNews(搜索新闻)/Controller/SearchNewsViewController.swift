@@ -27,9 +27,6 @@ class SearchNewsViewController: DiaryBaseViewController {
         super.viewDidLoad()
         
         self.title = "搜索详情"
-        // 返回按钮
-        let returnBarButtonItem = UIBarButtonItem(image: UIImage(named: "zuojiantou")?.withRenderingMode(.alwaysOriginal), style: .plain, target: nil, action: nil)
-        self.navigationItem.leftBarButtonItem = returnBarButtonItem
         
         self.view.addSubview(searchNewsView)
         view.isSkeletonable = true

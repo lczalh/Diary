@@ -11,7 +11,7 @@ import UIKit
 
 extension UIView {
     
-    /// 获取指定父控制器
+    /// 通过当前视图获取指定父控制器
     ///
     /// - Parameter viewController: 查找的父控制器类型
     /// - Returns: 父控制器
@@ -26,7 +26,7 @@ extension UIView {
         return view.next as? T
     }
     
-    /// 获取指定父视图
+    /// 通过当前视图获取指定父视图
     ///
     /// - Parameter superView: 查找的父视图类型
     /// - Returns: 父视图
@@ -41,7 +41,7 @@ extension UIView {
         return view as? T
     }
     
-    /// 获取指定子视图
+    /// 通过当前视图获取指定子视图
     ///
     /// - Parameter subView: 查找的子视图类型
     /// - Returns: 子视图

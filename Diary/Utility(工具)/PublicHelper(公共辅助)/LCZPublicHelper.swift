@@ -35,7 +35,7 @@ class LCZPublicHelper: NSObject {
             controller.setToRecipients([recipients])
             
             DispatchQueue.main.async {
-                LCZGetLastWindow()?.rootViewController!.present(controller, animated: true, completion: nil)
+                LCZGetTopsideController()!.present(controller, animated: true, completion: nil)
             }
         }else{
             LCZProgressHUD.showError(title: "当前设备尚未配置邮件帐号，请到邮件APP中添加您的邮箱后再使用此功能！")
@@ -43,17 +43,7 @@ class LCZPublicHelper: NSObject {
     }
     
     
-//    func LCZGetTopsideController(viewController: UIViewController) -> UIViewController? {
-//        if viewController.isKind(of: UINavigationController.self) {
-//            let v = viewController as! UINavigationController
-//            return self.LCZGetTopsideController(viewController: <#T##UIViewController#>)
-//        } else if (viewController.isKind(of: UITabBarController.self)) {
-//            
-//        } else {
-//            
-//        }
-//        return nil
-//    }
+    
     
     
     /// 调用系统分享
@@ -78,12 +68,16 @@ class LCZPublicHelper: NSObject {
             items.append(URL(string: url!) as Any)
         }
         let controller = UIActivityViewController(activityItems: items, applicationActivities: nil)
-
+        
         controller.completionWithItemsHandler = { activityType, completed, returnedItems, activityError in
-            LCZPrint("dqeqd")
+            if completed == true {
+                LCZProgressHUD.showSuccess(title: "分享成功")
+            } else {
+                LCZProgressHUD.showError(title: "分享失败")
+            }
         }
         DispatchQueue.main.async {
-            LCZGetLastWindow()?.rootViewController!.present(controller, animated: true, completion: nil)
+            LCZGetTopsideController()!.present(controller, animated: true, completion: nil)
         }
     }
 }

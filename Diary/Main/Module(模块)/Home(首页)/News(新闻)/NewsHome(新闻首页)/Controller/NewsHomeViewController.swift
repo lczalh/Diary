@@ -85,9 +85,12 @@ extension NewsHomeViewController: JXCategoryViewDelegate {
     
     func categoryView(_ categoryView: JXCategoryBaseView!, didSelectedItemAt index: Int) {
         self.listContainerView.didClickSelectedItem(at: index)
+        // 每次切换时清空原有数据
+        self.models.removeAll()
         // 获取当前索引的view
         let viewDictionary = self.listContainerView.validListDict! as NSDictionary
-        if let listView = viewDictionary.object(forKey: index) as? NewsHomeListView, let datas = self.datas.object(forKey: index) as? [SpeedNewsListModel] {
+        // 加载默认数据
+        if let listView = viewDictionary.object(forKey: index) as? NewsHomeListView, let datas = self.datas.object(forKey: "\(index)") as? [SpeedNewsListModel] {
             // 获取当前view中的数据
             self.models = datas
             listView.tableView.reloadData()
@@ -106,9 +109,7 @@ extension NewsHomeViewController: JXCategoryListContainerViewDelegate {
     }
     
     func listContainerView(_ listContainerView: JXCategoryListContainerView!, initListFor index: Int) -> JXCategoryListContentViewDelegate! {
-        // 初始化时清空原有数据
-        self.models.removeAll()
-        //
+
         self.start = 0
         // 内容视图
         let newsHomeListView = NewsHomeListView(frame:listContainerView.bounds)
@@ -151,7 +152,9 @@ extension NewsHomeViewController: JXCategoryListContainerViewDelegate {
                             view.tableView.mj_header.endRefreshing()
                             view.tableView.reloadData()
                        }) { (error) in
+                            self.models = []
                             view.tableView.mj_header.endRefreshing()
+                            view.tableView.reloadData()
                        }.disposed(by: rx.disposeBag)
     }
     
@@ -171,7 +174,9 @@ extension NewsHomeViewController: JXCategoryListContainerViewDelegate {
                             view.tableView.mj_footer.endRefreshing()
                             view.tableView.reloadData()
                       }) { (error) in
+                            self.models = datas
                             view.tableView.mj_footer.endRefreshing()
+                            view.tableView.reloadData()
                       }.disposed(by: rx.disposeBag)
     }
     
@@ -180,17 +185,16 @@ extension NewsHomeViewController: JXCategoryListContainerViewDelegate {
         view.showAnimatedGradientSkeleton(usingGradient: SkeletonGradient(baseColor: UIColor.clouds),animation: GradientDirection.topLeftBottomRight.slidingAnimation())
         self.viewModel.getNewsListData(channel: self.categorys![index],
                                        start: self.start)
+                      .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .userInitiated))
+                      .observeOn(MainScheduler.instance)
                       .subscribe(onSuccess: { (models) in
                             self.datas.setValue(models, forKey: "\(index)")
                             self.models = models
-                            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5, execute: {
-                                view.tableView.reloadData()
-                                view.hideSkeleton()
-                            })
+                            view.tableView.reloadData()
+                            view.hideSkeleton()
                       }) { (error) in
-                            DispatchQueue.main.async(execute: {
-                                view.hideSkeleton()
-                            })
+                            self.models = []
+                            view.hideSkeleton()
                       }.disposed(by: rx.disposeBag)
     }
     

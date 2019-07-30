@@ -12,7 +12,7 @@ import Foundation
 public let diaryRoute = Navigator()
 
 /// 极速数据AppKey
-public let highSpeedDataAppKey = "ac0f7297750aa010"
+public let highSpeedDataAppKey = "62c2edc337648910"
 
 /// 校验用户
 public func diaryApple() -> Bool {

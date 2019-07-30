@@ -256,5 +256,23 @@ public func LCZImageFromSampleBuffer(sampleBuffer: CMSampleBuffer) -> UIImage {
     return image
 }
 
+/// 通过当前控制器获取最上层的控制器
+///
+/// - Parameter viewController: 控制器 默认是根控制器
+/// - Returns: 最上层控制器
+func LCZGetTopsideController(viewController: UIViewController = (UIApplication.shared.delegate?.window?!.rootViewController)!) -> UIViewController? {
+    if viewController.isKind(of: UINavigationController.self) {
+        let navigationController = viewController as! UINavigationController
+        return LCZGetTopsideController(viewController: navigationController.visibleViewController!)
+    } else if (viewController.isKind(of: UITabBarController.self)) {
+        let tabBarController = viewController as! UITabBarController
+        return LCZGetTopsideController(viewController: tabBarController.selectedViewController!)
+    } else if viewController.presentedViewController != nil {
+        return LCZGetTopsideController(viewController: viewController.presentedViewController!)
+    } else {
+        return viewController
+    }
+}
+
 
 
