@@ -24,12 +24,6 @@ class NewsHomeListView: DiaryBaseView {
         self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: LCZSafeAreaBottomHeight + LCZTabbarHeight, right: 0)
         tableView.isSkeletonable = true
         tableView.lcz_isUseComponent = true
-        self.tableView.estimatedRowHeight = 0;
-        
-        self.tableView.estimatedSectionHeaderHeight = 0;
-        
-        self.tableView.estimatedSectionFooterHeight = 0;
-        
     }
 
 }

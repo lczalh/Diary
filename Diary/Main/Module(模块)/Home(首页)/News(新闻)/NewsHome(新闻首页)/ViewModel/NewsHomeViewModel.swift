@@ -48,19 +48,44 @@ class NewsHomeViewModel {
     // 获取新闻列表数据
     public func getNewsListData(channel: String, start: Int) -> Single<[SpeedNewsListModel]> {
         return Single<[SpeedNewsListModel]>.create(subscribe: { (single) -> Disposable in
-            let request = networkServicesProvider.rx.requestData(target: MultiTarget(HighSpeedDataNetworkServices.getNewsList(appkey: highSpeedDataAppKey, channel: channel, num: 20, start: start)), model: SpeedNewsRootModel<SpeedNewsResultModel>.self).subscribe(onSuccess: { (result) in
-                
-                if result.status == 0 {
-                    single(.success(result.result!.list as [SpeedNewsListModel]))
-                } else {
-                    LCZProgressHUD.showError(title: result.msg)
-                    single(.error(DiaryRequestError.requestTimeout))
-                }
-            }) { (error) in
-                single(.error(error))
-            }
+            let request = networkServicesProvider
+                            .rx
+                            .requestData(target: MultiTarget(HighSpeedDataNetworkServices.getNewsList(appkey: highSpeedDataAppKey,
+                                                                                                         channel: channel,
+                                                                                                         num: 20,
+                                                                                                         start: start)
+                                                                ),
+                                        model: SpeedNewsRootModel<SpeedNewsResultModel>.self
+                            )
+                            .subscribe(onSuccess: { (result) in
+                                if result.status == 0 {
+                                    single(.success(result.result!.list as [SpeedNewsListModel]))
+                                } else {
+                                    LCZProgressHUD.showError(title: result.msg)
+                                    single(.error(DiaryRequestError.requestTimeout))
+                                }
+                             }) { (error) in
+                                single(.error(error))
+                             }
             return Disposables.create([request])
         })
+    }
+    
+    public func qqq(channel: String, start: Int) -> Observable<SpeedNewsRootModel<SpeedNewsResultModel>> {
+        return networkServicesProvider.rx.request(MultiTarget(HighSpeedDataNetworkServices
+                                                                .getNewsList(appkey: highSpeedDataAppKey,
+                                                                             channel: channel,
+                                                                             num: 20,
+                                                                             start: start)
+                                                 ))
+            .mapObject(SpeedNewsRootModel<SpeedNewsResultModel>.self).asObservable().retryWhen { (rxError: Observable<Error>) -> Observable<Int> in
+                return rxError.flatMapWithIndex { (error, index) -> Observable<Int> in
+                    guard index < 4 else {
+                        return Observable.error(error)
+                    }
+                    return Observable<Int>.timer(5, scheduler: MainScheduler.instance)
+                }
+        }
     }
     
 }

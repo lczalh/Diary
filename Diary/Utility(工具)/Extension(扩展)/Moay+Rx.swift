@@ -32,5 +32,29 @@ public extension Reactive where Base: MoyaProviderType {
             })
             return Disposables.create([request])
         })
+        
+        
+    }
+    
+    
+    /// 网络请求&重用机制
+    ///
+    /// - Parameters:
+    ///   - target: target
+    ///   - model: model
+    ///   - callbackQueue: nil
+    /// - Returns: Observable<T>
+    func LCZRequest<T: Mappable>(target: Base.Target, model: T.Type, callbackQueue: DispatchQueue? = nil) -> Observable<T> {
+        return request(target)
+                .mapObject(T.self)
+                .asObservable()
+                .retryWhen { (rxError: Observable<Error>) -> Observable<Int> in
+                    return rxError.enumerated().flatMap { (index, error) -> Observable<Int> in
+                        guard index < 5 else {
+                            return Observable.error(error)
+                        }
+                        return Observable<Int>.timer(5, scheduler: MainScheduler.instance)
+                    }
+                }
     }
 }

@@ -69,6 +69,16 @@ class NewsHomeViewController: DiaryBaseViewController {
                 self!.newsHomeView.categoryView?.reloadData()
                 self!.listContainerView.reloadData()
         }.disposed(by: rx.disposeBag)
+        
+        
+        
+        viewModel.qqq(channel: "头条", start: 1).subscribe(onNext: { (model) in
+            LCZPrint(model.result?.channel)
+        }, onError: { (error) in
+            LCZPrint(error)
+        }, onCompleted: {
+            LCZPrint("error")
+        }).disposed(by: rx.disposeBag)
     }
     
     
@@ -152,7 +162,6 @@ extension NewsHomeViewController: JXCategoryListContainerViewDelegate {
                             view.tableView.mj_header.endRefreshing()
                             view.tableView.reloadData()
                        }) { (error) in
-                            self.models = []
                             view.tableView.mj_header.endRefreshing()
                             view.tableView.reloadData()
                        }.disposed(by: rx.disposeBag)
@@ -185,8 +194,6 @@ extension NewsHomeViewController: JXCategoryListContainerViewDelegate {
         view.showAnimatedGradientSkeleton(usingGradient: SkeletonGradient(baseColor: UIColor.clouds),animation: GradientDirection.topLeftBottomRight.slidingAnimation())
         self.viewModel.getNewsListData(channel: self.categorys![index],
                                        start: self.start)
-                      .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .userInitiated))
-                      .observeOn(MainScheduler.instance)
                       .subscribe(onSuccess: { (models) in
                             self.datas.setValue(models, forKey: "\(index)")
                             self.models = models

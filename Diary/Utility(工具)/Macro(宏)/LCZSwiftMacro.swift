@@ -274,5 +274,7 @@ func LCZGetTopsideController(viewController: UIViewController = (UIApplication.s
     }
 }
 
+/// 禁止程序运行时自动锁屏：UIApplication.shared.isIdleTimerDisabled = true
+
 
 

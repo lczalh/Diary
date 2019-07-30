@@ -14,6 +14,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        if #available(iOS 11.0, *) {
+//            UIScrollView.appearance().contentInsetAdjustmentBehavior = .never
+////            UIScrollView.appearance.contentInsetAdjustmentBehavior = UIScrollView.ContentInsetAdjustmentBehavior;
+            UITableView.appearance().estimatedRowHeight = 0
+            UITableView.appearance().estimatedSectionFooterHeight = 0
+            UITableView.appearance().estimatedSectionHeaderHeight = 0
+        }
         // 全局修改TabBarItem 选中的文字颜色
         UITabBarItem.appearance().setTitleTextAttributes(
             [NSAttributedString.Key.foregroundColor: LCZHexadecimalColor(hexadecimal: AppContentColor)], for: .selected)
