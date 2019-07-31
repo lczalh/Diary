@@ -35,17 +35,8 @@ class MineEntranceView: DiaryBaseView {
     private func createHeaderImageView() {
         headerImageView = UIImageView(frame: CGRect(x: 0, y: -200 * LCZSizeScale, width: LCZWidth, height: 200 * LCZSizeScale))
         tableView.addSubview(headerImageView)
-        headerImageView.image = UIImage(named: "2")
+        headerImageView.image = UIImage(named: "4")
         headerImageView.contentMode = .scaleAspectFill
         headerImageView.clipsToBounds = true
-        
-//        // 用户头像
-//        let userAvatarImageView = UIImageView()
-//        headerImageView.addSubview(userAvatarImageView)
-//        userAvatarImageView.snp.makeConstraints { (make) in
-//            make.left.equalToSuperview().offset(15)
-//            make.centerY.equalToSuperview()
-//        }
-//        userAvatarImageView.image = UIImage(named: "portrait_default")
     }
 }

@@ -29,7 +29,7 @@ class HomeEntranceViewModel {
     public lazy var cellImages: Array<Array<String>> = {
         if diaryApple() == true {
             return [
-                    ["xingqiu","bangzhu"]
+                    ["renlianshibie","xiaohua"]
                    ]
         } else {
             return [
@@ -42,7 +42,7 @@ class HomeEntranceViewModel {
     /// 分组标题
     public lazy var sectionTitles: Array<String> = {
         if diaryApple() == true {
-            return ["生活服务"]
+            return ["休闲服务"]
         } else {
             return ["生活服务","休闲娱乐"]
         }

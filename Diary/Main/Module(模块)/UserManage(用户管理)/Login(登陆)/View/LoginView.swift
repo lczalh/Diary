@@ -48,7 +48,7 @@ class LoginView: DiaryBaseView {
         }
         appNameLabel.text = LCZAppName
         appNameLabel.font = LCZBoldFontSize(size: 20)
-        appNameLabel.textColor = LCZHexadecimalColor(hexadecimal: AppContentColor)
+        appNameLabel.textColor = LCZHexadecimalColor(hexadecimal: AppTitleColor)
         
         // 账号
         let accountView = UIView()

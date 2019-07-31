@@ -59,6 +59,7 @@ class CommonlyExpressTableViewCell: DiaryBaseTableViewCell {
             make.top.equalTo(logoImageView.snp.top)
         }
         titleLabel.font = LCZBoldFontSize(size: 16)
+        titleLabel.textColor = LCZHexadecimalColor(hexadecimal: AppContentColor)
         
         // 快递公司号码
         phoneNumber = UILabel()

@@ -29,7 +29,7 @@ public func diaryApple() -> Bool {
 }
 
 /// 邮箱
-public let AppEmail = "824092805@qq.com"
+public let AppEmail = "123456789@qq.com"
 
 /// 账号
 public let AppAccount = "123456"
@@ -38,9 +38,10 @@ public let AppAccount = "123456"
 public let AppPassword = "123456"
 
 /// 标题颜色
-public let AppTitleColor = "#57310C"
+public let AppTitleColor = "#9c27b0"
 
 /// 内容颜色
-public let AppContentColor = "#FECE1D"
+public let AppContentColor = "#4fc3f7"
 
-public let AppStoreId = "1472107585"
+/// 苹果应用id
+public let AppStoreId = "1474969735"

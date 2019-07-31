@@ -88,7 +88,7 @@ extension MineEntranceViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let title = self.mineEntranceViewModel.cellTitles[indexPath.section][indexPath.row]
         
-        if title == "邮件反馈" {
+        if title == "问题反馈" {
             LCZPublicHelper.shared.LCZSendEmail(recipients: AppEmail)
         } else if title == "去评分" {
             LCZPublicHelper.shared.LCZAppStoreScore(appId: AppStoreId)

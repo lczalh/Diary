@@ -24,6 +24,7 @@ class RetrievePasswordViewController: DiaryBaseViewController {
         super.viewDidLoad()
         // 标题
         self.navigationItem.title = "找回密码"
+        self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: LCZHexadecimalColor(hexadecimal: AppTitleColor)]
         
         self.view.addSubview(retrievePasswordView)
         
