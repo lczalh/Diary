@@ -37,7 +37,7 @@ public extension Reactive where Base: MoyaProviderType {
     }
     
     
-    /// 网络请求&重用机制
+    /// 网络请求&重用机制 请求失败则5秒一次重新请求 重试5次
     ///
     /// - Parameters:
     ///   - target: target
@@ -57,4 +57,5 @@ public extension Reactive where Base: MoyaProviderType {
                     }
                 }
     }
+    
 }

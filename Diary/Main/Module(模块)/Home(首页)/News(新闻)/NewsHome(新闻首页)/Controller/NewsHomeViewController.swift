@@ -55,30 +55,23 @@ class NewsHomeViewController: DiaryBaseViewController {
         newsHomeView.addSubview(listContainerView!)
         newsHomeView.categoryView!.contentScrollView = listContainerView!.scrollView;
         
-        self.viewModel.getNewsTypeListData()
-            .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .userInitiated))
-            .observeOn(MainScheduler.instance)
-            .subscribe(onSuccess: { (items) in
-                self.categorys = items
-                self.newsHomeView.categoryView!.titles = self.categorys
-                self.newsHomeView.categoryView?.reloadData()
-                self.listContainerView.reloadData()
-        }) { [weak self] (error) in
+        viewModel.getNewsTypeListData(result: {[weak self] (result) in
+            switch result {
+            case .success(let value):
+                self!.categorys = value
+                self!.newsHomeView.categoryView!.titles = self!.categorys
+                self!.newsHomeView.categoryView?.reloadData()
+                self!.listContainerView.reloadData()
+                break
+            case .failure(_):
                 self!.categorys = self!.viewModel.newsItems
                 self!.newsHomeView.categoryView!.titles = self!.categorys
                 self!.newsHomeView.categoryView?.reloadData()
                 self!.listContainerView.reloadData()
-        }.disposed(by: rx.disposeBag)
+                break
+            }
+        }, disposeBag: rx.disposeBag)
         
-        
-        
-        viewModel.qqq(channel: "头条", start: 1).subscribe(onNext: { (model) in
-            LCZPrint(model.result?.channel)
-        }, onError: { (error) in
-            LCZPrint(error)
-        }, onCompleted: {
-            LCZPrint("error")
-        }).disposed(by: rx.disposeBag)
     }
     
     

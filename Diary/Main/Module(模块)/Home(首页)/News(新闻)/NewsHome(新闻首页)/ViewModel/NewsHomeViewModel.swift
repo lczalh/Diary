@@ -28,23 +28,6 @@ class NewsHomeViewModel {
         "育儿"
     ]
     
-    // 获取新闻类型列表数据
-    public func getNewsTypeListData() -> Single<[String]> {
-        return Single<[String]>.create(subscribe: { (single) -> Disposable in
-            let request = networkServicesProvider.rx.requestData(target: MultiTarget(HighSpeedDataNetworkServices.getNewsTypeList(appkey: highSpeedDataAppKey)), model: SpeedNewschannelModel.self).subscribe(onSuccess: { (result) in
-                if result.status == 0 {
-                    single(.success(result.result))
-                } else {
-                    LCZProgressHUD.showError(title: "暂无相关数据!")
-                    single(.error(DiaryRequestError.requestTimeout))
-                }
-            }, onError: { (error) in
-                single(.error(error))
-            })
-            return Disposables.create([request])
-        })
-    }
-    
     // 获取新闻列表数据
     public func getNewsListData(channel: String, start: Int) -> Single<[SpeedNewsListModel]> {
         return Single<[SpeedNewsListModel]>.create(subscribe: { (single) -> Disposable in
@@ -71,21 +54,26 @@ class NewsHomeViewModel {
         })
     }
     
-    public func qqq(channel: String, start: Int) -> Observable<SpeedNewsRootModel<SpeedNewsResultModel>> {
-        return networkServicesProvider.rx.request(MultiTarget(HighSpeedDataNetworkServices
-                                                                .getNewsList(appkey: highSpeedDataAppKey,
-                                                                             channel: channel,
-                                                                             num: 20,
-                                                                             start: start)
-                                                 ))
-            .mapObject(SpeedNewsRootModel<SpeedNewsResultModel>.self).asObservable().retryWhen { (rxError: Observable<Error>) -> Observable<Int> in
-                return rxError.flatMapWithIndex { (error, index) -> Observable<Int> in
-                    guard index < 4 else {
-                        return Observable.error(error)
-                    }
-                    return Observable<Int>.timer(5, scheduler: MainScheduler.instance)
+    // 获取新闻类型列表数据
+    public func getNewsTypeListData(result: @escaping (_ result: Swift.Result<[String], Swift.Error>) -> Void, disposeBag: DisposeBag) {
+        networkServicesProvider
+            .rx
+            .LCZRequest(target: MultiTarget(HighSpeedDataNetworkServices.getNewsTypeList(appkey: highSpeedDataAppKey)),
+                        model: SpeedNewschannelModel.self)
+            .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .userInitiated))
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { (model) in
+                if model.status == 0 {
+                    result(.success(model.result))
+                } else {
+                    LCZProgressHUD.showError(title: model.msg)
+                    result(.failure(DiaryRequestError.requestTimeout))
                 }
-        }
+            }, onError: { (error) in
+                result(.failure(error))
+            }).disposed(by: disposeBag)
     }
+    
+    
     
 }
