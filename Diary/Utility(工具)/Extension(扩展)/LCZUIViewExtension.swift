@@ -11,35 +11,35 @@ import UIKit
 
 extension UIView {
     
-    /// 通过当前视图获取指定父控制器
-    ///
-    /// - Parameter viewController: 查找的父控制器类型
-    /// - Returns: 父控制器
-    public func LCZGetSuperViewController<T: UIViewController>(viewController: T.Type) -> T? {
-        var view: UIView = self.superview!
-        while view.next!.isKind(of: T.self) != true {
-            guard view.superview != nil else {
-                return nil
-            }
-            view = view.superview!
-        }
-        return view.next as? T
-    }
-    
-    /// 通过当前视图获取指定父视图
-    ///
-    /// - Parameter superView: 查找的父视图类型
-    /// - Returns: 父视图
-    public func LCZGetSuperView<T: UIView>(superView: T.Type) -> T? {
-        var view: UIView = self.superview!
-        while view.isKind(of: T.self) != true {
-            guard view.superview != nil else {
-                return nil
-            }
-            view = view.superview!
-        }
-        return view as? T
-    }
+//    /// 通过当前视图获取指定父控制器
+//    ///
+//    /// - Parameter viewController: 查找的父控制器类型
+//    /// - Returns: 父控制器
+//    public func LCZGetSuperViewController<T: UIViewController>(viewController: T.Type) -> T? {
+//        var view: UIView = self.superview!
+//        while view.next!.isKind(of: T.self) != true {
+//            guard view.superview != nil else {
+//                return nil
+//            }
+//            view = view.superview!
+//        }
+//        return view.next as? T
+//    }
+//    
+//    /// 通过当前视图获取指定父视图
+//    ///
+//    /// - Parameter superView: 查找的父视图类型
+//    /// - Returns: 父视图
+//    public func LCZGetSuperView<T: UIView>(superView: T.Type) -> T? {
+//        var view: UIView = self.superview!
+//        while view.isKind(of: T.self) != true {
+//            guard view.superview != nil else {
+//                return nil
+//            }
+//            view = view.superview!
+//        }
+//        return view as? T
+//    }
     
     /// 通过当前视图获取指定子视图
     ///

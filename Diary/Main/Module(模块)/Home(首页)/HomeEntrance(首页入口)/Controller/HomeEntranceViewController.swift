@@ -60,6 +60,10 @@ class HomeEntranceViewController: DiaryBaseViewController {
                 break;
             }
         }
+        
+        
+        LCZPrint(LCZPublicHelper.shared.getSafeAreaBottomHeight)
+        
     }
     
 

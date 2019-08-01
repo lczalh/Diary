@@ -125,7 +125,8 @@ class ExpressQueryViewController: DiaryBaseViewController {
     ///
     /// - Parameter sender: 当前按钮
     @objc func deleCellQuery(sender: UIButton) -> () {
-        let cell = sender.LCZGetSuperView(superView: UITableViewCell.self)
+        let cell = LCZPublicHelper.shared.getSuperView(currentView: sender, seekSuperView: UITableViewCell.self)
+           // sender.LCZGetSuperView(superView: UITableViewCell.self)
         let indexPath = self.expressQueryView.tableView.indexPath(for: cell!)
         let historyQueryHistoryQuery = self.viewModel.getHistoryQuery().mutableCopy() as! NSMutableArray
         historyQueryHistoryQuery.removeObject(at: indexPath!.row)

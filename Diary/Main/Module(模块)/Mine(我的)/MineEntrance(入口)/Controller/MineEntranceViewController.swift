@@ -89,9 +89,9 @@ extension MineEntranceViewController: UITableViewDataSource {
         let title = self.mineEntranceViewModel.cellTitles[indexPath.section][indexPath.row]
         
         if title == "问题反馈" {
-            LCZPublicHelper.shared.LCZSendEmail(recipients: AppEmail)
+            LCZPublicHelper.shared.setSendEmail(recipients: AppEmail)
         } else if title == "去评分" {
-            LCZPublicHelper.shared.LCZAppStoreScore(appId: AppStoreId)
+            LCZPublicHelper.shared.setAppStoreScore(appId: AppStoreId)
         } else if title == "关于我们" {
             diaryRoute.push("diary://mine/aboutUs")
         } else if title == "版权声明" {

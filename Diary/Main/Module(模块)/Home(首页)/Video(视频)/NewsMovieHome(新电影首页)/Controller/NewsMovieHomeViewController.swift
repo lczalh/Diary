@@ -302,12 +302,12 @@ extension NewsMovieHomeViewController: FSPagerViewDelegate {
     }
     
     func pagerViewWillEndDragging(_ pagerView: FSPagerView, targetIndex: Int) {
-        let headerView = pagerView.LCZGetSuperView(superView: NewsMovieHomeShufflingFigureCollectionHeaderView.self)!
+        let headerView = LCZPublicHelper.shared.getSuperView(currentView: pagerView, seekSuperView: NewsMovieHomeShufflingFigureCollectionHeaderView.self)!
         headerView.shufflingFigureView.fsPageControl.currentPage = targetIndex
     }
     
     func pagerViewDidEndScrollAnimation(_ pagerView: FSPagerView) {
-        let headerView = pagerView.LCZGetSuperView(superView: NewsMovieHomeShufflingFigureCollectionHeaderView.self)!
+        let headerView = LCZPublicHelper.shared.getSuperView(currentView: pagerView, seekSuperView: NewsMovieHomeShufflingFigureCollectionHeaderView.self)!
         headerView.shufflingFigureView.fsPageControl.currentPage = pagerView.currentIndex
     }
     

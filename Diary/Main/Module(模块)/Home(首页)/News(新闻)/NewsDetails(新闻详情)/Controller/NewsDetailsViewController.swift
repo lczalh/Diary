@@ -23,7 +23,7 @@ class NewsDetailsViewController: DiaryBaseViewController {
         let shareBarButton = UIBarButtonItem(image: UIImage(named: "fenxiang")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: nil)
         self.navigationItem.rightBarButtonItem = shareBarButton
         shareBarButton.rx.tap.subscribe(onNext: { () in
-            LCZPublicHelper.shared.LCZNativeShare(title: self.model?.title, image: self.model?.pic, url: self.model!.url)
+            LCZPublicHelper.shared.setNativeShare(title: self.model?.title, image: self.model?.pic, url: self.model!.url)
         }).disposed(by: rx.disposeBag)
         
         self.parentView = NewsDetailsView(frame: self.view.bounds)
