@@ -48,7 +48,6 @@
             [self makeDefaultPlaceholderView];
         }
         [self addSubview:self.lcz_placeholderView];
-        
     }
     self.lcz_placeholderView.hidden = isEmpty == YES ? NO : YES;
     self.scrollEnabled = isEmpty == YES ? NO : YES;

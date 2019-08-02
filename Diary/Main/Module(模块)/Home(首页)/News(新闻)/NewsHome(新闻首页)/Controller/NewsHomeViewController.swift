@@ -49,8 +49,8 @@ class NewsHomeViewController: DiaryBaseViewController {
         listContainerView = JXCategoryListContainerView(delegate: self)
         listContainerView!.frame = CGRect(x: 0,
                                           y: 44,
-                                          width: LCZWidth,
-                                          height: LCZHeight - LCZNaviBarHeight - LCZStatusBarHeight - 44)
+                                          width: LCZPublicHelper.shared.getScreenWidth!,
+                                          height: LCZPublicHelper.shared.getScreenHeight! - LCZPublicHelper.shared.getNavigationHeight! - LCZPublicHelper.shared.getstatusBarHeight! - 44)
         listContainerView!.defaultSelectedIndex = 0
         newsHomeView.addSubview(listContainerView!)
         newsHomeView.categoryView!.contentScrollView = listContainerView!.scrollView;
@@ -73,8 +73,6 @@ class NewsHomeViewController: DiaryBaseViewController {
         }, disposeBag: rx.disposeBag)
         
     }
-    
-    
 
 }
 
@@ -217,7 +215,7 @@ extension NewsHomeViewController: SkeletonTableViewDataSource {
         }
         
         if element.time?.isEmpty == false {
-            cell.timeLabel.text = LCZUpdateTimeToCurrennTime(timeStamp: LCZTimeToTimeStamp(time: element.time!))
+            cell.timeLabel.text = LCZPublicHelper.shared.getUpdateTimeToCurrennTime(timeStamp: LCZPublicHelper.shared.getTimeToTimeStamp(time: element.time!))
         } else {
             cell.timeLabel.text = ""
         }

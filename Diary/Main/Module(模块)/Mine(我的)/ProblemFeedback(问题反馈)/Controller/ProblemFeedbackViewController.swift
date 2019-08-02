@@ -15,7 +15,7 @@ MFMailComposeViewControllerDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "问题反馈"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: LCZHexadecimalColor(hexadecimal: AppTitleColor)]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppTitleColor)]
         
         //首先要判断设备具不具备发送邮件功能
         if MFMailComposeViewController.canSendMail(){

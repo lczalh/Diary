@@ -21,7 +21,8 @@ class MineEntranceViewController: DiaryBaseViewController {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isTranslucent = true
         //设置导航栏背景透明
-        self.navigationController!.LCZSetNavigationBarTransparency()
+        LCZPublicHelper.shared.setNavigationBarTransparency(navigationController: self.navigationController!)
+        
         
     }
     
@@ -30,7 +31,7 @@ class MineEntranceViewController: DiaryBaseViewController {
         super.viewWillDisappear(animated)
         self.navigationController?.navigationBar.isTranslucent = false
         //重置导航栏背景
-        self.navigationController!.LCZRestoreTheTransparentNavigationBar()
+        LCZPublicHelper.shared.setRestoreTheTransparentNavigationBar(navigationController: self.navigationController!)
     }
     
     lazy var mineEntranceView: MineEntranceView = {
@@ -50,7 +51,7 @@ class MineEntranceViewController: DiaryBaseViewController {
         
         // 返回
         let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        backBarButtonItem.tintColor = LCZHexadecimalColor(hexadecimal: AppContentColor)
+        backBarButtonItem.tintColor = LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppContentColor)
         self.navigationItem.backBarButtonItem = backBarButtonItem
         
         // 设置
@@ -89,7 +90,19 @@ extension MineEntranceViewController: UITableViewDataSource {
         let title = self.mineEntranceViewModel.cellTitles[indexPath.section][indexPath.row]
         
         if title == "问题反馈" {
-            LCZPublicHelper.shared.setSendEmail(recipients: AppEmail)
+            LCZPublicHelper.shared.setSendEmail(recipients: AppEmail, result: { controller, result in
+                controller.dismiss(animated: true, completion: nil)
+                switch result{
+                case .sent:
+                    LCZProgressHUD.showSuccess(title: "邮件发送成功")
+                case .cancelled:
+                    LCZProgressHUD.showSuccess(title: "邮件取消成功")
+                case .saved:
+                    LCZProgressHUD.showSuccess(title: "邮件保存成功")
+                case .failed:
+                    LCZProgressHUD.showError(title: "邮件发送失败")
+                }
+            })
         } else if title == "去评分" {
             LCZPublicHelper.shared.setAppStoreScore(appId: AppStoreId)
         } else if title == "关于我们" {
@@ -106,10 +119,10 @@ extension MineEntranceViewController: UITableViewDataSource {
 extension MineEntranceViewController: UITableViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
-        if (offsetY < -(200 + LCZNaviBarHeight + LCZStatusBarHeight) ) {
+        if (offsetY < -(200 + LCZPublicHelper.shared.getNavigationHeight! + LCZPublicHelper.shared.getstatusBarHeight!) ) {
             var frame = self.mineEntranceView.headerImageView.frame
-            frame.size.height =  -(offsetY + LCZNaviBarHeight + LCZStatusBarHeight) ;
-            frame.origin.y = offsetY + LCZNaviBarHeight + LCZStatusBarHeight;
+            frame.size.height =  -(offsetY + LCZPublicHelper.shared.getNavigationHeight! + LCZPublicHelper.shared.getstatusBarHeight!) ;
+            frame.origin.y = offsetY + LCZPublicHelper.shared.getNavigationHeight! + LCZPublicHelper.shared.getstatusBarHeight!;
             self.mineEntranceView.headerImageView.frame = frame;
         }
     }

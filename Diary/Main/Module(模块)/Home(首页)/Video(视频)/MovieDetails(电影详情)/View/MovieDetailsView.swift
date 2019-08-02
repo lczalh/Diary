@@ -38,7 +38,7 @@ class MovieDetailsView: DiaryBaseView {
         controlView = ZFPlayerControlView()
         controlView.fastViewAnimated = true
         
-        playerView = UIImageView(frame: CGRect(x: 0, y: LCZStatusBarHeight, width: LCZWidth, height: 215 * LCZSizeScale))
+        playerView = UIImageView(frame: CGRect(x: 0, y: LCZPublicHelper.shared.getstatusBarHeight!, width: LCZPublicHelper.shared.getScreenWidth!, height: 215 * LCZPublicHelper.shared.getScreenSizeScale))
         playerView.contentMode = .scaleAspectFill
         playerView.clipsToBounds = true
         self.addSubview(playerView)
@@ -60,10 +60,10 @@ class MovieDetailsView: DiaryBaseView {
     
     // MARK: - 集合视图
     private func createTableView() {
-        marqueeLabel = LCZMarqueeLabel.init(location: CGPoint(x: 0, y: self.playerView.frame.height + LCZStatusBarHeight), text: "本站视频采集自网络，视频滚动水印广告请勿相信，谨防上当受骗。特此告知！！！")
+        marqueeLabel = LCZMarqueeLabel.init(location: CGPoint(x: 0, y: self.playerView.frame.height + LCZPublicHelper.shared.getstatusBarHeight!), text: "本站视频采集自网络，视频滚动水印广告请勿相信，谨防上当受骗。特此告知！！！")
         self.addSubview(marqueeLabel)
-        marqueeLabel.textColor = LCZHexadecimalColor(hexadecimal: AppTitleColor)
-        tableView = UITableView(frame: CGRect(x: 0, y: self.playerView.frame.height + LCZStatusBarHeight + marqueeLabel.frame.height, width: LCZWidth, height: LCZHeight - self.playerView.frame.height - LCZStatusBarHeight), style: .grouped)
+        marqueeLabel.textColor = LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppTitleColor)
+        tableView = UITableView(frame: CGRect(x: 0, y: self.playerView.frame.height + LCZPublicHelper.shared.getstatusBarHeight! + marqueeLabel.frame.height, width: LCZPublicHelper.shared.getScreenWidth!, height: LCZPublicHelper.shared.getScreenHeight! - self.playerView.frame.height - LCZPublicHelper.shared.getstatusBarHeight!), style: .grouped)
         self.addSubview(tableView)
         tableView.register(SynopsisCell.self, forCellReuseIdentifier: "SynopsisCell")
         tableView.register(EpisodeCell.self, forCellReuseIdentifier: "EpisodeCell")
@@ -71,7 +71,7 @@ class MovieDetailsView: DiaryBaseView {
         tableView.separatorStyle = .none
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 60
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: LCZSafeAreaBottomHeight, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: LCZPublicHelper.shared.getSafeAreaBottomHeight, right: 0)
         
     }
 }

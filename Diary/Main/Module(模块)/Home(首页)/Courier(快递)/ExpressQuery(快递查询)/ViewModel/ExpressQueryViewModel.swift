@@ -13,7 +13,7 @@ class ExpressQueryViewModel {
     private let fileManger = FileManager.default
     
     // 历史查询记录路径
-    public let historyQueryPlist = LCZDocumentPath! + "/historyQuery.plist"
+    public let historyQueryPlist = LCZPublicHelper.shared.getDocumentPath + "/historyQuery.plist"
     
     /// 查询快递物流信息
     ///

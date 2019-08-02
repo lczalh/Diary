@@ -15,7 +15,8 @@ class DiaryBaseNavigationController: UINavigationController {
         // 禁用侧滑返回
         self.interactivePopGestureRecognizer?.isEnabled = false
         // 修改导航标题颜色
-        self.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: LCZHexadecimalColor(hexadecimal: AppTitleColor)]
+        self.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppTitleColor)]
+        self.delegate = self
     }
     
 
@@ -29,4 +30,22 @@ class DiaryBaseNavigationController: UINavigationController {
     }
     */
 
+}
+
+extension DiaryBaseNavigationController: UINavigationControllerDelegate {
+  
+//    func navigationController(_ navigationController: UINavigationController, interactionControllerFor animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+//
+//    }
+    
+    
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        if operation == .pop {
+            return DiaryPopAnimation()
+        } else if operation == .push {
+            
+        }
+        return nil
+    }
+    
 }

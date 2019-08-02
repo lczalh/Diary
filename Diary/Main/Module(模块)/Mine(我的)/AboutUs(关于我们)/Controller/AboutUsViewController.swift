@@ -18,7 +18,7 @@ class AboutUsViewController: DiaryBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "关于我们"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: LCZHexadecimalColor(hexadecimal: AppTitleColor)]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppTitleColor)]
         self.view.addSubview(aboutUsView)
     }
     

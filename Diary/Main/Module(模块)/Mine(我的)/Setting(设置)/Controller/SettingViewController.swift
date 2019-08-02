@@ -20,14 +20,14 @@ class SettingViewController: DiaryBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "设置"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: LCZHexadecimalColor(hexadecimal: AppTitleColor)]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppTitleColor)]
         self.view.addSubview(settingView)
         
         // MARK: - 退出登陆事件
         self.settingView.loggedOutButton.rx.tap.subscribe(onNext: { () in
             DispatchQueue.main.async(execute: {
-                LCZUserDefaults.removeObject(forKey: "account")
-                LCZUserDefaults.removeObject(forKey: "password")
+                UserDefaults.standard.removeObject(forKey: "account")
+                UserDefaults.standard.removeObject(forKey: "password")
                 LCZProgressHUD.showSuccess(title: "退出成功！")
                 UIApplication.shared.delegate?.window??.rootViewController = UINavigationController(rootViewController: LoginViewController())
             })

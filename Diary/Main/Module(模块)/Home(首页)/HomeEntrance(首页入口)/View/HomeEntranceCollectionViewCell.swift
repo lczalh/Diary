@@ -22,7 +22,7 @@ class HomeEntranceCollectionViewCell: DiaryBaseCollectionViewCell {
         self.logoImageView.snp.makeConstraints { (make) in
             make.left.equalToSuperview().offset(15)
             make.right.equalToSuperview().offset(-15)
-            make.height.width.equalTo(40 * LCZSizeScale)
+            make.height.width.equalTo(40 * LCZPublicHelper.shared.getScreenSizeScale)
         }
         self.logoImageView.contentMode = .scaleAspectFit
         
@@ -32,7 +32,7 @@ class HomeEntranceCollectionViewCell: DiaryBaseCollectionViewCell {
             make.centerX.bottom.equalToSuperview()
             make.height.equalTo(30)
         }
-        titleLabel.font = LCZFontSize(size: 14)
-        titleLabel.textColor = LCZHexadecimalColor(hexadecimal: AppContentColor)
+        titleLabel.font = LCZPublicHelper.shared.getConventionFont(size: 14)
+        titleLabel.textColor = LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppContentColor)
     }
 }

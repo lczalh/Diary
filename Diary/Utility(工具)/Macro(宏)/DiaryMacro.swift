@@ -16,11 +16,11 @@ public let highSpeedDataAppKey = "62c2edc337648910"
 
 /// 校验用户
 public func diaryApple() -> Bool {
-    let account = LCZUserDefaults.object(forKey: "account") as? String
+    let account = UserDefaults.standard.object(forKey: "account") as? String
     if account?.isEmpty == true || account == nil {
         return true
     } else {
-        if LCZUserDefaults.object(forKey: "account") as! String == AppAccount && LCZUserDefaults.object(forKey: "password") as! String == AppPassword {
+        if UserDefaults.standard.object(forKey: "account") as! String == AppAccount && UserDefaults.standard.object(forKey: "password") as! String == AppPassword {
             return true
         } else {
             return false

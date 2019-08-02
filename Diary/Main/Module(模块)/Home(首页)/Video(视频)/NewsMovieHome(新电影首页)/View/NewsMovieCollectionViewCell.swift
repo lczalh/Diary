@@ -23,7 +23,7 @@ class NewsMovieCollectionViewCell: DiaryBaseCollectionViewCell {
         self.contentView.addSubview(imageView)
         imageView.snp.makeConstraints { (make) in
             make.left.right.top.equalToSuperview()
-            make.height.equalTo(120 * LCZSizeScale)
+            make.height.equalTo(120 * LCZPublicHelper.shared.getScreenSizeScale)
         }
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
@@ -38,8 +38,8 @@ class NewsMovieCollectionViewCell: DiaryBaseCollectionViewCell {
             make.height.equalTo(30)
         }
         titleLabel.textAlignment = .center
-        titleLabel.font = LCZFontSize(size: 14)
-        titleLabel.textColor = LCZHexadecimalColor(hexadecimal: AppContentColor)
+        titleLabel.font = LCZPublicHelper.shared.getConventionFont(size: 14)
+        titleLabel.textColor = LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppContentColor)
         titleLabel.isSkeletonable = true
     }
 }

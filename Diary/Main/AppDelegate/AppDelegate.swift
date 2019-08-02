@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         // 全局修改TabBarItem 选中的文字颜色
         UITabBarItem.appearance().setTitleTextAttributes(
-            [NSAttributedString.Key.foregroundColor: LCZHexadecimalColor(hexadecimal: AppContentColor)], for: .selected)
+            [NSAttributedString.Key.foregroundColor: LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppContentColor)], for: .selected)
         // 控制整个功能是否启用
         IQKeyboardManager.shared.enable = true
         // 控制点击背景是否收起键盘
@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.rootViewController = DiaryBaseNavigationController(rootViewController: LoginViewController())
         }) {
             // 判断用户是否登陆
-            if (LCZUserDefaults.object(forKey: "account") != nil) && (LCZUserDefaults.object(forKey: "password") != nil) { // 首页
+            if (UserDefaults.standard.object(forKey: "account") != nil) && (UserDefaults.standard.object(forKey: "password") != nil) { // 首页
                 self.window?.rootViewController = MainTabBarController()
             } else { // 登陆
                 self.window?.rootViewController = DiaryBaseNavigationController(rootViewController: LoginViewController())

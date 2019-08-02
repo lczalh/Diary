@@ -23,7 +23,13 @@ class NewsDetailsViewController: DiaryBaseViewController {
         let shareBarButton = UIBarButtonItem(image: UIImage(named: "fenxiang")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: nil)
         self.navigationItem.rightBarButtonItem = shareBarButton
         shareBarButton.rx.tap.subscribe(onNext: { () in
-            LCZPublicHelper.shared.setNativeShare(title: self.model?.title, image: self.model?.pic, url: self.model!.url)
+            LCZPublicHelper.shared.setNativeShare(title: self.model?.title, image: self.model?.pic, url: self.model!.url, result: { completed in
+                if completed == true {
+                    LCZProgressHUD.showSuccess(title: "分享成功")
+                } else {
+                    LCZProgressHUD.showError(title: "分享失败")
+                }
+            })
         }).disposed(by: rx.disposeBag)
         
         self.parentView = NewsDetailsView(frame: self.view.bounds)
@@ -35,14 +41,14 @@ class NewsDetailsViewController: DiaryBaseViewController {
         
         // 收藏按钮
         let enshrineButton = UIButton(type: .custom)
-        LCZGetLastWindow()?.addSubview(enshrineButton)
+        LCZPublicHelper.shared.getLastWindow()!.addSubview(enshrineButton)
         self.view.addSubview(enshrineButton)
         enshrineButton.setImage(UIImage(named: "shoucanghui")?.withRenderingMode(.alwaysOriginal), for: .normal)
         enshrineButton.setImage(UIImage(named: "shoucang")?.withRenderingMode(.alwaysOriginal), for: .selected)
         enshrineButton.backgroundColor = UIColor.white
         enshrineButton.snp.makeConstraints { (make) in
             make.right.equalToSuperview().offset(-5)
-            make.bottom.equalToSuperview().offset(-(LCZSafeAreaBottomHeight + 20))
+            make.bottom.equalToSuperview().offset(-(LCZPublicHelper.shared.getSafeAreaBottomHeight + 20))
             make.size.equalTo(50)
         }
         enshrineButton.layoutIfNeeded()
@@ -98,6 +104,6 @@ class NewsDetailsViewController: DiaryBaseViewController {
         }).disposed(by: rx.disposeBag)
     }
     
-    
+   
 
 }

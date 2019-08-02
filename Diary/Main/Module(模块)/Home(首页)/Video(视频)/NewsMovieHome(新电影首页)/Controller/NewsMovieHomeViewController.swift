@@ -46,7 +46,7 @@ class NewsMovieHomeViewController: DiaryBaseViewController {
         super.viewDidLoad()
 
         let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        backBarButtonItem.tintColor = LCZHexadecimalColor(hexadecimal: AppContentColor)
+        backBarButtonItem.tintColor = LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppContentColor)
         
         // 返回按钮
         let returnBarButtonItem = UIBarButtonItem(image: UIImage(named: "zuojiantou")?.withRenderingMode(.alwaysOriginal), style: .plain, target: nil, action: nil)
@@ -164,7 +164,7 @@ class NewsMovieHomeViewController: DiaryBaseViewController {
                     self.newsMovieHomeContentView.collectionView.reloadData()
                     self.view.hideSkeleton()
                     // 刷新轮播图
-                    let shufflingFigureHeaderView = self.newsMovieHomeContentView.LCZGetSubViews(subView: NewsMovieHomeShufflingFigureCollectionHeaderView.self)
+                    let shufflingFigureHeaderView = LCZPublicHelper.shared.getSubView(currentView: self.newsMovieHomeContentView, seekSubView: NewsMovieHomeShufflingFigureCollectionHeaderView.self)
                     shufflingFigureHeaderView!.shufflingFigureView.fsPagerView.reloadData()
                 })
             }
@@ -260,9 +260,9 @@ extension NewsMovieHomeViewController: SkeletonCollectionViewDataSource {
 extension NewsMovieHomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         if section == 0 {
-            return CGSize(width: LCZWidth, height: 220 * LCZSizeScale)
+            return CGSize(width: LCZPublicHelper.shared.getScreenWidth!, height: 220 * LCZPublicHelper.shared.getScreenSizeScale)
         } else {
-            return CGSize(width: LCZWidth, height: 30 * LCZSizeScale)
+            return CGSize(width: LCZPublicHelper.shared.getScreenWidth!, height: 30 * LCZPublicHelper.shared.getScreenSizeScale)
         }
     }
 }

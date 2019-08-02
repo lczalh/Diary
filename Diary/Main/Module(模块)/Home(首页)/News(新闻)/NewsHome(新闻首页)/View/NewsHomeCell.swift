@@ -31,7 +31,7 @@ class NewsHomeCell: DiaryBaseTableViewCell {
         // 图片
         self.newsImageView = UIImageView()
         self.contentView.addSubview(self.newsImageView)
-        self.newsImageView.frame = CGRect(x: LCZWidth - 125, y: 10, width: 120, height: 90 * LCZSizeScale)
+        self.newsImageView.frame = CGRect(x: LCZPublicHelper.shared.getScreenWidth! - 125, y: 10, width: 120, height: 90 * LCZPublicHelper.shared.getScreenSizeScale)
         // 切圆角
         let path = UIBezierPath(roundedRect: self.newsImageView.bounds, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: 5, height: 5))
         let maskLayer = CAShapeLayer()
@@ -49,7 +49,7 @@ class NewsHomeCell: DiaryBaseTableViewCell {
             make.right.equalTo(self.newsImageView.snp.left).offset(-10)
         }
         self.titleLabel.numberOfLines = 0
-        self.titleLabel.font = LCZBoldFontSize(size: 16)
+        self.titleLabel.font = LCZPublicHelper.shared.getBoldFont(size: 16)
         self.titleLabel.isSkeletonable = true
         self.titleLabel.text = "letao"
         
@@ -60,7 +60,7 @@ class NewsHomeCell: DiaryBaseTableViewCell {
             make.left.equalToSuperview().offset(15)
             make.bottom.equalTo(self.newsImageView.snp.bottom)
         }
-        self.timeLabel.font = LCZFontSize(size: 12)
+        self.timeLabel.font = LCZPublicHelper.shared.getConventionFont(size: 12)
         self.timeLabel.isSkeletonable = true
         self.timeLabel.text = "2020"
         
@@ -73,7 +73,7 @@ class NewsHomeCell: DiaryBaseTableViewCell {
             make.width.equalTo(60)
             make.height.equalTo(25)
         }
-        self.sourceLabel.font = LCZFontSize(size: 12)
+        self.sourceLabel.font = LCZPublicHelper.shared.getConventionFont(size: 12)
         self.sourceLabel.isSkeletonable = true
         self.sourceLabel.textAlignment = .right
         
@@ -86,7 +86,7 @@ class NewsHomeCell: DiaryBaseTableViewCell {
             make.bottom.equalToSuperview()
             make.height.equalTo(1)
         }
-        self.lineView.backgroundColor = LCZRgbColor(238, 238, 238, 1)
+        self.lineView.backgroundColor = LCZPublicHelper.shared.getRgbColor(238, 238, 238, 1)
         self.lineView.isSkeletonable = true
     }
     

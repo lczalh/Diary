@@ -19,7 +19,7 @@ class CopyrightStatementView: DiaryBaseView {
     override func configUI() {
         
         // 滚动视图
-        scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: LCZWidth, height: LCZHeight - LCZNaviBarHeight - LCZStatusBarHeight))
+        scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: LCZPublicHelper.shared.getScreenWidth!, height: LCZPublicHelper.shared.getScreenHeight! - LCZPublicHelper.shared.getNavigationHeight! - LCZPublicHelper.shared.getstatusBarHeight!))
         self.addSubview(scrollView)
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
@@ -31,7 +31,7 @@ class CopyrightStatementView: DiaryBaseView {
             make.left.equalTo(self).offset(15)
             make.right.equalTo(self).offset(-15)
         }
-        contentLabel.font = LCZFontSize(size: 14)
+        contentLabel.font = LCZPublicHelper.shared.getConventionFont(size: 14)
         contentLabel.numberOfLines = 0
         contentLabel.lineBreakMode = .byCharWrapping
         

@@ -19,7 +19,6 @@ class SearchMovieNetworkService {
                     LCZProgressHUD.showError(title: result.msg)
                 }
             }) { (error) in
-                LCZPrint(error)
                 single(.error(error))
             }
             return Disposables.create([request])

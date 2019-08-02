@@ -21,15 +21,15 @@ class MoreMoviesView: DiaryBaseView {
     private func createCollectionView() {
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
-        layout.itemSize = CGSize(width: (LCZWidth - 30) / 3 , height: 180 * LCZSizeScale)
+        layout.itemSize = CGSize(width: (LCZPublicHelper.shared.getScreenWidth! - 30) / 3 , height: 180 * LCZPublicHelper.shared.getScreenSizeScale)
         layout.minimumInteritemSpacing = 5
         layout.minimumLineSpacing = 5
         collectionView = UICollectionView(frame: self.bounds, collectionViewLayout: layout)
         self.addSubview(collectionView)
         collectionView.isSkeletonable = true
-        collectionView.backgroundColor = LCZRgbColor(238, 238, 238, 1)
+        collectionView.backgroundColor = LCZPublicHelper.shared.getRgbColor(238, 238, 238, 1)
         collectionView.register(MovieHomeCell.self, forCellWithReuseIdentifier: "MovieHomeCell")
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: LCZSafeAreaBottomHeight, right: 0)
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: LCZPublicHelper.shared.getSafeAreaBottomHeight, right: 0)
         collectionView.lcz_isUseComponent = true
     }
 }

@@ -25,9 +25,9 @@ class AboutUsView: DiaryBaseView {
             make.centerX.equalToSuperview()
             make.top.equalTo(logoImageView.snp.bottom).offset(5)
         }
-        appNameLabel.font = LCZBoldFontSize(size: 18)
-        appNameLabel.text = LCZAppName
-        appNameLabel.textColor = LCZHexadecimalColor(hexadecimal: AppContentColor)
+        appNameLabel.font = LCZPublicHelper.shared.getBoldFont(size: 18)
+        appNameLabel.text = LCZPublicHelper.shared.getAppName
+        appNameLabel.textColor = LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppContentColor)
         
         let explainLabel = UILabel()
         self.addSubview(explainLabel)
@@ -35,18 +35,18 @@ class AboutUsView: DiaryBaseView {
             make.centerX.equalToSuperview()
             make.top.equalTo(appNameLabel.snp.bottom).offset(5)
         }
-        explainLabel.font = LCZFontSize(size: 14)
-        explainLabel.textColor = LCZHexadecimalColor(hexadecimal: "#bfbfbf")
-        explainLabel.text = "\(LCZAppName)，精彩不容错过"
+        explainLabel.font = LCZPublicHelper.shared.getConventionFont(size: 14)
+        explainLabel.textColor = LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: "#bfbfbf")
+        explainLabel.text = "\(LCZPublicHelper.shared.getAppName)，精彩不容错过"
         
         let versionLabel = UILabel()
         self.addSubview(versionLabel)
-        versionLabel.font = LCZFontSize(size: 14)
-        versionLabel.text = "当前版本 \(LCZVersion!)"
+        versionLabel.font = LCZPublicHelper.shared.getConventionFont(size: 14)
+        versionLabel.text = "当前版本 \(LCZPublicHelper.shared.getAppVersionNumber!)"
         versionLabel.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
             make.top.equalTo(explainLabel.snp.bottom).offset(5)
         }
-        versionLabel.textColor = LCZHexadecimalColor(hexadecimal: "#bfbfbf")
+        versionLabel.textColor = LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: "#bfbfbf")
     }
 }

@@ -10,7 +10,18 @@ import UIKit
 import MessageUI
 import Social
 
+/// 邮件数据闭包
+typealias sendEmail = (_ controller: MFMailComposeViewController, _ result: MFMailComposeResult) -> Void
+
+/// 系统分享是否成功闭包
+typealias nativeShare = (_ completed: Bool) -> Void
+
 class LCZPublicHelper: NSObject {
+    
+    /// 地址key
+    private struct AssociatedKeys {
+        static var sendEmailKey = "LCZPublicHelper.setSendEmail" // 邮件
+    }
     
     /// 单利
     static let shared = LCZPublicHelper()
@@ -123,13 +134,14 @@ class LCZPublicHelper: NSObject {
     /// 调用系统发送邮件功能
     ///
     /// - Parameter recipients: 收件人
-    @objc public func setSendEmail(recipients: String) {
-        //首先要判断设备具不具备发送邮件功能
+    @objc public func setSendEmail(recipients: String, result: @escaping sendEmail) {
+        objc_setAssociatedObject(self, &AssociatedKeys.sendEmailKey, result, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        // 首先要判断设备具不具备发送邮件功能
         if MFMailComposeViewController.canSendMail(){
             let controller = MFMailComposeViewController()
-            //设置代理
+            // 设置代理
             controller.mailComposeDelegate = self
-            //设置收件人
+            // 设置收件人
             controller.setToRecipients([recipients])
             
             DispatchQueue.main.async {
@@ -146,7 +158,7 @@ class LCZPublicHelper: NSObject {
     ///   - title: 标题
     ///   - image: 图片
     ///   - url: 链接地址
-    public func setNativeShare(title: String?, image: String?, url: String?) {
+    public func setNativeShare(title: String?, image: String?, url: String?, result: @escaping nativeShare) {
         var items: Array<Any> = []
         if (title == nil && image == nil && url == nil) {
             LCZProgressHUD.showError(title: "分享的数据为空")
@@ -164,11 +176,7 @@ class LCZPublicHelper: NSObject {
         let controller = UIActivityViewController(activityItems: items, applicationActivities: nil)
         
         controller.completionWithItemsHandler = { activityType, completed, returnedItems, activityError in
-            if completed == true {
-                LCZProgressHUD.showSuccess(title: "分享成功")
-            } else {
-                LCZProgressHUD.showError(title: "分享失败")
-            }
+            result(completed)
         }
         DispatchQueue.main.async {
             self.getTopsideController()!.present(controller, animated: true, completion: nil)
@@ -321,17 +329,16 @@ class LCZPublicHelper: NSObject {
     public func getTopsideController(viewController: UIViewController = (UIApplication.shared.delegate?.window?!.rootViewController)!) -> UIViewController? {
         if viewController.isKind(of: UINavigationController.self) {
             let navigationController = viewController as! UINavigationController
-            return LCZGetTopsideController(viewController: navigationController.visibleViewController!)
+            return self.getTopsideController(viewController: navigationController.visibleViewController!)
         } else if (viewController.isKind(of: UITabBarController.self)) {
             let tabBarController = viewController as! UITabBarController
-            return LCZGetTopsideController(viewController: tabBarController.selectedViewController!)
+            return self.getTopsideController(viewController: tabBarController.selectedViewController!)
         } else if viewController.presentedViewController != nil {
-            return LCZGetTopsideController(viewController: viewController.presentedViewController!)
+            return self.getTopsideController(viewController: viewController.presentedViewController!)
         } else {
             return viewController
         }
     }
-    
     
     /// 通过字符串获取字符串大小
     ///
@@ -360,7 +367,7 @@ class LCZPublicHelper: NSObject {
     }
     
     /// 将透明导航条还原 须在viewWillDisappear调用
-    public func restoreTheTransparentNavigationBar(navigationController: UINavigationController) {
+    public func setRestoreTheTransparentNavigationBar(navigationController: UINavigationController) {
         navigationController.navigationBar.setBackgroundImage(nil, for: .default)
         navigationController.navigationBar.shadowImage = nil
     }
@@ -420,6 +427,57 @@ class LCZPublicHelper: NSObject {
         return nil
     }
     
+    /// 获取常规字体
+    ///
+    /// - Parameter size: 字体大小
+    /// - Returns: UIFont
+    public func getConventionFont(size : CGFloat) -> UIFont {
+        return UIFont.systemFont(ofSize: self.getScreenSizeScale * size)
+    }
+    
+    /// 获取加粗字体
+    ///
+    /// - Parameter size: 大小
+    /// - Returns: UIFont
+    public func getBoldFont(size : CGFloat) -> UIFont {
+        return UIFont.boldSystemFont(ofSize: self.getScreenSizeScale * size)
+    }
+    
+    
+    /// push方式 返回指定控制器
+    ///
+    /// - Parameters:
+    ///   - currentViewController: 当前所在控制器
+    ///   - specifiedViewController: 待返回到的控制器类型
+    /// - Returns: 待返回到的控制器对象
+    public func pushBackToTheSpecifiedController<T: UIViewController>(currentViewController: UIViewController, specifiedViewController: T.Type) -> T? {
+        for vc in (currentViewController.navigationController?.viewControllers.reversed())! {
+            if vc.isKind(of: T.self) {
+                currentViewController.navigationController?.popToViewController(vc, animated: true)
+                return (vc as! T)
+            }
+        }
+        return nil
+    }
+    
+    /// present方式 返回指定控制权
+    ///
+    /// - Parameters:
+    ///   - currentViewController: 当前所在控制器
+    ///   - specifiedViewController: 待返回到的控制器类型
+    /// - Returns: 待返回到的控制器对象
+    public func presentBackToTheSpecifiedController<T: UIViewController>(currentViewController: UIViewController, specifiedViewController: T.Type) -> T? {
+        var vc = currentViewController.presentingViewController
+        repeat {
+            vc = vc?.presentingViewController
+        } while(vc?.presentingViewController != nil)
+        
+        if (vc != nil) {
+            return (vc as! T)
+        } else {
+            return nil
+        }
+    }
 }
 
 
@@ -428,16 +486,7 @@ extension LCZPublicHelper: MFMailComposeViewControllerDelegate {
     //发送邮件代理方法
     func mailComposeController(_ controller: MFMailComposeViewController,
                                didFinishWith result: MFMailComposeResult, error: Error?) {
-        controller.dismiss(animated: true, completion: nil)
-        switch result{
-        case .sent:
-            LCZProgressHUD.showSuccess(title: "邮件发送成功")
-        case .cancelled:
-            LCZProgressHUD.showSuccess(title: "邮件取消成功")
-        case .saved:
-            LCZProgressHUD.showSuccess(title: "邮件保存成功")
-        case .failed:
-            LCZProgressHUD.showError(title: "邮件发送失败")
-        }
+        let block = objc_getAssociatedObject(self, &AssociatedKeys.sendEmailKey) as! sendEmail
+        block(controller,result)
     }
 }

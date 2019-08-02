@@ -29,11 +29,8 @@ class LCZHomePage {
         // 文件管理器
         let fileManger = FileManager.default
         
-        // 获取沙盒 Document路径
-        let documentPath = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first
-        
         // 创建文件路径 用于记录版本号 此时沙盒中并没有plist文件  要写入plist文件在存在
-        let versionPlist = documentPath! + "/version.plist"
+        let versionPlist = LCZPublicHelper.shared.getDocumentPath + "/version.plist"
         
         // 判断文件是否存在
         if fileManger.fileExists(atPath: versionPlist) == true {//存在
@@ -43,9 +40,9 @@ class LCZHomePage {
         }
         
         // 判断是否第一次启动
-        if currentVersion != LCZVersion { // 进入引导页
+        if currentVersion != LCZPublicHelper.shared.getAppVersionNumber { // 进入引导页
             // 把版本号存入字典
-            let dict = NSDictionary(dictionary: ["CFBundleShortVersionString":LCZVersion!])
+            let dict = NSDictionary(dictionary: ["CFBundleShortVersionString": LCZPublicHelper.shared.getAppVersionNumber!])
             // 把字典写入plist文件
             dict.write(toFile: versionPlist, atomically: true)
             guidePage()

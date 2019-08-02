@@ -43,7 +43,7 @@ class ExpressQueryResultsView: DiaryBaseView {
     }
     
     private func createTabelHeaderView() -> UIView {
-        let tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: LCZWidth, height: 200))
+        let tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: LCZPublicHelper.shared.getScreenWidth!, height: 200))
         
         let backView = UIView()
         tableHeaderView.addSubview(backView)
@@ -84,7 +84,7 @@ class ExpressQueryResultsView: DiaryBaseView {
             make.centerX.equalTo(logoImageView)
             make.top.equalTo(logoImageView.snp.bottom).offset(5)
         }
-        courierCompanyLeabel.font = LCZBoldFontSize(size: 18)
+        courierCompanyLeabel.font = LCZPublicHelper.shared.getBoldFont(size: 18)
         
         // 快递单号
         courieNumberLabel = UILabel()
@@ -93,8 +93,8 @@ class ExpressQueryResultsView: DiaryBaseView {
             make.centerX.equalTo(courierCompanyLeabel)
             make.top.equalTo(courierCompanyLeabel.snp.bottom).offset(5)
         }
-        courieNumberLabel.textColor = LCZRgbColor(161, 159, 161, 1)
-        courieNumberLabel.font = LCZFontSize(size: 14)
+        courieNumberLabel.textColor = LCZPublicHelper.shared.getRgbColor(161, 159, 161, 1)
+        courieNumberLabel.font = LCZPublicHelper.shared.getConventionFont(size: 14)
         
         // 虚线
         let dottedLineImageView = UIImageView()
@@ -111,7 +111,7 @@ class ExpressQueryResultsView: DiaryBaseView {
         context.setLineCap(CGLineCap.square)
         // 第一个是绘制的宽度，第二个表示跳过的宽度
         let lengths:[CGFloat] = [4,5]
-        context.setStrokeColor(LCZRgbColor(213, 212, 214, 1).cgColor)
+        context.setStrokeColor(LCZPublicHelper.shared.getRgbColor(213, 212, 214, 1).cgColor)
         context.setLineWidth(1)
         context.setLineDash(phase: 0, lengths: lengths)
         context.move(to: CGPoint(x: 5, y: 3))
@@ -128,14 +128,8 @@ class ExpressQueryResultsView: DiaryBaseView {
         })
         timeConsumingLabel.text = "耗时2天15小时"
         timeConsumingLabel.textColor = UIColor.black
-        timeConsumingLabel.font = LCZFontSize(size: 14)
+        timeConsumingLabel.font = LCZPublicHelper.shared.getConventionFont(size: 14)
 
-        
-  
-        
-        
-        
-        
         return tableHeaderView
         
     }

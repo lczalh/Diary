@@ -63,7 +63,7 @@ class ExpressQueryResultsTableViewCell: DiaryBaseTableViewCell {
         logisticsDetailsLabel.numberOfLines = 0
         logisticsDetailsLabel.lineBreakMode = .byCharWrapping
         logisticsDetailsLabel.textAlignment = .left
-        logisticsDetailsLabel.font = LCZFontSize(size: 14)
+        logisticsDetailsLabel.font = LCZPublicHelper.shared.getConventionFont(size: 14)
         
         timeLabel = UILabel()
         self.contentView.addSubview(timeLabel)
@@ -72,8 +72,8 @@ class ExpressQueryResultsTableViewCell: DiaryBaseTableViewCell {
             make.top.equalTo(logisticsDetailsLabel.snp.bottom).offset(5)
             make.bottom.equalToSuperview().offset(-15)
         }
-        timeLabel.font = LCZFontSize(size: 12)
-        timeLabel.textColor = LCZRgbColor(175, 173, 175, 1)
+        timeLabel.font = LCZPublicHelper.shared.getConventionFont(size: 12)
+        timeLabel.textColor = LCZPublicHelper.shared.getRgbColor(175, 173, 175, 1)
         self.timeLabel.setContentHuggingPriority(.required, for: .vertical)
         self.timeLabel.setContentCompressionResistancePriority(.required, for: .vertical)
         

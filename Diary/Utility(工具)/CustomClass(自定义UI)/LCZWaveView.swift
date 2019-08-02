@@ -19,9 +19,9 @@ class LCZWaveView: UIView {
     // 波浪移动速度
     var waveSpeed: CGFloat = 0.05
     // 真实波浪颜色
-    var realWaveColor: UIColor = LCZRgbColor(55, 153, 249,0.6)
+    var realWaveColor: UIColor = LCZPublicHelper.shared.getRgbColor(55, 153, 249,0.6)
     // 阴影波浪颜色
-    var maskWaveColor: UIColor = LCZRgbColor(55, 153, 249, 0.3)
+    var maskWaveColor: UIColor = LCZPublicHelper.shared.getRgbColor(55, 153, 249, 0.3)
     // 波浪位置（默认是在下方）
     var waveOnBottom = true
     // 波浪移动回调

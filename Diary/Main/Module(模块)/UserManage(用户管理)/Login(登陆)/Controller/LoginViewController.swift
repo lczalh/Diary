@@ -42,19 +42,18 @@ class LoginViewController: DiaryBaseViewController {
         super.viewDidLoad()
         // 返回
         let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        backBarButtonItem.tintColor = LCZHexadecimalColor(hexadecimal: AppContentColor)
+        backBarButtonItem.tintColor = LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppContentColor)
         self.navigationItem.backBarButtonItem = backBarButtonItem
         
         self.view.addSubview(loginView)
         
         let account = loginView.accountTextField.rx.text.orEmpty.map{ $0.count >= 6 && $0.count <= 18}.share(replay: 1)
         let password = loginView.passwordTextField.rx.text.orEmpty.map{ $0.count >= 6 && $0.count <= 18}.share(replay: 1)
-        
         // 监听账号密码输入框
         let zip = Observable.combineLatest(account, password) { $0 && $1 }
         zip.bind(to: self.loginView.loginButton.rx.isEnabled).disposed(by: rx.disposeBag)
         zip.subscribe(onNext: { (state) in
-                self.loginView.loginButton.backgroundColor = state == true ? LCZHexadecimalColor(hexadecimal: AppContentColor) : LCZRgbColor(239, 240, 244, 1)
+                self.loginView.loginButton.backgroundColor = state == true ? LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppContentColor) : LCZPublicHelper.shared.getRgbColor(239, 240, 244, 1)
             state == true ? self.loginView.loginButton.layer.pop_add(self.loginView.loginButtonAnimation, forKey: "loginButtonAnimation") : self.loginView.loginButton.layer.pop_removeAnimation(forKey: "loginButtonAnimation")
             }).disposed(by: rx.disposeBag)
      
@@ -66,8 +65,8 @@ class LoginViewController: DiaryBaseViewController {
                 LCZProgressHUD.show()
                 self.loginView.loginButton.isEnabled = true
                 // 将uid，token写入偏好设置
-                LCZUserDefaults.set(self.loginView.accountTextField.text!, forKey: "account")
-                LCZUserDefaults.set(self.loginView.passwordTextField.text!, forKey: "password")
+                UserDefaults.standard.set(self.loginView.accountTextField.text!, forKey: "account")
+                UserDefaults.standard.set(self.loginView.passwordTextField.text!, forKey: "password")
                 // 跳转到首页
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2, execute: {
                     LCZProgressHUD.showSuccess(title: "登陆成功！")
@@ -81,8 +80,8 @@ class LoginViewController: DiaryBaseViewController {
                 LCZProgressHUD.showSuccess(title: "登陆成功！")
                 self.loginView.loginButton.isEnabled = true
                 // 将uid，token写入偏好设置
-                LCZUserDefaults.set(self.loginView.accountTextField.text!, forKey: "account")
-                LCZUserDefaults.set(self.loginView.passwordTextField.text!, forKey: "password")
+                UserDefaults.standard.set(self.loginView.accountTextField.text!, forKey: "account")
+                UserDefaults.standard.set(self.loginView.passwordTextField.text!, forKey: "password")
                 // 跳转到首页
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5, execute: {
                     self.setMainTabBarToRootController()

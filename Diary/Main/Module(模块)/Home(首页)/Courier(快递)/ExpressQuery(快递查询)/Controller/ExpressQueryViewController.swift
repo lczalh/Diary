@@ -31,7 +31,7 @@ class ExpressQueryViewController: DiaryBaseViewController {
 
         // 下级控制器返回按钮
         let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        backBarButtonItem.tintColor = LCZHexadecimalColor(hexadecimal: AppContentColor)
+        backBarButtonItem.tintColor = LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppContentColor)
         self.navigationItem.backBarButtonItem = backBarButtonItem
         
         // 返回按钮
@@ -48,8 +48,8 @@ class ExpressQueryViewController: DiaryBaseViewController {
                         .throttle(0.5) //在主线程中操作，0.3秒内值若多次改变，取最后一次
                         .map{$0.count > 0}
                         .drive(onNext: { (state) in
-                            self.expressQueryView.inquireButton.backgroundColor = state == true ? LCZHexadecimalColor(hexadecimal: AppTitleColor) : LCZHexadecimalColor(hexadecimal: "#bfbfbf")
-                            self.expressQueryView.inquireButton.setTitleColor(state == true ? LCZHexadecimalColor(hexadecimal: AppContentColor) : UIColor.white, for: .normal)
+                            self.expressQueryView.inquireButton.backgroundColor = state == true ? LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppTitleColor) : LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: "#bfbfbf")
+                            self.expressQueryView.inquireButton.setTitleColor(state == true ? LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppContentColor) : UIColor.white, for: .normal)
                             self.expressQueryView.inquireButton.isEnabled = state
                         })
                         .disposed(by: rx.disposeBag)
@@ -160,7 +160,6 @@ extension ExpressQueryViewController: UITableViewDataSource {
             self.viewModel.storeHistoryQuery(text: self.expressQueryView.textField.text!)
             DispatchQueue.main.async(execute: {
                 self.expressQueryView.tableView.reloadData()
-               // self.navigationController?.hero.navigationAnimationType = .zoom
                 diaryRoute.push("diary://homeEntrance/courierEntrance/expressQueryResults" ,context: [model,self.commonExpressCompaniesModel])
             })
         }, onError: { (error) in
@@ -178,8 +177,8 @@ extension ExpressQueryViewController: UITableViewDelegate {
         titleLabel.snp.makeConstraints { (make) in
             make.left.centerY.equalToSuperview()
         }
-        titleLabel.font = LCZFontSize(size: 14)
-        titleLabel.textColor = LCZHexadecimalColor(hexadecimal: AppTitleColor)
+        titleLabel.font = LCZPublicHelper.shared.getConventionFont(size: 14)
+        titleLabel.textColor = LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppTitleColor)
         titleLabel.text = "历史查询"
         return headerView
     }

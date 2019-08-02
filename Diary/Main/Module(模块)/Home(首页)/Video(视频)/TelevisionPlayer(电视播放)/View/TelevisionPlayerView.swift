@@ -31,7 +31,7 @@ class TelevisionPlayerView: DiaryBaseView {
     }()
     
     override func configUI() {
-        playerController = ZFPlayerController(playerManager: playerManager, containerView: LCZGetLastWindow()!)
+        playerController = ZFPlayerController(playerManager: playerManager, containerView: LCZPublicHelper.shared.getLastWindow()!)
         playerController?.isWWANAutoPlay = true
         self.playerController?.controlView = self.controlView
         self.playerController?.orientationObserver.supportInterfaceOrientation = .landscape

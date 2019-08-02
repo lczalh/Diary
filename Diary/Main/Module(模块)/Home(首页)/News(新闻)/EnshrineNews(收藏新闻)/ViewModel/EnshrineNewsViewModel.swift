@@ -11,6 +11,6 @@ import Foundation
 class EnshrineNewsViewModel {
     
     // 存储收藏新闻数据
-    public let enshrineNewsPlist = LCZDocumentPath! + "/enshrineNews.plist"
+    public let enshrineNewsPlist = LCZPublicHelper.shared.getDocumentPath + "/enshrineNews.plist"
     
 }

@@ -58,19 +58,19 @@ class CommonlyExpressTableViewCell: DiaryBaseTableViewCell {
             make.left.equalTo(logoImageView.snp.right).offset(5)
             make.top.equalTo(logoImageView.snp.top)
         }
-        titleLabel.font = LCZBoldFontSize(size: 16)
-        titleLabel.textColor = LCZHexadecimalColor(hexadecimal: AppContentColor)
+        titleLabel.font = LCZPublicHelper.shared.getBoldFont(size: 16)
+        titleLabel.textColor = LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppContentColor)
         
         // 快递公司号码
         phoneNumber = UILabel()
         self.contentView.addSubview(phoneNumber)
-        phoneNumber.font = LCZFontSize(size: 14)
+        phoneNumber.font = LCZPublicHelper.shared.getConventionFont(size: 14)
         phoneNumber.snp.makeConstraints { (make) in
             make.left.equalTo(logoImageView.snp.right).offset(5)
             make.right.equalToSuperview().offset(-15)
             make.bottom.equalTo(logoImageView.snp.bottom)
         }
-        phoneNumber.textColor = LCZRgbColor(175, 173, 175, 1)
+        phoneNumber.textColor = LCZPublicHelper.shared.getRgbColor(175, 173, 175, 1)
         
         // 右图标
         rightImageView = UIImageView()

@@ -43,8 +43,8 @@ class ShufflingFigureView: UIView {
         fsPageControl.contentHorizontalAlignment = .right
         fsPagerView.contentMode = .scaleAspectFill
         //设置下标指示器颜色（选中状态和普通状态）
-        fsPageControl.setFillColor(LCZHexadecimalColor(hexadecimal: AppTitleColor), for: .normal)
-        fsPageControl.setFillColor(LCZHexadecimalColor(hexadecimal: AppContentColor), for: .selected)
+        fsPageControl.setFillColor(LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppTitleColor), for: .normal)
+        fsPageControl.setFillColor(LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppContentColor), for: .selected)
         // 随机轮播图样式
         let i = arc4random_uniform(9 - 0) + 0
         let type = shufflingFigureTransformerTypes[Int(i)]

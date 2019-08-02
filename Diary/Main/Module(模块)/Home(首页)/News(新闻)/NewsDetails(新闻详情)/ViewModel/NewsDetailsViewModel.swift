@@ -11,7 +11,7 @@ import Foundation
 class NewsDetailsViewModel {
     
     // 存储收藏新闻数据
-    public let enshrineNewsPlist = LCZDocumentPath! + "/enshrineNews.plist"
+    public let enshrineNewsPlist = LCZPublicHelper.shared.getDocumentPath + "/enshrineNews.plist"
 
     // 拼接html
     public func jointHtml(model: SpeedNewsListModel) -> String {
@@ -30,7 +30,7 @@ class NewsDetailsViewModel {
         <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
         <style>
         img {
-        width: \(270 * LCZSizeScale)px;
+        width: \(270 * LCZPublicHelper.shared.getScreenSizeScale)px;
         }
         </style>
         </script>

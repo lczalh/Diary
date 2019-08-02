@@ -20,7 +20,7 @@ class NewsMovieHomeContentView: DiaryBaseView {
     /// 创建CollectionView
     private func createCollectionView() {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: (LCZWidth - 2) / 2 , height: 150 * LCZSizeScale)
+        layout.itemSize = CGSize(width: (LCZPublicHelper.shared.getScreenWidth! - 2) / 2 , height: 150 * LCZPublicHelper.shared.getScreenSizeScale)
         layout.minimumInteritemSpacing = 2
         layout.minimumLineSpacing = 0
         collectionView = UICollectionView(frame: self.bounds, collectionViewLayout: layout)
@@ -28,10 +28,11 @@ class NewsMovieHomeContentView: DiaryBaseView {
         collectionView.register(NewsMovieHomeCollectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "NewsMovieHomeCollectionHeaderView")
         collectionView.register(NewsMovieHomeShufflingFigureCollectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "NewsMovieHomeShufflingFigureCollectionHeaderView")
         collectionView.register(NewsMovieCollectionViewCell.self, forCellWithReuseIdentifier: "NewsMovieCollectionViewCell")
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: LCZTabbarHeight + LCZSafeAreaBottomHeight + LCZStatusBarHeight + LCZNaviBarHeight, right: 0)
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: LCZPublicHelper.shared.getTabbarHeight! + LCZPublicHelper.shared.getSafeAreaBottomHeight + LCZPublicHelper.shared.getstatusBarHeight! + LCZPublicHelper.shared.getNavigationHeight!, right: 0)
         collectionView.backgroundColor = UIColor.clear
         collectionView.isSkeletonable = true
         collectionView.lcz_isUseComponent = true
+        
     }
 
 }

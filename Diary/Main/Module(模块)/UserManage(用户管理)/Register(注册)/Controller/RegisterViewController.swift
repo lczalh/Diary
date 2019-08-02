@@ -24,7 +24,7 @@ class RegisterViewController: DiaryBaseViewController {
         super.viewDidLoad()
         // 标题
         self.navigationItem.title = "用户注册"
-        self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: LCZHexadecimalColor(hexadecimal: AppTitleColor)]
+        self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppTitleColor)]
         
         self.view.addSubview(registerView)
         
@@ -37,7 +37,7 @@ class RegisterViewController: DiaryBaseViewController {
         
         email.bind(to: registerView.codeButton.rx.isEnabled).disposed(by: rx.disposeBag)
         email.subscribe(onNext: { (state) in
-            self.registerView.codeButton.backgroundColor = state && self.registerView.codeButton.isEnabled == true ? LCZHexadecimalColor(hexadecimal: AppContentColor) : LCZRgbColor(239, 240, 244, 1)
+            self.registerView.codeButton.backgroundColor = state && self.registerView.codeButton.isEnabled == true ? LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppContentColor) : LCZPublicHelper.shared.getRgbColor(239, 240, 244, 1)
         }).disposed(by: rx.disposeBag)
         // 发送验证码事件
         registerView.codeButton.rx.tap.subscribe(onNext: { () in
@@ -45,7 +45,7 @@ class RegisterViewController: DiaryBaseViewController {
             self.viewModel.sendVerificationCode(to: self.registerView.emailTextField.text!).subscribe(onSuccess: { (model) in
                 LCZProgressHUD.showSuccess(title: "获取验证码成功")
                 DispatchQueue.main.async(execute: {
-                    self.registerView.codeButton.backgroundColor = LCZRgbColor(239, 240, 244, 1)
+                    self.registerView.codeButton.backgroundColor = LCZPublicHelper.shared.getRgbColor(239, 240, 244, 1)
                     LCZTimingCounter.addVerifyCode("RegistrationVerificationCode")
                 })
             }, onError: { (error) in
@@ -62,7 +62,7 @@ class RegisterViewController: DiaryBaseViewController {
                                         if (notification.object! as! Int) == 0 {
                                             DispatchQueue.main.async(execute: {
                                                 self.registerView.codeButton.isEnabled = true
-                                                self.registerView.codeButton.backgroundColor = LCZHexadecimalColor(hexadecimal: AppContentColor)
+                                                self.registerView.codeButton.backgroundColor = LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppContentColor)
                                                 self.registerView.codeButton.setTitle("获取验证码", for: .normal)
                                             })
                                         }else {
@@ -77,7 +77,7 @@ class RegisterViewController: DiaryBaseViewController {
         let zip = Observable.combineLatest(account, password, confirmPassword, code) { $0 && $1 && $2 && $3 }
         zip.bind(to: self.registerView.registerButton.rx.isEnabled).disposed(by: rx.disposeBag)
         zip.subscribe(onNext: { (state) in
-                self.registerView.registerButton.backgroundColor = state == true ? LCZHexadecimalColor(hexadecimal: AppContentColor) : LCZRgbColor(239, 240, 244, 1)
+                self.registerView.registerButton.backgroundColor = state == true ? LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppContentColor) : LCZPublicHelper.shared.getRgbColor(239, 240, 244, 1)
             }).disposed(by: rx.disposeBag)
         
         // 注册响应

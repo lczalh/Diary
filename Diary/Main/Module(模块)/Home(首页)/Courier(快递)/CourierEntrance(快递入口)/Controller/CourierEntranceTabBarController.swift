@@ -40,7 +40,7 @@ class CourierEntranceTabBarController: DiaryBaseTabBarController {
                     self.commonlyExpressViewController.commonExpressCompaniesModel = models
                 }
             }, onError: { (error) in
-                LCZPrint(error)
+            
             }).disposed(by: rx.disposeBag)
         }
         

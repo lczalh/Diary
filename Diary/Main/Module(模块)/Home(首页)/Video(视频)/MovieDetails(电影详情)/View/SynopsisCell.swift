@@ -38,8 +38,8 @@ class SynopsisCell: DiaryBaseTableViewCell {
             make.left.equalToSuperview().offset(10)
             make.top.equalToSuperview().offset(10)
         }
-        directorLabel.font = LCZFontSize(size: 14)
-        directorLabel.textColor = LCZRgbColor(160, 160, 160, 1)
+        directorLabel.font = LCZPublicHelper.shared.getConventionFont(size: 14)
+        directorLabel.textColor = LCZPublicHelper.shared.getRgbColor(160, 160, 160, 1)
         directorLabel.setContentHuggingPriority(.required, for: .horizontal)
         directorLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
         
@@ -50,8 +50,8 @@ class SynopsisCell: DiaryBaseTableViewCell {
             make.top.equalTo(directorLabel)
             make.right.equalToSuperview().offset(-10)
         }
-        actorLabel.textColor = LCZRgbColor(160, 160, 160, 1)
-        actorLabel.font = LCZFontSize(size: 14)
+        actorLabel.textColor = LCZPublicHelper.shared.getRgbColor(160, 160, 160, 1)
+        actorLabel.font = LCZPublicHelper.shared.getConventionFont(size: 14)
         actorLabel.textAlignment = .left
         
         synopsisLabel = UILabel()
@@ -62,8 +62,8 @@ class SynopsisCell: DiaryBaseTableViewCell {
             make.right.equalToSuperview().offset(-10)
             make.bottom.equalToSuperview().offset(-10)
         }
-        synopsisLabel.textColor = LCZRgbColor(160, 160, 160, 1)
-        synopsisLabel.font = LCZFontSize(size: 14)
+        synopsisLabel.textColor = LCZPublicHelper.shared.getRgbColor(160, 160, 160, 1)
+        synopsisLabel.font = LCZPublicHelper.shared.getConventionFont(size: 14)
         synopsisLabel.textAlignment = .left
         synopsisLabel.numberOfLines = 0
     }

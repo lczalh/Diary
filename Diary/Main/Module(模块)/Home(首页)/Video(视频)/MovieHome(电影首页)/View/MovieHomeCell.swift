@@ -24,15 +24,15 @@ class MovieHomeCell: DiaryBaseCollectionViewCell {
         self.contentView.clipsToBounds = true
         
         self.contentView.addSubview(self.titleLabel)
-        self.titleLabel.font = LCZBoldFontSize(size: 16)
+        self.titleLabel.font = LCZPublicHelper.shared.getBoldFont(size: 16)
         self.titleLabel.snp.makeConstraints({ (make) in
             make.bottom.equalToSuperview().offset(-10)
             make.left.equalToSuperview().offset(10)
             make.right.equalToSuperview().offset(-10)
         })
         self.titleLabel.textAlignment = .center
-        self.titleLabel.font = LCZFontSize(size: 14)
-        self.titleLabel.textColor = LCZHexadecimalColor(hexadecimal: AppContentColor)
+        self.titleLabel.font = LCZPublicHelper.shared.getConventionFont(size: 14)
+        self.titleLabel.textColor = LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppContentColor)
         self.titleLabel.isSkeletonable = true
         self.titleLabel.text = "乐淘视界"
         

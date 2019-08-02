@@ -77,7 +77,7 @@ extension SearchNewsViewController: SkeletonTableViewDataSource {
         }
         
         if element.time?.isEmpty == false {
-            cell.timeLabel.text = LCZUpdateTimeToCurrennTime(timeStamp: LCZTimeToTimeStamp(time: element.time!))
+            cell.timeLabel.text = LCZPublicHelper.shared.getUpdateTimeToCurrennTime(timeStamp: LCZPublicHelper.shared.getTimeToTimeStamp(time: element.time!))
         } else {
             cell.timeLabel.text = ""
         }

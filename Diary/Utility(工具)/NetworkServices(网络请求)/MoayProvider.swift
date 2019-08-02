@@ -50,6 +50,6 @@ private let RequestHudPlugin = NetworkActivityPlugin { change, target  in
 /// - Parameter target: target description
 /// - Returns: return value description
 private func endpointMapping(target: MultiTarget) -> Endpoint {
-    LCZPrint(target.baseURL, target.path, target.task)
+    LCZPublicHelper.shared.setPrint(target.baseURL, target.path, target.task)
     return MoyaProvider.defaultEndpointMapping(for: target)
 }

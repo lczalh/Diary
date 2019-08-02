@@ -38,7 +38,7 @@ class MovieDetailsViewController: DiaryBaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         movieDetailsView.playerController.isViewControllerDisappear = false;
-        self.navigationController!.LCZSetNavigationBarTransparency()
+        LCZPublicHelper.shared.setNavigationBarTransparency(navigationController: self.navigationController!)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -47,7 +47,7 @@ class MovieDetailsViewController: DiaryBaseViewController {
         movieDetailsView.playerController.isViewControllerDisappear = true;
         //重置导航栏背景
         self.navigationController?.navigationBar.isTranslucent = false
-        self.navigationController!.LCZRestoreTheTransparentNavigationBar()
+        LCZPublicHelper.shared.setRestoreTheTransparentNavigationBar(navigationController: self.navigationController!)
     }
     
     // 是否支持屏幕旋转
@@ -224,9 +224,9 @@ extension MovieDetailsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
-            return 100 * LCZSizeScale
+            return 100 * LCZPublicHelper.shared.getScreenSizeScale
         } else {
-            return 50 * LCZSizeScale
+            return 50 * LCZPublicHelper.shared.getScreenSizeScale
         }
     }
     
@@ -282,7 +282,7 @@ extension MovieDetailsViewController: EpisodeCellDelegate {
         if self.selectionListStateArray[indexPath.row] == "0" { // 未播放
             selectorCell.episodeLabel.textColor = UIColor.black
         } else { // 播放中
-            selectorCell.episodeLabel.textColor = LCZRgbColor(34, 123, 255, 1)
+            selectorCell.episodeLabel.textColor = LCZPublicHelper.shared.getRgbColor(34, 123, 255, 1)
         }
         return selectorCell
     }
@@ -342,8 +342,8 @@ extension MovieDetailsViewController: MovieDetailsTableHeaderViewCellDelegate {
             cell.contentView.layer.borderColor = UIColor.black.cgColor
             cell.titleLabel.textColor = UIColor.black
         } else {
-            cell.contentView.layer.borderColor = LCZRgbColor(243, 242, 243, 1).cgColor
-            cell.titleLabel.textColor = LCZRgbColor(243, 242, 243, 1)
+            cell.contentView.layer.borderColor = LCZPublicHelper.shared.getRgbColor(243, 242, 243, 1).cgColor
+            cell.titleLabel.textColor = LCZPublicHelper.shared.getRgbColor(243, 242, 243, 1)
         }
         
         return cell
@@ -433,13 +433,13 @@ extension MovieDetailsViewController: MovieDetailsTableHeaderViewCellDelegate {
         var offsetPoint = cellCollection.collectionView.contentOffset
         // 获取当前选择的集数cell
         let cell = cellCollection.collectionView.cellForItem(at: IndexPath(row: self.movieDetailsView.playerController.currentPlayIndex, section: 0))
-        offsetPoint.x = cell!.center.x - LCZWidth / 2
+        offsetPoint.x = cell!.center.x - LCZPublicHelper.shared.getScreenWidth! / 2
         // 左边超出处理
         if (offsetPoint.x < 0) {
             offsetPoint.x = -10
         }
         //
-        let maxX = cellCollection.collectionView.contentSize.width - LCZWidth + 10
+        let maxX = cellCollection.collectionView.contentSize.width - LCZPublicHelper.shared.getScreenWidth! + 10
         //右边超出处理
         if (offsetPoint.x >= maxX) {
             offsetPoint.x = maxX;
