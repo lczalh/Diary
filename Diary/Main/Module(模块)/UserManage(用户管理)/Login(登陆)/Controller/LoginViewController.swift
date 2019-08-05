@@ -62,33 +62,49 @@ class LoginViewController: DiaryBaseViewController {
             self.loginView.loginButton.isEnabled = false
             
             if self.loginView.accountTextField.text! == AppAccount && self.loginView.passwordTextField.text! == AppPassword {
-                LCZProgressHUD.show()
+                LCZProgressHUD.show(title: "正在登陆")
                 self.loginView.loginButton.isEnabled = true
                 // 将uid，token写入偏好设置
                 UserDefaults.standard.set(self.loginView.accountTextField.text!, forKey: "account")
                 UserDefaults.standard.set(self.loginView.passwordTextField.text!, forKey: "password")
                 // 跳转到首页
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2, execute: {
-                    LCZProgressHUD.showSuccess(title: "登陆成功！")
-                    self.setMainTabBarToRootController()
-                })
+                networkServicesProvider
+                    .rx
+                    .lczRequest(target: MultiTarget(MovieNetworkServices.userLogin(user_name: self.loginView.accountTextField.text!, user_pwd: self.loginView.passwordTextField.text!)),
+                                model: LoginModel.self)
+                    .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .userInitiated))
+                    .observeOn(MainScheduler.instance)
+                    .subscribe(onNext: { (model) in
+                        LCZProgressHUD.dismiss()
+                        LCZProgressHUD.showSuccess(title: "登陆成功！")
+                        self.setMainTabBarToRootController()
+                    }, onError: { (error) in
+                        LCZProgressHUD.dismiss()
+                        LCZProgressHUD.showSuccess(title: "登陆成功！")
+                        self.setMainTabBarToRootController()
+                    }).disposed(by: self.rx.disposeBag)
+                
                 return
             }
             
             // 登陆
-            self.viewModel.userLogin(username: self.loginView.accountTextField.text!, password: self.loginView.passwordTextField.text!).subscribe(onSuccess: { (model) in
-                LCZProgressHUD.showSuccess(title: "登陆成功！")
-                self.loginView.loginButton.isEnabled = true
-                // 将uid，token写入偏好设置
-                UserDefaults.standard.set(self.loginView.accountTextField.text!, forKey: "account")
-                UserDefaults.standard.set(self.loginView.passwordTextField.text!, forKey: "password")
-                // 跳转到首页
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5, execute: {
-                    self.setMainTabBarToRootController()
-                })
-            }, onError: { (error) in
-                self.loginView.loginButton.isEnabled = true
-            }).disposed(by: self.rx.disposeBag)
+            self.viewModel.userLogin(username: self.loginView.accountTextField.text!, password: self.loginView.passwordTextField.text!, result: { (result) in
+                switch result {
+                    case .success(_):
+                        LCZProgressHUD.showSuccess(title: "登陆成功！")
+                        self.loginView.loginButton.isEnabled = true
+                        // 将uid，token写入偏好设置
+                        UserDefaults.standard.set(self.loginView.accountTextField.text!, forKey: "account")
+                        UserDefaults.standard.set(self.loginView.passwordTextField.text!, forKey: "password")
+                        // 跳转到首页
+                        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5, execute: {
+                            self.setMainTabBarToRootController()
+                        })
+                    case .failure(_):
+                        self.loginView.loginButton.isEnabled = true
+                    }
+            }, disposeBag: self.rx.disposeBag)
+            
         }).disposed(by: rx.disposeBag)
         
         // 用户注册

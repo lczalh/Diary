@@ -22,13 +22,13 @@
 
 - (void)LCZ_reloadData {
     if (self.lcz_isUseComponent) {
-        [self checkEmpty];
+        [self createEmpty];
     }
     [self LCZ_reloadData];
 }
 
 
-- (void)checkEmpty {
+- (void)createEmpty {
     BOOL isEmpty = YES;//flag标示
     
     id <UITableViewDataSource> dataSource = self.dataSource;

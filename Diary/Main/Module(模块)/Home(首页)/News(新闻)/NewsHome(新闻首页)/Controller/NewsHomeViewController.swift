@@ -143,19 +143,18 @@ extension NewsHomeViewController: JXCategoryListContainerViewDelegate {
         let viewDictionary = self.listContainerView.validListDict! as NSDictionary
         let view = viewDictionary.object(forKey: newsHomeView.categoryView!.selectedIndex) as! NewsHomeListView
         self.start = 0
-        self.viewModel.getNewsListData(channel: self.categorys![self.newsHomeView.categoryView!.selectedIndex],
-                                       start: self.start)
-                      .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .userInitiated))
-                      .observeOn(MainScheduler.instance)
-                      .subscribe(onSuccess: { (models) in
-                            self.datas.setValue(models, forKey: "\(self.newsHomeView.categoryView!.selectedIndex)")
-                            self.models = models
-                            view.tableView.mj_header.endRefreshing()
-                            view.tableView.reloadData()
-                       }) { (error) in
-                            view.tableView.mj_header.endRefreshing()
-                            view.tableView.reloadData()
-                       }.disposed(by: rx.disposeBag)
+        self.viewModel.getNewsListData(channel: self.categorys![self.newsHomeView.categoryView!.selectedIndex], start: self.start, result: { (result) in
+            switch result {
+                case .success(let value):
+                    self.datas.setValue(value, forKey: "\(self.newsHomeView.categoryView!.selectedIndex)")
+                    self.models = value
+                    view.tableView.mj_header.endRefreshing()
+                    view.tableView.reloadData()
+                case .failure(_):
+                    view.tableView.mj_header.endRefreshing()
+                    view.tableView.reloadData()
+            }
+        }, disposeBag: rx.disposeBag)
     }
     
     /// 上拉刷新
@@ -164,36 +163,36 @@ extension NewsHomeViewController: JXCategoryListContainerViewDelegate {
         let view = viewDictionary.object(forKey: newsHomeView.categoryView!.selectedIndex) as! NewsHomeListView
         let datas = self.datas.object(forKey: "\(self.newsHomeView.categoryView!.selectedIndex)") as! [SpeedNewsListModel]
         self.start += 20
-        self.viewModel.getNewsListData(channel: self.categorys![self.newsHomeView.categoryView!.selectedIndex],
-                                       start: self.start)
-                      .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .userInitiated))
-                      .observeOn(MainScheduler.instance)
-                      .subscribe(onSuccess: { (models) in
-                            self.datas.setValue(datas + models, forKey: "\(self.newsHomeView.categoryView!.selectedIndex)")
-                            self.models = datas + models
-                            view.tableView.mj_footer.endRefreshing()
-                            view.tableView.reloadData()
-                      }) { (error) in
-                            self.models = datas
-                            view.tableView.mj_footer.endRefreshing()
-                            view.tableView.reloadData()
-                      }.disposed(by: rx.disposeBag)
+        self.viewModel.getNewsListData(channel: self.categorys![self.newsHomeView.categoryView!.selectedIndex], start: self.start, result: { (result) in
+            switch result {
+                case .success(let value):
+                    self.datas.setValue(datas + value, forKey: "\(self.newsHomeView.categoryView!.selectedIndex)")
+                    self.models = datas + value
+                    view.tableView.mj_footer.endRefreshing()
+                    view.tableView.reloadData()
+                case .failure(_):
+                    self.models = datas
+                    view.tableView.mj_footer.endRefreshing()
+                    view.tableView.reloadData()
+            }
+        }, disposeBag: rx.disposeBag)
     }
     
     private func reloadData(view: NewsHomeListView, index: Int) {
         view.isSkeletonable = true
         view.showAnimatedGradientSkeleton(usingGradient: SkeletonGradient(baseColor: UIColor.clouds),animation: GradientDirection.topLeftBottomRight.slidingAnimation())
-        self.viewModel.getNewsListData(channel: self.categorys![index],
-                                       start: self.start)
-                      .subscribe(onSuccess: { (models) in
-                            self.datas.setValue(models, forKey: "\(index)")
-                            self.models = models
-                            view.tableView.reloadData()
-                            view.hideSkeleton()
-                      }) { (error) in
-                            self.models = []
-                            view.hideSkeleton()
-                      }.disposed(by: rx.disposeBag)
+        self.viewModel.getNewsListData(channel: self.categorys![index], start: self.start, result: { result in
+            switch result {
+                case .success(let value):
+                    self.datas.setValue(value, forKey: "\(index)")
+                    self.models = value
+                    view.tableView.reloadData()
+                    view.hideSkeleton()
+                case .failure(_):
+                    self.models = []
+                    view.hideSkeleton()
+            }
+        }, disposeBag: rx.disposeBag)
     }
     
 }

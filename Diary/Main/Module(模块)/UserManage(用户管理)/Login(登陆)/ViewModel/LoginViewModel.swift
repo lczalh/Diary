@@ -10,23 +10,26 @@ import Foundation
 
 class LoginViewModel {
     
-    public func userLogin(username: String, password: String) -> Single<LoginModel> {
+    public func userLogin(username: String, password: String, result: @escaping (_ result: Swift.Result<LoginModel, Swift.Error>) -> Void, disposeBag: DisposeBag) {
         LCZProgressHUD.show(title: "正在登陆")
-        return Single<LoginModel>.create(subscribe: { (single) -> Disposable in
-            let request = networkServicesProvider.rx.requestData(target: MultiTarget(MovieNetworkServices.userLogin(user_name: username, user_pwd: password)), model: LoginModel.self).subscribe(onSuccess: { (result) in
+        networkServicesProvider
+            .rx
+            .lczRequest(target: MultiTarget(MovieNetworkServices.userLogin(user_name: username, user_pwd: password)),
+                        model: LoginModel.self)
+            .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .userInitiated))
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { (model) in
                 LCZProgressHUD.dismiss()
-                if result.code == 1 {
-                    single(.success(result))
+                if model.code == 1 {
+                    result(.success(model))
                 } else {
-                    LCZProgressHUD.showError(title: result.msg)
-                    single(.error(DiaryRequestError.requestTimeout))
+                    LCZProgressHUD.showError(title: model.msg)
+                    result(.failure(DiaryRequestError.requestTimeout))
                 }
             }, onError: { (error) in
                 LCZProgressHUD.dismiss()
-                single(.error(error))
+                result(.failure(error))
                 LCZProgressHUD.showError(title: "似乎已断开与互联网的连接")
-            })
-            return Disposables.create([request])
-        })
+            }).disposed(by: disposeBag)
     }
 }

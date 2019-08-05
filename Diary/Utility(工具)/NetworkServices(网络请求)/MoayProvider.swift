@@ -8,12 +8,10 @@
 
 import Foundation
 
-/// 请求错误
-///
-/// - requestTimeout: 请求超时
+/// DiaryRequestError
 enum DiaryRequestError: Error {
     case requestTimeout // 请求超时
-    case requestFailed // 请求失败
+    case requestCodeError(message: String?) // 请求失败
 }
 
 //初始化provider

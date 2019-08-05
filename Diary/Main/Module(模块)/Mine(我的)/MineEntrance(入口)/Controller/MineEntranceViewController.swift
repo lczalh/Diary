@@ -104,7 +104,7 @@ extension MineEntranceViewController: UITableViewDataSource {
                 }
             })
         } else if title == "去评分" {
-            LCZPublicHelper.shared.setAppStoreScore(appId: AppStoreId)
+            LCZPublicHelper.shared.setAppStoreScore(appId: ApplicationId)
         } else if title == "关于我们" {
             diaryRoute.push("diary://mine/aboutUs")
         } else if title == "版权声明" {

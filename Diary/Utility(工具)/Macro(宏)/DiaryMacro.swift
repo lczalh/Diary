@@ -44,4 +44,4 @@ public let AppTitleColor = "#9c27b0"
 public let AppContentColor = "#4fc3f7"
 
 /// 苹果应用id
-public let AppStoreId = "1474969735"
+public let ApplicationId = "1474969735"

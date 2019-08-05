@@ -41,7 +41,7 @@ extension DiaryBaseNavigationController: UINavigationControllerDelegate {
     
     func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         if operation == .pop {
-            return DiaryPopAnimation()
+          //  return DiaryPopAnimation()
         } else if operation == .push {
             
         }

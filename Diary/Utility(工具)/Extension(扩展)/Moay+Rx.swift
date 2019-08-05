@@ -44,7 +44,7 @@ public extension Reactive where Base: MoyaProviderType {
     ///   - model: model
     ///   - callbackQueue: nil
     /// - Returns: Observable<T>
-    func LCZRequest<T: Mappable>(target: Base.Target, model: T.Type, callbackQueue: DispatchQueue? = nil) -> Observable<T> {
+    func lczRequest<T: Mappable>(target: Base.Target, model: T.Type, callbackQueue: DispatchQueue? = nil) -> Observable<T> {
         return request(target)
                 .mapObject(T.self)
                 .asObservable()
