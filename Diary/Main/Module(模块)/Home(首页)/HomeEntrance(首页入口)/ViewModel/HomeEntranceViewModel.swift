@@ -17,25 +17,25 @@ class HomeEntranceViewModel {
     public lazy var cellTitles: Array<Array<String>> = {
         if diaryApple() == true {
             return [["快递","新闻"]
-                   ]
+            ]
         } else {
-            return [["快递","新闻","人脸识别","笑话"],
+            return [["快递","新闻","人脸识别","笑话","菜谱"],
                     ["视频"]
-                   ]
+            ]
         }
     }()
-
+    
     /// 单元格图标
     public lazy var cellImages: Array<Array<String>> = {
         if diaryApple() == true {
             return [
-                    ["renlianshibie","xiaohua"]
-                   ]
+                ["xingqiu","bangzhu"]
+            ]
         } else {
             return [
-                    ["xingqiu","bangzhu","renlianshibie","xiaohua"],
-                    ["shipin"]
-                   ]
+                ["xingqiu","bangzhu","renlianshibie","xiaohua","bangzhu"],
+                ["shipin"]
+            ]
         }
     }()
     

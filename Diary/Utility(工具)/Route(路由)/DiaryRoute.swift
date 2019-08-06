@@ -151,6 +151,21 @@ enum DiaryRoute {
             jokeEntrance.hidesBottomBarWhenPushed = true
             return jokeEntrance
         }
+        
+        // 菜谱入口
+        navigator.register("diary://homeEntrance/foodRecipeEntrance") { url, values, context in
+            let newsEntrance = FoodRecipeTabBarController()
+            newsEntrance.hidesBottomBarWhenPushed = true
+            return newsEntrance
+        }
+        
+        // 菜谱详情
+        navigator.register("diary://homeEntrance/foodRecipeHome/foodRecipeDetail") { url, values, context in
+            let foodDetails = FoodRecipeDetailViewController()
+            foodDetails.detailModel = context as? FoodRecipeInfoListModel
+            foodDetails.hidesBottomBarWhenPushed = true
+            return foodDetails
+        }
     }
     
 }

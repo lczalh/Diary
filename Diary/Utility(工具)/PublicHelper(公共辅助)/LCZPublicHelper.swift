@@ -52,7 +52,7 @@ class LCZPublicHelper: NSObject {
         return UINavigationController().navigationBar.frame.height
     }
     
-    /// 获取导航条高度
+    /// 获取状态栏高度
     public var getstatusBarHeight: CGFloat? {
         return UIApplication.shared.statusBarFrame.height
     }
@@ -477,6 +477,32 @@ class LCZPublicHelper: NSObject {
         } else {
             return nil
         }
+    }
+    
+    ///设置状态栏背景颜色
+    public func setStatusBarBackgroundColor(color: UIColor) {
+        let statusBarWindow : UIView = UIApplication.shared.value(forKey: "statusBarWindow") as! UIView
+        let statusBar : UIView = statusBarWindow.value(forKey: "statusBar") as! UIView
+        if statusBar.responds(to:#selector(setter: UIView.backgroundColor)) {
+            statusBar.backgroundColor = color
+        }
+    }
+    
+    //MARK: - 富文本修改两种文字的大小颜色样式
+    public func setTwoTextFontAndColorStyle(oneTextStr:String,oneTextFont:UIFont,oneTextColor:UIColor,twoTextStr:String,twoTextFont:UIFont,twoTextColor:UIColor) -> NSMutableAttributedString{
+        let newAttributedM:NSMutableAttributedString = NSMutableAttributedString()
+        
+        //第一种文字样式
+        var newOneTextStr : NSAttributedString = NSAttributedString()
+        
+        newOneTextStr  = NSAttributedString(string: oneTextStr, attributes: [NSAttributedString.Key.foregroundColor : oneTextColor, NSAttributedString.Key.font :oneTextFont])
+        newAttributedM.append(newOneTextStr)
+        
+        //第二种文字样式
+        var newTwoTextStr : NSAttributedString = NSAttributedString()
+        newTwoTextStr  = NSAttributedString(string: twoTextStr, attributes: [NSAttributedString.Key.foregroundColor : twoTextColor, NSAttributedString.Key.font :twoTextFont])
+        newAttributedM.append(newTwoTextStr)
+        return newAttributedM
     }
 }
 

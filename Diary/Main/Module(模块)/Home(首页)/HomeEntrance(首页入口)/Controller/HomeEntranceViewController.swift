@@ -126,6 +126,11 @@ extension HomeEntranceViewController: UICollectionViewDataSource {
                 diaryRoute.present("diary://homeEntrance/jokeEntrance")
             }, completion: nil)
         }
+        else if title == "菜谱"{
+            UIView.transition(with: (self.view ?? nil)!, duration: 0.5, options: .transitionFlipFromLeft, animations: {
+                diaryRoute.present("diary://homeEntrance/foodRecipeEntrance")
+            }, completion: nil)
+        }
     }
     
 }

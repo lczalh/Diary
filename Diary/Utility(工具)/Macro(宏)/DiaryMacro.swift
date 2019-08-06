@@ -14,6 +14,9 @@ public let diaryRoute = Navigator()
 /// 极速数据AppKey
 public let highSpeedDataAppKey = "62c2edc337648910"
 
+/// 新极速数据appkey
+public let newHighSpeedDataAppKey = "2e79d41f7799f918"
+
 /// 校验用户
 public func diaryApple() -> Bool {
     let account = UserDefaults.standard.object(forKey: "account") as? String
