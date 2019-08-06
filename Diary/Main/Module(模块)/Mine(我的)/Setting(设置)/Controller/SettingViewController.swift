@@ -47,13 +47,13 @@ extension SettingViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ClearCacheTableViewCell", for: indexPath) as! ClearCacheTableViewCell
         cell.titleLabel.text = "清除缓存"
-        cell.cacheSizeLabel.text = LCZClearCache.cacheSize
+        cell.cacheSizeLabel.text = LCZPublicHelper.shared.getCacheSize
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
-            LCZClearCache.clearCache()
+            LCZPublicHelper.shared.clearCache()
             tableView.reloadData()
         }
     }

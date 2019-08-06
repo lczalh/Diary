@@ -16,8 +16,6 @@ class LoginViewModel {
             .rx
             .lczRequest(target: MultiTarget(MovieNetworkServices.userLogin(user_name: username, user_pwd: password)),
                         model: LoginModel.self)
-            .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .userInitiated))
-            .observeOn(MainScheduler.instance)
             .subscribe(onNext: { (model) in
                 LCZProgressHUD.dismiss()
                 if model.code == 1 {

@@ -48,6 +48,8 @@ public extension Reactive where Base: MoyaProviderType {
         return request(target)
                 .mapObject(T.self)
                 .asObservable()
+                .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .userInitiated))
+                .observeOn(MainScheduler.instance)
                 .retryWhen { (rxError: Observable<Error>) -> Observable<Int> in
                     return rxError.enumerated().flatMap { (index, error) -> Observable<Int> in
                         guard index < 5 else {

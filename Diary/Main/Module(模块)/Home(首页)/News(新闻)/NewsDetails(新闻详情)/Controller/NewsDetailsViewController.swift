@@ -23,7 +23,7 @@ class NewsDetailsViewController: DiaryBaseViewController {
         let shareBarButton = UIBarButtonItem(image: UIImage(named: "fenxiang")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: nil)
         self.navigationItem.rightBarButtonItem = shareBarButton
         shareBarButton.rx.tap.subscribe(onNext: { () in
-            LCZPublicHelper.shared.setNativeShare(title: self.model?.title, image: self.model?.pic, url: self.model!.url, result: { completed in
+            LCZPublicHelper.shared.callNativeShare(title: self.model?.title, image: self.model?.pic, url: self.model!.url, result: { completed in
                 if completed == true {
                     LCZProgressHUD.showSuccess(title: "分享成功")
                 } else {

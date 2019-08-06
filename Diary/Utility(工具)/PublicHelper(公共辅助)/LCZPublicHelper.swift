@@ -87,6 +87,64 @@ class LCZPublicHelper: NSObject {
         return NSTemporaryDirectory()
     }
     
+    /// 获取缓存大小
+    public var getCacheSize: String{
+        get{
+            // 路径
+            let basePath = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.cachesDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first
+            let fileManager = FileManager.default
+            // 遍历出所有缓存文件加起来的大小
+            func caculateCache() -> Float{
+                var total: Float = 0
+                if fileManager.fileExists(atPath: basePath!){
+                    let childrenPath = fileManager.subpaths(atPath: basePath!)
+                    if childrenPath != nil{
+                        for path in childrenPath!{
+                            let childPath = basePath!.appending("/").appending(path)
+                            do{
+                                let attr:NSDictionary = try fileManager.attributesOfItem(atPath: childPath) as NSDictionary
+                                let fileSize = attr["NSFileSize"] as! Float
+                                total += fileSize
+                                
+                            }catch _{
+                                
+                            }
+                        }
+                    }
+                }
+                // 缓存文件大小
+                return total
+            }
+            // 调用函数
+            let totalCache = caculateCache()
+            return NSString(format: "%.2f MB", totalCache / 1024.0 / 1024.0 ) as String
+        }
+    }
+    
+    /// 清除缓存
+    public func clearCache() {
+        LCZProgressHUD.show(title: "清除缓存")
+        // 取出cache文件夹目录 缓存文件都在这个目录下
+        let cachePath = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.cachesDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first
+        // 取出文件夹下所有文件数组
+        let fileArr = FileManager.default.subpaths(atPath: cachePath!)
+        // 遍历删除
+        for file in fileArr! {
+            // 拼接文件路径
+            let path = cachePath?.appending("/\(file)")
+            if FileManager.default.fileExists(atPath: path!) {
+                // 循环删除
+                do {
+                    try FileManager.default.removeItem(atPath: path!)
+                } catch {
+                    
+                }
+            }
+        }
+        LCZProgressHUD.dismiss()
+        LCZProgressHUD.showSuccess(title: "清除成功")
+    }
+    
     /// 调试输出
     ///
     /// - Parameters:
@@ -120,21 +178,21 @@ class LCZPublicHelper: NSObject {
     /// 跳转到AppStore进行评分
     ///
     /// - Parameter appId: appId
-    @objc public func setAppStoreScore(appId: String) {
+    @objc public func jumpAppStoreScore(appId: String) {
         UIApplication.shared.open(URL(string: "https://itunes.apple.com/us/app/itunes-u/id\(appId)?action=write-review&mt=8")!, options: [:], completionHandler: nil)
     }
     
     /// 跳转到AppStore首页
     ///
     /// - Parameter appId: appId
-    @objc public func setAppStotrScore(appId: String) {
+    @objc public func jumpAppStotrScore(appId: String) {
         UIApplication.shared.open(URL(string: "https://itunes.apple.com/us/app/itunes-u/id\(appId)?mt=8")!, options: [:], completionHandler: nil)
     }
     
     /// 调用系统发送邮件功能
     ///
     /// - Parameter recipients: 收件人
-    @objc public func setSendEmail(recipients: String, result: @escaping sendEmail) {
+    @objc public func callSendEmail(recipients: String, result: @escaping sendEmail) {
         objc_setAssociatedObject(self, &AssociatedKeys.sendEmailKey, result, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         // 首先要判断设备具不具备发送邮件功能
         if MFMailComposeViewController.canSendMail(){
@@ -158,7 +216,7 @@ class LCZPublicHelper: NSObject {
     ///   - title: 标题
     ///   - image: 图片
     ///   - url: 链接地址
-    public func setNativeShare(title: String?, image: String?, url: String?, result: @escaping nativeShare) {
+    public func callNativeShare(title: String?, image: String?, url: String?, result: @escaping nativeShare) {
         var items: Array<Any> = []
         if (title == nil && image == nil && url == nil) {
             LCZProgressHUD.showError(title: "分享的数据为空")
@@ -431,7 +489,7 @@ class LCZPublicHelper: NSObject {
     ///
     /// - Parameter size: 字体大小
     /// - Returns: UIFont
-    public func getConventionFont(size : CGFloat) -> UIFont {
+    public func getConventionFont(size: CGFloat) -> UIFont {
         return UIFont.systemFont(ofSize: self.getScreenSizeScale * size)
     }
     
@@ -439,10 +497,17 @@ class LCZPublicHelper: NSObject {
     ///
     /// - Parameter size: 大小
     /// - Returns: UIFont
-    public func getBoldFont(size : CGFloat) -> UIFont {
+    public func getBoldFont(size: CGFloat) -> UIFont {
         return UIFont.boldSystemFont(ofSize: self.getScreenSizeScale * size)
     }
     
+    /// 获取适配后的大小
+    ///
+    /// - Parameter size: size
+    /// - Returns: 按屏幕比例适配后的大小
+    public func getFitSize(size: CGFloat) -> CGFloat {
+        return size * self.getScreenSizeScale
+    }
     
     /// push方式 返回指定控制器
     ///
@@ -477,6 +542,13 @@ class LCZPublicHelper: NSObject {
         } else {
             return nil
         }
+    }
+    
+    /// 调用系统拨号
+    ///
+    /// - Parameter phoneNumber: 电话号码
+    public func callSystemDial(phoneNumber: String) {
+        UIApplication.shared.open(URL(string: "tel://\(phoneNumber)")!, options: [:], completionHandler: nil)
     }
 }
 

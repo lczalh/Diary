@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -110,7 +110,6 @@
 		738AD37922BC847A00FD0680 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738AD37822BC847A00FD0680 /* SettingView.swift */; };
 		738AD37B22BC85D000FD0680 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738AD37A22BC85D000FD0680 /* SettingTableViewCell.swift */; };
 		738AD37D22BC96C400FD0680 /* ClearCacheTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738AD37C22BC96C400FD0680 /* ClearCacheTableViewCell.swift */; };
-		738AD38022BC993F00FD0680 /* LCZClearCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738AD37F22BC993F00FD0680 /* LCZClearCache.swift */; };
 		738AD38322BC9A0600FD0680 /* LCZTimingCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738AD38222BC9A0500FD0680 /* LCZTimingCounter.swift */; };
 		738AD38A22BCA2CE00FD0680 /* ProblemFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738AD38922BCA2CE00FD0680 /* ProblemFeedbackViewController.swift */; };
 		738AD38C22BCA2FE00FD0680 /* ProblemFeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738AD38B22BCA2FE00FD0680 /* ProblemFeedbackView.swift */; };
@@ -120,6 +119,7 @@
 		739510D722D7078000814BFF /* NewsEntranceTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739510D622D7078000814BFF /* NewsEntranceTabBarController.swift */; };
 		7396A9D222DC0D3700525F64 /* UICollectionView+LCZPlaceholderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7396A9D122DC0D3700525F64 /* UICollectionView+LCZPlaceholderView.m */; };
 		7396F4A522EE96C000D3C74B /* LCZPublicHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7396F4A422EE96C000D3C74B /* LCZPublicHelper.swift */; };
+		73AD364322F9747C00D8B4FB /* LCZChainKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AD364222F9747C00D8B4FB /* LCZChainKit.swift */; };
 		73B1DDD72241EB8E00BFEF7A /* LCZProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B1DDD62241EB8E00BFEF7A /* LCZProgressHUD.swift */; };
 		73B1DDE22242051400BFEF7A /* MovieHomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B1DDE12242051400BFEF7A /* MovieHomeModel.swift */; };
 		73B1DDE7224206FA00BFEF7A /* DiaryBaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B1DDE6224206FA00BFEF7A /* DiaryBaseCollectionViewCell.swift */; };
@@ -261,7 +261,6 @@
 		738AD37822BC847A00FD0680 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		738AD37A22BC85D000FD0680 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		738AD37C22BC96C400FD0680 /* ClearCacheTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearCacheTableViewCell.swift; sourceTree = "<group>"; };
-		738AD37F22BC993F00FD0680 /* LCZClearCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCZClearCache.swift; sourceTree = "<group>"; };
 		738AD38222BC9A0500FD0680 /* LCZTimingCounter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCZTimingCounter.swift; sourceTree = "<group>"; };
 		738AD38922BCA2CE00FD0680 /* ProblemFeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemFeedbackViewController.swift; sourceTree = "<group>"; };
 		738AD38B22BCA2FE00FD0680 /* ProblemFeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemFeedbackView.swift; sourceTree = "<group>"; };
@@ -272,6 +271,7 @@
 		7396A9D022DC0D3700525F64 /* UICollectionView+LCZPlaceholderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+LCZPlaceholderView.h"; sourceTree = "<group>"; };
 		7396A9D122DC0D3700525F64 /* UICollectionView+LCZPlaceholderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+LCZPlaceholderView.m"; sourceTree = "<group>"; };
 		7396F4A422EE96C000D3C74B /* LCZPublicHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCZPublicHelper.swift; sourceTree = "<group>"; };
+		73AD364222F9747C00D8B4FB /* LCZChainKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCZChainKit.swift; sourceTree = "<group>"; };
 		73B1DDD62241EB8E00BFEF7A /* LCZProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCZProgressHUD.swift; sourceTree = "<group>"; };
 		73B1DDE12242051400BFEF7A /* MovieHomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MovieHomeModel.swift; path = "../../MovieHome(电影首页)/Model/MovieHomeModel.swift"; sourceTree = "<group>"; };
 		73B1DDE6224206FA00BFEF7A /* DiaryBaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryBaseCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -1151,13 +1151,13 @@
 		737E1C2E2213DA8F00BF751D /* Utility(工具) */ = {
 			isa = PBXGroup;
 			children = (
+				73AD364122F973BE00D8B4FB /* ChainKit(链式UI) */,
 				7396F4A222EE967700D3C74B /* PublicHelper(公共辅助) */,
 				7377BAAB22E193E6000BBBE9 /* Scanner(扫描器) */,
 				739510D822D72BE200814BFF /* PlaceholderView(占位图) */,
 				738D3E4E22CB5BB800A68487 /* Marquee(跑马灯) */,
 				731802A922C318AC00ED5D56 /* ShufflingFigure(轮播图) */,
 				738AD38122BC998300FD0680 /* TimingCounter(时间计时器) */,
-				738AD37E22BC992700FD0680 /* ClearCache(清除缓存) */,
 				7302DB182281797500BC7CAC /* CustomClass(自定义UI) */,
 				7346603A22433948007BBD07 /* Bridging(桥接文件) */,
 				73B1DDD52241EA2F00BFEF7A /* ProgressHUD(进度显示) */,
@@ -1397,14 +1397,6 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		738AD37E22BC992700FD0680 /* ClearCache(清除缓存) */ = {
-			isa = PBXGroup;
-			children = (
-				738AD37F22BC993F00FD0680 /* LCZClearCache.swift */,
-			);
-			path = "ClearCache(清除缓存)";
-			sourceTree = "<group>";
-		};
 		738AD38122BC998300FD0680 /* TimingCounter(时间计时器) */ = {
 			isa = PBXGroup;
 			children = (
@@ -1489,6 +1481,14 @@
 				7396F4A422EE96C000D3C74B /* LCZPublicHelper.swift */,
 			);
 			path = "PublicHelper(公共辅助)";
+			sourceTree = "<group>";
+		};
+		73AD364122F973BE00D8B4FB /* ChainKit(链式UI) */ = {
+			isa = PBXGroup;
+			children = (
+				73AD364222F9747C00D8B4FB /* LCZChainKit.swift */,
+			);
+			path = "ChainKit(链式UI)";
 			sourceTree = "<group>";
 		};
 		73B1DDD52241EA2F00BFEF7A /* ProgressHUD(进度显示) */ = {
@@ -2019,67 +2019,16 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Diary/Pods-Diary-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
-				"${BUILT_PRODUCTS_DIR}/FSPagerView/FSPagerView.framework",
-				"${BUILT_PRODUCTS_DIR}/Hero/Hero.framework",
-				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/JXCategoryView/JXCategoryView.framework",
-				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
-				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
-				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
-				"${BUILT_PRODUCTS_DIR}/Moya-ObjectMapper/Moya_ObjectMapper.framework",
-				"${BUILT_PRODUCTS_DIR}/NSObject+Rx/NSObject_Rx.framework",
-				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
-				"${BUILT_PRODUCTS_DIR}/PYSearch/PYSearch.framework",
-				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
-				"${BUILT_PRODUCTS_DIR}/SkeletonView/SkeletonView.framework",
-				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftTheme/SwiftTheme.framework",
-				"${BUILT_PRODUCTS_DIR}/SwifterSwift/SwifterSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/URLNavigator/URLNavigator.framework",
-				"${BUILT_PRODUCTS_DIR}/ZFPlayer/ZFPlayer.framework",
-				"${BUILT_PRODUCTS_DIR}/pop/pop.framework",
-				"${BUILT_PRODUCTS_DIR}/swiftScan/swiftScan.framework",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Diary/Pods-Diary-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSPagerView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hero.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JXCategoryView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya_ObjectMapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NSObject_Rx.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PYSearch.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkeletonView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftTheme.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwifterSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/URLNavigator.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZFPlayer.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/pop.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/swiftScan.framework",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Diary/Pods-Diary-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Diary/Pods-Diary-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Diary/Pods-Diary-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		66DE2ED5D567E85C13C046EA /* [CP] Check Pods Manifest.lock */ = {
@@ -2163,6 +2112,7 @@
 				733D5FCB22E84E4E004216FE /* SearchNewsViewModel.swift in Sources */,
 				73162F6F22C99EFE00561094 /* MoreMoviesView.swift in Sources */,
 				7344B54F22AFA04700FC7D4D /* MineEntranceViewModel.swift in Sources */,
+				73AD364322F9747C00D8B4FB /* LCZChainKit.swift in Sources */,
 				73480F9C22C309AA003BB258 /* NewsMovieHomeViewController.swift in Sources */,
 				73107D3F22D5DDF10094981F /* TelevisionViewController.swift in Sources */,
 				7333A0EB22EAF856008A6920 /* JokeEntranceTabBarController.swift in Sources */,
@@ -2235,7 +2185,6 @@
 				734E9B742244CF2200CC5004 /* DiaryMacro.swift in Sources */,
 				73BB0FCF22B09FCB005F351C /* ExpressQueryView.swift in Sources */,
 				737E1C542213E89700BF751D /* NewsHomeView.swift in Sources */,
-				738AD38022BC993F00FD0680 /* LCZClearCache.swift in Sources */,
 				73E78C3622C0C74B007F35FA /* AboutUsView.swift in Sources */,
 				737E1C592213ED0C00BF751D /* HighSpeedDataNetworkServices.swift in Sources */,
 				7344B54122AF594F00FC7D4D /* MainTabBarController.swift in Sources */,

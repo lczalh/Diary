@@ -90,7 +90,7 @@ extension MineEntranceViewController: UITableViewDataSource {
         let title = self.mineEntranceViewModel.cellTitles[indexPath.section][indexPath.row]
         
         if title == "问题反馈" {
-            LCZPublicHelper.shared.setSendEmail(recipients: AppEmail, result: { controller, result in
+            LCZPublicHelper.shared.callSendEmail(recipients: AppEmail, result: { controller, result in
                 controller.dismiss(animated: true, completion: nil)
                 switch result{
                 case .sent:
@@ -104,7 +104,7 @@ extension MineEntranceViewController: UITableViewDataSource {
                 }
             })
         } else if title == "去评分" {
-            LCZPublicHelper.shared.setAppStoreScore(appId: ApplicationId)
+            LCZPublicHelper.shared.jumpAppStoreScore(appId: ApplicationId)
         } else if title == "关于我们" {
             diaryRoute.push("diary://mine/aboutUs")
         } else if title == "版权声明" {

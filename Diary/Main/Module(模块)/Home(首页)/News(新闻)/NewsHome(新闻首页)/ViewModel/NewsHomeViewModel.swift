@@ -37,8 +37,6 @@ class NewsHomeViewModel {
                                                                                      num: 20,
                                                                                      start: start)),
                         model: SpeedNewsRootModel<SpeedNewsResultModel>.self)
-            .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .userInitiated))
-            .observeOn(MainScheduler.instance)
             .subscribe(onNext: { (model) in
                 if model.status == 0 {
                     result(.success(model.result!.list as [SpeedNewsListModel]))
@@ -58,8 +56,6 @@ class NewsHomeViewModel {
             .rx
             .lczRequest(target: MultiTarget(HighSpeedDataNetworkServices.getNewsTypeList(appkey: highSpeedDataAppKey)),
                         model: SpeedNewschannelModel.self)
-            .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .userInitiated))
-            .observeOn(MainScheduler.instance)
             .subscribe(onNext: { (model) in
                 if model.status == 0 {
                     result(.success(model.result))

@@ -72,8 +72,6 @@ class LoginViewController: DiaryBaseViewController {
                     .rx
                     .lczRequest(target: MultiTarget(MovieNetworkServices.userLogin(user_name: self.loginView.accountTextField.text!, user_pwd: self.loginView.passwordTextField.text!)),
                                 model: LoginModel.self)
-                    .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .userInitiated))
-                    .observeOn(MainScheduler.instance)
                     .subscribe(onNext: { (model) in
                         LCZProgressHUD.dismiss()
                         LCZProgressHUD.showSuccess(title: "登陆成功！")

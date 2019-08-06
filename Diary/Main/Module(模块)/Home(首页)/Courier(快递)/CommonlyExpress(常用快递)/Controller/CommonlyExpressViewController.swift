@@ -69,7 +69,7 @@ extension CommonlyExpressViewController: UITableViewDelegate {
         let model = self.commonExpressCompaniesModel[indexPath.row]
         if model.tel?.isEmpty == false {
             let phoneNumber = model.tel?.components(separatedBy: " ")
-            UIApplication.shared.open(URL(string: "tel://\(phoneNumber![0])")!, options: [:], completionHandler: nil)
+            LCZPublicHelper.shared.callSystemDial(phoneNumber: phoneNumber![0])
         } else {
             DispatchQueue.main.async {
                 UIAlertController.showAlert(message: "暂无联系电话", in: self)
