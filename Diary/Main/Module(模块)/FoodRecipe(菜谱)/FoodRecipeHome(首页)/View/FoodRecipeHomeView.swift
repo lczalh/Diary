@@ -27,8 +27,8 @@ class FoodRecipeHomeView: DiaryBaseView {
         
         newTableView.estimatedRowHeight = 120
         newTableView.rowHeight = UITableView.automaticDimension
-        newTableView.sectionHeaderHeight = 45
-        newTableView.sectionFooterHeight = 5
+//        newTableView.sectionHeaderHeight = 65
+//        newTableView.sectionFooterHeight = 5
         newTableView.separatorStyle = .none
         newTableView.bounces = false
         newTableView.backgroundColor = UIColor.white

@@ -115,7 +115,6 @@ extension FoodRecipeHomeViewController: SkeletonTableViewDataSource ,SkeletonTab
         if section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: FoodShufflingFigureTableViewCell.cellIdentifier, for: indexPath) as! FoodShufflingFigureTableViewCell
                cell.loadNewDataInfo(newItems: self.vm.foodRecommendModels)
-            
             return cell
         }
         else if section == 1 {
@@ -168,6 +167,14 @@ extension FoodRecipeHomeViewController: SkeletonTableViewDataSource ,SkeletonTab
             newTitleLbl.backgroundColor = UIColor.white
             return newTitleLbl
         }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 65;
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 5;
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
