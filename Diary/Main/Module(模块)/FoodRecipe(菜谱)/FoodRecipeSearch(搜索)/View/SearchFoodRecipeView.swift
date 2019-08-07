@@ -1,5 +1,5 @@
 //
-//  SearchFoodRecipeView.swift
+//  SearchOrTypeFoodRecipeView.swift
 //  Diary
 //
 //  Created by linphone on 2019/7/31.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchFoodRecipeView: DiaryBaseView {
+class SearchOrTypeFoodRecipeView: DiaryBaseView {
     
     var newCollectionView:UICollectionView!
 
@@ -26,7 +26,6 @@ class SearchFoodRecipeView: DiaryBaseView {
         }
         
         newCollectionView.showsVerticalScrollIndicator = false
-        newCollectionView.bounces = false
         newCollectionView.backgroundColor = UIColor.clear
         newCollectionView.register(FoodRecipeListCollectionViewCell.self, forCellWithReuseIdentifier: FoodRecipeListCollectionViewCell.cellIdentifier)
     }

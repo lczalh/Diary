@@ -29,10 +29,6 @@ class FoodRecipeHomeViewController: DiaryBaseViewController {
         return .default
     }
     
-    
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -55,7 +51,7 @@ class FoodRecipeHomeViewController: DiaryBaseViewController {
             let searchViewController = PYSearchViewController(hotSearches: nums, searchBarPlaceholder: NSLocalizedString("NSLocalizedString",value: "搜索菜谱", comment: ""), didSearch: { controller,searchBar,searchText in
                 let searchFoodRecipeVC = SearchFoodRecipeViewController()
                 searchFoodRecipeVC.hidesBottomBarWhenPushed = true
-                searchFoodRecipeVC.movieName = searchText
+                searchFoodRecipeVC.searchFoodStr = searchText
                 controller?.navigationController?.pushViewController(searchFoodRecipeVC, animated: true)
             })
             searchViewController!.hotSearchStyle = PYHotSearchStyle(rawValue: 4)!;
@@ -73,29 +69,32 @@ class FoodRecipeHomeViewController: DiaryBaseViewController {
 
         self.view.addSubview(foodRecipeHomeView)
         //获取轮播图视图数据
-        self.vm.getFoodInfoListData(newClassId: self.vm.foodClassId, newNum: 6)
-            .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .userInitiated))
-            .observeOn(MainScheduler.instance)
-            .subscribe(onSuccess: {(items) in
-                self.vm.foodRecommendModels = items
-                self.foodRecipeHomeView.newTableView.reloadData()
-            }) { (error) in
-            }.disposed(by: rx.disposeBag)
+        self.vm.getFoodInfoListData(newClassId: self.vm.foodClassId, newNum: 6, result: {[weak self] (result) in
+            switch result {
+            case .success(let value):
+                self!.vm.foodRecommendModels = value
+                self!.foodRecipeHomeView.newTableView.reloadData()
+                break
+            case .failure(_):
+                break
+            }
+        }, disposeBag: rx.disposeBag)
         
         self.getThreeFoodInfoData()
    }
     
     //获得早中晚菜谱的列表模型数据
     func getThreeFoodInfoData(){
-        self.vm.getFoodInfoListData(newClassId: self.vm.threeClassId, newNum: 15)
-            .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .userInitiated))
-            .observeOn(MainScheduler.instance)
-            .subscribe(onSuccess: {(items) in
-                self.vm.threeFoodListModels = items
-                self.foodRecipeHomeView.newTableView.reloadData()
-            }) { (error) in
-
-            }.disposed(by: rx.disposeBag)
+        self.vm.getFoodInfoListData(newClassId: self.vm.threeClassId, newNum: 10, result: {[weak self] (result) in
+            switch result {
+            case .success(let value):
+                self!.vm.threeFoodListModels = value
+                self!.foodRecipeHomeView.newTableView.reloadData()
+                break
+            case .failure(_):
+                break
+            }
+            }, disposeBag: rx.disposeBag)
     }
 }
 extension FoodRecipeHomeViewController: SkeletonTableViewDataSource ,SkeletonTableViewDelegate{
@@ -127,7 +126,9 @@ extension FoodRecipeHomeViewController: SkeletonTableViewDataSource ,SkeletonTab
               let item = self.vm.threeFoodListModels[indexPath.row]
                 cell.foodImgV.setImageWithURLString(item.pic, placeholder:UIImage(named: "zanwutupian"))
                 cell.foodNameLbl.text = item.name
-                cell.foodIntroduceLbl.text = item.content
+                let newOneStr = item.content
+                let newTwoStr = newOneStr?.replacingOccurrences(of: "<br />", with: "")
+                cell.foodIntroduceLbl.text = newTwoStr
                 cell.foodFlag.text = item.tag
             }
             //添加长按手势

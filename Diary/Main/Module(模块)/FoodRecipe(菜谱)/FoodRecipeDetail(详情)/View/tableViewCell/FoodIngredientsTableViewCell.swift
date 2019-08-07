@@ -24,7 +24,7 @@ class FoodIngredientsTableViewCell:DiaryBaseTableViewCell {
             make.right.equalToSuperview().offset(-13)
             make.height.equalTo(45)
         }
-        IngredientsNumLbl.text = "380g"
+        
         IngredientsNumLbl.font = LCZPublicHelper.shared.getBoldFont(size: 16)
         IngredientsNumLbl.textAlignment = .right
         IngredientsNumLbl.textColor = UIColor(valueRGB: 0x000000)
@@ -37,7 +37,7 @@ class FoodIngredientsTableViewCell:DiaryBaseTableViewCell {
             make.left.equalToSuperview().offset(13)
             make.height.equalTo(45)
         }
-        IngredientsNameLbl.text = "白菜(主)"
+       
         IngredientsNameLbl.font = LCZPublicHelper.shared.getBoldFont(size: 16)
         IngredientsNameLbl.textColor = UIColor(valueRGB: 0x000000)
         

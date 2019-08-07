@@ -166,6 +166,15 @@ enum DiaryRoute {
             foodDetails.hidesBottomBarWhenPushed = true
             return foodDetails
         }
+        
+        // 菜谱分类列表信息
+        navigator.register("diary://homeEntrance/foodRecipeHome/FoodRecipeTypeList") { url, values, context in
+            let foodDetails = FoodRecipeTypeListViewController()
+            foodDetails.classArr = context as? Array<String>
+            foodDetails.hidesBottomBarWhenPushed = true
+            return foodDetails
+        }
+        
     }
     
 }

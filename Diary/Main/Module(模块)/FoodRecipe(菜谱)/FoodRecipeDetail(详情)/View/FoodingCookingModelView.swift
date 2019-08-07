@@ -176,7 +176,9 @@ extension FoodingCookingModelView:FSPagerViewDelegate , FSPagerViewDataSource{
             }
             let url = URL(string: item.pic!)
             processInfoView.processPicImgV.kf.setImage(with: url)
-            processInfoView.processContentLbl.text = "\(index+1)/\(self.processModels.count)：\(item.pcontent ?? "")"
+            let newOneStr = item.pcontent
+            let newTwoStr = newOneStr?.replacingOccurrences(of: "<br />", with: "")
+            processInfoView.processContentLbl.text = "\(index+1)/\(self.processModels.count)：\(newTwoStr ?? "")"
         }
         
         

@@ -19,9 +19,6 @@ class CookingProcessInfoShowView: DiaryBaseView {
             make.top.left.right.equalToSuperview()
             make.height.equalTo(160)
         }
-    processPicImgV.setImageWithURLString("http://api.jisuapi.com/recipe/upload/20160719/162554_29522.jpg", placeholder: nil)
-//        processPicImgV.layer.cornerRadius  = 5
-//        processPicImgV.layer.masksToBounds = true
         
         processContentLbl = UILabel()
         self.addSubview(processContentLbl)

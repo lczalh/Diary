@@ -1,15 +1,15 @@
 //
-//  SearchFoodRecipeViewModel.swift
+//  FoodRecipeTypeListViewModel.swift
 //  Diary
 //
-//  Created by linphone on 2019/7/31.
+//  Created by linphone on 2019/8/7.
 //  Copyright © 2019 lcz. All rights reserved.
 //
 
 import Foundation
 
-class  SearchFoodRecipeViewModel {
-
+class  FoodRecipeTypeListViewModel {
+    
     //布局flag false 一行一个商品 true 一行两个商品
     private var _btnFlagBool:Bool = false
     var btnFlagBool:Bool{
@@ -21,21 +21,32 @@ class  SearchFoodRecipeViewModel {
         }
     }
     
-    //搜索模型数组
-    private var _searchFoodListModels:[FoodRecipeInfoListModel] = []
-    var searchFoodListModels:[FoodRecipeInfoListModel] {
+    //分页数
+    private var _pageNum:Int = 0
+    var pageNum:Int{
         get{
-            return _searchFoodListModels
-        }set{
-            _searchFoodListModels = newValue
+            return _pageNum
+        }
+        set{
+            _pageNum = newValue
         }
     }
     
-    //根据搜索获取数据
-    public func getKeywordToFoodListInfoData(newKeyword:String, result: @escaping (_ result: Swift.Result<[FoodRecipeInfoListModel], Swift.Error>) -> Void, disposeBag: DisposeBag)  {
+    //分类模型数组
+    private var _typeFoodListModels:[FoodRecipeInfoListModel] = []
+    var typeFoodListModels:[FoodRecipeInfoListModel] {
+        get{
+            return _typeFoodListModels
+        }set{
+            _typeFoodListModels = newValue
+        }
+    }
+    
+    //根据分类id获取数据
+    public func getClassIdToFoodListInfoData(classId:String, result: @escaping (_ result: Swift.Result<[FoodRecipeInfoListModel], Swift.Error>) -> Void, disposeBag: DisposeBag)  {
         networkServicesProvider
             .rx
-            .lczRequest(target: MultiTarget(HighSpeedDataNetworkServices.searchFoodPrcipe(appkey: newHighSpeedDataAppKey, keyword: newKeyword , num:20)),
+            .lczRequest(target: MultiTarget(HighSpeedDataNetworkServices.getFoodPrcipeList(appkey: newHighSpeedDataAppKey, classid: classId, num: 20, start:pageNum)),
                         model: FoodRecipeInfoRootModel<FoodRecipeInfoResultModel>.self)
             .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .userInitiated))
             .observeOn(MainScheduler.instance)

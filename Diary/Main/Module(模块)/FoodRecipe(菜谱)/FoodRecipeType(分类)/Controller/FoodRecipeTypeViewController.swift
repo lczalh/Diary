@@ -36,20 +36,18 @@ class FoodRecipeTypeViewController: DiaryBaseViewController {
         super.viewDidLoad()
         self.view.addSubview(foodTypeOneView)
         self.view.addSubview(foodTypeTwoView)
-        self.vm.getFoodTypeListData()
-            .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .userInitiated))
-            .observeOn(MainScheduler.instance)
-            .subscribe(onSuccess: {[weak self] (items) in
-               self?.vm.foodTypeResultItems = items
-               self?.foodTypeOneView.newCollectionView.reloadData()
-               self?.foodTypeTwoView.newCollectionView.reloadData()
-
-            }) {[weak self] (error) in
+        self.vm.getFoodTypeListData(result: {[weak self] (result) in
+            switch result {
+            case .success(let value):
+                self?.vm.foodTypeResultItems = value
                 self?.foodTypeOneView.newCollectionView.reloadData()
                 self?.foodTypeTwoView.newCollectionView.reloadData()
-
-//                self?.foodTypeOneView.newCollectionView.reloadData()
-            }.disposed(by: rx.disposeBag)
+                break
+            case .failure(_):
+                break
+            }
+            }, disposeBag: rx.disposeBag)
+       
     }
 }
 
@@ -105,6 +103,11 @@ extension FoodRecipeTypeViewController:UICollectionViewDelegate,UICollectionView
         else{
             self.vm.twoSelectIndex = indexPath.row
             self.foodTypeTwoView.newCollectionView.reloadData()
+            let item = self.vm.getFoodTypeListIndexToItemInfo(index: indexPath.row)
+            if item != nil {
+                let newArr:Array<String> = [item!.name!,"\(item?.classid ?? 0)"]
+                diaryRoute.push("diary://homeEntrance/foodRecipeHome/FoodRecipeTypeList" ,context: newArr)
+            }
         }
         
     }

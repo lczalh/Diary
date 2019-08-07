@@ -30,6 +30,7 @@ class FoodDetailBasicInfoTableViewCell:DiaryBaseTableViewCell {
         foodNameLbl.textColor = UIColor(valueRGB: 0x454748)
         foodNameLbl.lineBreakMode = NSLineBreakMode.byTruncatingTail
         
+        
         foodFlag = UILabel()
         self.contentView.addSubview(foodFlag)
         foodFlag.snp.makeConstraints { (make) in
@@ -41,6 +42,7 @@ class FoodDetailBasicInfoTableViewCell:DiaryBaseTableViewCell {
         foodFlag.font = LCZPublicHelper.shared.getConventionFont(size: 14)
         foodFlag.textColor = UIColor(valueRGB: 0x57310C)  
         foodFlag.lineBreakMode = NSLineBreakMode.byTruncatingTail
+        foodFlag.numberOfLines = 2
         
         peoplenumLbl = UILabel()
         self.contentView.addSubview(peoplenumLbl)

@@ -34,8 +34,6 @@ class FoodRecipeDetailView: DiaryBaseView {
         
         newTableView.estimatedRowHeight = 120 * LCZPublicHelper.shared.getScreenSizeScale;
         newTableView.rowHeight = UITableView.automaticDimension
-        newTableView.sectionHeaderHeight = 45
-        newTableView.sectionFooterHeight = 5
         newTableView.bounces = false
         newTableView.showsVerticalScrollIndicator = false
         newTableView.backgroundColor = UIColor.clear

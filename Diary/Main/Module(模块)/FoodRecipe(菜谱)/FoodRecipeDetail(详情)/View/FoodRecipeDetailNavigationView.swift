@@ -33,7 +33,6 @@ class FoodRecipeDetailNavigationView: DiaryBaseView {
             make.width.equalTo(280)
         }
         
-        titleLbl.text = "酸溜白菜"
         titleLbl.font = LCZPublicHelper.shared.getConventionFont(size: 18)
         titleLbl.textAlignment = .center
         titleLbl.adjustsFontSizeToFitWidth = true

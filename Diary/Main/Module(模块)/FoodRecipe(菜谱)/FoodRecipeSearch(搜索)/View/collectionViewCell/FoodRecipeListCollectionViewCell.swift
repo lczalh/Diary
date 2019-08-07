@@ -46,23 +46,25 @@ class FoodRecipeListCollectionViewCell:  DiaryBaseCollectionViewCell {
         normalView.backgroundColor = UIColor.white
         normalView.layer.cornerRadius =  7.5
         normalView.layer.masksToBounds = true
-    foodImgV.setImageWithURLString("http://api.jisuapi.com/recipe/upload/20160719/115138_46688.jpg", placeholder: nil)
+        normalView.isSkeletonable = true
+    
         foodImgV.layer.cornerRadius  = 5
         foodImgV.layer.masksToBounds = true
+        foodImgV.isSkeletonable = true
         
        
-        foodNameLbl.text = "醋溜白菜"
         foodNameLbl.font = LCZPublicHelper.shared.getConventionFont(size: 15)
         foodNameLbl.textColor = UIColor.black
+        foodNameLbl.isSkeletonable = true
         
-        foodIntroduceLbl.text = "醋溜白菜，是北方人经常吃的一道菜，尤其是在多年前的冬天。那时，没有大棚菜，冬天，家家每天佐餐的基本上都是冬储大白菜，聪明的家庭主妇总是想方设法将这单调的菜变成多种菜式，于是，醋溜白菜被频繁的端上餐桌。<br>美食不分贵贱，用最平凡的原料、最简单的调料和最普通的手法做出美味的菜肴来才是美食的真谛。 <br>这次，我做的醋溜白菜，近似鲁菜的做法，使个这道菜酸甜浓郁、开胃下饭、老少咸宜。"
+        foodIntroduceLbl.isSkeletonable = true
         foodIntroduceLbl.font = LCZPublicHelper.shared.getConventionFont(size: 13)
         foodIntroduceLbl.textColor = UIColor.black
         foodIntroduceLbl.lineBreakMode = NSLineBreakMode.byTruncatingTail
         foodIntroduceLbl.numberOfLines = 3
         
         
-        foodFlag.text = "减肥,家常菜,排毒,补钙"
+        foodFlag.isSkeletonable = true
         foodFlag.font = LCZPublicHelper.shared.getConventionFont(size: 13)
         foodFlag.textColor = UIColor(valueRGB: 0x57310C)
         foodFlag.lineBreakMode = NSLineBreakMode.byTruncatingTail

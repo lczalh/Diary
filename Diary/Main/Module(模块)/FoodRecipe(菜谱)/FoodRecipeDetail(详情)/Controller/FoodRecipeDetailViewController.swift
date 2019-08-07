@@ -14,8 +14,8 @@ class FoodRecipeDetailViewController: DiaryBaseViewController {
     //头部视图
     lazy var headFoodImgV:UIImageView = {
         let newImgV:UIImageView = UIImageView(frame: CGRect(x: 0, y: 0, width:LCZPublicHelper.shared.getScreenWidth!, height: 240))
-        let url = URL(string: detailModel!.pic!)
-        newImgV.kf.setImage(with: url)
+        newImgV.kf.indicatorType = .activity
+        newImgV.kf.setImage(with: ImageResource(downloadURL: URL(string: detailModel!.pic!)!), placeholder: UIImage(named: "zanwutupian"))
         return newImgV
     }()
     
@@ -53,6 +53,11 @@ class FoodRecipeDetailViewController: DiaryBaseViewController {
         self.view.addSubview(headFoodImgV)
         self.view.addSubview(foodDetailView)
         self.view.addSubview(foodNavigationView)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        LCZPublicHelper.shared.setStatusBarBackgroundColor(color: UIColor.clear)
     }
     
     @objc func backBtnClick(btn:UIButton){
@@ -115,7 +120,9 @@ extension FoodRecipeDetailViewController: UITableViewDataSource ,UITableViewDele
                 cell.processDespLbl.attributedText = LCZPublicHelper.shared.setTwoTextFontAndColorStyle(oneTextStr: "流程\(indexPath.row + 1)", oneTextFont: LCZPublicHelper.shared.getConventionFont(size: 22), oneTextColor: UIColor(valueRGB: 0x57310C), twoTextStr: "/\(self.vm.processItems.count)", twoTextFont: LCZPublicHelper.shared.getConventionFont(size: 15), twoTextColor: UIColor(valueRGB: 0xA4A5A8))
                 let url = URL(string: item.pic!)
                 cell.foodImgV.kf.setImage(with: url)
-                cell.processContentLbl.text = "\(item.pcontent ?? "")"
+                let newOneStr = item.pcontent
+                let newTwoStr = newOneStr?.replacingOccurrences(of: "<br />", with: "")
+                cell.processContentLbl.text = newTwoStr
             }
             return cell
         }
@@ -140,11 +147,18 @@ extension FoodRecipeDetailViewController: UITableViewDataSource ,UITableViewDele
             return newTitleLbl
         }
     }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 45
+    }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let newLbl = UILabel()
         newLbl.backgroundColor = UIColor.white
         return newLbl
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 5
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

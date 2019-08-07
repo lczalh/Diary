@@ -57,6 +57,7 @@ extension HotDishesTypeTableViewCell:UICollectionViewDelegate,UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("\(hotDishesItems[indexPath.row]["name"]!) - \(hotDishesItems[indexPath.row]["classid"]!)")
+        let newArr:Array<String> = [hotDishesItems[indexPath.row]["name"]!,hotDishesItems[indexPath.row]["classid"]!]
+        diaryRoute.push("diary://homeEntrance/foodRecipeHome/FoodRecipeTypeList" ,context: newArr)
     }
 }

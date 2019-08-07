@@ -75,36 +75,28 @@ class FoodTypeViewModel{
     }
     
     
-    
     // 获取菜谱分类数据
-    public func getFoodTypeListData() -> Single<Array<FoodTypeResultModel>> {
-        return Single<Array<FoodTypeResultModel>>.create(subscribe: { (single) -> Disposable in
-            let request = networkServicesProvider.rx.requestData(target: MultiTarget(FoodPrcipeDataNetworkServices.getFoodPrcipeTypeList(appkey: newHighSpeedDataAppKey)), model: FoodTypeRootModel.self).subscribe(onSuccess: { [weak self](result) in
-                if result.status == 0 {
-//                    //将json保存到本地
-//                    let jsonData = try! JSONSerialization.data(withJSONObject: result as Any, options: .prettyPrinted)
-//                    // here "jsonData" is the dictionary encoded in JSON data
-//
-//                    let data:NSData = jsonData as NSData
-//
-//                    //构建文件路径
-//                    let filePath:String = NSHomeDirectory() + "/Documents/foodTypeInfo.json"
-//                    data.write(toFile: filePath, atomically: true)
-                    
-                    
-                    self?._foodTypeResultItems = result.result!
-                    self?.getFoodTypeListDataInfo()
-                    
-                    single(.success(result.result! as Array<FoodTypeResultModel>))
+    public func getFoodTypeListData(result: @escaping (_ result: Swift.Result<[FoodTypeResultModel], Swift.Error>) -> Void, disposeBag: DisposeBag)  {
+        
+        networkServicesProvider
+            .rx
+            .lczRequest(target: MultiTarget(HighSpeedDataNetworkServices.getFoodPrcipeTypeList(appkey: newHighSpeedDataAppKey)),
+                        model: FoodTypeRootModel.self)
+            .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .userInitiated))
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { (model) in
+                if model.status == 0 {
+                    self._foodTypeResultItems = model.result!
+                    self.getFoodTypeListDataInfo()
+                    result(.success(model.result! as [FoodTypeResultModel]))
                 } else {
-                    LCZProgressHUD.showError(title: "暂无相关数据!")
-                    single(.error(DiaryRequestError.requestTimeout))
+                    LCZProgressHUD.showError(title: model.msg)
+                    result(.failure(DiaryRequestError.requestCodeError(message: model.msg)))
                 }
             }, onError: { (error) in
-                single(.error(error))
-            })
-            return Disposables.create([request])
-        })
+                result(.failure(error))
+                LCZProgressHUD.showError(title: "似乎已断开与互联网的连接")
+            }).disposed(by: disposeBag)
     }
     
   }

@@ -49,7 +49,7 @@ class CookingProcessTableViewCell: DiaryBaseTableViewCell {
             make.bottom.equalToSuperview().offset(-5)
         }
         
-        processContentLbl.text = "准备食材。 将白菜斜刀片成薄片 ,片切好的白菜帮与菜叶分别入好.盐、糖、生抽、醋淀粉加少许水调匀备用。锅中油烧热，先入花椒炒香后捞出。再加入干红椒段略炒。,加入葱姜蒜煸炒香，然后入白菜帮翻炒。炒至菜帮变软时，加入白菜叶。快速翻炒至菜软，勾入碗汁,使汤汁均匀的包裹在菜帮上即可"
+       
         processContentLbl.font = LCZPublicHelper.shared.getConventionFont(size: 15)
         processContentLbl.textColor = UIColor.black
         processContentLbl.numberOfLines = 0

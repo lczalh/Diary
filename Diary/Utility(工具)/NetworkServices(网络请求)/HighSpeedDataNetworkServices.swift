@@ -24,6 +24,18 @@ public enum HighSpeedDataNetworkServices {
     case getCourierCompany(appkey: String)
     
     case searchNews(appkey: String, keyword: String)
+    
+    // MARK: - 根据分类搜索
+    case getFoodPrcipeList(appkey: String, classid: String, num: Int, start: Int)
+    
+    // MARK: - 获取所有菜谱类型（分类）数据
+    case getFoodPrcipeTypeList(appkey: String)
+    
+    // MARK: - 根据菜品id获取菜品详情
+    case getIdToFoodDetailInfo(appkey: String, id: String)
+    
+    // MARK: - 根据关键字搜索菜谱
+    case searchFoodPrcipe(appkey: String, keyword: String , num: Int)
 }
 
 //设置请求配置
@@ -50,6 +62,14 @@ extension HighSpeedDataNetworkServices : TargetType {
             return "/express/type"
         case .searchNews:
             return "/news/search"
+        case .getFoodPrcipeList:
+            return "recipe/byclass"
+        case .getFoodPrcipeTypeList:
+            return "/recipe/class"
+        case .getIdToFoodDetailInfo:
+            return "/recipe/detail"
+        case .searchFoodPrcipe:
+            return "/recipe/search"
         }
         
     }
@@ -88,6 +108,24 @@ extension HighSpeedDataNetworkServices : TargetType {
         case .searchNews(let appkey, let keyword):
             parameterDict["appkey"] = appkey
             parameterDict["keyword"] = keyword
+            
+        case .getFoodPrcipeTypeList(let appkey):
+            parameterDict["appkey"] = appkey
+            
+        case .getFoodPrcipeList(let appkey, let classid, let num, let start):
+            parameterDict["appkey"] = appkey
+            parameterDict["classid"] = classid
+            parameterDict["num"] = num
+            parameterDict["start"] = start
+            
+        case .getIdToFoodDetailInfo(let appkey, let id):
+            parameterDict["appkey"] = appkey
+            parameterDict["id"] = id
+            
+        case .searchFoodPrcipe(let appkey, let keyword , let num):
+            parameterDict["appkey"] = appkey
+            parameterDict["keyword"] = keyword
+            parameterDict["num"] = num
         }
         
         return  .requestParameters(parameters: parameterDict, encoding: URLEncoding.default)
