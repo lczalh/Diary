@@ -18,21 +18,26 @@ class HomeEntranceCollectionHedderView: UICollectionReusableView {
         super.init(frame: frame);
         
         self.logoImageView = UIImageView()
-        self.addSubview(self.logoImageView)
-        self.logoImageView.snp.makeConstraints { (make) in
-            make.centerY.equalToSuperview()
-            make.left.equalToSuperview().offset(15)
-        }
-        self.logoImageView.contentMode = .scaleAspectFit
+            .lcz
+            .addSubview(self)
+            .snpMakeConstraints({ (make) in
+                make.centerY.equalToSuperview()
+                make.left.equalToSuperview().offset(15)
+            })
+            .contentMode(.scaleAspectFit)
+            .build
         
         self.titleLabel = UILabel()
-        self.addSubview(self.titleLabel)
-        self.titleLabel.snp.makeConstraints { (make) in
-            make.centerY.equalTo(self.logoImageView)
-            make.left.equalTo(self.logoImageView.snp.right).offset(5)
-        }
-        self.titleLabel.font = LCZPublicHelper.shared.getBoldFont(size: 16)
-        self.titleLabel.textColor = LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppTitleColor)
+            .lcz
+            .addSubview(self)
+            .snpMakeConstraints({ (make) in
+                make.centerY.equalTo(self.logoImageView)
+                make.left.equalTo(self.logoImageView.snp.right).offset(5)
+            })
+            .font(LCZPublicHelper.shared.getBoldFont(size: 16))
+            .textColor(LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppTitleColor))
+            .build
+
     }
     
     required init?(coder aDecoder: NSCoder) {

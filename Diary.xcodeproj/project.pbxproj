@@ -14,6 +14,16 @@
 		7302334222B8E9C1002CD8C4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7302334122B8E9C1002CD8C4 /* LoginViewController.swift */; };
 		7302334422B8E9D9002CD8C4 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7302334322B8E9D9002CD8C4 /* LoginView.swift */; };
 		7302DB1A228179F700BC7CAC /* LCZAlignTopLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7302DB19228179F700BC7CAC /* LCZAlignTopLabel.swift */; };
+		730EB8BD22FA7CE700152984 /* LCZChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730EB8BC22FA7CE700152984 /* LCZChain.swift */; };
+		730EB8BF22FA7D2800152984 /* LCZChainCompatible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730EB8BE22FA7D2800152984 /* LCZChainCompatible.swift */; };
+		730EB8C122FA7DE500152984 /* UIButton+LCZChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730EB8C022FA7DE500152984 /* UIButton+LCZChain.swift */; };
+		730EB8C322FAA78200152984 /* UILabel+LCZChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730EB8C222FAA78200152984 /* UILabel+LCZChain.swift */; };
+		730EB8C522FAAC1300152984 /* UIImageView+LCZChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730EB8C422FAAC1300152984 /* UIImageView+LCZChain.swift */; };
+		730EB8C722FAAE6A00152984 /* UIView+LCZChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730EB8C622FAAE6A00152984 /* UIView+LCZChain.swift */; };
+		730EB8C922FAB5BE00152984 /* UITableView+LCZChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730EB8C822FAB5BE00152984 /* UITableView+LCZChain.swift */; };
+		730EB8CB22FAB77300152984 /* UICollectionView+LCZChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730EB8CA22FAB77300152984 /* UICollectionView+LCZChain.swift */; };
+		730EB8CD22FAB9ED00152984 /* UICollectionViewFlowLayout+LCZChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730EB8CC22FAB9ED00152984 /* UICollectionViewFlowLayout+LCZChain.swift */; };
+		730EB8CF22FAD0AC00152984 /* UITextField+LCZChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730EB8CE22FAD0AC00152984 /* UITextField+LCZChain.swift */; };
 		73107D3F22D5DDF10094981F /* TelevisionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73107D3E22D5DDF10094981F /* TelevisionViewController.swift */; };
 		73162F6D22C99EE900561094 /* MoreMoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73162F6C22C99EE900561094 /* MoreMoviesViewController.swift */; };
 		73162F6F22C99EFE00561094 /* MoreMoviesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73162F6E22C99EFE00561094 /* MoreMoviesView.swift */; };
@@ -119,7 +129,6 @@
 		739510D722D7078000814BFF /* NewsEntranceTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739510D622D7078000814BFF /* NewsEntranceTabBarController.swift */; };
 		7396A9D222DC0D3700525F64 /* UICollectionView+LCZPlaceholderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7396A9D122DC0D3700525F64 /* UICollectionView+LCZPlaceholderView.m */; };
 		7396F4A522EE96C000D3C74B /* LCZPublicHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7396F4A422EE96C000D3C74B /* LCZPublicHelper.swift */; };
-		73AD364322F9747C00D8B4FB /* LCZChainKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AD364222F9747C00D8B4FB /* LCZChainKit.swift */; };
 		73B1DDD72241EB8E00BFEF7A /* LCZProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B1DDD62241EB8E00BFEF7A /* LCZProgressHUD.swift */; };
 		73B1DDE22242051400BFEF7A /* MovieHomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B1DDE12242051400BFEF7A /* MovieHomeModel.swift */; };
 		73B1DDE7224206FA00BFEF7A /* DiaryBaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B1DDE6224206FA00BFEF7A /* DiaryBaseCollectionViewCell.swift */; };
@@ -161,6 +170,16 @@
 		7302334122B8E9C1002CD8C4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7302334322B8E9D9002CD8C4 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		7302DB19228179F700BC7CAC /* LCZAlignTopLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCZAlignTopLabel.swift; sourceTree = "<group>"; };
+		730EB8BC22FA7CE700152984 /* LCZChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCZChain.swift; sourceTree = "<group>"; };
+		730EB8BE22FA7D2800152984 /* LCZChainCompatible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCZChainCompatible.swift; sourceTree = "<group>"; };
+		730EB8C022FA7DE500152984 /* UIButton+LCZChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+LCZChain.swift"; sourceTree = "<group>"; };
+		730EB8C222FAA78200152984 /* UILabel+LCZChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+LCZChain.swift"; sourceTree = "<group>"; };
+		730EB8C422FAAC1300152984 /* UIImageView+LCZChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+LCZChain.swift"; sourceTree = "<group>"; };
+		730EB8C622FAAE6A00152984 /* UIView+LCZChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+LCZChain.swift"; sourceTree = "<group>"; };
+		730EB8C822FAB5BE00152984 /* UITableView+LCZChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+LCZChain.swift"; sourceTree = "<group>"; };
+		730EB8CA22FAB77300152984 /* UICollectionView+LCZChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+LCZChain.swift"; sourceTree = "<group>"; };
+		730EB8CC22FAB9ED00152984 /* UICollectionViewFlowLayout+LCZChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewFlowLayout+LCZChain.swift"; sourceTree = "<group>"; };
+		730EB8CE22FAD0AC00152984 /* UITextField+LCZChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+LCZChain.swift"; sourceTree = "<group>"; };
 		73107D3E22D5DDF10094981F /* TelevisionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelevisionViewController.swift; sourceTree = "<group>"; };
 		73162F6C22C99EE900561094 /* MoreMoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreMoviesViewController.swift; sourceTree = "<group>"; };
 		73162F6E22C99EFE00561094 /* MoreMoviesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreMoviesView.swift; sourceTree = "<group>"; };
@@ -271,7 +290,6 @@
 		7396A9D022DC0D3700525F64 /* UICollectionView+LCZPlaceholderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+LCZPlaceholderView.h"; sourceTree = "<group>"; };
 		7396A9D122DC0D3700525F64 /* UICollectionView+LCZPlaceholderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+LCZPlaceholderView.m"; sourceTree = "<group>"; };
 		7396F4A422EE96C000D3C74B /* LCZPublicHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCZPublicHelper.swift; sourceTree = "<group>"; };
-		73AD364222F9747C00D8B4FB /* LCZChainKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCZChainKit.swift; sourceTree = "<group>"; };
 		73B1DDD62241EB8E00BFEF7A /* LCZProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCZProgressHUD.swift; sourceTree = "<group>"; };
 		73B1DDE12242051400BFEF7A /* MovieHomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MovieHomeModel.swift; path = "../../MovieHome(电影首页)/Model/MovieHomeModel.swift"; sourceTree = "<group>"; };
 		73B1DDE6224206FA00BFEF7A /* DiaryBaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryBaseCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -1486,7 +1504,16 @@
 		73AD364122F973BE00D8B4FB /* ChainKit(链式UI) */ = {
 			isa = PBXGroup;
 			children = (
-				73AD364222F9747C00D8B4FB /* LCZChainKit.swift */,
+				730EB8BC22FA7CE700152984 /* LCZChain.swift */,
+				730EB8BE22FA7D2800152984 /* LCZChainCompatible.swift */,
+				730EB8C022FA7DE500152984 /* UIButton+LCZChain.swift */,
+				730EB8C222FAA78200152984 /* UILabel+LCZChain.swift */,
+				730EB8C422FAAC1300152984 /* UIImageView+LCZChain.swift */,
+				730EB8C622FAAE6A00152984 /* UIView+LCZChain.swift */,
+				730EB8C822FAB5BE00152984 /* UITableView+LCZChain.swift */,
+				730EB8CA22FAB77300152984 /* UICollectionView+LCZChain.swift */,
+				730EB8CC22FAB9ED00152984 /* UICollectionViewFlowLayout+LCZChain.swift */,
+				730EB8CE22FAD0AC00152984 /* UITextField+LCZChain.swift */,
 			);
 			path = "ChainKit(链式UI)";
 			sourceTree = "<group>";
@@ -2072,10 +2099,13 @@
 				733D5FC922E84BEE004216FE /* SearchNewsView.swift in Sources */,
 				7333A0F922EAFEED008A6920 /* EnshrineJokeViewController.swift in Sources */,
 				731802AB22C318D800ED5D56 /* ShufflingFigureView.swift in Sources */,
+				730EB8BD22FA7CE700152984 /* LCZChain.swift in Sources */,
 				7377BAAD22E19423000BBBE9 /* LCZCameraManage.swift in Sources */,
 				7344B54D22AF8F6900FC7D4D /* MineEntranceTableViewCell.swift in Sources */,
+				730EB8C122FA7DE500152984 /* UIButton+LCZChain.swift in Sources */,
 				737E1C2D2213D43B00BF751D /* DiaryHeader.swift in Sources */,
 				7367D2F0221FA43F008FD780 /* UIViewController+Rx.swift in Sources */,
+				730EB8C322FAA78200152984 /* UILabel+LCZChain.swift in Sources */,
 				73E78C3422C0C738007F35FA /* AboutUsViewController.swift in Sources */,
 				73C34F6C2264552800244B55 /* SearchMovieViewController.swift in Sources */,
 				7300252222ADFA3F00F05ADC /* HomeEntranceCollectionViewCell.swift in Sources */,
@@ -2093,6 +2123,8 @@
 				73370BFC22B3614000C01FE0 /* LCZUIAlertControllerExtension.swift in Sources */,
 				73E52AFB22B0F20E0018CBA6 /* ExpressQueryResultsViewController.swift in Sources */,
 				735BB336225D943900241A59 /* MovieDetailsTableHeaderView.swift in Sources */,
+				730EB8C522FAAC1300152984 /* UIImageView+LCZChain.swift in Sources */,
+				730EB8C922FAB5BE00152984 /* UITableView+LCZChain.swift in Sources */,
 				737E1C472213E21A00BF751D /* DiaryBaseViewController.swift in Sources */,
 				7337A20722262CBB00B19F07 /* NewsDetailsView.swift in Sources */,
 				735D64CC22BB857E0092ADEC /* RetrievePasswordView.swift in Sources */,
@@ -2112,7 +2144,6 @@
 				733D5FCB22E84E4E004216FE /* SearchNewsViewModel.swift in Sources */,
 				73162F6F22C99EFE00561094 /* MoreMoviesView.swift in Sources */,
 				7344B54F22AFA04700FC7D4D /* MineEntranceViewModel.swift in Sources */,
-				73AD364322F9747C00D8B4FB /* LCZChainKit.swift in Sources */,
 				73480F9C22C309AA003BB258 /* NewsMovieHomeViewController.swift in Sources */,
 				73107D3F22D5DDF10094981F /* TelevisionViewController.swift in Sources */,
 				7333A0EB22EAF856008A6920 /* JokeEntranceTabBarController.swift in Sources */,
@@ -2129,10 +2160,12 @@
 				7300251A22ADF0ED00F05ADC /* HomeEntranceViewController.swift in Sources */,
 				734F2EC322B1DC2600927AC1 /* ExpressQueryResultsView.swift in Sources */,
 				7302DB1A228179F700BC7CAC /* LCZAlignTopLabel.swift in Sources */,
+				730EB8CB22FAB77300152984 /* UICollectionView+LCZChain.swift in Sources */,
 				736F50F222B255D200518645 /* CommonlyExpressTableViewCell.swift in Sources */,
 				7367D2EE221FA43A008FD780 /* MJRefresh+Rx.swift in Sources */,
 				7396F4A522EE96C000D3C74B /* LCZPublicHelper.swift in Sources */,
 				735AC95422AE27E500C51BF7 /* HomeEntranceViewModel.swift in Sources */,
+				730EB8CD22FAB9ED00152984 /* UICollectionViewFlowLayout+LCZChain.swift in Sources */,
 				7338CC2722EAED970025BCDC /* FunnyPicturesViewController.swift in Sources */,
 				732F736422BA00CE008108CD /* RegisterView.swift in Sources */,
 				73B1DDED2242306100BFEF7A /* MovieDetailsViewController.swift in Sources */,
@@ -2164,10 +2197,12 @@
 				73948B7E2223CF88000ED09A /* NewsHomeCell.swift in Sources */,
 				731802B322C346F100ED5D56 /* NewsMovieHomeCollectionHeaderView.swift in Sources */,
 				739510D722D7078000814BFF /* NewsEntranceTabBarController.swift in Sources */,
+				730EB8C722FAAE6A00152984 /* UIView+LCZChain.swift in Sources */,
 				738AD37D22BC96C400FD0680 /* ClearCacheTableViewCell.swift in Sources */,
 				737E1C4A2213E37900BF751D /* NewsHomeViewController.swift in Sources */,
 				734E7C7822D828E2009DAD4D /* UITableView+LCZPlaceholderView.m in Sources */,
 				734E7C8022D832C9009DAD4D /* LCZPlaceholderView.m in Sources */,
+				730EB8CF22FAD0AC00152984 /* UITextField+LCZChain.swift in Sources */,
 				73162F7122C9A5B500561094 /* MoreMoviesViewModel.swift in Sources */,
 				738AD38A22BCA2CE00FD0680 /* ProblemFeedbackViewController.swift in Sources */,
 				73B1DDF02242342700BFEF7A /* MovieDetailsView.swift in Sources */,
@@ -2182,6 +2217,7 @@
 				7300252422ADFB2F00F05ADC /* HomeEntranceCollectionHedderView.swift in Sources */,
 				73409FC3228158CA00899563 /* SearchMovieViewModel.swift in Sources */,
 				7326F8E422251CBD0005696F /* NewsDetailsViewController.swift in Sources */,
+				730EB8BF22FA7D2800152984 /* LCZChainCompatible.swift in Sources */,
 				734E9B742244CF2200CC5004 /* DiaryMacro.swift in Sources */,
 				73BB0FCF22B09FCB005F351C /* ExpressQueryView.swift in Sources */,
 				737E1C542213E89700BF751D /* NewsHomeView.swift in Sources */,

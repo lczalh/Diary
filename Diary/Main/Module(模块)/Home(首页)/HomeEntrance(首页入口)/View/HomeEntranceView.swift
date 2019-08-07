@@ -12,10 +12,6 @@ class HomeEntranceView: DiaryBaseView {
     
     public var collectionView: UICollectionView!
     
-//    public var fsPagerView: FSPagerView!
-//
-//    public var fsPageControl: FSPageControl!
-    
     /// 轮播图
     public var shufflingFigureView: ShufflingFigureView!
 
@@ -34,16 +30,28 @@ class HomeEntranceView: DiaryBaseView {
     // MARK: - collectionView
     private func createCollectionView() {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: (LCZPublicHelper.shared.getScreenWidth! - 15) / 4, height: 70 * LCZPublicHelper.shared.getScreenSizeScale)
-        layout.minimumLineSpacing = 10
-        layout.minimumInteritemSpacing = 5
-        layout.headerReferenceSize = CGSize(width: LCZPublicHelper.shared.getScreenWidth!, height: 40 * LCZPublicHelper.shared.getScreenSizeScale)
-        collectionView = UICollectionView(frame: CGRect(x: 0, y: -(LCZPublicHelper.shared.getstatusBarHeight! + LCZPublicHelper.shared.getNavigationHeight!), width: LCZPublicHelper.shared.getScreenWidth!, height: LCZPublicHelper.shared.getScreenHeight! - LCZPublicHelper.shared.getSafeAreaBottomHeight - LCZPublicHelper.shared.getTabbarHeight!), collectionViewLayout: layout)
-        self.addSubview(collectionView);
-        collectionView.backgroundColor = UIColor.white
-        collectionView.contentInset = UIEdgeInsets(top: 180 * LCZPublicHelper.shared.getScreenSizeScale, left: 0, bottom: 0, right: 0)
-        collectionView.register(HomeEntranceCollectionViewCell.self, forCellWithReuseIdentifier: "HomeEntranceCollectionViewCell")
-        collectionView.register(HomeEntranceCollectionHedderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HomeEntranceCollectionHedderView")
+            .lcz
+            .itemSize(CGSize(width: (LCZPublicHelper.shared.getScreenWidth! - 15) / 4,
+                             height: 70 * LCZPublicHelper.shared.getScreenSizeScale))
+            .minimumLineSpacing(10)
+            .minimumInteritemSpacing(5)
+            .headerReferenceSize(CGSize(width: LCZPublicHelper.shared.getScreenWidth!,
+                                        height: 40 * LCZPublicHelper.shared.getScreenSizeScale))
+            .build
+
+        collectionView = UICollectionView(frame: CGRect(x: 0,
+                                                        y: -(LCZPublicHelper.shared.getstatusBarHeight! + LCZPublicHelper.shared.getNavigationHeight!),
+                                                        width: LCZPublicHelper.shared.getScreenWidth!,
+                                                        height: LCZPublicHelper.shared.getScreenHeight! - LCZPublicHelper.shared.getSafeAreaBottomHeight - LCZPublicHelper.shared.getTabbarHeight!),
+                                          collectionViewLayout: layout)
+            .lcz
+            .addSubview(self)
+            .backgroundColor(UIColor.white)
+            .contentInset(UIEdgeInsets(top: 180 * LCZPublicHelper.shared.getScreenSizeScale, left: 0, bottom: 0, right: 0))
+            .register(HomeEntranceCollectionViewCell.self, forCellWithReuseIdentifier: "HomeEntranceCollectionViewCell")
+            .register(HomeEntranceCollectionHedderView.self, forSectionHeaderWithReuseIdentifier: "HomeEntranceCollectionHedderView")
+            .build
+
     }
 }
 

@@ -62,8 +62,7 @@ class HomeEntranceViewController: DiaryBaseViewController {
                 break;
             }
         }
-        
-        
+
     }
     
 
