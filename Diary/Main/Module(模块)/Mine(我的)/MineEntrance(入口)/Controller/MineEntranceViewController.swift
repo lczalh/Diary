@@ -90,7 +90,7 @@ extension MineEntranceViewController: UITableViewDataSource {
         let title = self.mineEntranceViewModel.cellTitles[indexPath.section][indexPath.row]
         
         if title == "问题反馈" {
-            LCZPublicHelper.shared.callSendEmail(recipients: AppEmail, result: { controller, result in
+            LCZPublicHelper.shared.callSendEmail(recipients: diaryEmail, result: { controller, result in
                 controller.dismiss(animated: true, completion: nil)
                 switch result{
                 case .sent:

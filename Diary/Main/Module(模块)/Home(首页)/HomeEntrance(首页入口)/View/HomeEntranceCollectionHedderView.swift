@@ -19,7 +19,7 @@ class HomeEntranceCollectionHedderView: UICollectionReusableView {
         
         self.logoImageView = UIImageView()
             .lcz
-            .addSubview(self)
+            .addSuperView(self)
             .snpMakeConstraints({ (make) in
                 make.centerY.equalToSuperview()
                 make.left.equalToSuperview().offset(15)
@@ -29,7 +29,7 @@ class HomeEntranceCollectionHedderView: UICollectionReusableView {
         
         self.titleLabel = UILabel()
             .lcz
-            .addSubview(self)
+            .addSuperView(self)
             .snpMakeConstraints({ (make) in
                 make.centerY.equalTo(self.logoImageView)
                 make.left.equalTo(self.logoImageView.snp.right).offset(5)

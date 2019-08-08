@@ -61,7 +61,7 @@ class LoginViewController: DiaryBaseViewController {
         loginView.loginButton.rx.tap.subscribe(onNext: { _ in
             self.loginView.loginButton.isEnabled = false
             
-            if self.loginView.accountTextField.text! == AppAccount && self.loginView.passwordTextField.text! == AppPassword {
+            if self.loginView.accountTextField.text! == diaryAccount && self.loginView.passwordTextField.text! == diaryPassword {
                 LCZProgressHUD.show(title: "正在登陆")
                 self.loginView.loginButton.isEnabled = true
                 // 将uid，token写入偏好设置

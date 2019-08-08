@@ -55,7 +55,7 @@ class NewsHomeViewModel {
         networkServicesProvider
             .rx
             .lczRequest(target: MultiTarget(HighSpeedDataNetworkServices.getNewsTypeList(appkey: highSpeedDataAppKey)),
-                        model: SpeedNewschannelModel.self)
+                        model: SpeedNewschannelModel.self).debug()
             .subscribe(onNext: { (model) in
                 if model.status == 0 {
                     result(.success(model.result))
@@ -68,7 +68,5 @@ class NewsHomeViewModel {
                 LCZProgressHUD.showError(title: "似乎已断开与互联网的连接")
             }).disposed(by: disposeBag)
     }
-    
-    
     
 }

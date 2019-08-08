@@ -140,17 +140,4 @@ public extension LCZChain where Base: UITableView {
         return self
     }
     
-    @discardableResult
-    func snpMakeConstraints(_ constraintMaker: (ConstraintMaker) -> Void) -> LCZChain {
-        base.snp.makeConstraints { (make) in
-            constraintMaker(make)
-        }
-        return self
-    }
-    
-    @discardableResult
-    func addSubview(_ view: UIView) -> LCZChain {
-        view.addSubview(base)
-        return self
-    }
 }

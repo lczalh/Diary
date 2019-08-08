@@ -45,7 +45,7 @@ class HomeEntranceView: DiaryBaseView {
                                                         height: LCZPublicHelper.shared.getScreenHeight! - LCZPublicHelper.shared.getSafeAreaBottomHeight - LCZPublicHelper.shared.getTabbarHeight!),
                                           collectionViewLayout: layout)
             .lcz
-            .addSubview(self)
+            .addSuperView(self)
             .backgroundColor(UIColor.white)
             .contentInset(UIEdgeInsets(top: 180 * LCZPublicHelper.shared.getScreenSizeScale, left: 0, bottom: 0, right: 0))
             .register(HomeEntranceCollectionViewCell.self, forCellWithReuseIdentifier: "HomeEntranceCollectionViewCell")

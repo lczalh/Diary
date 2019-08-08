@@ -18,6 +18,12 @@ public extension LCZChain where Base: UIView {
     
     @discardableResult
     func addSubview(_ view: UIView) -> LCZChain {
+        base.addSubview(view)
+        return self
+    }
+    
+    @discardableResult
+    func addSuperView(_ view: UIView) -> LCZChain {
         view.addSubview(base)
         return self
     }
@@ -74,5 +80,34 @@ public extension LCZChain where Base: UIView {
         base.borderWidth = width
         return self
     }
-
+    
+    @discardableResult
+    func bounds(_ bounds: CGRect) -> LCZChain {
+        base.bounds = bounds
+        return self
+    }
+    
+    @discardableResult
+    func shadowColor(_ shadowColor: UIColor?) -> LCZChain {
+        base.shadowColor = shadowColor
+        return self
+    }
+    
+    @discardableResult
+    func shadowOffset(_ shadowOffset: CGSize) -> LCZChain {
+        base.shadowOffset = shadowOffset
+        return self
+    }
+    
+    @discardableResult
+    func alpha(_ alpha: CGFloat) -> LCZChain {
+        base.alpha = alpha
+        return self
+    }
+    
+    @discardableResult
+    func addSubviews(_ addSubviews: [UIView]) -> LCZChain {
+        base.addSubviews(addSubviews)
+        return self
+    }
 }

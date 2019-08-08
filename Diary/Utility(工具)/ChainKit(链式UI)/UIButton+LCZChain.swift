@@ -31,19 +31,7 @@ public extension LCZChain where Base: UIButton {
         base.setBackgroundImage(image, for: state)
         return self
     }
-    
-    @discardableResult
-    func frame(_ frame: CGRect) -> LCZChain {
-        base.frame = frame
-        return self
-    }
-    
-    @discardableResult
-    func addSubview(_ view: UIView) -> LCZChain {
-        view.addSubview(base)
-        return self
-    }
-    
+
     @discardableResult
     func attributedTitle(_ title: NSAttributedString?, _ state: UIControl.State) -> LCZChain {
         base.setAttributedTitle(title, for: state)
@@ -75,63 +63,14 @@ public extension LCZChain where Base: UIButton {
     }
     
     @discardableResult
-    func isHidden(_ hidden: Bool) -> LCZChain {
-        base.isHidden = hidden
-        return self
-    }
-    
-    @discardableResult
-    func isEnabled(_ enabled: Bool) -> LCZChain {
-        base.isEnabled = enabled
-        return self
-    }
-    
-    @discardableResult
-    func roundedCorners(_ byRoundingCorners: UIRectCorner, _ cornerRadii: CGSize) -> LCZChain {
-        base.layoutIfNeeded()
-        let bezierPath = UIBezierPath(roundedRect: base.bounds, byRoundingCorners: byRoundingCorners, cornerRadii: cornerRadii)
-        let shapeLayer = CAShapeLayer()
-        shapeLayer.frame = base.bounds
-        shapeLayer.path = bezierPath.cgPath
-        base.layer.mask = shapeLayer
-       return self
-    }
-    
-    @discardableResult
-    func backgroundColor(_ color: UIColor) -> LCZChain {
-        base.backgroundColor = color
-        return self
-    }
-    
-    @discardableResult
-    func snpMakeConstraints(_ constraintMaker: (ConstraintMaker) -> Void) -> LCZChain {
-        base.snp.makeConstraints { (make) in
-            constraintMaker(make)
-        }
-        return self
-    }
-    
-    @discardableResult
-    func center(_ center: CGPoint) -> LCZChain {
-        base.center = center
-        return self
-    }
-    
-    @discardableResult
-    func borderColor(_ color: UIColor?) -> LCZChain {
-        base.borderColor = color
-        return self
-    }
-    
-    @discardableResult
-    func borderWidth(_ width: CGFloat) -> LCZChain {
-        base.borderWidth = width
-        return self
-    }
-    
-    @discardableResult
     func isSelected(_ isSelected: Bool) -> LCZChain {
         base.isSelected = isSelected
+        return self
+    }
+    
+    @discardableResult
+    func isEnabled(_ isEnabled: Bool) -> LCZChain {
+        base.isEnabled = isEnabled
         return self
     }
 }

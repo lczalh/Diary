@@ -15,12 +15,12 @@ public let diaryRoute = Navigator()
 public let highSpeedDataAppKey = "62c2edc337648910"
 
 /// 校验用户
-public func diaryApple() -> Bool {
+public func diaryUser() -> Bool {
     let account = UserDefaults.standard.object(forKey: "account") as? String
     if account?.isEmpty == true || account == nil {
         return true
     } else {
-        if UserDefaults.standard.object(forKey: "account") as! String == AppAccount && UserDefaults.standard.object(forKey: "password") as! String == AppPassword {
+        if UserDefaults.standard.object(forKey: "account") as! String == diaryAccount && UserDefaults.standard.object(forKey: "password") as! String == diaryPassword {
             return true
         } else {
             return false
@@ -29,13 +29,13 @@ public func diaryApple() -> Bool {
 }
 
 /// 邮箱
-public let AppEmail = "123456789@qq.com"
+public let diaryEmail = "123456789@qq.com"
 
 /// 账号
-public let AppAccount = "123456"
+public let diaryAccount = "123456"
 
 /// 密码
-public let AppPassword = "123456"
+public let diaryPassword = "123456"
 
 /// 标题颜色
 public let AppTitleColor = "#9c27b0"

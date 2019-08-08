@@ -93,28 +93,9 @@ public extension LCZChain where Base: UICollectionView {
     }
     
     @discardableResult
-    func snpMakeConstraints(_ constraintMaker: (ConstraintMaker) -> Void) -> LCZChain {
-        base.snp.makeConstraints { (make) in
-            constraintMaker(make)
-        }
-        return self
-    }
-    
-    @discardableResult
-    func addSubview(_ view: UIView) -> LCZChain {
-        view.addSubview(base)
-        return self
-    }
-    
-    @discardableResult
     func contentInset(_ edgeInsets: UIEdgeInsets) -> LCZChain {
         base.contentInset = edgeInsets
         return self
     }
     
-    @discardableResult
-    func backgroundColor(_ backgroundColor: UIColor) -> LCZChain {
-        base.backgroundColor = backgroundColor
-        return self
-    }
 }
