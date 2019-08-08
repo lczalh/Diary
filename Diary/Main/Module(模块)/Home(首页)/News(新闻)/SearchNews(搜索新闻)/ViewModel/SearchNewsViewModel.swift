@@ -11,20 +11,23 @@ import Foundation
 class SearchNewsViewModel {
     
     // 获取新闻列表数据
-    public func getSearchNewsData(keyword: String) -> Single<[SpeedNewsListModel]> {
-        return Single<[SpeedNewsListModel]>.create(subscribe: { (single) -> Disposable in
-            let request = networkServicesProvider.rx.requestData(target: MultiTarget(HighSpeedDataNetworkServices.searchNews(appkey: highSpeedDataAppKey, keyword: keyword)), model: SpeedNewsRootModel<SpeedNewsResultModel>.self).subscribe(onSuccess: { (result) in
-                
-                if result.status == 0 {
-                    single(.success(result.result!.list as [SpeedNewsListModel]))
+    public func getSearchNewsData(keyword: String,
+                                   result: @escaping (_ result: Result<[SpeedNewsListModel], Error>) -> Void,
+                                   disposeBag: DisposeBag) {
+        networkServicesProvider
+            .rx
+            .lczRequest(target: MultiTarget(HighSpeedDataNetworkServices.searchNews(appkey: highSpeedDataAppKey,
+                                                                                    keyword: keyword)),
+                        model: SpeedNewsRootModel<SpeedNewsResultModel>.self)
+            .subscribe(onNext: { (model) in
+                if model.status == 0 {
+                    result(.success(model.result!.list as [SpeedNewsListModel]))
                 } else {
-                    LCZProgressHUD.showError(title: result.msg)
-                    single(.error(DiaryRequestError.requestTimeout))
+                    LCZProgressHUD.showError(title: model.msg)
+                    result(.failure(DiaryRequestError.requestCodeError(message: model.msg)))
                 }
-            }) { (error) in
-                single(.error(error))
-            }
-            return Disposables.create([request])
-        })
+            }, onError: { (error) in
+                result(.failure(error))
+            }).disposed(by: disposeBag)
     }
 }

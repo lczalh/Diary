@@ -32,28 +32,36 @@ class SearchNewsViewController: DiaryBaseViewController {
         view.isSkeletonable = true
         view.showAnimatedGradientSkeleton(usingGradient: SkeletonGradient(baseColor: UIColor.clouds),animation: GradientDirection.topLeftBottomRight.slidingAnimation())
         let viewModel = SearchNewsViewModel()
-        viewModel.getSearchNewsData(keyword: self.searchContent)
-                 .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .userInitiated))
-                 .observeOn(MainScheduler.instance).subscribe(onSuccess: {[weak self] (models) in
-                        self!.models = models
-                        self!.searchNewsView.tableView.reloadData()
-                        self!.view.hideSkeleton()
-                  }) {[weak self] (error) in
-                        self!.view.hideSkeleton()
-                  }.disposed(by: rx.disposeBag)
+        
+        viewModel.getSearchNewsData(keyword: self.searchContent, result: {[weak self] (result) in
+            switch result {
+                case .success(let value):
+                    self!.models = value
+                    self!.searchNewsView.tableView.reloadData()
+                    self!.view.hideSkeleton()
+                    break
+                case .failure(_):
+                    self!.view.hideSkeleton()
+                    break
+            }
+        }, disposeBag: rx.disposeBag)
+        
         
         self.searchNewsView.tableView.lcz_reloadClick = { [weak self] sender in
             self!.view.isSkeletonable = true
             self!.view.showAnimatedGradientSkeleton(usingGradient: SkeletonGradient(baseColor: UIColor.clouds),animation: GradientDirection.topLeftBottomRight.slidingAnimation())
-            viewModel.getSearchNewsData(keyword: self!.searchContent)
-                .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .userInitiated))
-                .observeOn(MainScheduler.instance).subscribe(onSuccess: {[weak self] (models) in
-                    self!.models = models
+            viewModel.getSearchNewsData(keyword: self!.searchContent, result: {[weak self] (result) in
+                switch result {
+                case .success(let value):
+                    self!.models = value
                     self!.searchNewsView.tableView.reloadData()
                     self!.view.hideSkeleton()
-                }) {[weak self] (error) in
+                    break
+                case .failure(_):
                     self!.view.hideSkeleton()
-                }.disposed(by: self!.rx.disposeBag)
+                    break
+                }
+                }, disposeBag: self!.rx.disposeBag)
         }
     }
 

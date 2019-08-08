@@ -29,7 +29,7 @@ class NewsHomeViewModel {
     ]
     
     // 获取新闻列表数据
-    public func getNewsListData(channel: String, start: Int, result: @escaping (_ result: Swift.Result<[SpeedNewsListModel], Swift.Error>) -> Void, disposeBag: DisposeBag)  {
+    public func getNewsListData(channel: String, start: Int, result: @escaping (_ result: Result<[SpeedNewsListModel], Error>) -> Void, disposeBag: DisposeBag)  {
         networkServicesProvider
             .rx
             .lczRequest(target: MultiTarget(HighSpeedDataNetworkServices.getNewsList(appkey: highSpeedDataAppKey,
@@ -46,12 +46,11 @@ class NewsHomeViewModel {
                 }
             }, onError: { (error) in
                 result(.failure(error))
-                LCZProgressHUD.showError(title: "似乎已断开与互联网的连接")
             }).disposed(by: disposeBag)
     }
     
     // 获取新闻类型列表数据
-    public func getNewsTypeListData(result: @escaping (_ result: Swift.Result<[String], Swift.Error>) -> Void, disposeBag: DisposeBag) {
+    public func getNewsTypeListData(result: @escaping (_ result: Result<[String], Error>) -> Void, disposeBag: DisposeBag) {
         networkServicesProvider
             .rx
             .lczRequest(target: MultiTarget(HighSpeedDataNetworkServices.getNewsTypeList(appkey: highSpeedDataAppKey)),
@@ -65,7 +64,6 @@ class NewsHomeViewModel {
                 }
             }, onError: { (error) in
                 result(.failure(error))
-                LCZProgressHUD.showError(title: "似乎已断开与互联网的连接")
             }).disposed(by: disposeBag)
     }
     

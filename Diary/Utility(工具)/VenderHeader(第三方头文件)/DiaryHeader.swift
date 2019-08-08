@@ -21,7 +21,7 @@
 @_exported import SnapKit
 @_exported import Kingfisher
 @_exported import SVProgressHUD
-@_exported import Alamofire
+@_exported import enum Result.Result
 @_exported import ZFPlayer
 @_exported import SwifterSwift
 @_exported import PYSearch
