@@ -110,4 +110,18 @@ public extension LCZChain where Base: UIView {
         base.addSubviews(addSubviews)
         return self
     }
+    
+    /// 内容拉伸优先级
+    @discardableResult
+    func setContentHuggingPriority(_ priority: UILayoutPriority, for axis: NSLayoutConstraint.Axis) -> LCZChain {
+        base.setContentHuggingPriority(priority, for: axis)
+        return self
+    }
+    
+    /// /// 内容压缩优先级
+    @discardableResult
+    func setContentCompressionResistancePriority(_ priority: UILayoutPriority, for axis: NSLayoutConstraint.Axis) -> LCZChain {
+        base.setContentCompressionResistancePriority(priority, for: axis)
+        return self
+    }
 }

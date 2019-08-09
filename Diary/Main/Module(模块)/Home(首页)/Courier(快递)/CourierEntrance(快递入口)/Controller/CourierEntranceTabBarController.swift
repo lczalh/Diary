@@ -31,17 +31,18 @@ class CourierEntranceTabBarController: DiaryBaseTabBarController {
             self.expressQueryViewController.commonExpressCompaniesModel = Mapper<CourierEntranceModel>().mapArray(JSONArray: models as! [[String : Any]])
             self.commonlyExpressViewController.commonExpressCompaniesModel = Mapper<CourierEntranceModel>().mapArray(JSONArray: models as! [[String : Any]])
         } else {
-            viewModel.getCommonExpressCompaniesData().subscribe(onSuccess: { (models) in
-                DispatchQueue.main.async {
-                    // 存储数据
-                    let commonExpressCompaniesAry = models.toJSON() as NSArray
-                    commonExpressCompaniesAry.write(toFile: self.viewModel.commonExpressCompaniesPlist, atomically: true)
-                    self.expressQueryViewController.commonExpressCompaniesModel = models
-                    self.commonlyExpressViewController.commonExpressCompaniesModel = models
+            viewModel.getCommonExpressCompaniesData(result: {[weak self] (result) in
+                switch result {
+                    case .success(let value):
+                        // 存储数据
+                        let commonExpressCompaniesAry = value.toJSON() as NSArray
+                        commonExpressCompaniesAry.write(toFile: self!.viewModel.commonExpressCompaniesPlist, atomically: true)
+                        self!.expressQueryViewController.commonExpressCompaniesModel = value
+                        self!.commonlyExpressViewController.commonExpressCompaniesModel = value
+                        break
+                    case .failure(_): break
                 }
-            }, onError: { (error) in
-            
-            }).disposed(by: rx.disposeBag)
+            }, disposeBag: rx.disposeBag)
         }
         
         

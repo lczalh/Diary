@@ -65,7 +65,7 @@ final class RequestAlertPlugin: PluginType {
     func didReceive(_ result: Result<Response, MoyaError>, target: TargetType) {
         LCZPublicHelper.shared.setPrint("收到网络请求响应")
         switch result {
-        case .success(let value):
+        case .success(_):
         
             break
         case .failure(let error):
@@ -77,6 +77,9 @@ final class RequestAlertPlugin: PluginType {
     /// 处理请求结果。我们可以在 completion 前对结果进行进一步处理。
     func process(_ result: Result<Response, MoyaError>, target: TargetType) -> Result<Response, MoyaError> {
         LCZPublicHelper.shared.setPrint("处理网络请求结果")
+//        let a = networkServicesProvider.request(MultiTarget(HighSpeedDataNetworkServices.getNewsTypeList(appkey: highSpeedDataAppKey)), completion: { (rs) in
+//            return rs
+//        })
 //        switch result {
 //        case .success(let value):
 //            print(value)

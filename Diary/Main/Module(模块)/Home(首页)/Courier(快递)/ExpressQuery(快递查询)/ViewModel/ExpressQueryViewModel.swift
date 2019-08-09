@@ -19,25 +19,26 @@ class ExpressQueryViewModel {
     ///
     /// - Parameter number: 快递单号
     /// - Returns: 物流信息
-    public func inquireExpressLogisticsInfo(number: String) -> Single<ExpressQueryResultModel> {
+    public func inquireExpressLogisticsInfo(number: String,
+                                             result: @escaping (_ result: Result<ExpressQueryResultModel, Error>) -> Void,
+                                             disposeBag: DisposeBag) {
         LCZProgressHUD.show(title: "查询中")
-        return Single<ExpressQueryResultModel>.create(subscribe: { (single) -> Disposable in
-            let request = networkServicesProvider.rx.requestData(target: MultiTarget(HighSpeedDataNetworkServices.getExpressLogisticsInfo(appkey: highSpeedDataAppKey, type: "auto", number: number)), model: SpeedNewsRootModel<ExpressQueryResultModel>.self).subscribe(onSuccess: { (result) in
+        networkServicesProvider
+            .rx
+            .lczRequest(target: MultiTarget(HighSpeedDataNetworkServices.getExpressLogisticsInfo(appkey: highSpeedDataAppKey, type: "auto", number: number)), model: SpeedNewsRootModel<ExpressQueryResultModel>.self)
+            .subscribe(onNext: { (model) in
                 LCZProgressHUD.dismiss()
-                if result.status == 0 {
-                    single(.success(result.result!))
+                if model.status == 0 {
+                    result(.success(model.result!))
                 } else {
-                    LCZProgressHUD.showError(title: result.msg)
-                    single(.error(DiaryRequestError.requestTimeout))
+                    LCZProgressHUD.showError(title: model.msg)
+                    result(.failure(DiaryRequestError.requestTimeout))
                 }
             }, onError: { (error) in
                 LCZProgressHUD.dismiss()
-                single(.error(error))
-                LCZProgressHUD.showError(title: "似乎已断开与互联网的连接")
-            })
-            return Disposables.create([request])
-        })
-
+                result(.failure(error))
+            }).disposed(by: disposeBag)
+        
     }
     
     /// 存储历史查询

@@ -57,17 +57,21 @@ class ExpressQueryViewController: DiaryBaseViewController {
         // 查询按钮响应事件
         self.expressQueryView.inquireButton.rx.tap.debounce(0.3, scheduler: MainScheduler.instance).subscribe(onNext: { _ in
             self.expressQueryView.inquireButton.isEnabled = false
-            self.viewModel.inquireExpressLogisticsInfo(number: self.expressQueryView.textField.text!).subscribe(onSuccess: { (model) in
-                // 记录
-                self.viewModel.storeHistoryQuery(text: self.expressQueryView.textField.text!)
-                DispatchQueue.main.async(execute: {
-                    self.expressQueryView.tableView.reloadData()
-                    self.expressQueryView.inquireButton.isEnabled = true
-                    diaryRoute.push("diary://homeEntrance/courierEntrance/expressQueryResults" ,context: [model,self.commonExpressCompaniesModel])
-                })
-            }, onError: { (error) in
-                self.expressQueryView.inquireButton.isEnabled = true
-            }).disposed(by: self.rx.disposeBag)
+            self.viewModel.inquireExpressLogisticsInfo(number: self.expressQueryView.textField.text!, result: { (result) in
+                switch result {
+                    case .success(let model):
+                        // 记录
+                        self.viewModel.storeHistoryQuery(text: self.expressQueryView.textField.text!)
+                        self.expressQueryView.tableView.reloadData()
+                        self.expressQueryView.inquireButton.isEnabled = true
+                        diaryRoute.push("diary://homeEntrance/courierEntrance/expressQueryResults" ,context: [model,self.commonExpressCompaniesModel])
+                        break
+                    case .failure(_):
+                        self.expressQueryView.inquireButton.isEnabled = true
+                        break
+                }
+            }, disposeBag: self.rx.disposeBag)
+            
         }).disposed(by: rx.disposeBag)
         
         // 扫码查询
@@ -126,7 +130,6 @@ class ExpressQueryViewController: DiaryBaseViewController {
     /// - Parameter sender: 当前按钮
     @objc func deleCellQuery(sender: UIButton) -> () {
         let cell = LCZPublicHelper.shared.getSuperView(currentView: sender, seekSuperView: UITableViewCell.self)
-           // sender.LCZGetSuperView(superView: UITableViewCell.self)
         let indexPath = self.expressQueryView.tableView.indexPath(for: cell!)
         let historyQueryHistoryQuery = self.viewModel.getHistoryQuery().mutableCopy() as! NSMutableArray
         historyQueryHistoryQuery.removeObject(at: indexPath!.row)
@@ -155,15 +158,17 @@ extension ExpressQueryViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let number = self.viewModel.getHistoryQuery()[indexPath.row] as? String
-        self.viewModel.inquireExpressLogisticsInfo(number: number!).subscribe(onSuccess: { (model) in
-            // 记录
-            self.viewModel.storeHistoryQuery(text: self.expressQueryView.textField.text!)
-            DispatchQueue.main.async(execute: {
-                self.expressQueryView.tableView.reloadData()
-                diaryRoute.push("diary://homeEntrance/courierEntrance/expressQueryResults" ,context: [model,self.commonExpressCompaniesModel])
-            })
-        }, onError: { (error) in
-        }).disposed(by: self.rx.disposeBag)
+        self.viewModel.inquireExpressLogisticsInfo(number: number!, result: { (result) in
+            switch result {
+                case .success(let model):
+                    // 记录
+                    self.viewModel.storeHistoryQuery(text: self.expressQueryView.textField.text!)
+                    self.expressQueryView.tableView.reloadData()
+                    diaryRoute.push("diary://homeEntrance/courierEntrance/expressQueryResults" ,context: [model,self.commonExpressCompaniesModel])
+                    break
+                case .failure(_): break
+            }
+        }, disposeBag: rx.disposeBag)
     }
     
 }
@@ -191,15 +196,18 @@ extension ExpressQueryViewController: UITableViewDelegate {
 
 extension ExpressQueryViewController: LBXScanViewControllerDelegate {
     
-    func scanFinished(scanResult: LBXScanResult, error: String?) {
-        self.viewModel.inquireExpressLogisticsInfo(number: scanResult.strScanned!).subscribe(onSuccess: { (model) in
-            // 记录
-            self.viewModel.storeHistoryQuery(text: scanResult.strScanned!)
-            DispatchQueue.main.async(execute: {
-                self.expressQueryView.tableView.reloadData()
-                diaryRoute.push("diary://homeEntrance/courierEntrance/expressQueryResults" ,context: [model,self.commonExpressCompaniesModel])
-            })
-        }, onError: { (error) in
-        }).disposed(by: self.rx.disposeBag)
+    func scanFinished(scanResult: LBXScanResult, error: String?) {        
+        self.viewModel.inquireExpressLogisticsInfo(number: scanResult.strScanned!, result: { (result) in
+            switch result {
+                case .success(let model):
+                    // 记录
+                    self.viewModel.storeHistoryQuery(text: scanResult.strScanned!)
+                    self.expressQueryView.tableView.reloadData()
+                    diaryRoute.push("diary://homeEntrance/courierEntrance/expressQueryResults" ,context: [model,self.commonExpressCompaniesModel])
+                    break
+                case .failure(_):
+                    break
+            }
+        }, disposeBag: rx.disposeBag)
     }
 }
