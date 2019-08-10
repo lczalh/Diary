@@ -50,7 +50,7 @@ class NewsHomeViewController: DiaryBaseViewController {
         listContainerView!.frame = CGRect(x: 0,
                                           y: 44,
                                           width: LCZPublicHelper.shared.getScreenWidth!,
-                                          height: LCZPublicHelper.shared.getScreenHeight! - LCZPublicHelper.shared.getNavigationHeight! - LCZPublicHelper.shared.getstatusBarHeight! - 44)
+                                          height: LCZPublicHelper.shared.getScreenHeight! - LCZPublicHelper.shared.getNavigationHeight! - LCZPublicHelper.shared.getStatusBarHeight! - 44)
         listContainerView!.defaultSelectedIndex = 0
         newsHomeView.addSubview(listContainerView!)
         newsHomeView.categoryView!.contentScrollView = listContainerView!.scrollView;

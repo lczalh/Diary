@@ -30,7 +30,7 @@ class HomeEntranceView: DiaryBaseView {
     // MARK: - collectionView
     private func createCollectionView() {
         let layout = UICollectionViewFlowLayout()
-            .lcz
+            .chain
             .itemSize(CGSize(width: (LCZPublicHelper.shared.getScreenWidth! - 15) / 4,
                              height: 70 * LCZPublicHelper.shared.getScreenSizeScale))
             .minimumLineSpacing(10)
@@ -40,11 +40,11 @@ class HomeEntranceView: DiaryBaseView {
             .build
 
         collectionView = UICollectionView(frame: CGRect(x: 0,
-                                                        y: -(LCZPublicHelper.shared.getstatusBarHeight! + LCZPublicHelper.shared.getNavigationHeight!),
+                                                        y: -(LCZPublicHelper.shared.getStatusBarHeight! + LCZPublicHelper.shared.getNavigationHeight!),
                                                         width: LCZPublicHelper.shared.getScreenWidth!,
                                                         height: LCZPublicHelper.shared.getScreenHeight! - LCZPublicHelper.shared.getSafeAreaBottomHeight - LCZPublicHelper.shared.getTabbarHeight!),
                                           collectionViewLayout: layout)
-            .lcz
+            .chain
             .addSuperView(self)
             .backgroundColor(UIColor.white)
             .contentInset(UIEdgeInsets(top: 180 * LCZPublicHelper.shared.getScreenSizeScale, left: 0, bottom: 0, right: 0))

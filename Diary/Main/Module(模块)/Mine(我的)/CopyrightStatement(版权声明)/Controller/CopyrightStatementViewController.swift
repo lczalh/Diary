@@ -25,7 +25,7 @@ class CopyrightStatementViewController: DiaryBaseViewController {
         let contentAttributedString = NSAttributedString(string: self.viewModel.contentString, attributes: [NSAttributedString.Key.paragraphStyle : contentParagraphStyle])
         view.contentLabel.attributedText = contentAttributedString
         view.contentLabel.layoutIfNeeded()
-        view.scrollView.contentSize = CGSize(width: 0, height: view.contentLabel.frame.size.height + LCZPublicHelper.shared.getNavigationHeight! + LCZPublicHelper.shared.getstatusBarHeight!)
+        view.scrollView.contentSize = CGSize(width: 0, height: view.contentLabel.frame.size.height + LCZPublicHelper.shared.getNavigationHeight! + LCZPublicHelper.shared.getStatusBarHeight!)
         return view
     }()
     

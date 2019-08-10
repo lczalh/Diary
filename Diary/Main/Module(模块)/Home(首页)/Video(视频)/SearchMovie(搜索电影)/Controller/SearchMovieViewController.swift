@@ -16,7 +16,7 @@ class SearchMovieViewController: DiaryBaseViewController {
     private var models: [MovieHomeModel] = []
     
     private lazy var searchMovieView: SearchMovieView = {
-        let view = SearchMovieView(frame: CGRect(x: 0, y: 0, width: LCZPublicHelper.shared.getScreenWidth!, height: LCZPublicHelper.shared.getScreenHeight! - LCZPublicHelper.shared.getstatusBarHeight! - LCZPublicHelper.shared.getNavigationHeight! - LCZPublicHelper.shared.getSafeAreaBottomHeight))
+        let view = SearchMovieView(frame: CGRect(x: 0, y: 0, width: LCZPublicHelper.shared.getScreenWidth!, height: LCZPublicHelper.shared.getScreenHeight! - LCZPublicHelper.shared.getStatusBarHeight! - LCZPublicHelper.shared.getNavigationHeight! - LCZPublicHelper.shared.getSafeAreaBottomHeight))
         view.tableView.dataSource = self
         view.tableView.delegate = self
         return view

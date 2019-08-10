@@ -11,7 +11,7 @@ import UIKit
 class PrivacyPolicyViewController: DiaryBaseViewController {
     
     lazy var privacyPolicyView: PrivacyPolicyView = {
-        let view = PrivacyPolicyView(frame: CGRect(x: 0, y: 0, width: LCZPublicHelper.shared.getScreenWidth!, height: LCZPublicHelper.shared.getScreenHeight! - LCZPublicHelper.shared.getNavigationHeight! - LCZPublicHelper.shared.getstatusBarHeight!))
+        let view = PrivacyPolicyView(frame: CGRect(x: 0, y: 0, width: LCZPublicHelper.shared.getScreenWidth!, height: LCZPublicHelper.shared.getScreenHeight! - LCZPublicHelper.shared.getNavigationHeight! - LCZPublicHelper.shared.getStatusBarHeight!))
         let contentParagraphStyle = NSMutableParagraphStyle()
         // 对齐方式
         contentParagraphStyle.alignment = .left
@@ -27,7 +27,7 @@ class PrivacyPolicyViewController: DiaryBaseViewController {
 //        LCZPrint(a);
         view.contentLabel.attributedText = contentAttributedString
         view.contentLabel.layoutIfNeeded()
-        view.scrollView.contentSize = CGSize(width: 0, height: view.contentLabel.frame.height + LCZPublicHelper.shared.getNavigationHeight! + LCZPublicHelper.shared.getstatusBarHeight!)
+        view.scrollView.contentSize = CGSize(width: 0, height: view.contentLabel.frame.height + LCZPublicHelper.shared.getNavigationHeight! + LCZPublicHelper.shared.getStatusBarHeight!)
         return view
     }()
     

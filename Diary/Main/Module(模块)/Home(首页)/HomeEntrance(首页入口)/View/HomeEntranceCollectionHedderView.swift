@@ -18,7 +18,7 @@ class HomeEntranceCollectionHedderView: UICollectionReusableView {
         super.init(frame: frame);
         
         self.logoImageView = UIImageView()
-            .lcz
+            .chain
             .addSuperView(self)
             .snpMakeConstraints({ (make) in
                 make.centerY.equalToSuperview()
@@ -28,7 +28,7 @@ class HomeEntranceCollectionHedderView: UICollectionReusableView {
             .build
         
         self.titleLabel = UILabel()
-            .lcz
+            .chain
             .addSuperView(self)
             .snpMakeConstraints({ (make) in
                 make.centerY.equalTo(self.logoImageView)

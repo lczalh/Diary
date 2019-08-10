@@ -52,8 +52,8 @@ class LCZPublicHelper: NSObject {
         return UINavigationController().navigationBar.frame.height
     }
     
-    /// 获取导航条高度
-    public var getstatusBarHeight: CGFloat? {
+    /// 获取状态栏高度
+    public var getStatusBarHeight: CGFloat? {
         return UIApplication.shared.statusBarFrame.height
     }
     

@@ -21,12 +21,12 @@ target 'Diary' do
     pod 'SwifterSwift', '~> 5.0.0'
     pod 'JXCategoryView', '~> 1.3.16'
     pod 'ZFPlayer', '~> 3.2.13'
-    pod 'ZFPlayer/ControlView', '~> 3.0'
-    pod 'ZFPlayer/AVPlayer', '~> 3.0'
+    pod 'ZFPlayer/ControlView', '~> 3.2.13'
+    pod 'ZFPlayer/AVPlayer', '~> 3.2.13'
     pod 'PYSearch', '~> 0.9.1'
     pod 'swiftScan', '~> 1.1.2'
     pod 'SkeletonView', '~> 1.7'
-    pod 'Hero'
+    pod 'Hero', '~> 1.4.0'
     pod 'pop', '~> 1.0'
 end
 post_install do |installer|

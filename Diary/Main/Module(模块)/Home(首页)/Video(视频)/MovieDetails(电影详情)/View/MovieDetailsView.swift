@@ -38,7 +38,10 @@ class MovieDetailsView: DiaryBaseView {
         controlView = ZFPlayerControlView()
         controlView.fastViewAnimated = true
         
-        playerView = UIImageView(frame: CGRect(x: 0, y: LCZPublicHelper.shared.getstatusBarHeight!, width: LCZPublicHelper.shared.getScreenWidth!, height: 215 * LCZPublicHelper.shared.getScreenSizeScale))
+        playerView = UIImageView(frame: CGRect(x: 0,
+                                               y: 0,
+                                               width: LCZPublicHelper.shared.getScreenWidth!,
+                                               height: 215 * LCZPublicHelper.shared.getScreenSizeScale))
         playerView.contentMode = .scaleAspectFill
         playerView.clipsToBounds = true
         self.addSubview(playerView)
@@ -60,10 +63,10 @@ class MovieDetailsView: DiaryBaseView {
     
     // MARK: - 集合视图
     private func createTableView() {
-        marqueeLabel = LCZMarqueeLabel.init(location: CGPoint(x: 0, y: self.playerView.frame.height + LCZPublicHelper.shared.getstatusBarHeight!), text: "本站视频采集自网络，视频滚动水印广告请勿相信，谨防上当受骗。特此告知！！！")
+        marqueeLabel = LCZMarqueeLabel.init(location: CGPoint(x: 0, y: self.playerView.frame.height), text: "本站视频采集自网络，视频滚动水印广告请勿相信，谨防上当受骗。特此告知！！！")
         self.addSubview(marqueeLabel)
         marqueeLabel.textColor = LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppTitleColor)
-        tableView = UITableView(frame: CGRect(x: 0, y: self.playerView.frame.height + LCZPublicHelper.shared.getstatusBarHeight! + marqueeLabel.frame.height, width: LCZPublicHelper.shared.getScreenWidth!, height: LCZPublicHelper.shared.getScreenHeight! - self.playerView.frame.height - LCZPublicHelper.shared.getstatusBarHeight!), style: .grouped)
+        tableView = UITableView(frame: CGRect(x: 0, y: self.playerView.frame.height + marqueeLabel.frame.height, width: LCZPublicHelper.shared.getScreenWidth!, height: LCZPublicHelper.shared.getScreenHeight! - self.playerView.frame.height - LCZPublicHelper.shared.getStatusBarHeight!), style: .grouped)
         self.addSubview(tableView)
         tableView.register(SynopsisCell.self, forCellReuseIdentifier: "SynopsisCell")
         tableView.register(EpisodeCell.self, forCellReuseIdentifier: "EpisodeCell")

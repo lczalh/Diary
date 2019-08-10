@@ -23,7 +23,7 @@ class MineEntranceView: DiaryBaseView {
     
     /// tableview
     private func createTableView() {
-        tableView = UITableView(frame: CGRect(x: 0, y: -(LCZPublicHelper.shared.getNavigationHeight! + LCZPublicHelper.shared.getstatusBarHeight!), width: LCZPublicHelper.shared.getScreenWidth!, height: LCZPublicHelper.shared.getScreenHeight! + LCZPublicHelper.shared.getNavigationHeight! + LCZPublicHelper.shared.getstatusBarHeight!), style: .grouped)
+        tableView = UITableView(frame: CGRect(x: 0, y: -(LCZPublicHelper.shared.getNavigationHeight! + LCZPublicHelper.shared.getStatusBarHeight!), width: LCZPublicHelper.shared.getScreenWidth!, height: LCZPublicHelper.shared.getScreenHeight! + LCZPublicHelper.shared.getNavigationHeight! + LCZPublicHelper.shared.getStatusBarHeight!), style: .grouped)
         self.addSubview(tableView)
         tableView.rowHeight = 50 * LCZPublicHelper.shared.getScreenSizeScale
         tableView.register(MineEntranceTableViewCell.self, forCellReuseIdentifier: "MineEntranceTableViewCell")

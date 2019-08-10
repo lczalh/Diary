@@ -119,10 +119,10 @@ extension MineEntranceViewController: UITableViewDataSource {
 extension MineEntranceViewController: UITableViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
-        if (offsetY < -(200 + LCZPublicHelper.shared.getNavigationHeight! + LCZPublicHelper.shared.getstatusBarHeight!) ) {
+        if (offsetY < -(200 + LCZPublicHelper.shared.getNavigationHeight! + LCZPublicHelper.shared.getStatusBarHeight!) ) {
             var frame = self.mineEntranceView.headerImageView.frame
-            frame.size.height =  -(offsetY + LCZPublicHelper.shared.getNavigationHeight! + LCZPublicHelper.shared.getstatusBarHeight!) ;
-            frame.origin.y = offsetY + LCZPublicHelper.shared.getNavigationHeight! + LCZPublicHelper.shared.getstatusBarHeight!;
+            frame.size.height =  -(offsetY + LCZPublicHelper.shared.getNavigationHeight! + LCZPublicHelper.shared.getStatusBarHeight!) ;
+            frame.origin.y = offsetY + LCZPublicHelper.shared.getNavigationHeight! + LCZPublicHelper.shared.getStatusBarHeight!;
             self.mineEntranceView.headerImageView.frame = frame;
         }
     }
