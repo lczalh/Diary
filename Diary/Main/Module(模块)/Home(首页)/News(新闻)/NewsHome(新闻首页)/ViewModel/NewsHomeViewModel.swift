@@ -67,4 +67,21 @@ class NewsHomeViewModel {
             }).disposed(by: disposeBag)
     }
     
+//    public func request(result: @escaping (_ result: Result<SpeedNewschannelModel, Error>) -> Void, disposeBag: DisposeBag, model1: SpeedNewschannelModel.Type) {
+//        networkServicesProvider
+//            .rx
+//            .lczRequest(target: MultiTarget(HighSpeedDataNetworkServices.getNewsTypeList(appkey: highSpeedDataAppKey)),
+//                        model: model1).debug()
+//            .subscribe(onNext: { (model) in
+//                if model.status == 0 {
+//                    result(.success(model))
+//                } else {
+//                    LCZProgressHUD.showError(title: model.msg)
+//                    result(.failure(DiaryRequestError.requestCodeError(message: model.msg)))
+//                }
+//            }, onError: { (error) in
+//                result(.failure(error))
+//            }).disposed(by: disposeBag)
+//    }
+    
 }
