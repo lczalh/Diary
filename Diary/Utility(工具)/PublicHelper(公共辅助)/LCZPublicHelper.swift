@@ -398,14 +398,34 @@ class LCZPublicHelper: NSObject {
         }
     }
     
-    /// 通过字符串获取字符串大小
+    /// 计算字符串宽度
     ///
     /// - Parameters:
     ///   - font: 待显示的文字大小
     ///   - size: 预估字符串大小
     ///   - text: 字符串
     /// - Returns: CGSize
-    public func getTextSize(font: UIFont, size: CGSize = CGSize(width: 100000, height: 100000), text: NSString) -> CGSize {
+    public func getTextWidth(font: UIFont, size: CGSize = CGSize(width: CGFloat(MAXFLOAT), height: LCZPublicHelper.shared.getScreenHeight!), text: NSString) -> CGSize {
+        var textSize:CGSize
+        if __CGSizeEqualToSize(size,CGSize.zero){
+            let attributes = NSDictionary(object: font, forKey: NSAttributedString.Key.font as NSCopying)
+            textSize = text.size(withAttributes:attributes as? [NSAttributedString.Key : Any])
+        }else{
+            let attributes = NSDictionary(object: font, forKey: NSAttributedString.Key.font as NSCopying)
+            let stringRect = text.boundingRect(with:size, options:NSStringDrawingOptions.usesLineFragmentOrigin, attributes:attributes as? [NSAttributedString.Key : Any], context: nil)
+            textSize = stringRect.size
+        }
+        return textSize
+    }
+    
+    /// 计算字符串高度
+    ///
+    /// - Parameters:
+    ///   - font: 待显示的文字大小
+    ///   - size: 预估字符串大小
+    ///   - text: 字符串
+    /// - Returns: CGSize
+    public func getTextHeight(font: UIFont, size: CGSize = CGSize(width: LCZPublicHelper.shared.getScreenWidth!, height: CGFloat(MAXFLOAT)), text: NSString) -> CGSize {
         var textSize:CGSize
         if __CGSizeEqualToSize(size,CGSize.zero){
             let attributes = NSDictionary(object: font, forKey: NSAttributedString.Key.font as NSCopying)
