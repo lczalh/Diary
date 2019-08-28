@@ -35,7 +35,7 @@ class MineEntranceView: DiaryBaseView {
     private func createHeaderImageView() {
         headerImageView = UIImageView(frame: CGRect(x: 0, y: -200 * LCZPublicHelper.shared.getScreenSizeScale, width: LCZPublicHelper.shared.getScreenWidth!, height: 200 * LCZPublicHelper.shared.getScreenSizeScale))
         tableView.addSubview(headerImageView)
-        headerImageView.image = UIImage(named: "4")
+        headerImageView.image = UIImage(named: "1")
         headerImageView.contentMode = .scaleAspectFill
         headerImageView.clipsToBounds = true
     }

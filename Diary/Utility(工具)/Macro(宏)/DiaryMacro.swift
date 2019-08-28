@@ -32,16 +32,16 @@ public func diaryUser() -> Bool {
 public let diaryEmail = "123456789@qq.com"
 
 /// 账号
-public let diaryAccount = "123456"
+public let diaryAccount = "15666666666"
 
 /// 密码
 public let diaryPassword = "123456"
 
 /// 标题颜色
-public let AppTitleColor = "#9c27b0"
+public let AppTitleColor = "#FFC0CB"
 
 /// 内容颜色
-public let AppContentColor = "#4fc3f7"
+public let AppContentColor = "#8B4513"
 
 /// 苹果应用id
-public let ApplicationId = "1474969735"
+public let ApplicationId = "1477734500"
