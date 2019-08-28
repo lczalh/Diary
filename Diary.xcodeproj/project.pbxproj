@@ -2489,7 +2489,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.john.cage;
+				PRODUCT_BUNDLE_IDENTIFIER = com.carter.carter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Diary/Utility(工具)/Bridging(桥接文件)/Diary-Bridging-Header.h";
@@ -2515,7 +2515,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.john.cage;
+				PRODUCT_BUNDLE_IDENTIFIER = com.carter.carter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Diary/Utility(工具)/Bridging(桥接文件)/Diary-Bridging-Header.h";

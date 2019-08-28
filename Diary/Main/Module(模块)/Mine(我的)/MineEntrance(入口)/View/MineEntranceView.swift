@@ -33,10 +33,14 @@ class MineEntranceView: DiaryBaseView {
     }
     
     private func createHeaderImageView() {
-        headerImageView = UIImageView(frame: CGRect(x: 0, y: -200 * LCZPublicHelper.shared.getScreenSizeScale, width: LCZPublicHelper.shared.getScreenWidth!, height: 200 * LCZPublicHelper.shared.getScreenSizeScale))
-        tableView.addSubview(headerImageView)
-        headerImageView.image = UIImage(named: "1")
-        headerImageView.contentMode = .scaleAspectFill
-        headerImageView.clipsToBounds = true
+        headerImageView = UIImageView()
+            .chain
+            .addSuperView(tableView)
+            .frame(CGRect(x: 0, y: -200 * LCZPublicHelper.shared.getScreenSizeScale, width: LCZPublicHelper.shared.getScreenWidth!, height: 200 * LCZPublicHelper.shared.getScreenSizeScale))
+            .image(UIImage(named: "7"))
+            .contentMode(.scaleAspectFill)
+            .clipsToBounds(true)
+            .build
+       
     }
 }
