@@ -34,13 +34,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         // 设置首页
         LCZHomePage.shared.setHomePage(guidePage: { // 引导页
-            self.window?.rootViewController = DiaryBaseNavigationController(rootViewController: LoginViewController())
+            self.window?.rootViewController = MainTabBarController()
         }) {
             // 判断用户是否登陆
             if (UserDefaults.standard.object(forKey: "account") != nil) && (UserDefaults.standard.object(forKey: "password") != nil) { // 首页
                 self.window?.rootViewController = MainTabBarController()
             } else { // 登陆
-                self.window?.rootViewController = DiaryBaseNavigationController(rootViewController: LoginViewController())
+                self.window?.rootViewController = MainTabBarController()
             }
         }
         self.window?.makeKeyAndVisible()
