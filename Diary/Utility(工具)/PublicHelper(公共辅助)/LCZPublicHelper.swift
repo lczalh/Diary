@@ -570,6 +570,33 @@ class LCZPublicHelper: NSObject {
     public func callSystemDial(phoneNumber: String) {
         UIApplication.shared.open(URL(string: "tel://\(phoneNumber)")!, options: [:], completionHandler: nil)
     }
+    
+    /// 获取指定年月开始日期
+    public func getSpecifiedYearStartDate(year: Int, month: Int) -> Date {
+        let calendar = NSCalendar.current
+        var startComps = DateComponents()
+        startComps.day = 1
+        startComps.month = month
+        startComps.year = year
+        let startDate = calendar.date(from: startComps)!
+        return startDate
+    }
+    
+    /// 获取指定年月结束日期
+    public func getSpecifiedYearEndDate(year: Int, month: Int, returnEndTime:Bool = false) -> Date {
+        let calendar = NSCalendar.current
+        var components = DateComponents()
+        components.month = 1
+        if returnEndTime {
+            components.second = -1
+        } else {
+            components.day = -1
+        }
+        
+        let endOfYear = calendar.date(byAdding: components,
+                                      to: getSpecifiedYearStartDate(year: year, month:month))!
+        return endOfYear
+    }
 }
 
 
