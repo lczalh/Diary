@@ -148,6 +148,8 @@
 		73E78C2B22C0B03F007F35FA /* PrivacyPolicyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E78C2A22C0B03F007F35FA /* PrivacyPolicyViewModel.swift */; };
 		73E78C3422C0C738007F35FA /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E78C3322C0C738007F35FA /* AboutUsViewController.swift */; };
 		73E78C3622C0C74B007F35FA /* AboutUsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E78C3522C0C74B007F35FA /* AboutUsView.swift */; };
+		D045072C231B715C00F9A44B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D045072E231B715C00F9A44B /* InfoPlist.strings */; };
+		D0450730231B716300F9A44B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D0450732231B716300F9A44B /* Localizable.strings */; };
 		D0A716A122B4BF20000BC367 /* LCZWaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A716A022B4BF20000BC367 /* LCZWaveView.swift */; };
 		D0FF7ACF22FEBE38001CC1AE /* ChainCompatible.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FF7AAC22FEBE35001CC1AE /* ChainCompatible.swift */; };
 		D0FF7AD022FEBE38001CC1AE /* UISlider+Chain.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FF7AAD22FEBE35001CC1AE /* UISlider+Chain.swift */; };
@@ -338,6 +340,12 @@
 		73E78C3522C0C74B007F35FA /* AboutUsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsView.swift; sourceTree = "<group>"; };
 		7BF0AA4A0A47E6E656FBD185 /* Pods-Diary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Diary.release.xcconfig"; path = "Pods/Target Support Files/Pods-Diary/Pods-Diary.release.xcconfig"; sourceTree = "<group>"; };
 		AC179B3912B814D4F44DC7E7 /* Pods-Diary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Diary.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Diary/Pods-Diary.debug.xcconfig"; sourceTree = "<group>"; };
+		D0450726231B70E900F9A44B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		D0450727231B70EA00F9A44B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		D045072D231B715C00F9A44B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D045072F231B715F00F9A44B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		D0450731231B716300F9A44B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D0450733231B716B00F9A44B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D0A716A022B4BF20000BC367 /* LCZWaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCZWaveView.swift; sourceTree = "<group>"; };
 		D0FF7AAC22FEBE35001CC1AE /* ChainCompatible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChainCompatible.swift; sourceTree = "<group>"; };
 		D0FF7AAD22FEBE35001CC1AE /* UISlider+Chain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UISlider+Chain.swift"; sourceTree = "<group>"; };
@@ -1263,6 +1271,8 @@
 			isa = PBXGroup;
 			children = (
 				73D4DAE72213CBF400116541 /* Info.plist */,
+				D0450732231B716300F9A44B /* Localizable.strings */,
+				D045072E231B715C00F9A44B /* InfoPlist.strings */,
 			);
 			path = Plist;
 			sourceTree = "<group>";
@@ -2091,6 +2101,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 73D4DACF2213CBF200116541;
 			productRefGroup = 73D4DAD92213CBF200116541 /* Products */;
@@ -2108,8 +2119,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				73D4DAE62213CBF400116541 /* LaunchScreen.storyboard in Resources */,
+				D0450730231B716300F9A44B /* Localizable.strings in Resources */,
 				73D4DAE32213CBF400116541 /* Assets.xcassets in Resources */,
 				73D4DAE12213CBF200116541 /* Main.storyboard in Resources */,
+				D045072C231B715C00F9A44B /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2342,6 +2355,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				73D4DAE02213CBF200116541 /* Base */,
+				D0450726231B70E900F9A44B /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -2350,8 +2364,27 @@
 			isa = PBXVariantGroup;
 			children = (
 				73D4DAE52213CBF400116541 /* Base */,
+				D0450727231B70EA00F9A44B /* zh-Hans */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		D045072E231B715C00F9A44B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D045072D231B715C00F9A44B /* en */,
+				D045072F231B715F00F9A44B /* zh-Hans */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		D0450732231B716300F9A44B /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D0450731231B716300F9A44B /* en */,
+				D0450733231B716B00F9A44B /* zh-Hans */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -2361,6 +2394,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -2422,6 +2456,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -2489,7 +2524,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.john.cage;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yee.chong;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Diary/Utility(工具)/Bridging(桥接文件)/Diary-Bridging-Header.h";
@@ -2515,7 +2550,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.john.cage;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yee.chong;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Diary/Utility(工具)/Bridging(桥接文件)/Diary-Bridging-Header.h";

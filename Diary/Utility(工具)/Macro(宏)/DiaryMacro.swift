@@ -38,10 +38,10 @@ public let diaryAccount = "15666666666"
 public let diaryPassword = "123456"
 
 /// 标题颜色
-public let AppTitleColor = "#FFC0CB"
+public let AppTitleColor = "#FFD700"
 
 /// 内容颜色
-public let AppContentColor = "#8B4513"
+public let AppContentColor = "#FFDEAD"
 
 /// 苹果应用id
-public let ApplicationId = "1477734500"
+public let ApplicationId = "1478542976"

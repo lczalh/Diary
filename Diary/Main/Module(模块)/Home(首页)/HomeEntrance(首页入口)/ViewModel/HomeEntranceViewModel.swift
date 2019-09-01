@@ -19,7 +19,7 @@ class HomeEntranceViewModel {
             return [["快递","新闻"]
                    ]
         } else {
-            return [["快递","新闻","人脸识别","笑话"],
+            return [["快递".localized(),"新闻","人脸识别","笑话"],
                     ["视频"]
                    ]
         }
@@ -29,7 +29,7 @@ class HomeEntranceViewModel {
     public lazy var cellImages: Array<Array<String>> = {
         if diaryUser() == true {
             return [
-                    ["shipin","shoucang"]
+                    ["xiaohua","renlianshibie"]
                    ]
         } else {
             return [
@@ -42,7 +42,7 @@ class HomeEntranceViewModel {
     /// 分组标题
     public lazy var sectionTitles: Array<String> = {
         if diaryUser() == true {
-            return ["休闲生活"]
+            return ["智慧生活"]
         } else {
             return ["生活服务","休闲娱乐"]
         }

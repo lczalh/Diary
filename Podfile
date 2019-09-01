@@ -28,6 +28,7 @@ target 'Diary' do
     pod 'SkeletonView', '~> 1.7'
     pod 'Hero', '~> 1.4.0'
     pod 'pop', '~> 1.0'
+    pod 'Localize-Swift', '~> 2.0'
 end
 post_install do |installer|
     installer.pods_project.targets.each do |target|

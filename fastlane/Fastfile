@@ -1,0 +1,31 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  before_all do
+    ENV["FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD"] = "qqsv-ivfm-ejuv-akop"
+    ENV["FASTLANE_SESSION"] = '---\n- !ruby/object:HTTP::Cookie\n  name: DES5d23768ec6168204a1746480d6c92670b\n  value: HSARMTKNSRVXWFlazL1sMoCi2Ar7Mp0BMF/e0wA2773e5lvbBGWYgmCyZFqG66oZjr80dJbClIqR8XqyiOPeDiOuLR3R8PhCSrsuQzb+uzEvN/lAxTL3hMTkjJ4hsrK2Bll6njom6uW2SRVX\n  domain: idmsa.apple.com\n  for_domain: true\n  path: "/"\n  secure: true\n  httponly: true\n  expires: \n  max_age: 2592000\n  created_at: &1 2019-09-01 12:43:49.398489000 +08:00\n  accessed_at: *1\n- !ruby/object:HTTP::Cookie\n  name: myacinfo\n  value: DAWTKNV2e2cd94431dbb16281beef925fcf1437bc21a4c218d1c0b2f5ccc8d0b64b257bf7849f57d0884b2cbbefb53b56656670e2301bdb28693e666c5c75b07ad13b2abf7d03605360b4ad89a7300dc199ffd2b6bcfa1d88976f39bbe1dab1184b385c84fe86e5d9e3dbdb4485d1d99c97a2ffbf7d2f0222e38cd818986b90288a3da047681a3df6b453244dcd2e250155fc0d1ee450db6c05cab956608cac582b23acf9e2215c9384e0cd4af8d757c7130c937af86e564a25f84fad6f5f9728a83504990645683a7cc74253c84c68759aaaaff8d79fecaa131a8f390cf7f31963d53a5fe5c5d72243575342e948d81a7abcb80f7064e4a94ec3c0b6b071efb5a7e4a81e39c03105b6e6b77e11cf5ab69506fbf2655bf7f83aa9a4798e64c55a3df242b7adcfa570fab1be0457f81611282c85458245f1d34e2d2e023b4b40256a064d37fcfb38d1d2c2e4f044b8142a485780866b3deda32a5bacb5e1ab01d9b83b481d43e3033c5f34ba4fe6c8adfe29f874734303139666366393330653263356430643361333836643438396562653631623533383035393239MVRYV2\n  domain: apple.com\n  for_domain: true\n  path: "/"\n  secure: true\n  httponly: true\n  expires: \n  max_age: \n  created_at: 2019-09-01 12:43:49.398586000 +08:00\n  accessed_at: 2019-09-01 15:36:35.553471000 +08:00\n- !ruby/object:HTTP::Cookie\n  name: dqsid\n  value: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NjczMjEzMTgsImp0aSI6IlhUaUFNUU1FQk5QZVFzcE1uTGpYZGcifQ.U08KC7VgUdmtXfIYX_NAetI8C17YbD-gjHHuj85Zk4I\n  domain: appstoreconnect.apple.com\n  for_domain: false\n  path: "/"\n  secure: true\n  httponly: true\n  expires: \n  max_age: 1800\n  created_at: &2 2019-09-01 15:36:37.485896000 +08:00\n  accessed_at: *2\n'
+  end
+  desc "Push a new release build to the App Store"
+  lane :release do
+  gym(
+	export_xcargs: "-allowProvisioningUpdates"
+  )
+    build_app(workspace: "Diary.xcworkspace", scheme: "Diary")
+    upload_to_app_store
+  end
+end

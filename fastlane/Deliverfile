@@ -1,0 +1,75 @@
+# The Deliverfile allows you to store various App Store Connect metadata
+# For more information, check out the docs
+# https://docs.fastlane.tools/actions/deliver/
+
+# 应用审核小组的联系信息 app 审核信息
+app_review_information(
+  first_name: "li",
+  last_name: "ming",
+  phone_number: "+86 17608430508",
+  email_address: "824093806@qq.com",
+  demo_user: "15666666666",
+  demo_password: "123456",
+  notes: "测试单号：3102666683876"
+)
+
+# 跳过HTML报告文件验证
+force(true)
+
+automatic_release(true)
+
+# 关键字
+keywords(
+	'zh-Hans' => "Diary",
+)
+
+copyright("Diary") #版权信息
+
+description({ #iTunes Store 中描述信息
+  'zh-Hans' => "1. Provide you with the most timely, authentic and authoritative news and information;
+2. Hot current events, controlled by you, make your facts clearer
+3. Intelligent express query: directly input the express number or scan the bar code
+4. Single number management: automatically save the history of express number, at any time to inquire the history of express"
+})
+
+#此应用程序的价格等级
+price_tier 0
+
+trade_representative_contact_information(
+  first_name: "li",
+  last_name: "ming",
+  phone_number: "+86 17608430508",
+  email_address: "824093806@qq.com"
+)
+
+# 隐私政策网址 
+privacy_url({
+  'zh-Hans' => "https://m.toutiao.com/i6701849014209348103/"
+})
+
+# 支持网址
+support_url(
+	# 中国
+	'zh-Hans' => ENV['https://m.toutiao.com/i6701849014209348103/']
+)
+
+#提交审核信息:加密, idfa 等
+submission_information({    
+    export_compliance_encryption_updated: false,
+    export_compliance_uses_encryption: false,
+    content_rights_contains_third_party_content: false,
+    add_id_info_uses_idfa: false
+})
+
+promotional_text( # 本地化宣传文本信息介绍
+  "zh-Hans" => "Here's a surprise you didn't expect",
+)
+
+# 模板参考地址 https://github.com/fastlane/fastlane/blob/master/deliver/assets/example_rating_config.json
+app_rating_config_path "./fastlane/metadata/example_rating_config.json" #年龄分级配置
+
+primary_category("Utilities")
+
+
+
+

@@ -52,7 +52,7 @@ class HomeEntranceViewController: DiaryBaseViewController {
         let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         backBarButtonItem.tintColor = LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppContentColor)
         self.navigationItem.backBarButtonItem = backBarButtonItem
-        
+        LCZPublicHelper.shared.setPrint("alertTitle".localized())
         // 下载电视列表数据
         networkServicesProvider.request(MultiTarget(Resource.televisionJson)) { (result) in
             switch result {
