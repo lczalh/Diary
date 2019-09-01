@@ -22,7 +22,7 @@ class HomeEntranceView: DiaryBaseView {
     
     // MARK: - 轮播图
     private func createShufflingFigure() {
-        shufflingFigureView = ShufflingFigureView(frame: CGRect(x: 0, y: -180 * LCZPublicHelper.shared.getScreenSizeScale, width: LCZPublicHelper.shared.getScreenWidth!, height: 180 * LCZPublicHelper.shared.getScreenSizeScale))
+        shufflingFigureView = ShufflingFigureView(frame: CGRect(x: 0, y: -180 * cz_ScreenSizeScale, width: cz_ScreenWidth!, height: 180 * cz_ScreenSizeScale))
         collectionView.addSubview(shufflingFigureView)
         shufflingFigureView.isSkeletonable = true
     }
@@ -31,23 +31,23 @@ class HomeEntranceView: DiaryBaseView {
     private func createCollectionView() {
         let layout = UICollectionViewFlowLayout()
             .chain
-            .itemSize(CGSize(width: (LCZPublicHelper.shared.getScreenWidth! - 15) / 4,
-                             height: 70 * LCZPublicHelper.shared.getScreenSizeScale))
+            .itemSize(CGSize(width: (cz_ScreenWidth! - 15) / 4,
+                             height: 70 * cz_ScreenSizeScale))
             .minimumLineSpacing(10)
             .minimumInteritemSpacing(5)
-            .headerReferenceSize(CGSize(width: LCZPublicHelper.shared.getScreenWidth!,
-                                        height: 40 * LCZPublicHelper.shared.getScreenSizeScale))
+            .headerReferenceSize(CGSize(width: cz_ScreenWidth!,
+                                        height: 40 * cz_ScreenSizeScale))
             .build
 
         collectionView = UICollectionView(frame: CGRect(x: 0,
-                                                        y: -(LCZPublicHelper.shared.getStatusBarHeight! + LCZPublicHelper.shared.getNavigationHeight!),
-                                                        width: LCZPublicHelper.shared.getScreenWidth!,
-                                                        height: LCZPublicHelper.shared.getScreenHeight! - LCZPublicHelper.shared.getSafeAreaBottomHeight - LCZPublicHelper.shared.getTabbarHeight!),
+                                                        y: -(cz_StatusBarHeight! + cz_NavigationHeight!),
+                                                        width: cz_ScreenWidth!,
+                                                        height: LCZPublicHelper.shared.getScreenHeight! - cz_SafeAreaBottomHeight - cz_TabbarHeight!),
                                           collectionViewLayout: layout)
             .chain
             .addSuperView(self)
             .backgroundColor(UIColor.white)
-            .contentInset(UIEdgeInsets(top: 180 * LCZPublicHelper.shared.getScreenSizeScale, left: 0, bottom: 0, right: 0))
+            .contentInset(UIEdgeInsets(top: 180 * cz_ScreenSizeScale, left: 0, bottom: 0, right: 0))
             .register(HomeEntranceCollectionViewCell.self, forCellWithReuseIdentifier: "HomeEntranceCollectionViewCell")
             .register(HomeEntranceCollectionHedderView.self, forSectionHeaderWithReuseIdentifier: "HomeEntranceCollectionHedderView")
             .build

@@ -150,6 +150,11 @@
 		73E78C3622C0C74B007F35FA /* AboutUsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E78C3522C0C74B007F35FA /* AboutUsView.swift */; };
 		D045072C231B715C00F9A44B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D045072E231B715C00F9A44B /* InfoPlist.strings */; };
 		D0450730231B716300F9A44B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D0450732231B716300F9A44B /* Localizable.strings */; };
+		D0450736231BEAC100F9A44B /* CZCommonMacro.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0450735231BEAC100F9A44B /* CZCommonMacro.swift */; };
+		D0450739231BEE1400F9A44B /* CZModuleMacro.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0450738231BEE1400F9A44B /* CZModuleMacro.swift */; };
+		D045073B231BF05D00F9A44B /* CZDateMacro.swift in Sources */ = {isa = PBXBuildFile; fileRef = D045073A231BF05D00F9A44B /* CZDateMacro.swift */; };
+		D045073F231C11AD00F9A44B /* UILabel+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = D045073E231C11AD00F9A44B /* UILabel+Common.swift */; };
+		D0450741231C16A400F9A44B /* UIButton+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0450740231C16A400F9A44B /* UIButton+Common.swift */; };
 		D0A716A122B4BF20000BC367 /* LCZWaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A716A022B4BF20000BC367 /* LCZWaveView.swift */; };
 		D0FF7ACF22FEBE38001CC1AE /* ChainCompatible.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FF7AAC22FEBE35001CC1AE /* ChainCompatible.swift */; };
 		D0FF7AD022FEBE38001CC1AE /* UISlider+Chain.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FF7AAD22FEBE35001CC1AE /* UISlider+Chain.swift */; };
@@ -346,6 +351,11 @@
 		D045072F231B715F00F9A44B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		D0450731231B716300F9A44B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D0450733231B716B00F9A44B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D0450735231BEAC100F9A44B /* CZCommonMacro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CZCommonMacro.swift; sourceTree = "<group>"; };
+		D0450738231BEE1400F9A44B /* CZModuleMacro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CZModuleMacro.swift; sourceTree = "<group>"; };
+		D045073A231BF05D00F9A44B /* CZDateMacro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CZDateMacro.swift; sourceTree = "<group>"; };
+		D045073E231C11AD00F9A44B /* UILabel+Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Common.swift"; sourceTree = "<group>"; };
+		D0450740231C16A400F9A44B /* UIButton+Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Common.swift"; sourceTree = "<group>"; };
 		D0A716A022B4BF20000BC367 /* LCZWaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCZWaveView.swift; sourceTree = "<group>"; };
 		D0FF7AAC22FEBE35001CC1AE /* ChainCompatible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChainCompatible.swift; sourceTree = "<group>"; };
 		D0FF7AAD22FEBE35001CC1AE /* UISlider+Chain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UISlider+Chain.swift"; sourceTree = "<group>"; };
@@ -1163,8 +1173,6 @@
 		7367D2EC221FA3AB008FD780 /* Extension(扩展) */ = {
 			isa = PBXGroup;
 			children = (
-				734E7C7922D82A7D009DAD4D /* NSObject+Swizzling.h */,
-				734E7C7A22D82A7E009DAD4D /* NSObject+Swizzling.m */,
 				7367D2EF221FA43F008FD780 /* UIViewController+Rx.swift */,
 				7367D2ED221FA43A008FD780 /* MJRefresh+Rx.swift */,
 				734E9B6D22448E2400CC5004 /* Moay+Rx.swift */,
@@ -1227,13 +1235,11 @@
 		737E1C2E2213DA8F00BF751D /* Utility(工具) */ = {
 			isa = PBXGroup;
 			children = (
-				73AD364122F973BE00D8B4FB /* ChainKit(链式UI) */,
+				D0450734231BEA7600F9A44B /* CZ_SDK */,
 				7396F4A222EE967700D3C74B /* PublicHelper(公共辅助) */,
 				7377BAAB22E193E6000BBBE9 /* Scanner(扫描器) */,
-				739510D822D72BE200814BFF /* PlaceholderView(占位图) */,
 				738D3E4E22CB5BB800A68487 /* Marquee(跑马灯) */,
 				731802A922C318AC00ED5D56 /* ShufflingFigure(轮播图) */,
-				738AD38122BC998300FD0680 /* TimingCounter(时间计时器) */,
 				7302DB182281797500BC7CAC /* CustomClass(自定义UI) */,
 				7346603A22433948007BBD07 /* Bridging(桥接文件) */,
 				73B1DDD52241EA2F00BFEF7A /* ProgressHUD(进度显示) */,
@@ -2048,6 +2054,47 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D0450734231BEA7600F9A44B /* CZ_SDK */ = {
+			isa = PBXGroup;
+			children = (
+				D045073D231C10D800F9A44B /* Extension(扩展) */,
+				D045073C231C108F00F9A44B /* RunTime */,
+				738AD38122BC998300FD0680 /* TimingCounter(时间计时器) */,
+				739510D822D72BE200814BFF /* PlaceholderView(占位图) */,
+				D0450737231BEDC400F9A44B /* Macro(宏) */,
+				73AD364122F973BE00D8B4FB /* ChainKit(链式UI) */,
+			);
+			path = CZ_SDK;
+			sourceTree = "<group>";
+		};
+		D0450737231BEDC400F9A44B /* Macro(宏) */ = {
+			isa = PBXGroup;
+			children = (
+				D0450735231BEAC100F9A44B /* CZCommonMacro.swift */,
+				D0450738231BEE1400F9A44B /* CZModuleMacro.swift */,
+				D045073A231BF05D00F9A44B /* CZDateMacro.swift */,
+			);
+			path = "Macro(宏)";
+			sourceTree = "<group>";
+		};
+		D045073C231C108F00F9A44B /* RunTime */ = {
+			isa = PBXGroup;
+			children = (
+				734E7C7922D82A7D009DAD4D /* NSObject+Swizzling.h */,
+				734E7C7A22D82A7E009DAD4D /* NSObject+Swizzling.m */,
+			);
+			path = RunTime;
+			sourceTree = "<group>";
+		};
+		D045073D231C10D800F9A44B /* Extension(扩展) */ = {
+			isa = PBXGroup;
+			children = (
+				D045073E231C11AD00F9A44B /* UILabel+Common.swift */,
+				D0450740231C16A400F9A44B /* UIButton+Common.swift */,
+			);
+			path = "Extension(扩展)";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2212,6 +2259,7 @@
 				73B1DDE22242051400BFEF7A /* MovieHomeModel.swift in Sources */,
 				D0FF7AD522FEBE38001CC1AE /* UICollectionView+Chain.swift in Sources */,
 				734E9B6E22448E2400CC5004 /* Moay+Rx.swift in Sources */,
+				D045073B231BF05D00F9A44B /* CZDateMacro.swift in Sources */,
 				73DD29FB22E0435B003242CF /* ResourceDownloader.swift in Sources */,
 				73370BFC22B3614000C01FE0 /* LCZUIAlertControllerExtension.swift in Sources */,
 				73E52AFB22B0F20E0018CBA6 /* ExpressQueryResultsViewController.swift in Sources */,
@@ -2238,6 +2286,7 @@
 				73BB0FCD22B09FA8005F351C /* ExpressQueryViewController.swift in Sources */,
 				732F736822BA1186008108CD /* RegisterModel.swift in Sources */,
 				733D5FCB22E84E4E004216FE /* SearchNewsViewModel.swift in Sources */,
+				D0450739231BEE1400F9A44B /* CZModuleMacro.swift in Sources */,
 				73162F6F22C99EFE00561094 /* MoreMoviesView.swift in Sources */,
 				7344B54F22AFA04700FC7D4D /* MineEntranceViewModel.swift in Sources */,
 				73480F9C22C309AA003BB258 /* NewsMovieHomeViewController.swift in Sources */,
@@ -2324,8 +2373,10 @@
 				73DD2A0422E076F0003242CF /* FaceRecognitionViewController.swift in Sources */,
 				73948B802223CFA5000ED09A /* DiaryBaseTableViewCell.swift in Sources */,
 				7300252422ADFB2F00F05ADC /* HomeEntranceCollectionHedderView.swift in Sources */,
+				D045073F231C11AD00F9A44B /* UILabel+Common.swift in Sources */,
 				73409FC3228158CA00899563 /* SearchMovieViewModel.swift in Sources */,
 				D0FF7AE322FEBE39001CC1AE /* UISwitch+Chain.swift in Sources */,
+				D0450736231BEAC100F9A44B /* CZCommonMacro.swift in Sources */,
 				7326F8E422251CBD0005696F /* NewsDetailsViewController.swift in Sources */,
 				734E9B742244CF2200CC5004 /* DiaryMacro.swift in Sources */,
 				73BB0FCF22B09FCB005F351C /* ExpressQueryView.swift in Sources */,
@@ -2339,6 +2390,7 @@
 				732F735F22BA00A9008108CD /* RegisterViewController.swift in Sources */,
 				7344B54922AF8A5100FC7D4D /* MineEntranceViewController.swift in Sources */,
 				7302334422B8E9D9002CD8C4 /* LoginView.swift in Sources */,
+				D0450741231C16A400F9A44B /* UIButton+Common.swift in Sources */,
 				737E1C3A2213DDF300BF751D /* DiaryRoute.swift in Sources */,
 				D0FF7AE722FEBE39001CC1AE /* HasFont+Chain.swift in Sources */,
 				73480FA022C30FE1003BB258 /* NewsMovieHomeContentView.swift in Sources */,

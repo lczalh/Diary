@@ -25,7 +25,7 @@ class CopyrightStatementViewController: DiaryBaseViewController {
         let contentAttributedString = NSAttributedString(string: self.viewModel.contentString, attributes: [NSAttributedString.Key.paragraphStyle : contentParagraphStyle])
         view.contentLabel.attributedText = contentAttributedString
         view.contentLabel.layoutIfNeeded()
-        view.scrollView.contentSize = CGSize(width: 0, height: view.contentLabel.frame.size.height + LCZPublicHelper.shared.getNavigationHeight! + LCZPublicHelper.shared.getStatusBarHeight!)
+        view.scrollView.contentSize = CGSize(width: 0, height: view.contentLabel.frame.size.height + cz_NavigationHeight! + cz_StatusBarHeight!)
         return view
     }()
     
@@ -37,7 +37,7 @@ class CopyrightStatementViewController: DiaryBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "版权声明"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppTitleColor)]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: cz_HexadecimalColor(hexadecimal: AppTitleColor)]
         
         self.view.addSubview(copyrightStatementView)
         

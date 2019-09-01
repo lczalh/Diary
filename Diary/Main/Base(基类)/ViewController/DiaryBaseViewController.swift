@@ -24,13 +24,13 @@ class DiaryBaseViewController: UIViewController {
         self.tabBarController?.tabBar.isTranslucent = false
         // 统一设置返回按钮
         let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        backBarButtonItem.tintColor = LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppContentColor)
+        backBarButtonItem.tintColor = cz_HexadecimalColor(hexadecimal: AppContentColor)
         self.navigationItem.backBarButtonItem = backBarButtonItem
         
     }
     
     deinit {
-        LCZPublicHelper.shared.setPrint("控制器销毁了！！！！")
+        cz_Print("控制器销毁了！！！！")
     }
     
 }

@@ -25,6 +25,6 @@ class PracticalFunctionCell: DiaryBaseCollectionViewCell {
             make.center.equalToSuperview()
         }
         titleLabel.textAlignment = .center
-        titleLabel.font = LCZPublicHelper.shared.getConventionFont(size: 16)
+        titleLabel.font = cz_ConventionFont(size: 16)
     }
 }

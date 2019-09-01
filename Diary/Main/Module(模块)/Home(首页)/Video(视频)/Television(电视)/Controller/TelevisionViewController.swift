@@ -19,8 +19,8 @@ class TelevisionViewController: DiaryBaseViewController {
         listContainerView = JXCategoryListContainerView(delegate: self)
         listContainerView!.frame = CGRect(x: 0,
                                           y: 44,
-                                          width: LCZPublicHelper.shared.getScreenWidth!,
-                                          height: LCZPublicHelper.shared.getScreenHeight! - LCZPublicHelper.shared.getNavigationHeight! - LCZPublicHelper.shared.getStatusBarHeight! - 44)
+                                          width: cz_ScreenWidth!,
+                                          height: LCZPublicHelper.shared.getScreenHeight! - cz_NavigationHeight! - cz_StatusBarHeight! - 44)
         listContainerView!.defaultSelectedIndex = 0
         view.addSubview(listContainerView!)
         view.categoryView!.contentScrollView = listContainerView!.scrollView;

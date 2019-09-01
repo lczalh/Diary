@@ -44,7 +44,7 @@ class SearchMovieCell: DiaryBaseTableViewCell {
             make.top.equalTo(movieImageView.snp.top)
             make.right.equalToSuperview().offset(-15)
         }
-        titleLabel.font = LCZPublicHelper.shared.getBoldFont(size: 16)
+        titleLabel.font = cz_BoldFont(size: 16)
         titleLabel.setContentHuggingPriority(.required, for: .vertical)
         titleLabel.setContentCompressionResistancePriority(.required, for: .vertical)
         titleLabel.text = "xxxxxxxxx"
@@ -59,9 +59,9 @@ class SearchMovieCell: DiaryBaseTableViewCell {
             make.right.equalToSuperview().offset(-15)
             make.bottom.equalTo(movieImageView.snp.bottom)
         }
-        detailsLabel.font = LCZPublicHelper.shared.getConventionFont(size: 14)
+        detailsLabel.font = cz_ConventionFont(size: 14)
         detailsLabel.numberOfLines = 0;
-        detailsLabel.textColor = LCZPublicHelper.shared.getRgbColor(160, 160, 160, 1)
+        detailsLabel.textColor = cz_RgbColor(160, 160, 160, 1)
         detailsLabel.isSkeletonable = true
         detailsLabel.textAlignment = .left
     }

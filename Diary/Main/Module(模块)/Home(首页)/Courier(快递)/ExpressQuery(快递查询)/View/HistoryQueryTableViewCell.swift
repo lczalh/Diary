@@ -47,9 +47,9 @@ class HistoryQueryTableViewCell: DiaryBaseTableViewCell {
             make.centerY.equalTo(leftImageView)
             make.left.equalTo(leftImageView.snp.right).offset(10)
         }
-        titleLabel.font = LCZPublicHelper.shared.getConventionFont(size: 12)
+        titleLabel.font = cz_ConventionFont(size: 12)
        // titleLabel.text = "撒大方哇"
-        titleLabel.textColor = LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppContentColor)
+        titleLabel.textColor = cz_HexadecimalColor(hexadecimal: AppContentColor)
         // 删除按钮
         deleButton = UIButton(type: .custom)
         self.contentView.addSubview(deleButton)

@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         // 全局修改TabBarItem 选中的文字颜色
         UITabBarItem.appearance().setTitleTextAttributes(
-            [NSAttributedString.Key.foregroundColor: LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppContentColor)], for: .selected)
+            [NSAttributedString.Key.foregroundColor: cz_HexadecimalColor(hexadecimal: AppContentColor)], for: .selected)
         // 控制整个功能是否启用
         IQKeyboardManager.shared.enable = true
         // 控制点击背景是否收起键盘

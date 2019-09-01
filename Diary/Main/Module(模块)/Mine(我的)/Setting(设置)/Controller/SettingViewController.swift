@@ -20,7 +20,7 @@ class SettingViewController: DiaryBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "设置"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppTitleColor)]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: cz_HexadecimalColor(hexadecimal: AppTitleColor)]
         self.view.addSubview(settingView)
         
         // MARK: - 退出登陆事件
@@ -47,13 +47,13 @@ extension SettingViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ClearCacheTableViewCell", for: indexPath) as! ClearCacheTableViewCell
         cell.titleLabel.text = "清除缓存"
-        cell.cacheSizeLabel.text = LCZPublicHelper.shared.getCacheSize
+        cell.cacheSizeLabel.text = cz_CacheSize
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
-            LCZPublicHelper.shared.clearCache()
+            cz_ClearCache()
             tableView.reloadData()
         }
     }

@@ -21,7 +21,7 @@ class MineEntranceViewController: DiaryBaseViewController {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isTranslucent = true
         //设置导航栏背景透明
-        LCZPublicHelper.shared.setNavigationBarTransparency(navigationController: self.navigationController!)
+        cz_NavigationBarTransparency(navigationController: self.navigationController!)
         
         
     }
@@ -31,7 +31,7 @@ class MineEntranceViewController: DiaryBaseViewController {
         super.viewWillDisappear(animated)
         self.navigationController?.navigationBar.isTranslucent = false
         //重置导航栏背景
-        LCZPublicHelper.shared.setRestoreTheTransparentNavigationBar(navigationController: self.navigationController!)
+        cz_RestoreTheTransparentNavigationBar(navigationController: self.navigationController!)
     }
     
     lazy var mineEntranceView: MineEntranceView = {
@@ -51,7 +51,7 @@ class MineEntranceViewController: DiaryBaseViewController {
         
         // 返回
         let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        backBarButtonItem.tintColor = LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppContentColor)
+        backBarButtonItem.tintColor = cz_HexadecimalColor(hexadecimal: AppContentColor)
         self.navigationItem.backBarButtonItem = backBarButtonItem
         
         // 设置
@@ -104,7 +104,7 @@ extension MineEntranceViewController: UITableViewDataSource {
                 }
             })
         } else if title == "去评分" {
-            LCZPublicHelper.shared.jumpAppStoreScore(appId: ApplicationId)
+            cz_JumpAppStoreScore(appId: ApplicationId)
         } else if title == "关于我们" {
             diaryRoute.push("diary://mine/aboutUs")
         } else if title == "版权声明" {
@@ -119,10 +119,10 @@ extension MineEntranceViewController: UITableViewDataSource {
 extension MineEntranceViewController: UITableViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
-        if (offsetY < -(200 + LCZPublicHelper.shared.getNavigationHeight! + LCZPublicHelper.shared.getStatusBarHeight!) ) {
+        if (offsetY < -(200 + cz_NavigationHeight! + cz_StatusBarHeight!) ) {
             var frame = self.mineEntranceView.headerImageView.frame
-            frame.size.height =  -(offsetY + LCZPublicHelper.shared.getNavigationHeight! + LCZPublicHelper.shared.getStatusBarHeight!) ;
-            frame.origin.y = offsetY + LCZPublicHelper.shared.getNavigationHeight! + LCZPublicHelper.shared.getStatusBarHeight!;
+            frame.size.height =  -(offsetY + cz_NavigationHeight! + cz_StatusBarHeight!) ;
+            frame.origin.y = offsetY + cz_NavigationHeight! + cz_StatusBarHeight!;
             self.mineEntranceView.headerImageView.frame = frame;
         }
     }

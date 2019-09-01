@@ -16,7 +16,7 @@ class SearchMovieViewController: DiaryBaseViewController {
     private var models: [MovieHomeModel] = []
     
     private lazy var searchMovieView: SearchMovieView = {
-        let view = SearchMovieView(frame: CGRect(x: 0, y: 0, width: LCZPublicHelper.shared.getScreenWidth!, height: LCZPublicHelper.shared.getScreenHeight! - LCZPublicHelper.shared.getStatusBarHeight! - LCZPublicHelper.shared.getNavigationHeight! - LCZPublicHelper.shared.getSafeAreaBottomHeight))
+        let view = SearchMovieView(frame: CGRect(x: 0, y: 0, width: cz_ScreenWidth!, height: LCZPublicHelper.shared.getScreenHeight! - cz_StatusBarHeight! - cz_NavigationHeight! - cz_SafeAreaBottomHeight))
         view.tableView.dataSource = self
         view.tableView.delegate = self
         return view
@@ -25,10 +25,10 @@ class SearchMovieViewController: DiaryBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "搜索结果"
-        self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppTitleColor)]
+        self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: cz_HexadecimalColor(hexadecimal: AppTitleColor)]
         
         let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        backBarButtonItem.tintColor = LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppContentColor)
+        backBarButtonItem.tintColor = cz_HexadecimalColor(hexadecimal: AppContentColor)
         self.navigationItem.backBarButtonItem = backBarButtonItem
         
         self.view.addSubview(self.searchMovieView)

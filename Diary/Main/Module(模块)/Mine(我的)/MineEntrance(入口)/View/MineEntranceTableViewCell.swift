@@ -45,8 +45,8 @@ class MineEntranceTableViewCell: DiaryBaseTableViewCell {
             make.left.equalTo(logoImageView.snp.right).offset(10)
             make.centerY.equalTo(logoImageView)
         }
-        titleLabel.font = LCZPublicHelper.shared.getConventionFont(size: 14)
-        titleLabel.textColor = LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppContentColor)
+        titleLabel.font = cz_ConventionFont(size: 14)
+        titleLabel.textColor = cz_HexadecimalColor(hexadecimal: AppContentColor)
         
         rightImageView = UIImageView()
         self.contentView.addSubview(rightImageView)

@@ -14,7 +14,7 @@ class SelectorEpisodeCell: DiaryBaseCollectionViewCell {
     var episodeLabel: UILabel!
 
     override func config() {
-        self.contentView.backgroundColor = LCZPublicHelper.shared.getRgbColor(243, 242, 243, 1)
+        self.contentView.backgroundColor = cz_RgbColor(243, 242, 243, 1)
         
         episodeLabel = UILabel()
         self.contentView.addSubview(episodeLabel)
@@ -22,6 +22,6 @@ class SelectorEpisodeCell: DiaryBaseCollectionViewCell {
             make.center.equalToSuperview()
         }
         episodeLabel.textAlignment = .center
-        episodeLabel.font = LCZPublicHelper.shared.getConventionFont(size: 16)
+        episodeLabel.font = cz_ConventionFont(size: 16)
     }
 }

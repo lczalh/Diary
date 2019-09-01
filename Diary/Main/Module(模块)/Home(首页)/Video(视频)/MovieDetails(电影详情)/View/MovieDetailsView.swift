@@ -40,8 +40,8 @@ class MovieDetailsView: DiaryBaseView {
         
         playerView = UIImageView(frame: CGRect(x: 0,
                                                y: 0,
-                                               width: LCZPublicHelper.shared.getScreenWidth!,
-                                               height: 215 * LCZPublicHelper.shared.getScreenSizeScale))
+                                               width: cz_ScreenWidth!,
+                                               height: 215 * cz_ScreenSizeScale))
         playerView.contentMode = .scaleAspectFill
         playerView.clipsToBounds = true
         self.addSubview(playerView)
@@ -65,8 +65,8 @@ class MovieDetailsView: DiaryBaseView {
     private func createTableView() {
         marqueeLabel = LCZMarqueeLabel.init(location: CGPoint(x: 0, y: self.playerView.frame.height), text: "本站视频采集自网络，视频滚动水印广告请勿相信，谨防上当受骗。特此告知！！！")
         self.addSubview(marqueeLabel)
-        marqueeLabel.textColor = LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppTitleColor)
-        tableView = UITableView(frame: CGRect(x: 0, y: self.playerView.frame.height + marqueeLabel.frame.height, width: LCZPublicHelper.shared.getScreenWidth!, height: LCZPublicHelper.shared.getScreenHeight! - self.playerView.frame.height - LCZPublicHelper.shared.getStatusBarHeight!), style: .grouped)
+        marqueeLabel.textColor = cz_HexadecimalColor(hexadecimal: AppTitleColor)
+        tableView = UITableView(frame: CGRect(x: 0, y: self.playerView.frame.height + marqueeLabel.frame.height, width: cz_ScreenWidth!, height: LCZPublicHelper.shared.getScreenHeight! - self.playerView.frame.height - cz_StatusBarHeight!), style: .grouped)
         self.addSubview(tableView)
         tableView.register(SynopsisCell.self, forCellReuseIdentifier: "SynopsisCell")
         tableView.register(EpisodeCell.self, forCellReuseIdentifier: "EpisodeCell")
@@ -74,7 +74,7 @@ class MovieDetailsView: DiaryBaseView {
         tableView.separatorStyle = .none
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 60
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: LCZPublicHelper.shared.getSafeAreaBottomHeight, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: cz_SafeAreaBottomHeight, right: 0)
         
     }
 }

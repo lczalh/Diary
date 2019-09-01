@@ -42,7 +42,7 @@ class LoginViewController: DiaryBaseViewController {
         super.viewDidLoad()
         // 返回
         let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        backBarButtonItem.tintColor = LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppContentColor)
+        backBarButtonItem.tintColor = cz_HexadecimalColor(hexadecimal: AppContentColor)
         self.navigationItem.backBarButtonItem = backBarButtonItem
         
         self.view.addSubview(loginView)
@@ -53,7 +53,7 @@ class LoginViewController: DiaryBaseViewController {
         let zip = Observable.combineLatest(account, password) { $0 && $1 }
         zip.bind(to: self.loginView.loginButton.rx.isEnabled).disposed(by: rx.disposeBag)
         zip.subscribe(onNext: { (state) in
-                self.loginView.loginButton.backgroundColor = state == true ? LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppContentColor) : LCZPublicHelper.shared.getRgbColor(239, 240, 244, 1)
+                self.loginView.loginButton.backgroundColor = state == true ? cz_HexadecimalColor(hexadecimal: AppContentColor) : cz_RgbColor(239, 240, 244, 1)
             state == true ? self.loginView.loginButton.layer.pop_add(self.loginView.loginButtonAnimation, forKey: "loginButtonAnimation") : self.loginView.loginButton.layer.pop_removeAnimation(forKey: "loginButtonAnimation")
             }).disposed(by: rx.disposeBag)
      

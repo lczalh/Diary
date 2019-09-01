@@ -31,7 +31,7 @@ class ExpressQueryViewController: DiaryBaseViewController {
 
         // 下级控制器返回按钮
         let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        backBarButtonItem.tintColor = LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppContentColor)
+        backBarButtonItem.tintColor = cz_HexadecimalColor(hexadecimal: AppContentColor)
         self.navigationItem.backBarButtonItem = backBarButtonItem
         
         // 返回按钮
@@ -48,8 +48,8 @@ class ExpressQueryViewController: DiaryBaseViewController {
                         .throttle(0.5) //在主线程中操作，0.3秒内值若多次改变，取最后一次
                         .map{$0.count > 0}
                         .drive(onNext: { (state) in
-                            self.expressQueryView.inquireButton.backgroundColor = state == true ? LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppTitleColor) : LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: "#bfbfbf")
-                            self.expressQueryView.inquireButton.setTitleColor(state == true ? LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppContentColor) : UIColor.white, for: .normal)
+                            self.expressQueryView.inquireButton.backgroundColor = state == true ? cz_HexadecimalColor(hexadecimal: AppTitleColor) : cz_HexadecimalColor(hexadecimal: "#bfbfbf")
+                            self.expressQueryView.inquireButton.setTitleColor(state == true ? cz_HexadecimalColor(hexadecimal: AppContentColor) : UIColor.white, for: .normal)
                             self.expressQueryView.inquireButton.isEnabled = state
                         })
                         .disposed(by: rx.disposeBag)
@@ -129,7 +129,7 @@ class ExpressQueryViewController: DiaryBaseViewController {
     ///
     /// - Parameter sender: 当前按钮
     @objc func deleCellQuery(sender: UIButton) -> () {
-        let cell = LCZPublicHelper.shared.getSuperView(currentView: sender, seekSuperView: UITableViewCell.self)
+        let cell = cz_SuperView(currentView: sender, seekSuperView: UITableViewCell.self)
         let indexPath = self.expressQueryView.tableView.indexPath(for: cell!)
         let historyQueryHistoryQuery = self.viewModel.getHistoryQuery().mutableCopy() as! NSMutableArray
         historyQueryHistoryQuery.removeObject(at: indexPath!.row)
@@ -182,8 +182,8 @@ extension ExpressQueryViewController: UITableViewDelegate {
         titleLabel.snp.makeConstraints { (make) in
             make.left.centerY.equalToSuperview()
         }
-        titleLabel.font = LCZPublicHelper.shared.getConventionFont(size: 14)
-        titleLabel.textColor = LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppTitleColor)
+        titleLabel.font = cz_ConventionFont(size: 14)
+        titleLabel.textColor = cz_HexadecimalColor(hexadecimal: AppTitleColor)
         titleLabel.text = "历史查询"
         return headerView
     }

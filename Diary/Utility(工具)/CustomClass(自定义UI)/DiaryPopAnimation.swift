@@ -20,8 +20,8 @@ class DiaryPopAnimation: NSObject, UIViewControllerAnimatedTransitioning {
         let fromView = transitionContext.view(forKey: .from)
         transitionContext.containerView.insertSubview(toView!, belowSubview: fromView!)
         UIView.transition(with: toView!, duration: self.transitionDuration(using: transitionContext), options: .transitionFlipFromLeft, animations: {
-            fromView?.frame = CGRect(x: LCZPublicHelper.shared.getScreenWidth!, y: 0, width: LCZPublicHelper.shared.getScreenWidth!, height: LCZPublicHelper.shared.getScreenHeight!)
-            toView?.frame = CGRect(x: 0, y: 0, width: LCZPublicHelper.shared.getScreenWidth!, height: LCZPublicHelper.shared.getScreenHeight!)
+            fromView?.frame = CGRect(x: cz_ScreenWidth!, y: 0, width: cz_ScreenWidth!, height: LCZPublicHelper.shared.getScreenHeight!)
+            toView?.frame = CGRect(x: 0, y: 0, width: cz_ScreenWidth!, height: LCZPublicHelper.shared.getScreenHeight!)
         }, completion: { _ in
             
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)

@@ -66,7 +66,7 @@ extension LCZTimingCounter  {
                 timer.cancel()
                 DispatchQueue.main.async(execute: {
                     //print("通知\(aTime)毫秒")
-                    LCZTimingCounter.shared.notifyNames.remove(at: LCZTimingCounter.shared.notifyNames.index(of: notifyName)!)
+                    LCZTimingCounter.shared.notifyNames.remove(at: LCZTimingCounter.shared.notifyNames.firstIndex(of: notifyName)!)
                     NotificationCenter.default.post(name: NSNotification.Name.init(notifyName), object: LCZTimingCounterModel(year: 0, month: 0, day: 0, hour: 0, minute: 0, second: 0, millisecond: 0))
                 })
             } else {

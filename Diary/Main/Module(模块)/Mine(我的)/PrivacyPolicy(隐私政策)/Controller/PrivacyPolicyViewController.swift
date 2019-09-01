@@ -11,7 +11,7 @@ import UIKit
 class PrivacyPolicyViewController: DiaryBaseViewController {
     
     lazy var privacyPolicyView: PrivacyPolicyView = {
-        let view = PrivacyPolicyView(frame: CGRect(x: 0, y: 0, width: LCZPublicHelper.shared.getScreenWidth!, height: LCZPublicHelper.shared.getScreenHeight! - LCZPublicHelper.shared.getNavigationHeight! - LCZPublicHelper.shared.getStatusBarHeight!))
+        let view = PrivacyPolicyView(frame: CGRect(x: 0, y: 0, width: cz_ScreenWidth!, height: LCZPublicHelper.shared.getScreenHeight! - cz_NavigationHeight! - cz_StatusBarHeight!))
         let contentParagraphStyle = NSMutableParagraphStyle()
         // 对齐方式
         contentParagraphStyle.alignment = .left
@@ -27,7 +27,7 @@ class PrivacyPolicyViewController: DiaryBaseViewController {
 //        LCZPrint(a);
         view.contentLabel.attributedText = contentAttributedString
         view.contentLabel.layoutIfNeeded()
-        view.scrollView.contentSize = CGSize(width: 0, height: view.contentLabel.frame.height + LCZPublicHelper.shared.getNavigationHeight! + LCZPublicHelper.shared.getStatusBarHeight!)
+        view.scrollView.contentSize = CGSize(width: 0, height: view.contentLabel.frame.height + cz_NavigationHeight! + cz_StatusBarHeight!)
         return view
     }()
     
@@ -39,7 +39,7 @@ class PrivacyPolicyViewController: DiaryBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "隐私政策"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppTitleColor)]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: cz_HexadecimalColor(hexadecimal: AppTitleColor)]
         
         self.view.addSubview(privacyPolicyView)
         

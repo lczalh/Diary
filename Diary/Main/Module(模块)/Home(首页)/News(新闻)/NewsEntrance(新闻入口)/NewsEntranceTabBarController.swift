@@ -26,7 +26,7 @@ class NewsEntranceTabBarController: DiaryBaseTabBarController {
         searchViewController!.searchHistoryStyle = .default
         searchViewController!.cancelButton.isHidden = true
         let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        backBarButtonItem.tintColor = LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppContentColor)
+        backBarButtonItem.tintColor = cz_HexadecimalColor(hexadecimal: AppContentColor)
         searchViewController?.navigationItem.backBarButtonItem = backBarButtonItem
         // 搜索
         self.LCZSetTabBarItem(viewController: searchViewController, navigationTitle: "搜索", tabBarTitle: "搜索", image: UIImage(named: "sousuohui")?.withRenderingMode(.alwaysOriginal), selectImage: UIImage(named: "sousuo")?.withRenderingMode(.alwaysOriginal))

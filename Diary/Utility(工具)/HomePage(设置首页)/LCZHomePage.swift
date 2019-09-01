@@ -28,7 +28,7 @@ class LCZHomePage {
         // 文件管理器
         let fileManger = FileManager.default
         // 创建文件路径 用于记录版本号 此时沙盒中并没有plist文件  要写入plist文件在存在
-        let versionPlist = LCZPublicHelper.shared.getDocumentPath + "/version.plist"
+        let versionPlist = cz_DocumentPath + "/version.plist"
         // 判断文件是否存在
         if fileManger.fileExists(atPath: versionPlist) == true {//存在
             let fileDict = NSDictionary(contentsOfFile: versionPlist)
@@ -36,9 +36,9 @@ class LCZHomePage {
             currentVersion = fileDict?.object(forKey: "CFBundleShortVersionString") as? String
         }
         // 判断是否第一次启动
-        if currentVersion != LCZPublicHelper.shared.getAppVersionNumber { // 进入引导页
+        if currentVersion != cz_AppVersionNumber { // 进入引导页
             // 把版本号存入字典
-            let dict = NSDictionary(dictionary: ["CFBundleShortVersionString": LCZPublicHelper.shared.getAppVersionNumber!])
+            let dict = NSDictionary(dictionary: ["CFBundleShortVersionString": cz_AppVersionNumber!])
             // 把字典写入plist文件
             dict.write(toFile: versionPlist, atomically: true)
             guidePage()

@@ -41,14 +41,14 @@ class NewsDetailsViewController: DiaryBaseViewController {
         
         // 收藏按钮
         let enshrineButton = UIButton(type: .custom)
-        LCZPublicHelper.shared.getLastWindow()!.addSubview(enshrineButton)
+        cz_LastWindow()!.addSubview(enshrineButton)
         self.view.addSubview(enshrineButton)
         enshrineButton.setImage(UIImage(named: "shoucanghui")?.withRenderingMode(.alwaysOriginal), for: .normal)
         enshrineButton.setImage(UIImage(named: "shoucang")?.withRenderingMode(.alwaysOriginal), for: .selected)
         enshrineButton.backgroundColor = UIColor.white
         enshrineButton.snp.makeConstraints { (make) in
             make.right.equalToSuperview().offset(-5)
-            make.bottom.equalToSuperview().offset(-(LCZPublicHelper.shared.getSafeAreaBottomHeight + 20))
+            make.bottom.equalToSuperview().offset(-(cz_SafeAreaBottomHeight + 20))
             make.size.equalTo(50)
         }
         enshrineButton.layoutIfNeeded()

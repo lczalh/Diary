@@ -31,7 +31,7 @@ class PrivacyPolicyView: DiaryBaseView {
             make.left.equalTo(self).offset(15)
             make.right.equalTo(self).offset(-15)
         }
-        contentLabel.font = LCZPublicHelper.shared.getConventionFont(size: 14)
+        contentLabel.font = cz_ConventionFont(size: 14)
         contentLabel.numberOfLines = 0
         contentLabel.lineBreakMode = .byCharWrapping
         

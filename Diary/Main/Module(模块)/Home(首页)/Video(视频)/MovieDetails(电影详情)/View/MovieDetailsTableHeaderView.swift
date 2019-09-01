@@ -42,7 +42,7 @@ class MovieDetailsTableHeaderView: UITableViewHeaderFooterView {
             make.left.equalToSuperview().offset(10)
             make.top.equalToSuperview().offset(10);
         })
-        titleLabel.font = LCZPublicHelper.shared.getBoldFont(size: 18)
+        titleLabel.font = cz_BoldFont(size: 18)
         
         synopsisButton = UIButton(type: .custom)
         self.contentView.addSubview(synopsisButton!)
@@ -51,8 +51,8 @@ class MovieDetailsTableHeaderView: UITableViewHeaderFooterView {
             make.top.equalToSuperview().offset(10);
         })
         synopsisButton?.setTitleColor(UIColor.black, for: .normal)
-        synopsisButton?.titleLabel?.font = LCZPublicHelper.shared.getConventionFont(size: 12)
-        synopsisButton?.setTitleColor(LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: "#707070"), for: .normal)
+        synopsisButton?.titleLabel?.font = cz_ConventionFont(size: 12)
+        synopsisButton?.setTitleColor(cz_HexadecimalColor(hexadecimal: "#707070"), for: .normal)
         synopsisButton?.set(image: UIImage(named: "synopsisBottonImage"), title: "简介", titlePosition: .left, additionalSpacing: 5, state: .selected)
         synopsisButton?.set(image: UIImage(named: "synopsisTopImage"), title: "简介", titlePosition: .left, additionalSpacing: 5, state: .normal)
         synopsisButton?.isHidden = true
@@ -65,8 +65,8 @@ class MovieDetailsTableHeaderView: UITableViewHeaderFooterView {
             make.right.equalToSuperview().offset(-10)
         }
         otherInformationLabel.textAlignment = .left
-        otherInformationLabel.font = LCZPublicHelper.shared.getConventionFont(size: 12)
-        otherInformationLabel.textColor = LCZPublicHelper.shared.getRgbColor(92, 92, 92, 1)
+        otherInformationLabel.font = cz_ConventionFont(size: 12)
+        otherInformationLabel.textColor = cz_RgbColor(92, 92, 92, 1)
         
         bottonLineView = UIView()
         self.contentView.addSubview(bottonLineView)
@@ -76,10 +76,10 @@ class MovieDetailsTableHeaderView: UITableViewHeaderFooterView {
             make.bottom.equalToSuperview()
             make.height.equalTo(1)
         }
-        bottonLineView.backgroundColor = LCZPublicHelper.shared.getRgbColor(244, 244, 244, 1)
+        bottonLineView.backgroundColor = cz_RgbColor(244, 244, 244, 1)
         
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: (LCZPublicHelper.shared.getScreenWidth! - 20 - 50) / 6, height: 35 * LCZPublicHelper.shared.getScreenSizeScale)
+        layout.itemSize = CGSize(width: (cz_ScreenWidth! - 20 - 50) / 6, height: 35 * cz_ScreenSizeScale)
         layout.minimumLineSpacing = 5
         layout.minimumInteritemSpacing = 5
         collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)

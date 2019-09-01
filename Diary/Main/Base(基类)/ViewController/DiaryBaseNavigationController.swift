@@ -15,7 +15,7 @@ class DiaryBaseNavigationController: UINavigationController {
         // 禁用侧滑返回
         self.interactivePopGestureRecognizer?.isEnabled = false
         // 修改导航标题颜色
-        self.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppTitleColor)]
+        self.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: cz_HexadecimalColor(hexadecimal: AppTitleColor)]
         self.delegate = self
     }
     

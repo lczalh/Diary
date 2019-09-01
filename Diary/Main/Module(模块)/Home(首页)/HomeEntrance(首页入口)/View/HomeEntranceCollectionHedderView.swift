@@ -34,8 +34,8 @@ class HomeEntranceCollectionHedderView: UICollectionReusableView {
                 make.centerY.equalTo(self.logoImageView)
                 make.left.equalTo(self.logoImageView.snp.right).offset(5)
             })
-            .font(LCZPublicHelper.shared.getBoldFont(size: 16))
-            .textColor(LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppTitleColor))
+            .font(cz_BoldFont(size: 16))
+            .textColor(cz_HexadecimalColor(hexadecimal: AppTitleColor))
             .build
 
     }

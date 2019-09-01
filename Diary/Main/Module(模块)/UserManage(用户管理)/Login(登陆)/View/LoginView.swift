@@ -46,19 +46,19 @@ class LoginView: DiaryBaseView {
             make.left.equalTo(iconImageView.snp.right).offset(5)
             make.centerY.equalTo(iconImageView)
         }
-        appNameLabel.text = LCZPublicHelper.shared.getAppName
-        appNameLabel.font = LCZPublicHelper.shared.getBoldFont(size: 20)
-        appNameLabel.textColor = LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppTitleColor)
+        appNameLabel.text = cz_AppName
+        appNameLabel.font = cz_BoldFont(size: 20)
+        appNameLabel.textColor = cz_HexadecimalColor(hexadecimal: AppTitleColor)
         
         // 账号
         let accountView = UIView()
         self.addSubview(accountView)
-        accountView.backgroundColor = LCZPublicHelper.shared.getRgbColor(239, 240, 244, 1)
+        accountView.backgroundColor = cz_RgbColor(239, 240, 244, 1)
         accountView.snp.makeConstraints { (make) in
             make.left.equalToSuperview().offset(50)
             make.right.equalToSuperview().offset(-50)
             make.top.equalTo(iconImageView.snp.bottom).offset(30)
-            make.height.equalTo(60 * LCZPublicHelper.shared.getScreenSizeScale)
+            make.height.equalTo(60 * cz_ScreenSizeScale)
         }
         accountView.layoutIfNeeded()
         let accountBezierPath = UIBezierPath(roundedRect: accountView.bounds, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: accountView.bounds.width / 2, height: accountView.bounds.height / 2))
@@ -95,18 +95,18 @@ class LoginView: DiaryBaseView {
         }
         accountTextField.clearButtonMode = .unlessEditing
         accountTextField.placeholder = "请输入您的账号"
-        accountTextField.font = LCZPublicHelper.shared.getConventionFont(size: 16)
+        accountTextField.font = cz_ConventionFont(size: 16)
         accountTextField.keyboardType = .numberPad
         
         // 密码
         let passwordView = UIView()
         self.addSubview(passwordView)
-        passwordView.backgroundColor = LCZPublicHelper.shared.getRgbColor(239, 240, 244, 1)
+        passwordView.backgroundColor = cz_RgbColor(239, 240, 244, 1)
         passwordView.snp.makeConstraints { (make) in
             make.left.equalToSuperview().offset(50)
             make.right.equalToSuperview().offset(-50)
             make.top.equalTo(accountView.snp.bottom).offset(30)
-            make.height.equalTo(60 * LCZPublicHelper.shared.getScreenSizeScale)
+            make.height.equalTo(60 * cz_ScreenSizeScale)
         }
         passwordView.layoutIfNeeded()
         let passwordBezierPath = UIBezierPath(roundedRect: passwordView.bounds, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: passwordView.bounds.width / 2, height: passwordView.bounds.height / 2))
@@ -143,7 +143,7 @@ class LoginView: DiaryBaseView {
         }
         passwordTextField.clearButtonMode = .unlessEditing
         passwordTextField.placeholder = "请输入您的密码"
-        passwordTextField.font = LCZPublicHelper.shared.getConventionFont(size: 16)
+        passwordTextField.font = cz_ConventionFont(size: 16)
         passwordTextField.keyboardType = .twitter
         passwordTextField.isSecureTextEntry = true
         
@@ -153,7 +153,7 @@ class LoginView: DiaryBaseView {
         loginButton.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
             make.top.equalTo(passwordView.snp.bottom).offset(50)
-            make.size.equalTo(80 * LCZPublicHelper.shared.getScreenSizeScale)
+            make.size.equalTo(80 * cz_ScreenSizeScale)
         }
         loginButton.setImage(UIImage(named: "jiantoudingweixiangyou"), for: .normal)
         loginButton.layoutIfNeeded()
@@ -162,7 +162,7 @@ class LoginView: DiaryBaseView {
         loginShapeLayer.frame = loginButton.bounds
         loginShapeLayer.path = loginBezierPath.cgPath
         loginButton.layer.mask = loginShapeLayer
-        loginButton.backgroundColor = LCZPublicHelper.shared.getRgbColor(239, 240, 244, 1)
+        loginButton.backgroundColor = cz_RgbColor(239, 240, 244, 1)
         loginButton.isEnabled = false
         // 密码视图呼吸动画
         loginButtonAnimation = POPBasicAnimation(propertyNamed: kPOPLayerScaleXY)
@@ -182,7 +182,7 @@ class LoginView: DiaryBaseView {
             make.width.equalTo(2)
             make.height.equalTo(20)
         }
-        verticalLineView.backgroundColor = LCZPublicHelper.shared.getRgbColor(239, 240, 244, 1)
+        verticalLineView.backgroundColor = cz_RgbColor(239, 240, 244, 1)
         
         // 忘记密码
         forgotPasswordButton = UIButton(type: .custom)
@@ -193,8 +193,8 @@ class LoginView: DiaryBaseView {
         }
         forgotPasswordButton.setTitle("找回密码", for: .normal)
         forgotPasswordButton.setTitleColor(UIColor.black, for: .normal)
-        forgotPasswordButton.titleLabel?.font = LCZPublicHelper.shared.getConventionFont(size: 12)
-        forgotPasswordButton.setTitleColor(LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppContentColor), for: .normal)
+        forgotPasswordButton.titleLabel?.font = cz_ConventionFont(size: 12)
+        forgotPasswordButton.setTitleColor(cz_HexadecimalColor(hexadecimal: AppContentColor), for: .normal)
         
         // 用户注册
         userRegistrationButton = UIButton(type: .custom)
@@ -205,8 +205,8 @@ class LoginView: DiaryBaseView {
         }
         userRegistrationButton.setTitle("用户注册", for: .normal)
         userRegistrationButton.setTitleColor(UIColor.black, for: .normal)
-        userRegistrationButton.titleLabel?.font = LCZPublicHelper.shared.getConventionFont(size: 12)
-        userRegistrationButton.setTitleColor(LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppContentColor), for: .normal)
+        userRegistrationButton.titleLabel?.font = cz_ConventionFont(size: 12)
+        userRegistrationButton.setTitleColor(cz_HexadecimalColor(hexadecimal: AppContentColor), for: .normal)
     }
 
 }

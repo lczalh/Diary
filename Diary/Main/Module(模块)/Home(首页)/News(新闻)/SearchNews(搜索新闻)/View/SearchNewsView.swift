@@ -16,9 +16,9 @@ class SearchNewsView: DiaryBaseView {
         self.isSkeletonable = true
         tableView = UITableView(frame: self.bounds, style: .plain)
         tableView.register(NewsHomeCell.self, forCellReuseIdentifier: "NewsHomeCell")
-        tableView.rowHeight = 110 * LCZPublicHelper.shared.getScreenSizeScale;
+        tableView.rowHeight = 110 * cz_ScreenSizeScale;
         tableView.separatorStyle = .none
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: LCZPublicHelper.shared.getSafeAreaBottomHeight + LCZPublicHelper.shared.getNavigationHeight! + LCZPublicHelper.shared.getStatusBarHeight!, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: cz_SafeAreaBottomHeight + cz_NavigationHeight! + cz_StatusBarHeight!, right: 0)
         tableView.isSkeletonable = true
         tableView.lcz_isUseComponent = true
         self.addSubview(self.tableView)

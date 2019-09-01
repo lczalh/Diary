@@ -33,14 +33,14 @@ class HomeEntranceViewController: DiaryBaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isTranslucent = true
-        LCZPublicHelper.shared.setNavigationBarTransparency(navigationController: self.navigationController!)
+        cz_NavigationBarTransparency(navigationController: self.navigationController!)
     }
     
     //视图将要消失
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationController?.navigationBar.isTranslucent = false
-        LCZPublicHelper.shared.setRestoreTheTransparentNavigationBar(navigationController: self.navigationController!)
+        cz_RestoreTheTransparentNavigationBar(navigationController: self.navigationController!)
     }
     
     
@@ -50,9 +50,9 @@ class HomeEntranceViewController: DiaryBaseViewController {
         super.viewDidLoad()
         self.view.addSubview(homeEntranceView)
         let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        backBarButtonItem.tintColor = LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppContentColor)
+        backBarButtonItem.tintColor = cz_HexadecimalColor(hexadecimal: AppContentColor)
         self.navigationItem.backBarButtonItem = backBarButtonItem
-        LCZPublicHelper.shared.setPrint("alertTitle".localized())
+        cz_Print("alertTitle".localized())
         // 下载电视列表数据
         networkServicesProvider.request(MultiTarget(Resource.televisionJson)) { (result) in
             switch result {

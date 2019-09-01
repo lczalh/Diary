@@ -48,7 +48,7 @@ private let RequestHudPlugin = NetworkActivityPlugin { change, target  in
 /// - Parameter target: target description
 /// - Returns: return value description
 private func endpointMapping(target: MultiTarget) -> Endpoint {
-    LCZPublicHelper.shared.setPrint(target.baseURL, target.path, target.task)
+    cz_Print(target.baseURL, target.path, target.task)
     return MoyaProvider.defaultEndpointMapping(for: target)
 }
 
@@ -58,12 +58,12 @@ final class RequestAlertPlugin: PluginType {
     
     /// 开始发起请求。我们可以在这里显示网络状态指示器。
     func willSend(_ request: RequestType, target: TargetType) {
-        LCZPublicHelper.shared.setPrint("开始发起网络请求")
+        cz_Print("开始发起网络请求")
     }
     
     /// 收到请求响应。我们可以在这里根据结果自动进行一些处理，比如请求失败时将失败信息告诉用户，或者记录到日志中。
     func didReceive(_ result: Result<Response, MoyaError>, target: TargetType) {
-        LCZPublicHelper.shared.setPrint("收到网络请求响应")
+        cz_Print("收到网络请求响应")
         switch result {
         case .success(_):
         
@@ -76,7 +76,7 @@ final class RequestAlertPlugin: PluginType {
     
     /// 处理请求结果。我们可以在 completion 前对结果进行进一步处理。
     func process(_ result: Result<Response, MoyaError>, target: TargetType) -> Result<Response, MoyaError> {
-        LCZPublicHelper.shared.setPrint("处理网络请求结果")
+        cz_Print("处理网络请求结果")
 //        let a = networkServicesProvider.request(MultiTarget(HighSpeedDataNetworkServices.getNewsTypeList(appkey: highSpeedDataAppKey)), completion: { (rs) in
 //            return rs
 //        })
@@ -94,7 +94,7 @@ final class RequestAlertPlugin: PluginType {
     /// 准备发起请求。我们可以在这里对请求进行修改，比如再增加一些额外的参数。
     func prepare(_ request: URLRequest, target: TargetType) -> URLRequest {
       //  networkServicesProvider.rx.lcz
-        LCZPublicHelper.shared.setPrint("准备发起网络请求")
+        cz_Print("准备发起网络请求")
        // String(data: request.httpBody!, encoding: .utf8)
         return request
     }

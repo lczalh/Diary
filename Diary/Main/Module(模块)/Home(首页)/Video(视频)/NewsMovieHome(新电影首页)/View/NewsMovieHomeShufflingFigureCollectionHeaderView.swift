@@ -23,7 +23,7 @@ class NewsMovieHomeShufflingFigureCollectionHeaderView: UICollectionReusableView
         super.init(frame: frame)
         self.isSkeletonable = true
         
-        shufflingFigureView = ShufflingFigureView(frame: CGRect(x: 0, y: 0, width: LCZPublicHelper.shared.getScreenWidth!, height: 180 * LCZPublicHelper.shared.getScreenSizeScale))
+        shufflingFigureView = ShufflingFigureView(frame: CGRect(x: 0, y: 0, width: cz_ScreenWidth!, height: 180 * cz_ScreenSizeScale))
         self.addSubview(shufflingFigureView)
         shufflingFigureView.isSkeletonable = true
         
@@ -35,7 +35,7 @@ class NewsMovieHomeShufflingFigureCollectionHeaderView: UICollectionReusableView
         imageView.snp.makeConstraints { (make) in
             make.left.equalToSuperview().offset(15)
             make.top.equalTo(shufflingFigureView.snp.bottom).offset(10)
-            make.size.equalTo(20 * LCZPublicHelper.shared.getScreenSizeScale)
+            make.size.equalTo(20 * cz_ScreenSizeScale)
         }
         
         titleLabel = UILabel()
@@ -46,8 +46,8 @@ class NewsMovieHomeShufflingFigureCollectionHeaderView: UICollectionReusableView
             make.height.equalTo(30)
             make.centerY.equalTo(imageView)
         }
-        titleLabel.font = LCZPublicHelper.shared.getBoldFont(size: 16)
-        titleLabel.textColor = LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppTitleColor)
+        titleLabel.font = cz_BoldFont(size: 16)
+        titleLabel.textColor = cz_HexadecimalColor(hexadecimal: AppTitleColor)
         titleLabel.isSkeletonable = true
         
     }

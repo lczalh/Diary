@@ -19,13 +19,13 @@ class TelevisionListView: DiaryBaseView {
     /// 创建CollectionView
     private func createCollectionView() {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: (LCZPublicHelper.shared.getScreenWidth! - 2) / 2 , height: 150 * LCZPublicHelper.shared.getScreenSizeScale)
+        layout.itemSize = CGSize(width: (cz_ScreenWidth! - 2) / 2 , height: 150 * cz_ScreenSizeScale)
         layout.minimumInteritemSpacing = 2
         layout.minimumLineSpacing = 0
         collectionView = UICollectionView(frame: self.bounds, collectionViewLayout: layout)
         self.addSubview(collectionView)
         collectionView.register(NewsMovieCollectionViewCell.self, forCellWithReuseIdentifier: "NewsMovieCollectionViewCell")
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: LCZPublicHelper.shared.getTabbarHeight! + LCZPublicHelper.shared.getSafeAreaBottomHeight, right: 0)
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: cz_TabbarHeight! + cz_SafeAreaBottomHeight, right: 0)
         collectionView.backgroundColor = UIColor.clear
         collectionView.isSkeletonable = true
         collectionView.lcz_isUseComponent = true

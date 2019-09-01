@@ -34,8 +34,8 @@ class ClearCacheTableViewCell: DiaryBaseTableViewCell {
             make.left.equalToSuperview().offset(15)
             make.centerY.equalToSuperview()
         }
-        titleLabel.font = LCZPublicHelper.shared.getConventionFont(size: 14)
-        titleLabel.textColor = LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppContentColor)
+        titleLabel.font = cz_ConventionFont(size: 14)
+        titleLabel.textColor = cz_HexadecimalColor(hexadecimal: AppContentColor)
         
         cacheSizeLabel = UILabel()
         self.contentView.addSubview(cacheSizeLabel)
@@ -43,6 +43,6 @@ class ClearCacheTableViewCell: DiaryBaseTableViewCell {
             make.right.equalToSuperview().offset(-15)
             make.centerY.equalToSuperview()
         }
-        cacheSizeLabel.font = LCZPublicHelper.shared.getConventionFont(size: 16)
+        cacheSizeLabel.font = cz_ConventionFont(size: 16)
     }
 }

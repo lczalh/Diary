@@ -46,7 +46,7 @@ class NewsMovieHomeViewController: DiaryBaseViewController {
         super.viewDidLoad()
 
         let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        backBarButtonItem.tintColor = LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppContentColor)
+        backBarButtonItem.tintColor = cz_HexadecimalColor(hexadecimal: AppContentColor)
         
         // 返回按钮
         let returnBarButtonItem = UIBarButtonItem(image: UIImage(named: "zuojiantou")?.withRenderingMode(.alwaysOriginal), style: .plain, target: nil, action: nil)
@@ -164,7 +164,7 @@ class NewsMovieHomeViewController: DiaryBaseViewController {
                     self.newsMovieHomeContentView.collectionView.reloadData()
                     self.view.hideSkeleton()
                     // 刷新轮播图
-                    let shufflingFigureHeaderView = LCZPublicHelper.shared.getSubView(currentView: self.newsMovieHomeContentView, seekSubView: NewsMovieHomeShufflingFigureCollectionHeaderView.self)
+                    let shufflingFigureHeaderView = cz_SubView(currentView: self.newsMovieHomeContentView, seekSubView: NewsMovieHomeShufflingFigureCollectionHeaderView.self)
                     shufflingFigureHeaderView!.shufflingFigureView.fsPagerView.reloadData()
                 })
             }
@@ -260,9 +260,9 @@ extension NewsMovieHomeViewController: SkeletonCollectionViewDataSource {
 extension NewsMovieHomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         if section == 0 {
-            return CGSize(width: LCZPublicHelper.shared.getScreenWidth!, height: 220 * LCZPublicHelper.shared.getScreenSizeScale)
+            return CGSize(width: cz_ScreenWidth!, height: 220 * cz_ScreenSizeScale)
         } else {
-            return CGSize(width: LCZPublicHelper.shared.getScreenWidth!, height: 30 * LCZPublicHelper.shared.getScreenSizeScale)
+            return CGSize(width: cz_ScreenWidth!, height: 30 * cz_ScreenSizeScale)
         }
     }
 }
@@ -302,12 +302,12 @@ extension NewsMovieHomeViewController: FSPagerViewDelegate {
     }
     
     func pagerViewWillEndDragging(_ pagerView: FSPagerView, targetIndex: Int) {
-        let headerView = LCZPublicHelper.shared.getSuperView(currentView: pagerView, seekSuperView: NewsMovieHomeShufflingFigureCollectionHeaderView.self)!
+        let headerView = cz_SuperView(currentView: pagerView, seekSuperView: NewsMovieHomeShufflingFigureCollectionHeaderView.self)!
         headerView.shufflingFigureView.fsPageControl.currentPage = targetIndex
     }
     
     func pagerViewDidEndScrollAnimation(_ pagerView: FSPagerView) {
-        let headerView = LCZPublicHelper.shared.getSuperView(currentView: pagerView, seekSuperView: NewsMovieHomeShufflingFigureCollectionHeaderView.self)!
+        let headerView = cz_SuperView(currentView: pagerView, seekSuperView: NewsMovieHomeShufflingFigureCollectionHeaderView.self)!
         headerView.shufflingFigureView.fsPageControl.currentPage = pagerView.currentIndex
     }
     

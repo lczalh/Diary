@@ -19,7 +19,7 @@ class ExpressQueryResultsViewController: DiaryBaseViewController {
     
     lazy var expressQueryResultsView: ExpressQueryResultsView = {
         let view = ExpressQueryResultsView(frame: self.view.bounds)
-        view.backgroundColor = LCZPublicHelper.shared.getRgbColor(237, 234, 242, 1)
+        view.backgroundColor = cz_RgbColor(237, 234, 242, 1)
         view.tableView.dataSource = self as UITableViewDataSource
         view.courieNumberLabel.text = expressQueryResultModel.number
         // 快递公司 & logo
@@ -33,8 +33,8 @@ class ExpressQueryResultsViewController: DiaryBaseViewController {
         view.courierCompanyLeabel.text = model.name
         // 计算耗时
         if expressQueryResultModel.list[0].time!.isEmpty == false {
-            let initialTime = LCZPublicHelper.shared.getTimeToTimeStamp(time: expressQueryResultModel.list[0].time!)
-            let endTime = LCZPublicHelper.shared.getTimeToTimeStamp(time: expressQueryResultModel.list[expressQueryResultModel.list.count-1].time!)
+            let initialTime = cz_TimeToTimeStamp(time: expressQueryResultModel.list[0].time!)
+            let endTime = cz_TimeToTimeStamp(time: expressQueryResultModel.list[expressQueryResultModel.list.count-1].time!)
             let timeDifference = endTime - initialTime
             // 天
             let days = Int(abs(timeDifference / 3600 / 24))
@@ -71,7 +71,7 @@ class ExpressQueryResultsViewController: DiaryBaseViewController {
         
         // 标题
         self.navigationItem.title = "快递详情"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppTitleColor)]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: cz_HexadecimalColor(hexadecimal: AppTitleColor)]
         
         
         
@@ -95,20 +95,20 @@ extension ExpressQueryResultsViewController: UITableViewDataSource {
             // 判断物流状态
             if expressQueryResultModel.deliverystatus == 3 { // 已签收
                 cell.stateImageView.image = UIImage(named: "yiqianshou")
-                cell.logisticsDetailsLabel.textColor = LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: "#3164E7")
+                cell.logisticsDetailsLabel.textColor = cz_HexadecimalColor(hexadecimal: "#3164E7")
             } else if expressQueryResultModel.deliverystatus == 4  {
                 cell.stateImageView.image = UIImage(named: "qianshoushibai")
-                cell.logisticsDetailsLabel.textColor = LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: "#d81e06")
+                cell.logisticsDetailsLabel.textColor = cz_HexadecimalColor(hexadecimal: "#d81e06")
             } else if expressQueryResultModel.deliverystatus == 2 {
                 cell.stateImageView.image = UIImage(named: "paijiantixing")
-                cell.logisticsDetailsLabel.textColor = LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: "#3164E7")
+                cell.logisticsDetailsLabel.textColor = cz_HexadecimalColor(hexadecimal: "#3164E7")
             } else if expressQueryResultModel.deliverystatus == 1 {
                 cell.stateImageView.image = UIImage(named: "zaituzhong")
-                cell.logisticsDetailsLabel.textColor = LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: "#3164E7")
+                cell.logisticsDetailsLabel.textColor = cz_HexadecimalColor(hexadecimal: "#3164E7")
             }
             
         } else {
-            cell.logisticsDetailsLabel.textColor = LCZPublicHelper.shared.getRgbColor(113, 112, 113, 1)
+            cell.logisticsDetailsLabel.textColor = cz_RgbColor(113, 112, 113, 1)
             cell.stateImageView.image = UIImage(named: "dangqiandizhi")
         }
         

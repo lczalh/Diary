@@ -11,7 +11,7 @@ import Foundation
 class CourierEntranceViewModel {
     
     // 常用公司数据路径
-    public let commonExpressCompaniesPlist = LCZPublicHelper.shared.getDocumentPath + "/commonExpressCompanies.plist"
+    public let commonExpressCompaniesPlist = cz_DocumentPath + "/commonExpressCompanies.plist"
     
     /// 获取常用快递公司数据
     ///

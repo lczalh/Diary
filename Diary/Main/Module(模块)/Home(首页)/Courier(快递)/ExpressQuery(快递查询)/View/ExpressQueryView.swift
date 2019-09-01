@@ -40,7 +40,7 @@ class ExpressQueryView: DiaryBaseView {
             make.right.equalToSuperview().offset(-30)
             make.height.equalTo(40)
         }
-        boxView.layer.borderColor = LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppTitleColor).cgColor;
+        boxView.layer.borderColor = cz_HexadecimalColor(hexadecimal: AppTitleColor).cgColor;
         boxView.layer.borderWidth = 1
         boxView.layer.cornerRadius = 5
         boxView.clipsToBounds = true
@@ -110,7 +110,7 @@ class ExpressQueryView: DiaryBaseView {
             make.top.equalTo(inquireButton.snp.bottom).offset(50)
             make.bottom.equalToSuperview()
         }
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: LCZPublicHelper.shared.getStatusBarHeight! + LCZPublicHelper.shared.getTabbarHeight! + LCZPublicHelper.shared.getNavigationHeight! + LCZPublicHelper.shared.getSafeAreaBottomHeight + 30, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: cz_StatusBarHeight! + cz_TabbarHeight! + cz_NavigationHeight! + cz_SafeAreaBottomHeight + 30, right: 0)
         tableView.rowHeight = 40
         tableView.register(HistoryQueryTableViewCell.self, forCellReuseIdentifier: "HistoryQueryTableViewCell")
         tableView.showsVerticalScrollIndicator = false

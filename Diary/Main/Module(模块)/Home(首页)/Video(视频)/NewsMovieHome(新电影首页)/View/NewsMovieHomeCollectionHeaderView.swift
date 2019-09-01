@@ -38,8 +38,8 @@ class NewsMovieHomeCollectionHeaderView: UICollectionReusableView {
             make.left.equalTo(imageView.snp.right).offset(5)
             make.centerY.equalTo(imageView)
         }
-        titleLabel.font = LCZPublicHelper.shared.getBoldFont(size: 16)
-        titleLabel.textColor = LCZPublicHelper.shared.getHexadecimalColor(hexadecimal: AppTitleColor)
+        titleLabel.font = cz_BoldFont(size: 16)
+        titleLabel.textColor = cz_HexadecimalColor(hexadecimal: AppTitleColor)
         titleLabel.isSkeletonable = true
      
     }

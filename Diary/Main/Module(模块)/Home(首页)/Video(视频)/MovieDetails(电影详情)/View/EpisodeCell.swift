@@ -33,7 +33,7 @@ class EpisodeCell: DiaryBaseTableViewCell {
     
     override func config() {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 50 * LCZPublicHelper.shared.getScreenSizeScale, height: 50 * LCZPublicHelper.shared.getScreenSizeScale)
+        layout.itemSize = CGSize(width: 50 * cz_ScreenSizeScale, height: 50 * cz_ScreenSizeScale)
         layout.scrollDirection = .horizontal
         collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         self.contentView.addSubview(collectionView)
@@ -41,7 +41,7 @@ class EpisodeCell: DiaryBaseTableViewCell {
             make.top.equalToSuperview().offset(5)
             make.bottom.equalToSuperview().offset(-5)
             make.left.right.equalToSuperview()
-            make.height.equalTo(70 * LCZPublicHelper.shared.getScreenSizeScale)
+            make.height.equalTo(70 * cz_ScreenSizeScale)
         }
         
         collectionView.backgroundColor = UIColor.white

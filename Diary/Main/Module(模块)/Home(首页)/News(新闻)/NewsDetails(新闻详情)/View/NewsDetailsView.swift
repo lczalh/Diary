@@ -19,7 +19,7 @@ class NewsDetailsView: DiaryBaseView {
     }
     
     private func createWKWebView() -> Void {
-        self.webView = WKWebView(frame: CGRect(x: 0, y: 0, width: LCZPublicHelper.shared.getScreenWidth!, height: LCZPublicHelper.shared.getScreenHeight! - LCZPublicHelper.shared.getSafeAreaBottomHeight - LCZPublicHelper.shared.getNavigationHeight! - LCZPublicHelper.shared.getStatusBarHeight!))
+        self.webView = WKWebView(frame: CGRect(x: 0, y: 0, width: cz_ScreenWidth!, height: LCZPublicHelper.shared.getScreenHeight! - cz_SafeAreaBottomHeight - cz_NavigationHeight! - cz_StatusBarHeight!))
         self.addSubview(self.webView)
         
     }

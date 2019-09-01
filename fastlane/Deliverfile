@@ -35,9 +35,17 @@ description({ #iTunes Store 中描述信息
 #此应用程序的价格等级
 price_tier 0
 
+#iTunes store 综合信息处信息
 trade_representative_contact_information(
   first_name: "li",
   last_name: "ming",
+  address_line1: "软件园", #地址
+  address_line2: "",
+  address_line3: "",
+  city_name: "Chengdu", # 城市
+  state: "SICHUAN", # 省
+  country: "China", #国家
+  postal_code: "610000", # 邮编
   phone_number: "+86 17608430508",
   email_address: "824093806@qq.com"
 )
